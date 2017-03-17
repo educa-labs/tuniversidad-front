@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import MenuBar from '../components/MenuBar';
 import Buscador from './Buscador';
+import { toggleCompress } from '../actions/view';
 
 
 const views = {
@@ -16,7 +17,11 @@ function Home(props) {
   let content;
   switch (views[props.view]) {
     case 'buscar':
-      content = <Buscador />;
+      content = (
+        <Buscador
+          compress={props.compress}
+          toggleCompress={props.toggleCompress}
+        />);
       break;
     default: break;
   }
@@ -29,13 +34,18 @@ function Home(props) {
 }
 
 Home.propTypes = {
+  toggleCompress: PropTypes.func.isRequired,
+  compress: PropTypes.bool.isRequired,
   view: PropTypes.number.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
     view: state.view.view,
+    compress: state.view.compress,
   };
 }
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps, {
+  toggleCompress,
+})(Home);
