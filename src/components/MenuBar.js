@@ -13,6 +13,7 @@ const newtonStyle = {
 };
 
 function MenuBar(props) {
+  console.log(props.view);
   return (
     <div className="menubar-container">
       <Tabs
@@ -45,7 +46,7 @@ MenuBar.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    view: state.view,
+    view: state.view.view,
   };
 }
 

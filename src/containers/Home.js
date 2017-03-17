@@ -34,7 +34,7 @@ Home.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    view: state.view,
+    view: state.view.view,
   };
 }
 
