@@ -1,0 +1,63 @@
+.cover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25rem;
+  background-image: url(../assets/buscador-cover.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: inset 0px 13px 30px -9px rgba(0,0,0,0.75);
+}
+
+.cover > span {
+  color: white;
+  text-transform: uppercase;
+  font-size: 3rem;
+  margin: 0 auto;
+  width: 60vw;
+  text-align: center;
+}
+
+.input-container {
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-container > input {
+  color: #C9C9C9;
+  height: 3rem;
+  width: 80vw;
+  text-indent: 1rem;
+  font-size: 1rem;
+  border: none;
+}
+
+.input-container > ::-webkit-input-placeholder {
+  color: #C9C9C9;
+}
+
+.input-container > :focus {
+  outline-width: 0;
+}
+
+.selector {
+  height: 3rem;
+  display: flex;
+}
+
+.selector > div {
+  width: 50vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #E0E0E0;
+  color: #B0B0B0;
+}
+
+.selector > div.active {
+  background-color: #9E9E9E;
+  color: white;
+}

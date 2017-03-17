@@ -1,0 +1,18 @@
+.banner-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #0091EA;
+  height: 4rem;
+}
+
+.title {
+  height: 2rem;
+  width: 20rem;
+  margin: 1rem;
+  background-image: url(../assets/tuniversidad-logotipo-blanco.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
