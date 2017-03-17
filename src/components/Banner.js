@@ -1,17 +1,28 @@
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 import '../styles/Banner.css';
 
 
-function Banner({ hide }) {
+function Banner({ compress }) {
   return (
-    <div className={`banner-container ${hide ? 'hide' : ''}`}>
+    <div className={`banner-container ${compress ? 'compress' : ''}`}>
       <div className="title" />
     </div>
   );
 }
 
 Banner.propTypes = {
-  hide: PropTypes.bool.isRequired,
+  compress: PropTypes.bool,
 };
 
-export default Banner;
+Banner.defaultProps = {
+  compress: false,
+};
+
+function mapStateToProps(state) {
+  return {
+    compress: state.view.compress,
+  };
+}
+
+export default connect(mapStateToProps)(Banner);

@@ -4,6 +4,12 @@
   align-items: center;
   background-color: #0091EA;
   height: 4rem;
+  transition: height 300ms ease;
+}
+
+.banner-container.compress {
+  height: 0;
+  transition: height 300ms ease;
 }
 
 .title {

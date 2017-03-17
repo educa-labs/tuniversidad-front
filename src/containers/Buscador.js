@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import Search from 'material-ui/svg-icons/action/search';
 import IconButton from 'material-ui/IconButton';
+import Filters from '../components/Filters';
 import '../styles/Buscador.css';
 
 class Buscador extends Component {
@@ -14,6 +15,7 @@ class Buscador extends Component {
 
   componentWillMount() {
     this.makeSelection = this.makeSelection.bind(this);
+    if (this.props.compress) this.props.toggleCompress();
   }
 
   makeSelection(active) {
@@ -22,12 +24,16 @@ class Buscador extends Component {
 
   render() {
     const { active, input } = this.state;
+    const { toggleCompress, compress } = this.props;
     return (
       <div className="buscador-container">
-        <div className="cover">
+        <div className={`cover ${compress ? 'compress' : ''}`}>
           <span>Información de más de 100 universidades</span>
         </div>
-        <div className="input-container">
+        <div
+          className={`input-container ${compress ? 'compress' : ''}`}
+          onClick={toggleCompress}
+        >
           <IconButton>
             <Search color="#C9C9C9" />
           </IconButton>
@@ -52,9 +58,15 @@ class Buscador extends Component {
             Carreras
           </div>
         </div>
+        <Filters />
       </div>
     );
   }
 }
+
+Buscador.propTypes = {
+  compress: PropTypes.bool.isRequired,
+  toggleCompress: PropTypes.func.isRequired,
+};
 
 export default Buscador;

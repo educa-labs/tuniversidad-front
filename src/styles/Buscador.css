@@ -2,12 +2,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 25rem;
   background-image: url(../assets/buscador-cover.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   box-shadow: inset 0px 13px 30px -9px rgba(0,0,0,0.75);
+  height: 25rem;
+  overflow: hidden;
+  transition: height 300ms ease;
+}
+
+.cover.compress {
+  height: 0;
+  transition: height 300ms ease;
 }
 
 .cover > span {
@@ -24,6 +31,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.input-container.compress {
+  box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.75);
 }
 
 .input-container > input {
