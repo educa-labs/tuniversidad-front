@@ -1,8 +1,14 @@
-import { CHANGE_VIEW } from './types';
+import { CHANGE_VIEW, COMPRESS } from './types';
 
-export function changeView(value) {
+export function changeView(view) {
   return {
     type: CHANGE_VIEW,
-    value,
+    view,
+  };
+}
+
+export function toggleCompress() {
+  return {
+    type: COMPRESS,
   };
 }
