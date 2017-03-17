@@ -1,0 +1,16 @@
+.filter-container > .filter-banner {
+  height: 3rem;
+  background-color: #0091EA;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.filter-banner > .icon-button {
+  margin-left: 2rem;
+}
+
+.filter-banner > span {
+  color: white;
+  width: 80vw;
+}
