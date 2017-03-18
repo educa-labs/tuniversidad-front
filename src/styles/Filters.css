@@ -1,10 +1,22 @@
-.filter-container > .filter-banner {
+.filters-container {
   height: 3rem;
   background-color: #0091EA;
+  transition: height 200ms ease;
+}
+
+.filters-container.expand {
+  height: 10rem;
+  transition: height 200ms ease;
+}
+
+.filter-banner {
+  height: 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
+
 
 .filter-banner > .icon-button {
   margin-left: 2rem;

@@ -10,21 +10,46 @@ class Buscador extends Component {
     this.state = {
       input: '',
       active: 'universidades',
+      expandFilters: false,
     };
   }
 
   componentWillMount() {
     this.makeSelection = this.makeSelection.bind(this);
+    this.toggleFilters = this.toggleFilters.bind(this);
+    this.handleInputClick = this.handleInputClick.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
     if (this.props.compress) this.props.toggleCompress();
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll(event) {
+    console.log(event.srcElement.body.scrollTop);
   }
 
   makeSelection(active) {
     this.setState({ active });
   }
 
+  handleInputClick() {
+    if (!this.props.compress) this.props.toggleCompress();
+  }
+
+  toggleFilters() {
+    this.setState({ expandFilters: !this.state.expandFilters });
+    if (!this.props.compress) this.props.toggleCompress();
+  }
+
   render() {
-    const { active, input } = this.state;
-    const { toggleCompress, compress } = this.props;
+    const { active, input, expandFilters } = this.state;
+    const { compress } = this.props;
     return (
       <div className="buscador-container">
         <div className={`cover ${compress ? 'compress' : ''}`}>
@@ -32,7 +57,7 @@ class Buscador extends Component {
         </div>
         <div
           className={`input-container ${compress ? 'compress' : ''}`}
-          onClick={toggleCompress}
+          onClick={this.handleInputClick}
         >
           <IconButton>
             <Search color="#C9C9C9" />
@@ -58,7 +83,11 @@ class Buscador extends Component {
             Carreras
           </div>
         </div>
-        <Filters />
+        <Filters
+          onClick={this.toggleFilters}
+          expanded={expandFilters}
+          active={active}
+        />
       </div>
     );
   }
