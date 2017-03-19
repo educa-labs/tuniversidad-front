@@ -6,7 +6,7 @@
 }
 
 .filters-container.expand {
-  height: auto;
+  height: 20rem;
   transition: height 200ms ease;
 }
 
@@ -34,6 +34,7 @@
 
 .fields-container {
   display: inline-block;
+  margin: 1rem 0;
 }
 .fields-container > .row {
   display: flex;

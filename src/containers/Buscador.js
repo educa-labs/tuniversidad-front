@@ -15,6 +15,7 @@ class Buscador extends Component {
   }
 
   componentWillMount() {
+    console.log('Monamos: Buscador');
     this.makeSelection = this.makeSelection.bind(this);
     this.toggleFilters = this.toggleFilters.bind(this);
     this.handleInputClick = this.handleInputClick.bind(this);
@@ -84,14 +85,10 @@ class Buscador extends Component {
           </div>
         </div>
         <Filters
-          onClick={this.toggleFilters}
-          expanded={expandFilters}
           type="universidades"
           show={active === 'universidades'}
         />
         <Filters
-          onClick={this.toggleFilters}
-          expanded={expandFilters}
           type="carreras"
           show={active === 'carreras'}
         />

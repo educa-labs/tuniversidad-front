@@ -30,7 +30,13 @@ const opciones = [
 ];
 
 class Filters extends Component {
+  constructor(props) {
+    super(props);
+    this.toggleExpand = this.toggleExpand.bind(this);
+  }
+
   componentWillMount() {
+    this.setState({ expanded: false });
     if (this.props.type === 'universidades') {
       this.setState({
         type: null,
@@ -49,8 +55,14 @@ class Filters extends Component {
       });
     }
   }
+
+  toggleExpand() {
+    this.setState({ expanded: !this.state.expanded });
+  }
+
   render() {
-    const { expanded, onClick, show } = this.props;
+    const { show } = this.props;
+    const { expanded } = this.state;
     const fields = this.props.type === 'universidades' ? (
       <div className="fields-container">
         <div className="row">
@@ -89,8 +101,8 @@ class Filters extends Component {
     );
     return (
       <div className={`filters-container ${expanded ? 'expand' : ''} ${show ? '' : 'hidden'}`}>
-        <div className="filter-banner" onTouchTap={onClick}>
-          <IconButton className="icon-button" onTouchTap={onClick}>
+        <div className="filter-banner" onTouchTap={this.toggleExpand}>
+          <IconButton className="icon-button">
             {expanded ?
               <ArrowUp color="white" /> :
               <ArrowDown color="white" />}
@@ -104,8 +116,6 @@ class Filters extends Component {
 }
 
 Filters.propTypes = {
-  expanded: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired,
   show: PropTypes.bool.isRequired,
   type: PropTypes.string.isRequired,
 };
