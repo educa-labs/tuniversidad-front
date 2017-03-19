@@ -86,7 +86,14 @@ class Buscador extends Component {
         <Filters
           onClick={this.toggleFilters}
           expanded={expandFilters}
-          active={active}
+          type="universidades"
+          show={active === 'universidades'}
+        />
+        <Filters
+          onClick={this.toggleFilters}
+          expanded={expandFilters}
+          type="carreras"
+          show={active === 'carreras'}
         />
       </div>
     );

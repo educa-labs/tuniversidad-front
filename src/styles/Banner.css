@@ -12,7 +12,7 @@
   transition: height 300ms ease;
 }
 
-.title {
+.banner-container > .title {
   height: 2rem;
   width: 20rem;
   margin: 1rem;

@@ -2,11 +2,16 @@
   height: 3rem;
   background-color: #0091EA;
   transition: height 200ms ease;
+  overflow: hidden;
 }
 
 .filters-container.expand {
-  height: 10rem;
+  height: auto;
   transition: height 200ms ease;
+}
+
+.filters-container.hidden {
+  display: none;
 }
 
 .filter-banner {
@@ -25,4 +30,15 @@
 .filter-banner > span {
   color: white;
   width: 80vw;
+}
+
+.fields-container {
+  display: inline-block;
+}
+.fields-container > .row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  padding-bottom: 1rem;
 }

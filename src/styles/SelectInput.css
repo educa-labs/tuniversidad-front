@@ -1,0 +1,14 @@
+.select-input-container {
+  display: block;
+  width: 30vw;
+  margin: 0 5vw;
+}
+
+.select-input-container > .title {
+  color: white;
+  margin: 1rem;
+}
+
+.select-input-container > .input {
+  width:  10rem;
+}
