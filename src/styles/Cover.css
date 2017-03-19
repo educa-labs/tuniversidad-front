@@ -1,0 +1,27 @@
+.cover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../assets/buscador-cover.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: inset 0px 13px 30px -9px rgba(0,0,0,0.75);
+  height: 25rem;
+  overflow: hidden;
+  transition: height 300ms ease;
+}
+
+.cover.compress {
+  height: 0;
+  transition: height 300ms ease;
+}
+
+.cover > span {
+  color: white;
+  text-transform: uppercase;
+  font-size: 3rem;
+  margin: 0 auto;
+  width: 60vw;
+  text-align: center;
+}

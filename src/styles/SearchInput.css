@@ -1,0 +1,29 @@
+.input-container {
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-container.compress {
+  -webkit-box-shadow: 0px 10px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 10px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+.input-container > input {
+  color: #C9C9C9;
+  height: 3rem;
+  width: 80vw;
+  text-indent: 1rem;
+  font-size: 1rem;
+  border: none;
+}
+
+.input-container > ::-webkit-input-placeholder {
+  color: #C9C9C9;
+}
+
+.input-container > :focus {
+  outline-width: 0;
+}

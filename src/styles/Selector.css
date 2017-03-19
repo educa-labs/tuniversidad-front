@@ -1,0 +1,18 @@
+.selector {
+  height: 3rem;
+  display: flex;
+}
+
+.selector > div {
+  width: 50vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #E0E0E0;
+  color: #B0B0B0;
+}
+
+.selector > div.active {
+  background-color: #9E9E9E;
+  color: white;
+}

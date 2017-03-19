@@ -2,8 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import ArrowDown from 'material-ui/svg-icons/hardware/keyboard-arrow-down';
 import ArrowUp from 'material-ui/svg-icons/hardware/keyboard-arrow-up';
 import IconButton from 'material-ui/IconButton';
-import '../styles/Filters.css';
 import SelectInput from './SelectInput';
+import '../styles/Filters.css';
 
 const tipos = [
   { value: 0, label: 'Todas' },
@@ -29,6 +29,12 @@ const opciones = [
   { value: 2, label: 'No' },
 ];
 
+const idiomas = [
+  { value: 0, label: 'Todas' },
+  { value: 1, label: 'Español' },
+  { value: 2, label: 'Inglés' },
+];
+
 class Filters extends Component {
   constructor(props) {
     super(props);
@@ -46,11 +52,11 @@ class Filters extends Component {
       });
     } else {
       this.setState({
-        area: '',
-        country: '',
-        duration: '',
-        region: '',
-        language: [0, 0],
+        area: null,
+        country: null,
+        duration: [0, 0],
+        region: null,
+        language: null,
         arancel: [0, 0],
       });
     }
@@ -58,6 +64,7 @@ class Filters extends Component {
 
   toggleExpand() {
     this.setState({ expanded: !this.state.expanded });
+    if (!this.props.compress) this.props.toggleCompress();
   }
 
   render() {
@@ -96,7 +103,34 @@ class Filters extends Component {
       </div>
     ) : (
       <div className="fields-container">
-        Carreras
+        <div className="row">
+          <SelectInput
+            title="Area"
+            items={tipos}
+            value={this.state.area}
+            handleChange={area => this.setState({ area })}
+          />
+          <SelectInput
+            title="Region"
+            items={regiones}
+            value={this.state.region}
+            handleChange={region => this.setState({ region })}
+          />
+        </div>
+        <div className="row" >
+          <SelectInput
+            title="Pais"
+            items={paises}
+            value={this.state.country}
+            handleChange={country => this.setState({ country })}
+          />
+          <SelectInput
+            title="Idioma"
+            items={idiomas}
+            value={this.state.language}
+            handleChange={language => this.setState({ language })}
+          />
+        </div>
       </div>
     );
     return (
@@ -118,6 +152,9 @@ class Filters extends Component {
 Filters.propTypes = {
   show: PropTypes.bool.isRequired,
   type: PropTypes.string.isRequired,
+  toggleCompress: PropTypes.func.isRequired,
+  compress: PropTypes.bool.isRequired,
 };
+
 
 export default Filters;

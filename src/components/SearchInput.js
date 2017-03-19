@@ -1,0 +1,31 @@
+import React, { PropTypes } from 'react';
+import Search from 'material-ui/svg-icons/action/search';
+import IconButton from 'material-ui/IconButton';
+import Paper from 'material-ui/Paper';
+import '../styles/SearchInput.css';
+
+
+function SearchInput({ value, handleOnChange, onClick, compress }) {
+  return (
+    <Paper zDepth={compress ? 3 : 0}>
+      <div className="input-container" onClick={onClick}>
+        <IconButton><Search color="#C9C9C9" /></IconButton>
+        <input
+          type="text"
+          value={value}
+          onChange={e => handleOnChange(e.target.value)}
+          placeholder="Busca lo que quieras"
+        />
+      </div>
+    </Paper>
+  );
+}
+
+SearchInput.propTypes = {
+  value: PropTypes.string.isRequired,
+  handleOnChange: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
+  compress: PropTypes.bool.isRequired,
+};
+
+export default SearchInput;
