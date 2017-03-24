@@ -1,0 +1,47 @@
+.range-input {
+  width: 15rem;
+}
+
+.range-input > .pin-slider {
+  height: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pin-slider > .pin-box {
+  height: 1rem;
+  padding: 5px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #0091EA;
+  font-size: 0.7rem;
+}
+
+.pin-slider > .pin-box.selected {
+  background-color: white;
+  border-radius: 100%;
+}
+
+.range-input > .pin {
+  margin: 0.5rem auto;
+  background-color: white;
+  height: 20px;
+  width: 20px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.6rem;
+  color: #0091EA;
+}
+
+
+.range-input > .bar {
+  margin: 0 0.5rem;
+  height: 2px;
+  background-color: white;
+
+}

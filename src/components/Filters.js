@@ -3,6 +3,7 @@ import ArrowDown from 'material-ui/svg-icons/hardware/keyboard-arrow-down';
 import ArrowUp from 'material-ui/svg-icons/hardware/keyboard-arrow-up';
 import IconButton from 'material-ui/IconButton';
 import SelectInput from './SelectInput';
+import RangeInput from './RangeInput';
 import '../styles/Filters.css';
 
 const tipos = [
@@ -42,7 +43,7 @@ class Filters extends Component {
   }
 
   componentWillMount() {
-    this.setState({ expanded: false });
+    this.setState({ expanded: true });
     if (this.props.type === 'universidades') {
       this.setState({
         type: null,
@@ -54,7 +55,7 @@ class Filters extends Component {
       this.setState({
         area: null,
         country: null,
-        duration: [0, 0],
+        duration: [1, 10],
         region: null,
         language: null,
         arancel: [0, 0],
@@ -129,6 +130,15 @@ class Filters extends Component {
             items={idiomas}
             value={this.state.language}
             handleChange={language => this.setState({ language })}
+          />
+        </div>
+        <div className="row">
+          <RangeInput
+            onMaxChange={value => this.setState({ duration: [this.state.duration[0], value] })}
+            onMinChange={value => this.setState({ duration: [value, this.state.duration[1]] })}
+            value={this.state.duration}
+            minValue={1}
+            maxValue={14}
           />
         </div>
       </div>
