@@ -1,0 +1,38 @@
+.filters-drawer > .banner {
+  background-color: #0091EA;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+}
+
+.filters-drawer > .radio-input {
+  display: flex;
+  justify-content: flex-start;
+  margin: 1rem 2rem;
+}
+
+.fields-container {
+  display: inline-block;
+  margin: 1rem;
+}
+
+.filters-container.hidden {
+  display: none;
+}
+
+.filter-banner {
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+
+
+.fields-container.hide {
+  display: none;
+}
+

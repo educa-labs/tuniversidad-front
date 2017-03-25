@@ -4,13 +4,6 @@ import MenuItem from 'material-ui/MenuItem';
 import '../styles/SelectInput.css';
 
 function SelectInput(props) {
-  const labelStyle = {
-    color: 'white',
-  };
-  const floatingLabelStyle = {
-    color: 'white',
-  };
-
   function renderItems(item, index) {
     return (
       <MenuItem
@@ -28,10 +21,8 @@ function SelectInput(props) {
       <SelectField
         value={props.value}
         onChange={onChange}
-        labelStyle={labelStyle}
         fullWidth
         floatingLabelText={props.title}
-        floatingLabelStyle={floatingLabelStyle}
       >
         {props.items.map((item, index) => renderItems(item, index))}
       </SelectField>

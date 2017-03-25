@@ -1,8 +1,7 @@
 import React, { PropTypes, Component } from 'react';
-import Filters from '../components/Filters';
+import FiltersDrawer from './FiltersDrawer';
 import Results from '../components/Resulst';
 import SearchInput from '../components/SearchInput';
-import Selector from '../components/Selector';
 import Cover from '../components/Cover';
 
 class Buscador extends Component {
@@ -10,18 +9,18 @@ class Buscador extends Component {
     super(props);
     this.state = {
       input: '',
-      active: 'universidades',
+      showFilters: false,
     };
   }
 
   componentWillMount() {
-    this.makeSelection = this.makeSelection.bind(this);
+    this.toggleFilters = this.toggleFilters.bind(this);
     this.handleInputClick = this.handleInputClick.bind(this);
     if (this.props.compress) this.props.toggleCompress();
   }
 
-  makeSelection(active) {
-    this.setState({ active });
+  toggleFilters() {
+    this.setState({ showFilters: !this.state.showFilters });
   }
 
   handleInputClick() {
@@ -29,8 +28,8 @@ class Buscador extends Component {
   }
 
   render() {
-    const { active, input } = this.state;
-    const { compress, toggleCompress } = this.props;
+    const { input, showFilters } = this.state;
+    const { compress } = this.props;
     return (
       <div className="buscador-container">
         <Cover compress={compress} />
@@ -38,20 +37,12 @@ class Buscador extends Component {
           value={input}
           handleOnChange={value => this.setState({ input: value })}
           onClick={this.handleInputClick}
+          onFilterClick={this.toggleFilters}
           compress={compress}
         />
-        <Selector active={active} makeSelection={this.makeSelection} />
-        <Filters
-          type="universidades"
-          show={active === 'universidades'}
-          compress={compress}
-          toggleCompress={toggleCompress}
-        />
-        <Filters
-          type="carreras"
-          show={active === 'carreras'}
-          compress={compress}
-          toggleCompress={toggleCompress}
+        <FiltersDrawer
+          open={showFilters}
+          toggleFilters={this.toggleFilters}
         />
         <Results />
       </div>
