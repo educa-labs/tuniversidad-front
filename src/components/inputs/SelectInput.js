@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
-import '../styles/SelectInput.css';
+import '../../styles/SelectInput.css';
 
 function SelectInput(props) {
   function renderItems(item, index) {

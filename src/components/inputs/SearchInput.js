@@ -3,7 +3,7 @@ import Search from 'material-ui/svg-icons/action/search';
 import IconButton from 'material-ui/IconButton';
 import FilterList from 'material-ui/svg-icons/content/filter-list';
 import Paper from 'material-ui/Paper';
-import '../styles/SearchInput.css';
+import '../../styles/SearchInput.css';
 
 
 function SearchInput({ value, handleOnChange, onClick, compress, onFilterClick }) {

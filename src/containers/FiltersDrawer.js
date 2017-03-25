@@ -59,6 +59,21 @@ FiltersDrawer.propTypes = {
   active: PropTypes.number.isRequired,
   toggleFilters: PropTypes.func.isRequired,
   setActiveFilter: PropTypes.func.isRequired,
+  changeFilterValue: PropTypes.func.isRequired,
+  universities: PropTypes.shape({
+    country: PropTypes.number.isRequired,
+    region: PropTypes.number.isRequired,
+    gratuity: PropTypes.number.isRequired,
+    type: PropTypes.number.isRequired,
+  }).isRequired,
+  careers: PropTypes.shape({
+    country: PropTypes.number.isRequired,
+    region: PropTypes.number.isRequired,
+    area: PropTypes.number.isRequired,
+    language: PropTypes.number.isRequired,
+    duration: PropTypes.arrayOf(PropTypes.number).isRequired,
+    tariff: PropTypes.arrayOf(PropTypes.number).isRequired,
+  }).isRequired,
 };
 
 function mapSatetToProps(state) {

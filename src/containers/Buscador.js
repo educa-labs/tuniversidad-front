@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import FiltersDrawer from './FiltersDrawer';
 import Results from '../components/Resulst';
-import SearchInput from '../components/SearchInput';
+import SearchInput from '../components/inputs/SearchInput';
 import Cover from '../components/Cover';
 
 class Buscador extends Component {

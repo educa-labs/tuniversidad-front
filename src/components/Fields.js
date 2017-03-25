@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import SelectInput from './SelectInput';
+import SelectInput from './inputs/SelectInput';
 import '../styles/Fields.css';
 
 const tipos = [
