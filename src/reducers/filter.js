@@ -1,7 +1,7 @@
 import { SET_ACTIVE_FILTER, CHANGE_FILTER_VALUE } from '../actions/types';
 
 const initialState = {
-  active: 0,
+  active: 1,
   type: 0,
   gratuity: 0,
   country: 1,

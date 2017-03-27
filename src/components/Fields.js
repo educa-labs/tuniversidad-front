@@ -1,5 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import SelectInput from './inputs/SelectInput';
+import RangeInput from './inputs/RangeInput';
 import '../styles/Fields.css';
 
 const tipos = [
@@ -89,6 +90,10 @@ function Fields(props) {
         items={idiomas}
         value={props.values.language}
         handleChange={language => props.changeFilterValue('language', language)}
+      />
+      <RangeInput
+        minValue={1}
+        maxValue={14}
       />
     </div>
   );
