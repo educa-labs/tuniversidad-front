@@ -105,6 +105,7 @@ function Fields(props) {
         step={100000}
         onChange={tariff => props.changeFilterValue('tariff', tariff)}
         hide={props.hide}
+        custom
       />
     </div>
   );

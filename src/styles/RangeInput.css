@@ -32,9 +32,22 @@
   z-index: 2000;
 }
 
+
+
 .rc-slider-tooltip-content > .rc-slider-tooltip-inner {
   color: #8F8F8F;
-  background-color: white;
+  background-color: transparent;
   padding: 2px;
   box-shadow: none;
+}
+
+.rc-slider-tooltip-placement-top {
+  padding: 0;
+}
+
+.rc-slider-tooltip-placement-top > .rc-slider-tooltip-content {
+}
+
+.rc-slider-tooltip-placement-top > .rc-slider-tooltip-content > .rc-slider-tooltip-arrow {
+  display: none;
 }

@@ -7,9 +7,14 @@ import '../../styles/RangeInput.css';
 
 
 function RangeInput(props) {
-  const { hide } = props;
+  const { hide, custom } = props;
   const CustomHandler = restprops => (
-    <Handler hide={hide} {...restprops} key={restprops.index} />
+    <Handler
+      hide={hide}
+      custom={custom}
+      key={restprops.index}
+      {...restprops}
+    />
   );
   return (
     <div className="range-input-container">
@@ -31,6 +36,7 @@ function RangeInput(props) {
 
 RangeInput.propTypes = {
   step: PropTypes.number,
+  custom: PropTypes.bool,
   hide: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
@@ -39,6 +45,7 @@ RangeInput.propTypes = {
 };
 
 RangeInput.defaultProps = {
+  custom: false,
   step: 1,
 };
 

@@ -2,15 +2,21 @@ import React, { PropTypes } from 'react';
 import Tooltip from 'rc-tooltip';
 import { Handle } from 'rc-slider';
 import 'rc-tooltip/assets/bootstrap.css';
+import numeral from '../../helpers/numeral';
 
 function Handler(props) {
-  const { value, dragging, hide, index, ...restProps } = props;
+  const { value, dragging, custom, hide, index, ...restProps } = props;
+  let placement = 'bottom';
+  if (custom) {
+    if (index === 0) placement = 'bottom';
+    if (index === 1) placement = 'top';
+  }
   return (
     <Tooltip
       prefixCls={`rc-slider-tooltip${hide ? ' hide' : ''}`}
-      overlay={value}
+      overlay={custom ? `$${numeral(value)}` : value}
       visible
-      placement="bottom"
+      placement={placement}
       key={index}
       destroyTooltipOnHide
     >
