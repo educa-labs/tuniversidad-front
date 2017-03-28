@@ -96,6 +96,7 @@ function Fields(props) {
         minValue={1}
         maxValue={14}
         onChange={duration => props.changeFilterValue('duration', duration)}
+        hide={props.hide}
       />
       <RangeInput
         title="Arancel"
@@ -103,6 +104,7 @@ function Fields(props) {
         maxValue={7000000}
         step={100000}
         onChange={tariff => props.changeFilterValue('tariff', tariff)}
+        hide={props.hide}
       />
     </div>
   );

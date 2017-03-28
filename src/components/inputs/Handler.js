@@ -4,14 +4,15 @@ import { Handle } from 'rc-slider';
 import 'rc-tooltip/assets/bootstrap.css';
 
 function Handler(props) {
-  const { value, dragging, index, ...restProps } = props;
+  const { value, dragging, hide, index, ...restProps } = props;
   return (
     <Tooltip
-      prefixCls="rc-slider-tooltip"
+      prefixCls={`rc-slider-tooltip${hide ? ' hide' : ''}`}
       overlay={value}
       visible
       placement="bottom"
       key={index}
+      destroyTooltipOnHide
     >
       <Handle {...restProps} />
     </Tooltip>
@@ -21,6 +22,7 @@ function Handler(props) {
 Handler.propTypes = {
   index: PropTypes.number.isRequired,
   value: PropTypes.number.isRequired,
+  hide: PropTypes.bool.isRequired,
 };
 
 export default Handler;

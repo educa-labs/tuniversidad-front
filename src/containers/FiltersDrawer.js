@@ -45,7 +45,7 @@ function FiltersDrawer(props) {
         />
         <Fields
           type={1}
-          hide={props.active === 0}
+          hide={props.active === 0 || !props.open}
           values={props.careers}
           changeFilterValue={props.changeFilterValue}
         />

@@ -7,6 +7,10 @@ import '../../styles/RangeInput.css';
 
 
 function RangeInput(props) {
+  const { hide } = props;
+  const CustomHandler = restprops => (
+    <Handler hide={hide} {...restprops} key={restprops.index} />
+  );
   return (
     <div className="range-input-container">
       <span>{props.title}</span>
@@ -17,7 +21,7 @@ function RangeInput(props) {
           max={props.maxValue}
           defaultValue={[props.minValue, props.maxValue]}
           allowCross={false}
-          handle={Handler}
+          handle={CustomHandler}
           onChange={props.onChange}
         />
       </div>
@@ -27,6 +31,7 @@ function RangeInput(props) {
 
 RangeInput.propTypes = {
   step: PropTypes.number,
+  hide: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   minValue: PropTypes.number.isRequired,
