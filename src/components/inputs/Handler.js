@@ -4,13 +4,13 @@ import { Handle } from 'rc-slider';
 import 'rc-tooltip/assets/bootstrap.css';
 
 function Handler(props) {
-  console.log(props)
-  const { dragging, index, value, ...restProps } = props;
+  const { value, dragging, index, ...restProps } = props;
   return (
     <Tooltip
       prefixCls="rc-slider-tooltip"
       overlay={value}
-      placement="bot"
+      visible
+      placement={index === 1 ? 'top' : 'bottom'}
       key={index}
     >
       <Handle {...restProps} />

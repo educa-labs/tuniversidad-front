@@ -1,11 +1,9 @@
 import React, { PropTypes } from 'react';
-import Slider, { createSliderWithTooltip, Range } from 'rc-slider';
+import { Range } from 'rc-slider';
+import 'rc-tooltip/assets/bootstrap.css';
 import 'rc-slider/assets/index.css';
 import Handler from './Handler';
 import '../../styles/RangeInput.css';
-
-
-const ToolRange = createSliderWithTooltip(Range);
 
 
 function RangeInput(props) {
@@ -13,12 +11,8 @@ function RangeInput(props) {
   return (
     <div>
       <div style={wrapperStyle}>
-        <p>Slider with custom handle</p>
-        <Slider min={0} max={20} defaultValue={3} handle={Handler} />
-      </div>
-      <div style={wrapperStyle}>
         <p>Range with custom handle</p>
-        <ToolRange min={0} max={20} defaultValue={[3, 10]} handle={Handler} />
+        <Range min={0} max={20} defaultValue={[3, 10]} handle={Handler} />
       </div>
     </div>
   );
