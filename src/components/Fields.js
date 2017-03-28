@@ -92,8 +92,17 @@ function Fields(props) {
         handleChange={language => props.changeFilterValue('language', language)}
       />
       <RangeInput
+        title="Duración (semestres)"
         minValue={1}
         maxValue={14}
+        onChange={duration => props.changeFilterValue('duration', duration)}
+      />
+      <RangeInput
+        title="Arancel"
+        minValue={0}
+        maxValue={7000000}
+        step={100000}
+        onChange={tariff => props.changeFilterValue('tariff', tariff)}
       />
     </div>
   );

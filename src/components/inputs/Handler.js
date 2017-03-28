@@ -10,7 +10,7 @@ function Handler(props) {
       prefixCls="rc-slider-tooltip"
       overlay={value}
       visible
-      placement={index === 1 ? 'top' : 'bottom'}
+      placement="bottom"
       key={index}
     >
       <Handle {...restProps} />
