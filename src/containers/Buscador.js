@@ -9,7 +9,7 @@ class Buscador extends Component {
     super(props);
     this.state = {
       input: '',
-      showFilters: true,
+      showFilters: false,
     };
   }
 

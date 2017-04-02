@@ -1,34 +1,40 @@
 import React from 'react';
-import CareerCard from './CareerCard';
+import ResultCard from './ResultCard';
+import '../styles/Results.css';
 
 const carrera = {
   id: 0,
-  titulo: 'Arte',
+  title: 'Arte',
   universidad: 'Pontifia Universidad Católica de Chile',
-  ponderaciones: {
-    nem: 20,
-    ranking: 20,
-    lenguaje: 30,
-    matematicas: 20,
-    historia: 10,
+  admision: {
+    weights: {
+      nem: 20,
+      ranking: 20,
+      lenguaje: 30,
+      matematicas: 20,
+      historia: 10,
+    },
+    system: {
+      name: 'PSU',
+      cut: 416,
+    },
   },
-  sistemaDeAdmision: {
-    nombre: 'PSU',
-    corte: 416,
+  info: {
+    year: 2016,
+    area: 'Humanidades',
+    duration: 12,
+    slots: 150,
+    tariff: 5200000,
+    employability: 92,
+    salary: 1200000,
   },
-  year: 2016,
-  area: 'Humanidades',
-  duración: 12,
-  vacantes: 150,
-  arancel: 5200000,
-  empleabilidad: 92,
-  sueldo: 1200000,
 };
 
 function Results() {
   return (
-    <div>
-      <CareerCard career={carrera} />
+    <div className="result-container">
+      <ResultCard career={carrera} />
+      <ResultCard career={carrera} />
     </div>
   );
 }

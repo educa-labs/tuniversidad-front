@@ -8,7 +8,7 @@ import '../../styles/SearchInput.css';
 
 function SearchInput({ value, handleOnChange, onClick, compress, onFilterClick }) {
   return (
-    <Paper zDepth={compress ? 3 : 0}>
+    <Paper zDepth={compress ? 2 : 0}>
       <div className="input-container" onClick={onClick}>
         <IconButton onTouchTap={onFilterClick}>
           <FilterList color="#C9C9C9" />
@@ -30,6 +30,7 @@ SearchInput.propTypes = {
   handleOnChange: PropTypes.func.isRequired,
   onClick: PropTypes.func.isRequired,
   compress: PropTypes.bool.isRequired,
+  onFilterClick: PropTypes.func.isRequired,
 };
 
 export default SearchInput;
