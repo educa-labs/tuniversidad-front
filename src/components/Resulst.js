@@ -3,7 +3,7 @@ import ResultCard from './ResultCard';
 import '../styles/Results.css';
 
 const carrera = {
-  id: 0,
+  id: 1,
   title: 'Arte',
   universidad: 'Pontifia Universidad Católica de Chile',
   admision: {

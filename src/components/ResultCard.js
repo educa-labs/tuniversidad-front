@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
+import is from 'is_js';
 import Paper from 'material-ui/Paper';
 import Divider from 'material-ui/Divider';
 import FlatButton from 'material-ui/FlatButton';
+import { addToFavorites, removeFromFavorites } from '../actions/favs';
+import { addToCompare, removeFromCompare } from '../actions/compare';
 import numeral from '../helpers/numeral';
 import '../styles/ResultCard.css';
 
@@ -10,7 +14,27 @@ const labelStyle = {
   fontSize: '12px',
 };
 
-function ResultCard({ career, onCompareClick, onFavClick, onInfoClick }) {
+function ResultCard(props) {
+  const { career, favs, compare } = props;
+
+  const isFavorite = is.inArray(career.id, favs);
+  const isCompare = is.inArray(career.id, compare);
+
+  function handleFavButton() {
+    if (isFavorite) {
+      props.removeFromFavorites(career.id);
+    } else {
+      props.addToFavorites(career.id);
+    }
+  }
+  function handleCompareButton() {
+    if (isCompare) {
+      props.removeFromCompare(career.id);
+    } else {
+      props.addToCompare(career.id);
+    }
+  }
+
   return (
     <div className="result-card" >
       <Paper zDepth={2}>
@@ -89,19 +113,19 @@ function ResultCard({ career, onCompareClick, onFavClick, onInfoClick }) {
         <Divider />
         <div className="footer">
           <FlatButton
-            label="Comparar"
-            onTouchTap={onCompareClick}
+            label={isCompare ? 'Dejar de comparar' : 'Comparar'}
+            onTouchTap={handleCompareButton}
             labelStyle={labelStyle}
           />
           <FlatButton
-            label="Añadir a favoritos"
-            onTouchTap={onFavClick}
+            label={isFavorite ? 'Remover de favoritos' : 'Añadir a favoritos'}
+            onTouchTap={handleFavButton}
             className="footer-button"
             labelStyle={labelStyle}
           />
           <FlatButton
             label="Más información"
-            onTouchTap={onInfoClick}
+            onTouchTap={() => console.log('click')}
             className="float-button"
             labelStyle={labelStyle}
           />
@@ -111,4 +135,26 @@ function ResultCard({ career, onCompareClick, onFavClick, onInfoClick }) {
   );
 }
 
-export default ResultCard;
+ResultCard.propTypes = {
+  addToFavorites: PropTypes.func.isRequired,
+  removeFromFavorites: PropTypes.func.isRequired,
+  addToCompare: PropTypes.func.isRequired,
+  removeFromCompare: PropTypes.func.isRequired,
+  favs: PropTypes.arrayOf(PropTypes.number).isRequired,
+  compare: PropTypes.arrayOf(PropTypes.number).isRequired,
+};
+
+function mapStateToProps(state) {
+  return {
+    favs: state.favs,
+    compare: state.compare,
+  };
+}
+
+
+export default connect(mapStateToProps, {
+  addToFavorites,
+  removeFromFavorites,
+  addToCompare,
+  removeFromCompare,
+})(ResultCard);

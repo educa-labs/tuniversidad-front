@@ -3,3 +3,9 @@ export const COMPRESS = 'COMPRESS';
 
 export const SET_ACTIVE_FILTER = 'SET_ACTIVE_FILTER';
 export const CHANGE_FILTER_VALUE = 'CHANGE_FILTER_VALUE';
+
+export const ADD_FAVORITE = 'ADD_FAVORITE';
+export const REMOVE_FAVORITE = 'REMOVE_FAVORITE';
+
+export const ADD_COMPARE = 'ADD_COMPARE';
+export const REMOVE_COMPARE = 'REMOVE_COMPARE';

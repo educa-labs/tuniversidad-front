@@ -2,7 +2,7 @@ import { CHANGE_VIEW, COMPRESS } from '../actions/types';
 
 const initialState = {
   view: 1,
-  compress: false
+  compress: false,
 };
 
 function view(state = initialState, action) {
