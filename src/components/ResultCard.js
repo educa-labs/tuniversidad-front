@@ -1,10 +1,16 @@
 import React from 'react';
 import Paper from 'material-ui/Paper';
 import Divider from 'material-ui/Divider';
+import FlatButton from 'material-ui/FlatButton';
 import numeral from '../helpers/numeral';
 import '../styles/ResultCard.css';
 
-function ResultCard({ career }) {
+const labelStyle = {
+  color: '#0091EA',
+  fontSize: '12px',
+};
+
+function ResultCard({ career, onCompareClick, onFavClick, onInfoClick }) {
   return (
     <div className="result-card" >
       <Paper zDepth={2}>
@@ -82,7 +88,23 @@ function ResultCard({ career }) {
         </div>
         <Divider />
         <div className="footer">
-          Footer
+          <FlatButton
+            label="Comparar"
+            onTouchTap={onCompareClick}
+            labelStyle={labelStyle}
+          />
+          <FlatButton
+            label="Añadir a favoritos"
+            onTouchTap={onFavClick}
+            className="footer-button"
+            labelStyle={labelStyle}
+          />
+          <FlatButton
+            label="Más información"
+            onTouchTap={onInfoClick}
+            className="float-button"
+            labelStyle={labelStyle}
+          />
         </div>
       </Paper>
     </div>

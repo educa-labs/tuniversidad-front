@@ -57,3 +57,9 @@
   color: #C9C9C9;
   white-space: nowrap;
 }
+
+.footer > .float-button {
+  color: #0091EA;
+  text-transform: none;
+  float: right;
+}
