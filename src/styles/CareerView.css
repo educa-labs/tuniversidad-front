@@ -1,0 +1,10 @@
+.career-view > .career-header {
+  background-color: #0091EA;
+  color: white;
+  padding: 1rem 2rem; 
+  box-shadow: inset 0px 5px 4px 0px rgba(0,0,0,0.30);
+}
+
+.career-view > .career-header > .title {
+  font-size: 24px;
+}

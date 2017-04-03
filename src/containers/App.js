@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Banner from '../components/Banner';
+import MenuBar from '../components/MenuBar';
 
-class App extends React.Component {
-  render() {
-    return (
-      <div className="app">
-        <Banner location={this.props.location.pathname} />
-        {this.props.children}
-      </div>
-    );
-  }
+function App(props) {
+  return (
+    <div className="app">
+      <Banner />
+      <MenuBar />
+      {props.children}
+    </div>
+  );
 }
+
+App.propTypes = {
+  children: PropTypes.object,
+};
 
 export default App;

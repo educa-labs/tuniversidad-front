@@ -14,7 +14,7 @@ const labelStyle = {
   fontSize: '12px',
 };
 
-function ResultCard(props) {
+function ResultCard(props, context) {
   const { career, favs, compare } = props;
 
   const isFavorite = is.inArray(career.id, favs);
@@ -34,11 +34,14 @@ function ResultCard(props) {
       props.addToCompare(career.id);
     }
   }
+  function handleInfoClick() {
+    context.router.push(`careers/${career.id}`);
+  }
 
   return (
     <div className="result-card" >
       <Paper zDepth={2}>
-        <div className="result-header">
+        <div className="result-header" onClick={handleInfoClick}>
           <span className="title">{career.title}</span> <br />
           <span>{career.universidad}</span>
         </div>
@@ -125,7 +128,7 @@ function ResultCard(props) {
           />
           <FlatButton
             label="Más información"
-            onTouchTap={() => console.log('click')}
+            onTouchTap={handleInfoClick}
             className="float-button"
             labelStyle={labelStyle}
           />
@@ -142,6 +145,10 @@ ResultCard.propTypes = {
   removeFromCompare: PropTypes.func.isRequired,
   favs: PropTypes.arrayOf(PropTypes.number).isRequired,
   compare: PropTypes.arrayOf(PropTypes.number).isRequired,
+};
+
+ResultCard.contextTypes = {
+  router: PropTypes.object,
 };
 
 function mapStateToProps(state) {

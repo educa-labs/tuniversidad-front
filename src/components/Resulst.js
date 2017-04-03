@@ -5,7 +5,7 @@ import '../styles/Results.css';
 const carrera = {
   id: 1,
   title: 'Arte',
-  universidad: 'Pontifia Universidad Católica de Chile',
+  universidad: 'Pontificia Universidad Católica de Chile',
   admision: {
     weights: {
       nem: 20,

@@ -21,7 +21,7 @@ Banner.defaultProps = {
 
 function mapStateToProps(state) {
   return {
-    compress: state.view.compress,
+    compress: state.compress,
   };
 }
 

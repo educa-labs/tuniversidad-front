@@ -1,6 +1,8 @@
 import React, { PropTypes, Component } from 'react';
+import { connect } from 'react-redux';
 import FiltersDrawer from './FiltersDrawer';
 import Results from '../components/Resulst';
+import { toggleCompress } from '../actions/compress';
 import SearchInput from '../components/inputs/SearchInput';
 import Cover from '../components/Cover';
 
@@ -28,20 +30,18 @@ class Buscador extends Component {
   }
 
   render() {
-    const { input, showFilters } = this.state;
-    const { compress } = this.props;
     return (
       <div className="buscador-container">
-        <Cover compress={compress} />
+        <Cover compress={this.props.compress} />
         <SearchInput
-          value={input}
+          value={this.state.input}
           handleOnChange={value => this.setState({ input: value })}
           onClick={this.handleInputClick}
           onFilterClick={this.toggleFilters}
-          compress={compress}
+          compress={this.props.compress}
         />
         <FiltersDrawer
-          open={showFilters}
+          open={this.state.showFilters}
           toggleFilters={this.toggleFilters}
         />
         <Results />
@@ -55,4 +55,12 @@ Buscador.propTypes = {
   toggleCompress: PropTypes.func.isRequired,
 };
 
-export default Buscador;
+function mapStateToProps(state) {
+  return {
+    compress: state.compress,
+  };
+}
+
+export default connect(mapStateToProps, {
+  toggleCompress,
+})(Buscador);

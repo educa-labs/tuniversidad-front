@@ -1,4 +1,3 @@
-export const CHANGE_VIEW = 'CHANGE_VIEW';
 export const COMPRESS = 'COMPRESS';
 
 export const SET_ACTIVE_FILTER = 'SET_ACTIVE_FILTER';

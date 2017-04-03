@@ -1,10 +1,8 @@
 import React, { PropTypes } from 'react';
-import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import IconButton from 'material-ui/IconButton';
 import Message from 'material-ui/svg-icons/communication/message';
 import ProfileIcon from 'material-ui/svg-icons/action/account-circle';
-import { changeView } from '../actions/view';
 import '../styles/MenuBar.css';
 
 const newtonStyle = {
@@ -12,19 +10,17 @@ const newtonStyle = {
   textTransform: 'none',
 };
 
-function MenuBar(props) {
+function MenuBar(props, context) {
   return (
     <div className="menubar-container">
       <Tabs
         contentContainerClassName="tabs"
-        value={props.view}
-        onChange={value => props.changeView(value)}
       >
-        <Tab label="buscador" value={1} />
-        <Tab label="comparador" value={2} />
-        <Tab label="recomendaciones" value={3} />
-        <Tab label="noticias" value={4} />
-        <Tab label="NEWTHON (alpha)" buttonStyle={newtonStyle} value={5} />
+        <Tab label="buscador" value="search" onClick={() => context.router.push('search')} />
+        <Tab label="comparador" value="compare" onClick={() => context.router.push('compare')} />
+        <Tab label="recomendaciones" value="suggests" onClick={() => context.router.push('suggests')} />
+        <Tab label="noticias" value="news" onClick={() => context.router.push('news')} />
+        <Tab label="NEWTHON (alpha)" buttonStyle={newtonStyle} value="newton" onClick={() => context.router.push('newton')} />
       </Tabs>
       <div className="menu">
         <IconButton>
@@ -38,17 +34,9 @@ function MenuBar(props) {
   );
 }
 
-MenuBar.propTypes = {
-  view: PropTypes.number.isRequired,
-  changeView: PropTypes.func.isRequired,
+MenuBar.contextTypes = {
+  router: PropTypes.object,
 };
 
-function mapStateToProps(state) {
-  return {
-    view: state.view.view,
-  };
-}
 
-export default connect(mapStateToProps, {
-  changeView,
-})(MenuBar);
+export default MenuBar;
