@@ -1,5 +1,7 @@
 import React, { PropTypes, Component } from 'react';
+import { connect } from 'react-redux';
 import NavigationBar from './NavigationBar';
+import { toggleCompress } from '../actions/compress';
 import '../styles/CareerView.css';
 
 class CareerView extends Component {
@@ -33,7 +35,9 @@ class CareerView extends Component {
         },
       },
     });
+    if (this.props.compress) this.props.toggleCompress();
   }
+
   render() {
     const { career } = this.state;
     const path = [
@@ -53,4 +57,18 @@ class CareerView extends Component {
   }
 }
 
-export default CareerView;
+CareerView.propTypes = {
+  compress: PropTypes.bool.isRequired,
+  toggleCompress: PropTypes.func.isRequired,
+};
+
+
+function mapStateToProps(state) {
+  return {
+    compress: state.compress,
+  };
+}
+
+export default connect(mapStateToProps, {
+  toggleCompress,
+})(CareerView);
