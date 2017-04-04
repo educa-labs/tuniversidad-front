@@ -40,11 +40,13 @@ function ResultCard(props, context) {
 
   return (
     <div className="result-card" >
-      <Paper zDepth={2}>
-        <div className="result-header" onClick={handleInfoClick}>
-          <span className="title">{career.title}</span> <br />
-          <span>{career.universidad}</span>
-        </div>
+      <Paper zDepth={props.general ? 0 : 2}>
+        {props.general ? null : (
+          <div className="result-header" onClick={handleInfoClick}>
+            <span className="title">{career.title}</span> <br />
+            <span>{career.universidad}</span>
+          </div>
+        )}
         <div className="content">
           <div className="admision">
             <div className="row">
@@ -113,26 +115,28 @@ function ResultCard(props, context) {
             </div>
           </div>
         </div>
-        <Divider />
-        <div className="footer">
-          <FlatButton
-            label={isCompare ? 'Dejar de comparar' : 'Comparar'}
-            onTouchTap={handleCompareButton}
-            labelStyle={labelStyle}
-          />
-          <FlatButton
-            label={isFavorite ? 'Remover de favoritos' : 'Añadir a favoritos'}
-            onTouchTap={handleFavButton}
-            className="footer-button"
-            labelStyle={labelStyle}
-          />
-          <FlatButton
-            label="Más información"
-            onTouchTap={handleInfoClick}
-            className="float-button"
-            labelStyle={labelStyle}
-          />
-        </div>
+        {props.general ? null : (
+          <div className="footer">
+            <Divider />
+            <FlatButton
+              label={isCompare ? 'Dejar de comparar' : 'Comparar'}
+              onTouchTap={handleCompareButton}
+              labelStyle={labelStyle}
+            />
+            <FlatButton
+              label={isFavorite ? 'Remover de favoritos' : 'Añadir a favoritos'}
+              onTouchTap={handleFavButton}
+              className="footer-button"
+              labelStyle={labelStyle}
+            />
+            <FlatButton
+              label="Más información"
+              onTouchTap={handleInfoClick}
+              className="float-button"
+              labelStyle={labelStyle}
+            />
+          </div>
+        )}
       </Paper>
     </div>
   );
@@ -145,6 +149,11 @@ ResultCard.propTypes = {
   removeFromCompare: PropTypes.func.isRequired,
   favs: PropTypes.arrayOf(PropTypes.number).isRequired,
   compare: PropTypes.arrayOf(PropTypes.number).isRequired,
+  general: PropTypes.bool,
+};
+
+ResultCard.defaultProps = {
+  general: false,
 };
 
 ResultCard.contextTypes = {

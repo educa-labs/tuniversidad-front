@@ -8,3 +8,35 @@
 .career-view > .career-header > .title {
   font-size: 24px;
 }
+
+.career-view > .content {
+  width: 80vw;
+  margin: 2rem auto;
+  display: block;
+}
+
+.career-view > .content > .tabs {
+  width: 100%;
+  min-width: 50rem;
+  height: 3rem;
+  display: flex;
+  background-color: #424242;
+}
+
+.career-view > .content > .tabs > .tab {
+  width: 15rem;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #C9C9C9;
+  text-transform: uppercase;
+}
+
+.career-view > .content > .tabs > .tab.active {
+  color: white;
+}
+
+.career-view > .content > .general-info > .result-card {
+  margin: 0;
+}

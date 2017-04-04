@@ -1,12 +1,17 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
-import NavigationBar from './NavigationBar';
-import { toggleCompress } from '../actions/compress';
-import '../styles/CareerView.css';
+import NavigationBar from '../NavigationBar';
+import CareerHeader from './CareerHeader';
+import Content from './Content';
+import General from './General';
+import { toggleCompress } from '../../actions/compress';
+
 
 class CareerView extends Component {
   componentWillMount() {
+    this.handleTabClick = this.handleTabClick.bind(this);
     this.setState({
+      active: 0,
       career: {
         id: 1,
         title: 'Arte',
@@ -37,6 +42,9 @@ class CareerView extends Component {
     });
     if (this.props.compress) this.props.toggleCompress();
   }
+  handleTabClick(active) {
+    this.setState({ active });
+  }
 
   render() {
     const { career } = this.state;
@@ -48,10 +56,16 @@ class CareerView extends Component {
     return (
       <div className="career-view">
         <NavigationBar path={path} />
-        <div className="career-header">
-          <span className="title">{career.title}</span><br />
-          <span>{career.universidad}</span>
-        </div>
+        <CareerHeader title={career.title} subtitle={career.universidad} />
+        <Content active={this.state.active} onTabClick={this.handleTabClick}>
+          <General career={career} />
+          <div>
+            Chao
+          </div>
+          <div>
+            Amigos
+          </div>
+        </Content>
       </div>
     );
   }
