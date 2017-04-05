@@ -1,3 +1,8 @@
+.career-view {
+  background-color: #F5F5F5;
+  height: ;
+}
+
 .career-view > .career-header {
   background-color: #0091EA;
   color: white;
@@ -17,7 +22,6 @@
 
 .career-view > .content > .tabs {
   width: 100%;
-  min-width: 50rem;
   height: 3rem;
   display: flex;
   background-color: #424242;
@@ -39,4 +43,14 @@
 
 .career-view > .content > .general-info > .result-card {
   margin: 0;
+  width: 100%;
+  min-width: 0;
+}
+
+.career-view > .content > .general-info > .description {
+  margin-top: 2rem;
+  background-color: white;
+  padding: 1rem;
+  color: #424242;
+  font-size: 16px;
 }
