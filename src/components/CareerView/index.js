@@ -5,6 +5,7 @@ import CareerHeader from './CareerHeader';
 import Content from './Content';
 import General from './General';
 import Malla from './Malla';
+import Questions from './Questions';
 import { toggleCompress } from '../../actions/compress';
 
 
@@ -62,9 +63,7 @@ class CareerView extends Component {
         <Content active={this.state.active} onTabClick={this.handleTabClick}>
           <General career={career} />
           <Malla />
-          <div>
-            Amigos
-          </div>
+          <Questions />
         </Content>
       </div>
     );

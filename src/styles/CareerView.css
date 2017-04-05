@@ -83,3 +83,8 @@
   color: #424242;
   font-size: 16px;
 }
+
+.career-view > .content > .questions > .new-question-form > .text-input {
+  display: flex;
+  align-items: center;
+}
