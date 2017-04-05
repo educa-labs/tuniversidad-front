@@ -4,6 +4,7 @@ import NavigationBar from '../NavigationBar';
 import CareerHeader from './CareerHeader';
 import Content from './Content';
 import General from './General';
+import Malla from './Malla';
 import { toggleCompress } from '../../actions/compress';
 
 
@@ -60,9 +61,7 @@ class CareerView extends Component {
         <CareerHeader title={career.title} subtitle={career.universidad} />
         <Content active={this.state.active} onTabClick={this.handleTabClick}>
           <General career={career} />
-          <div>
-            Chao
-          </div>
+          <Malla />
           <div>
             Amigos
           </div>
