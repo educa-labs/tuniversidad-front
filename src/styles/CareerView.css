@@ -86,6 +86,7 @@
 .career-view > .content > .questions > .new-question-form {
   background-color: white;
   padding: 1rem 3rem;
+  height: 12rem;
   overflow: hidden;
   transition: height 300ms ease;
 }
@@ -93,6 +94,8 @@
 .career-view > .content > .questions > .new-question-form.compress {
   height: 0;
   padding: 0;
+  margin-top: 1rem;
+  padding: 0 3rem;
   transition: height 300ms ease;
 }
 

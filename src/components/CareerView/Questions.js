@@ -9,14 +9,19 @@ class Questions extends Component {
       <div className="questions">
         <div className={`new-question-form ${compress ? 'compress' : ''}`}>
           <TextField
-            hintText="Pregunta"
+            floatingLabelText="Pregunta"
+            hintText="Título de la pregunta"
             fullWidth
+            floatingLabelFixed
           />
           <div className="help"><Help color="#C9C9C9" /></div>
           <TextField
-            hintText="Descripción"
+            hintText="Describe tu pregunta"
+            floatingLabelText="Descripción"
             fullWidth
             multiLine
+            rowsMax={4}
+            floatingLabelFixed
           />
         </div>
         <div className="title">Preguntas</div>

@@ -41,10 +41,12 @@ class Content extends Component {
               {newQuestion ? 'Enviar pregunta' : 'Nueva pregunta'}
             </div>
           </div>
-          <Close
-            className="close"
-            color={newQuestion && active === 2 ? '#C9C9C9' : '#424242'}
-          />
+          <IconButton onTouchTap={() => this.setState({ newQuestion: false })}>
+            <Close
+              className="close"
+              color={newQuestion && active === 2 ? '#C9C9C9' : '#424242'}
+            />
+          </IconButton>
         </div>
         {cloneElement(this.props.children[active], {
           compress: !newQuestion,
