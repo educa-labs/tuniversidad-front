@@ -47,7 +47,7 @@ class Content extends Component {
           />
         </div>
         {cloneElement(this.props.children[active], {
-          newQuestion,
+          compress: !newQuestion,
         })}
       </div>
     );

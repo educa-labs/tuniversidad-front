@@ -1,6 +1,5 @@
 .career-view {
   background-color: #F5F5F5;
-  height: ;
 }
 
 .career-view > .career-header {
@@ -84,7 +83,26 @@
   font-size: 16px;
 }
 
-.career-view > .content > .questions > .new-question-form > .text-input {
-  display: flex;
-  align-items: center;
+.career-view > .content > .questions > .new-question-form {
+  background-color: white;
+  padding: 1rem 3rem;
+  overflow: hidden;
+  transition: height 300ms ease;
+}
+
+.career-view > .content > .questions > .new-question-form.compress {
+  height: 0;
+  padding: 0;
+  transition: height 300ms ease;
+}
+
+.career-view > .content > .questions > .new-question-form > .help {
+  float: right;
+  bottom: 36px;
+  position: relative;
+}
+
+.career-view > .content > .questions > .title {
+  padding: 1rem;
+  color: #424242;
 }
