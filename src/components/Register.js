@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Checkbox from 'material-ui/Checkbox';
 import '../styles/Register.css';
 
 class Register extends Component {
@@ -13,17 +12,23 @@ class Register extends Component {
       showTerms: false,
     });
     this.toggleAccept = this.toggleAccept.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   toggleAccept() {
     this.setState({ accept: !this.state.accept });
   }
 
+  handleSubmit() {
+    const { firstName, lastName, password, email, accept } = this.state;
+    console.log({ firstName, lastName, password, email, accept });
+  }
+
   render() {
     const { firstName, lastName, password, email, accept } = this.state;
     return (
       <div className="register-form" >
-        <div className="fields">
+        <div className="row">
           <input
             value={firstName}
             onChange={e => this.setState({ firstName: e.target.value })}
@@ -34,6 +39,8 @@ class Register extends Component {
             onChange={e => this.setState({ lastName: e.target.value })}
             placeholder="Apellido"
           />
+        </div>
+        <div className="row">
           <input
             type="email"
             value={email}
@@ -52,7 +59,7 @@ class Register extends Component {
           <label htmlFor="terms">Acepto los</label>
           <span onClick={() => this.setState({ showTerms: true })}> términos y condiciones de uso</span>
         </div>
-        <div className="button">
+        <div className="button" onClick={this.handleSubmit}>
           Regístrate
         </div>
       </div>

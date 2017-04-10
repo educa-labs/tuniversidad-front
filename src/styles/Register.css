@@ -1,19 +1,25 @@
 .register-form {
-  width: 40vw;
+  width: 30vw;
+  min-width: 28rem;
   background-color: #F5F5F5;
-  padding: 0 2rem;
 }
 
-.register-form > .fields > input {
+.register-form > .row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.register-form > .row > input {
   width: 45%;
   height: 1.5rem;
-  margin: 0.5rem;
+  margin: 0.5rem auto 0 auto;
   text-indent: 1rem;
 }
 
 
 .register-form > .terms {
-  margin: 5px;
+  margin: 10px;
 }
 
 .register-form > .terms > label {
@@ -34,6 +40,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 1.5rem;
+  width: 95%;
+  height: 2rem;
+  margin: auto;
+  cursor: pointer;
 }
