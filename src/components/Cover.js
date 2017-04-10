@@ -1,10 +1,11 @@
 import React, { PropTypes } from 'react';
 import '../styles/Cover.css';
 
-function Cover({ compress }) {
+function Cover({ compress, children }) {
   return (
     <div className={`cover ${compress ? 'compress' : ''}`}>
       <span>Información de más de 100 universidades</span>
+      {children}
     </div>
   );
 }

@@ -3,6 +3,10 @@
   display: flex;
 }
 
+.menubar-container.hide {
+  display: none;
+}
+
 .tabs {
   width: 70vw;
 }
@@ -11,7 +15,7 @@
   color: black;
 }
 
-.menu {
+.menubar-container > .menu {
   width: 30vw;
   background-color: #424242;
   display: flex;

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import ResultCard from '../ResultCard';
+import ResultCard from '../../components/ResultCard';
 
 function General(props) {
   return (

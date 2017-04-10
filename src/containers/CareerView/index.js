@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
-import NavigationBar from '../NavigationBar';
+import NavigationBar from '../../components/NavigationBar';
 import CareerHeader from './CareerHeader';
 import Content from './Content';
 import General from './General';

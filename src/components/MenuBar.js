@@ -12,7 +12,7 @@ const newtonStyle = {
 
 function MenuBar(props, context) {
   return (
-    <div className="menubar-container">
+    <div className={`menubar-container ${context.router.location.pathname === '/' ? 'hide' : ''}`}>
       <Tabs
         contentContainerClassName="tabs"
       >
