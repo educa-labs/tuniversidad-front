@@ -1,9 +1,10 @@
 import React from 'react';
+import Register from '../components/Register';
 
 function Home() {
   return (
     <div>
-      Home
+      <Register />
     </div>
   );
 }

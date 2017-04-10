@@ -1,0 +1,39 @@
+.register-form {
+  width: 40vw;
+  background-color: #F5F5F5;
+  padding: 0 2rem;
+}
+
+.register-form > .fields > input {
+  width: 45%;
+  height: 1.5rem;
+  margin: 0.5rem;
+  text-indent: 1rem;
+}
+
+
+.register-form > .terms {
+  margin: 5px;
+}
+
+.register-form > .terms > label {
+  margin-left: 0.5rem;
+  font-size: 12px;
+  color: #75797D;
+}
+
+.register-form > .terms > span {
+  font-size: 12px;
+  color: #0091EA;
+  cursor: pointer;
+}
+
+.register-form > .button {
+  background-color: #0091EA;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 1.5rem;
+}
