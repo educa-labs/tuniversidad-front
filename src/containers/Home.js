@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import RaisedButton from 'material-ui/RaisedButton';
 import Cover from '../components/Cover';
 import Register from '../components/Register';
-import RaisedButton from 'material-ui/RaisedButton';
 
 class Home extends Component {
   componentWillMount() {

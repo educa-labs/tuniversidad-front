@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import RaisedButton from 'material-ui/RaisedButton';
 import '../styles/Register.css';
 
 class Register extends Component {
@@ -59,9 +60,12 @@ class Register extends Component {
           <label htmlFor="terms">Acepto los</label>
           <span onClick={() => this.setState({ showTerms: true })}> términos y condiciones de uso</span>
         </div>
-        <div className="button" onClick={this.handleSubmit}>
-          Regístrate
-        </div>
+        <RaisedButton
+          label="Registrate"
+          backgroundColor="#0091EA"
+          labelColor="#FFFFFF"
+          fullWidth
+        />
       </div>
     );
   }
