@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Cover from '../components/Cover';
 import Register from '../components/Register';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class Home extends Component {
   componentWillMount() {
@@ -11,7 +12,13 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <Cover compress={this.state.compress} />
+        <Cover compress={this.state.compress}>
+          <RaisedButton
+            label="¡Comienza ya!"
+            backgroundColor="#0091EA"
+            labelColor="#FFFFFF"
+          />
+        </Cover>
         <Register />
       </div>
     );

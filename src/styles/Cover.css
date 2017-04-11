@@ -1,7 +1,4 @@
 .cover {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-image: url(../assets/cover.jpg);
   background-position: top;
   background-repeat: no-repeat;
@@ -10,6 +7,7 @@
   height: 25rem;
   overflow: hidden;
   transition: height 300ms ease;
+  width: 100vw;
 }
 
 .cover.compress {
@@ -17,11 +15,17 @@
   transition: height 300ms ease;
 }
 
-.cover > span {
+.cover > .title {
   color: white;
   text-transform: uppercase;
-  font-size: 3rem;
+  font-size: 2.8rem;
   margin: 0 auto;
-  width: 60vw;
   text-align: center;
+  margin-top: 9rem;
+}
+
+.cover > .children {
+  justify-content: center;
+  display: flex;
+  margin-top: 1rem;
 }

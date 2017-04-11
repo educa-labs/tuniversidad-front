@@ -4,8 +4,8 @@ import '../styles/Cover.css';
 function Cover({ compress, children }) {
   return (
     <div className={`cover ${compress ? 'compress' : ''}`}>
-      <span>Información de más de 100 universidades</span>
-      {children}
+      <div className="title">Información de más de 100 universidades</div>
+      <div className="children">{children}</div>
     </div>
   );
 }
