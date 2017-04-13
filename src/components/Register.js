@@ -65,6 +65,7 @@ class Register extends Component {
           backgroundColor="#0091EA"
           labelColor="#FFFFFF"
           fullWidth
+          onTouchTap={this.handleSubmit}
         />
       </div>
     );

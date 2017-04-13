@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import Cover from '../components/Cover';
 import Register from '../components/Register';
+import Login from '../components/Login';
 
 class Home extends Component {
   componentWillMount() {
@@ -20,6 +21,7 @@ class Home extends Component {
           />
         </Cover>
         <Register />
+        <Login />
       </div>
     );
   }

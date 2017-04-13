@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import user from './user';
-import compress from './compress';
+import { compress, showLogin } from './compress';
 import filter from './filter';
 import favs from './favs';
 import compare from './compare';
@@ -8,6 +8,7 @@ import compare from './compare';
 export default combineReducers({
   user,
   compress,
+  showLogin,
   filter,
   favs,
   compare,
