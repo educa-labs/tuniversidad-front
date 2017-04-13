@@ -1,0 +1,14 @@
+.login-modal {
+  width: 5rem;
+}
+
+.forgot {
+  color: #0091EA;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.login-modal > div >.login-title {
+  color: white !important;
+  background-color: #0091EA;
+}
