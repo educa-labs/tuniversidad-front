@@ -28,13 +28,15 @@ class Login extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.user !== this.props.user) {
       if (is.not.null(nextProps.user.currentUser)) {
+        console.log('Holaa');
         this.props.toggleShowLogin();
       }
     }
   }
 
-  handleSumbit() {
+  handleSumbit(event) {
     // Validar los datos,
+    event.preventDefault();
     const { email, password } = this.state;
     this.props.logUser(email, password);
   }
@@ -49,31 +51,33 @@ class Login extends Component {
         onRequestClose={this.props.toggleShowLogin}
         contentStyle={modalStyle}
       >
-        <TextField
-          hintText="ivan@mail.com"
-          floatingLabelText="Correo electrónico"
-          onChange={(e, val) => this.setState({ email: val })}
-          errorText={this.props.user.error ? 'Usuario no existe' : ''}
-        />
-        <br />
-        <TextField
-          hintText="* * * * * *"
-          floatingLabelText="Contraseña"
-          type="password"
-          onChange={(e, val) => this.setState({ password: val })}
-          errorText={this.props.user.error ? 'Contraseña inconrrecta' : ''}
-        />
-        <br />
-        <RaisedButton
-          label="Inicia Sesión"
-          fullWidth
-          backgroundColor="#0091EA"
-          labelColor="#FFFFFF"
-          style={buttonStyle}
-          onTouchTap={this.handleSumbit}
-          disabled={this.state.password === '' || this.state.email === ''}
-        />
-        <div className="forgot">¿Olvidaste tu contraseña?</div>
+        <form onSubmit={this.handleSumbit}>
+          <TextField
+            hintText="ivan@mail.com"
+            floatingLabelText="Correo electrónico"
+            onChange={(e, val) => this.setState({ email: val })}
+            errorText={this.props.user.error ? 'Usuario no existe' : ''}
+          />
+          <br />
+          <TextField
+            hintText="* * * * * *"
+            floatingLabelText="Contraseña"
+            type="password"
+            onChange={(e, val) => this.setState({ password: val })}
+            errorText={this.props.user.error ? 'Contraseña inconrrecta' : ''}
+          />
+          <br />
+          <RaisedButton
+            type="submit"
+            label="Inicia Sesión"
+            fullWidth
+            backgroundColor="#0091EA"
+            labelColor="#FFFFFF"
+            style={buttonStyle}
+            disabled={this.state.password === '' || this.state.email === ''}
+          />
+          <div className="forgot">¿Olvidaste tu contraseña?</div>
+        </form>
       </Dialog>
     );
   }
