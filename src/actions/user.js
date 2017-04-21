@@ -30,11 +30,13 @@ export function logUser(email, password) {
           });
         }
       })
-      .catch(() => {
-        dispatch({
-          type: LOG_USER_FAILURE,
-          error: 'No sé como recuperar el error',
-        });
+      .catch((err) => {
+        if (err.response.status === 401) {
+          dispatch({
+            type: LOG_USER_FAILURE,
+            error: err.response.body,
+          });
+        }
       });
   };
 }
@@ -62,10 +64,10 @@ export function signUser(firstname, lastname, email, password) {
           });
         }
       })
-      .catch(() => {
+      .catch((err) => {
         dispatch({
           type: LOG_USER_FAILURE,
-          error: 'No sé como recuperar el error',
+          error: err.response.body,
         });
       });
   };
