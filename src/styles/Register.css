@@ -2,6 +2,7 @@
   width: 30vw;
   min-width: 28rem;
   background-color: #F5F5F5;
+  padding: 10px;
 }
 
 .register-form > .row {
@@ -17,6 +18,26 @@
   text-indent: 1rem;
 }
 
+.register-form > .row > .item{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-form > .row > .item.password > input {
+  width: 70%;
+  }
+
+.register-form > .row > .item > input {
+  height: 1.5rem;
+  text-indent: 1rem;
+  width: 90%;
+}
+
+.register-form > .row > .password-container > input {
+   text-indent: 1rem;
+}
 
 .register-form > .terms {
   margin: 10px;
