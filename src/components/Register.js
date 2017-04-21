@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import IconButton from 'material-ui/IconButton';
 import Eye from 'material-ui/svg-icons/action/visibility';
@@ -27,6 +28,7 @@ class Register extends Component {
   }
 
   handleSubmit() {
+    console.log('click');
     const { firstName, lastName, password, email } = this.state;
     signUser(firstName, lastName, email, password);
   }
@@ -91,5 +93,7 @@ class Register extends Component {
   }
 }
 
-export default Register;
+export default connect(null, {
+  signUser,
+})(Register);
 

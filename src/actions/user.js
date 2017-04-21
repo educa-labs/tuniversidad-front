@@ -42,6 +42,7 @@ export function logUser(email, password) {
 }
 
 export function signUser(firstname, lastname, email, password) {
+  console.log(firstname, lastname, email, password);
   const request = Request.post('/users')
     .set('Contetn-Type', 'application/json')
     .send({
@@ -52,6 +53,7 @@ export function signUser(firstname, lastname, email, password) {
         password,
       },
     });
+  console.log(request);
   return (dispatch) => {
     dispatch({
       type: SIGN_USER_REQUEST,
