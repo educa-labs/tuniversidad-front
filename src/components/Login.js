@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import is from 'is_js';
-import { logUser } from '../actions/user';
+import { logUser, clearState } from '../actions/user';
 import { toggleShowLogin } from '../actions/compress';
 import '../styles/Login.css';
 
@@ -23,6 +23,7 @@ class Login extends Component {
       password: '',
     });
     this.handleSumbit = this.handleSumbit.bind(this);
+    this.handleModalClose = this.handleModalClose.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -31,6 +32,14 @@ class Login extends Component {
         this.props.toggleShowLogin();
       }
     }
+  }
+  handleModalClose() {
+    if (this.props.open) {
+      if (is.not.empty(this.props.error)) {
+        this.props.clearState();
+      }
+    }
+    this.props.toggleShowLogin();
   }
 
   handleSumbit(event) {
@@ -49,7 +58,7 @@ class Login extends Component {
         open={open}
         contentClassName="login-modal"
         titleClassName="login-title"
-        onRequestClose={this.props.toggleShowLogin}
+        onRequestClose={this.handleModalClose}
         contentStyle={modalStyle}
       >
         <form onSubmit={this.handleSumbit}>
@@ -91,6 +100,7 @@ Login.propTypes = {
   requesting: PropTypes.bool.isRequired,
   toggleShowLogin: PropTypes.func.isRequired,
   logUser: PropTypes.func.isRequired,
+  clearState: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -105,4 +115,5 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, {
   toggleShowLogin,
   logUser,
+  clearState,
 })(Login);
