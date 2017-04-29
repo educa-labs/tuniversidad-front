@@ -30,6 +30,7 @@ class Login extends Component {
     if (nextProps.user !== this.props.user) {
       if (is.not.null(nextProps.user.currentUser)) {
         this.props.toggleShowLogin();
+        this.context.router.push('/search');
       }
     }
   }
@@ -38,6 +39,7 @@ class Login extends Component {
       if (is.not.empty(this.props.error)) {
         this.props.clearState();
       }
+      this.setState({ email: '', password: '' });
     }
     this.props.toggleShowLogin();
   }
@@ -95,12 +97,16 @@ class Login extends Component {
 
 Login.propTypes = {
   open: PropTypes.bool.isRequired,
-  user: PropTypes.object.isRequired,
+  user: PropTypes.object,
   error: PropTypes.object.isRequired,
   requesting: PropTypes.bool.isRequired,
   toggleShowLogin: PropTypes.func.isRequired,
   logUser: PropTypes.func.isRequired,
   clearState: PropTypes.func.isRequired,
+};
+
+Login.contextTypes = {
+  router: PropTypes.object,
 };
 
 function mapStateToProps(state) {

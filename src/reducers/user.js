@@ -5,7 +5,7 @@ import {
   SIGN_USER_REQUEST,
   SIGN_USER_SUCCESS,
   SIGN_USER_FAILURE,
-  CLEAR_STATE
+  CLEAR_STATE,
 } from '../actions/types';
 
 const initialState = {
@@ -35,6 +35,7 @@ function user(state = initialState, action) {
       });
     case SIGN_USER_SUCCESS:
       return Object.assign({}, state, {
+        currentUser: action.user,
         requesting: false,
         error: {},
       });

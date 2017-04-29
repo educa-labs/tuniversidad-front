@@ -3,13 +3,18 @@ import { connect } from 'react-redux';
 import is from 'is_js';
 import FlatButton from 'material-ui/FlatButton';
 import { toggleShowLogin } from '../actions/compress';
+import { clearState } from '../actions/user';
 import '../styles/Banner.css';
 
 
 function Banner(props, context) {
+  function handleClick() {
+    if (is.not.empty(props.error)) props.clearState();
+    props.toggleShowLogin();
+  }
   const innerContent = is.null(props.user) ? (
     <FlatButton
-      onTouchTap={props.toggleShowLogin}
+      onTouchTap={handleClick}
       label="Inicia sesión"
       labelStyle={{
         color: 'white',
@@ -30,7 +35,9 @@ function Banner(props, context) {
 Banner.propTypes = {
   compress: PropTypes.bool,
   toggleShowLogin: PropTypes.func.isRequired,
+  clearState: PropTypes.func.isRequired,
   user: PropTypes.object,
+  error: PropTypes.object.isRequired,
 };
 
 Banner.defaultProps = {
@@ -46,9 +53,11 @@ function mapStateToProps(state) {
   return {
     compress: state.compress,
     user: state.user.currentUser,
+    error: state.user.error,
   };
 }
 
 export default connect(mapStateToProps, {
   toggleShowLogin,
+  clearState,
 })(Banner);

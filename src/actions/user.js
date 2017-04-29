@@ -42,18 +42,17 @@ export function logUser(email, password) {
         }
       })
       .catch((err) => {
-        if (err.response.status === 401) {
-          dispatch({
-            type: LOG_USER_FAILURE,
-            error: err.response.body,
-          });
-        }
+        dispatch({
+          type: LOG_USER_FAILURE,
+          error: err.response.body.errors,
+        });
       });
   };
 }
 
 export function signUser(firstname, lastname, email, password) {
-  const request = Request.post(`${url}/sessions`)
+  console.log(firstname, lastname, email, password);
+  const request = Request.post(`${url}/users`)
     .set('Content-Type', 'application/json')
     .accept('application/tuniversidad.v1')
     .withCredentials()
@@ -74,16 +73,15 @@ export function signUser(firstname, lastname, email, password) {
         if (res.ok) {
           dispatch({
             type: SIGN_USER_SUCCESS,
+            user: res.body,
           });
         }
       })
       .catch((err) => {
-        if (err.response.status === 422) {
-          dispatch({
-            type: SIGN_USER_FAILURE,
-            error: err.response.body.errors,
-          });
-        }
+        dispatch({
+          type: SIGN_USER_FAILURE,
+          error: err.response.body.errors,
+        });
       });
   };
 }

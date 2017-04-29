@@ -111,6 +111,7 @@ class Register extends Component {
 
 Register.propTypes = {
   requesting: PropTypes.bool,
+  signUser: PropTypes.func.isRequired,
   error: PropTypes.shape({
     email: PropTypes.arrayOf(PropTypes.string),
     password: PropTypes.arrayOf(PropTypes.string),
