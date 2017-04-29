@@ -10,7 +10,7 @@ import {
 
 export function logUser(email, password) {
   const request = Request.post('/sessions')
-    .set('Contetn-Type', 'application/json')
+    .set('Content-Type', 'application/json')
     .send({
       session: {
         email,
@@ -42,18 +42,16 @@ export function logUser(email, password) {
 }
 
 export function signUser(firstname, lastname, email, password) {
-  console.log(firstname, lastname, email, password);
   const request = Request.post('/users')
-    .set('Contetn-Type', 'application/json')
+    .set('Content-Type', 'application/json')
     .send({
       user: {
-        firstname,
-        lastname,
+        first_name: firstname,
+        last_name: lastname,
         email,
         password,
       },
     });
-  console.log(request);
   return (dispatch) => {
     dispatch({
       type: SIGN_USER_REQUEST,
@@ -67,10 +65,12 @@ export function signUser(firstname, lastname, email, password) {
         }
       })
       .catch((err) => {
-        dispatch({
-          type: LOG_USER_FAILURE,
-          error: err.response.body,
-        });
+        if (err.response.status === 422) {
+          dispatch({
+            type: SIGN_USER_FAILURE,
+            error: err.response.body.errors,
+          });
+        }
       });
   };
 }

@@ -28,7 +28,6 @@ class Login extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.user !== this.props.user) {
       if (is.not.null(nextProps.user.currentUser)) {
-        console.log('Holaa');
         this.props.toggleShowLogin();
       }
     }

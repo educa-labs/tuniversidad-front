@@ -1,12 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import IconButton from 'material-ui/IconButton';
 import Eye from 'material-ui/svg-icons/action/visibility';
 import NoEye from 'material-ui/svg-icons/action/visibility-off';
+import TextField from 'material-ui/TextField';
 import is from 'is_js';
 import '../styles/Register.css';
 import { signUser } from '../actions/user';
+
+const styles = {
+  margin: '0 10px',
+};
 
 class Register extends Component {
   componentWillMount() {
@@ -28,47 +33,58 @@ class Register extends Component {
   }
 
   handleSubmit() {
-    console.log('click');
     const { firstName, lastName, password, email } = this.state;
-    signUser(firstName, lastName, email, password);
+    this.props.signUser(firstName, lastName, email, password);
   }
 
   render() {
     const { firstName, lastName, password, email, accept, showPass } = this.state;
-    const disabled = is.any.empty(firstName, lastName, password, email) || !accept;
+    const { error, requesting } = this.props;
+    const disabled = is.any.empty(firstName, lastName, password, email) || !accept || requesting;
     return (
       <div className="register-form" >
         <div className="row">
           <div className="item">
-            <input
-              value={firstName}
-              onChange={e => this.setState({ firstName: e.target.value })}
-              placeholder="Nombre"
+            <TextField
+              hintText="Emilio"
+              floatingLabelFixed
+              floatingLabelText="Nombre"
+              fullWidth
+              onChange={(e, val) => this.setState({ firstName: val })}
+              style={styles}
             />
           </div>
           <div className="item">
-            <input
-              value={lastName}
-              onChange={e => this.setState({ lastName: e.target.value })}
-              placeholder="Apellido"
+            <TextField
+              hintText="Villagran"
+              floatingLabelFixed
+              floatingLabelText="Apellido"
+              onChange={(e, val) => this.setState({ lastName: val })}
+              style={styles}
             />
           </div>
         </div>
         <div className="row">
           <div className="item ">
-            <input
-              type="email"
-              value={email}
-              onChange={e => this.setState({ email: e.target.value })}
-              placeholder="Correo electrónico"
+            <TextField
+              hintText="emilio@educalabs.cl"
+              floatingLabelFixed
+              floatingLabelText="Correo electrónico"
+              onChange={(e, val) => this.setState({ email: val })}
+              errorText={error.email ? `Email ${error.email[0]}` : ''}
+              style={styles}
             />
           </div>
           <div className="item password">
-            <input
+            <TextField
               type={`${showPass ? '' : 'password'}`}
-              value={password}
-              onChange={e => this.setState({ password: e.target.value })}
-              placeholder="Contraseña"
+              hintText="* * * * * *"
+              floatingLabelFixed
+              fullWidth
+              floatingLabelText="Constraseña"
+              onChange={(e, val) => this.setState({ password: val })}
+              errorText={error.password ? `Password ${error.password[0]}` : ''}
+              style={styles}
             />
             <IconButton onTouchTap={() => this.setState({ showPass: !showPass })} >
               {showPass ? <NoEye color="#E5E5E5" /> : <Eye color="#E5E5E5" />}
@@ -93,7 +109,26 @@ class Register extends Component {
   }
 }
 
-export default connect(null, {
+Register.propTypes = {
+  requesting: PropTypes.bool,
+  error: PropTypes.shape({
+    email: PropTypes.arrayOf(PropTypes.string),
+    password: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
+};
+
+Register.defaultProps = {
+  requesting: false,
+};
+
+function mapStateToProps(state) {
+  return {
+    error: state.user.error,
+    requesting: state.user.requesting,
+  };
+}
+
+export default connect(mapStateToProps, {
   signUser,
 })(Register);
 

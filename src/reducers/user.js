@@ -10,7 +10,7 @@ import {
 const initialState = {
   currentUser: null,
   requesting: false,
-  error: null,
+  error: {},
 };
 
 function user(state = initialState, action) {
@@ -30,12 +30,12 @@ function user(state = initialState, action) {
       return Object.assign({}, state, {
         currentUser: action.user,
         requesting: false,
-        error: null,
+        error: {},
       });
     case SIGN_USER_SUCCESS:
       return Object.assign({}, state, {
         requesting: false,
-        error: null,
+        error: {},
       });
     default: return state;
   }
