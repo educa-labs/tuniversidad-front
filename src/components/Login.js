@@ -30,6 +30,7 @@ class Login extends Component {
     if (nextProps.user !== this.props.user) {
       if (is.not.null(nextProps.user.currentUser)) {
         this.props.toggleShowLogin();
+        console.log(nextProps.user);
       }
     }
   }
@@ -95,7 +96,7 @@ class Login extends Component {
 
 Login.propTypes = {
   open: PropTypes.bool.isRequired,
-  user: PropTypes.object.isRequired,
+  user: PropTypes.object,
   error: PropTypes.object.isRequired,
   requesting: PropTypes.bool.isRequired,
   toggleShowLogin: PropTypes.func.isRequired,
