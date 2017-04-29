@@ -8,9 +8,13 @@ import {
   SIGN_USER_FAILURE,
 } from './types';
 
+import url from '../constants/url';
+
 export function logUser(email, password) {
-  const request = Request.post('/sessions')
+  const request = Request.post(`${url}/sessions`)
     .set('Content-Type', 'application/json')
+    .accept('application/tuniversidad.v1')
+    .withCredentials()
     .send({
       session: {
         email,
@@ -42,8 +46,10 @@ export function logUser(email, password) {
 }
 
 export function signUser(firstname, lastname, email, password) {
-  const request = Request.post('/users')
+  const request = Request.post(`${url}/sessions`)
     .set('Content-Type', 'application/json')
+    .accept('application/tuniversidad.v1')
+    .withCredentials()
     .send({
       user: {
         first_name: firstname,
