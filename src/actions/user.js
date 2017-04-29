@@ -6,9 +6,16 @@ import {
   SIGN_USER_REQUEST,
   SIGN_USER_SUCCESS,
   SIGN_USER_FAILURE,
+  CLEAR_STATE,
 } from './types';
 
 import url from '../constants/url';
+
+export function clearState() {
+  return {
+    type: CLEAR_STATE,
+  };
+}
 
 export function logUser(email, password) {
   const request = Request.post(`${url}/sessions`)
