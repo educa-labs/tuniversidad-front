@@ -44,7 +44,7 @@ export function logUser(email, password) {
       .catch((err) => {
         dispatch({
           type: LOG_USER_FAILURE,
-          error: err.response.body,
+          error: err.response.body.errors,
         });
       });
   };
@@ -52,7 +52,7 @@ export function logUser(email, password) {
 
 export function signUser(firstname, lastname, email, password) {
   console.log(firstname, lastname, email, password);
-  const request = Request.post(`${url}/sessions`)
+  const request = Request.post(`${url}/users`)
     .set('Content-Type', 'application/json')
     .accept('application/tuniversidad.v1')
     .withCredentials()
@@ -73,13 +73,14 @@ export function signUser(firstname, lastname, email, password) {
         if (res.ok) {
           dispatch({
             type: SIGN_USER_SUCCESS,
+            user: res.body,
           });
         }
       })
       .catch((err) => {
         dispatch({
           type: SIGN_USER_FAILURE,
-          error: err.response.body,
+          error: err.response.body.errors,
         });
       });
   };

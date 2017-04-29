@@ -30,7 +30,7 @@ class Login extends Component {
     if (nextProps.user !== this.props.user) {
       if (is.not.null(nextProps.user.currentUser)) {
         this.props.toggleShowLogin();
-        console.log(nextProps.user);
+        this.context.router.push('/search');
       }
     }
   }
@@ -39,6 +39,7 @@ class Login extends Component {
       if (is.not.empty(this.props.error)) {
         this.props.clearState();
       }
+      this.setState({ email: '', password: '' });
     }
     this.props.toggleShowLogin();
   }
@@ -102,6 +103,10 @@ Login.propTypes = {
   toggleShowLogin: PropTypes.func.isRequired,
   logUser: PropTypes.func.isRequired,
   clearState: PropTypes.func.isRequired,
+};
+
+Login.contextTypes = {
+  router: PropTypes.object,
 };
 
 function mapStateToProps(state) {

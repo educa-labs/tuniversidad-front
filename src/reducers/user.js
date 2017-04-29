@@ -35,6 +35,7 @@ function user(state = initialState, action) {
       });
     case SIGN_USER_SUCCESS:
       return Object.assign({}, state, {
+        currentUser: action.user,
         requesting: false,
         error: {},
       });
