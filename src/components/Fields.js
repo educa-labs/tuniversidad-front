@@ -15,10 +15,10 @@ const regiones = [
   { value: 2, label: 'Coquimbo' },
 ];
 
-const paises = [
+const ciudades = [
   { value: 0, label: 'Todo' },
-  { value: 1, label: 'Chile' },
-  { value: 2, label: 'Argentina' },
+  { value: 1, label: 'Santiago' },
+  { value: 2, label: 'La Serena' },
 ];
 
 const opciones = [
@@ -27,27 +27,22 @@ const opciones = [
   { value: 2, label: 'No' },
 ];
 
-const idiomas = [
-  { value: 0, label: 'Todo' },
-  { value: 1, label: 'Español' },
-  { value: 2, label: 'Inglés' },
-];
 
 function Fields(props) {
   if (props.type === 0) {
     return (
       <div className={`fields-container ${props.hide ? 'hide' : ''}`}>
         <SelectInput
-          title="Pais"
-          items={paises}
-          value={props.values.country}
-          handleChange={country => props.changeFilterValue('country', country)}
-        />
-        <SelectInput
           title="Region"
           items={regiones}
           value={props.values.region}
           handleChange={region => props.changeFilterValue('region', region)}
+        />
+        <SelectInput
+          title="Ciudad"
+          items={ciudades}
+          value={props.values.city}
+          handleChange={city => props.changeFilterValue('city', city)}
         />
         <SelectInput
           title="Tipo de Universidad"
@@ -68,16 +63,16 @@ function Fields(props) {
   return (
     <div className={`fields-container ${props.hide ? 'hide' : ''}`}>
       <SelectInput
-        title="Pais"
-        items={paises}
-        value={props.values.country}
-        handleChange={country => props.changeFilterValue('country', country)}
-      />
-      <SelectInput
         title="Region"
         items={regiones}
         value={props.values.region}
         handleChange={region => props.changeFilterValue('region', region)}
+      />
+      <SelectInput
+        title="Ciudad"
+        items={ciudades}
+        value={props.values.city}
+        handleChange={city => props.changeFilterValue('city', city)}
       />
       <SelectInput
         title="Area"
@@ -86,10 +81,10 @@ function Fields(props) {
         handleChange={area => props.changeFilterValue('area', area)}
       />
       <SelectInput
-        title="Idioma"
-        items={idiomas}
-        value={props.values.language}
-        handleChange={language => props.changeFilterValue('language', language)}
+        title="Horario"
+        items={tipos}
+        value={props.values.schedule}
+        handleChange={schedule => props.changeFilterValue('schedule', schedule)}
       />
       <RangeInput
         title="Duración (semestres)"
@@ -106,6 +101,14 @@ function Fields(props) {
         onChange={tariff => props.changeFilterValue('tariff', tariff)}
         hide={props.hide}
         custom
+      />
+      <RangeInput
+        title="Puntaje de corte"
+        minValue={450}
+        maxValue={850}
+        step={10}
+        onChange={cut => props.changeFilterValue('cut', cut)}
+        hide={props.hide}
       />
     </div>
   );

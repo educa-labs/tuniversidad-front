@@ -4,12 +4,14 @@ const initialState = {
   active: 1,
   type: 0,
   gratuity: 0,
-  country: 1,
-  region: 1,
+  city: 0,
+  region: 0,
   area: 0,
   language: 0,
   duration: [1, 14],
   tariff: [0, 1000000],
+  cut: [450, 850],
+  schedule: 0,
 };
 
 function filter(state = initialState, action) {

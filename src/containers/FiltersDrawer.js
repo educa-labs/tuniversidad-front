@@ -61,18 +61,18 @@ FiltersDrawer.propTypes = {
   setActiveFilter: PropTypes.func.isRequired,
   changeFilterValue: PropTypes.func.isRequired,
   universities: PropTypes.shape({
-    country: PropTypes.number.isRequired,
     region: PropTypes.number.isRequired,
+    city: PropTypes.number.isRequired,
     gratuity: PropTypes.number.isRequired,
     type: PropTypes.number.isRequired,
   }).isRequired,
   careers: PropTypes.shape({
-    country: PropTypes.number.isRequired,
     region: PropTypes.number.isRequired,
+    city: PropTypes.number.isRequired,
     area: PropTypes.number.isRequired,
-    language: PropTypes.number.isRequired,
     duration: PropTypes.arrayOf(PropTypes.number).isRequired,
     tariff: PropTypes.arrayOf(PropTypes.number).isRequired,
+    cut: PropTypes.arrayOf(PropTypes.number).isRequired,
   }).isRequired,
 };
 
@@ -82,16 +82,17 @@ function mapSatetToProps(state) {
     universities: {
       type: state.filter.type,
       gratuity: state.filter.gratuity,
-      country: state.filter.country,
+      city: state.filter.city,
       region: state.filter.region,
     },
     careers: {
       area: state.filter.area,
-      language: state.filter.language,
-      country: state.filter.country,
+      city: state.filter.city,
       region: state.filter.region,
       duration: state.filter.duration,
       tariff: state.filter.tariff,
+      cut: state.filter.cut,
+      schedule: state.filter.schedule,
     },
   };
 }
