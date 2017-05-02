@@ -1,20 +1,18 @@
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import SideMenu from './SideMenu';
 import '../styles/Site.css';
 
 
-class Site extends Component {
-  render() {
-    return (
-      <div className="site-container">
-        <SideMenu />
-        <div className="children">
-          {this.props.children}
-        </div>
+function Site(props) {
+  return (
+    <div className="site-container">
+      <SideMenu />
+      <div className="children">
+        {props.children}
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 Site.defaultProps = {

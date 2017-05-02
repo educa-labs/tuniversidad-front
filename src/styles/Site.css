@@ -1,3 +1,12 @@
 .site-container > .children {
   margin-left: 256px;
 }
+
+.side-menu >.banner {
+  background-color: #424242;
+  height: 3rem;
+  background-image: url(../assets/tuniversidad-logotipo-blanco.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 60% 60%;
+}
