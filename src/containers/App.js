@@ -1,19 +1,11 @@
-import React, { PropTypes } from 'react';
-import Banner from '../components/Banner';
-import MenuBar from '../components/MenuBar';
+import { PropTypes } from 'react';
 
 function App(props) {
-  return (
-    <div className="app">
-      <Banner />
-      <MenuBar />
-      {props.children}
-    </div>
-  );
+  return props.children;
 }
 
 App.propTypes = {
-  children: PropTypes.object,
+  children: PropTypes.node,
 };
 
 export default App;

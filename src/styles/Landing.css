@@ -1,25 +1,25 @@
-.home-container {
+.landing-container {
   height: 100vh;
   background-color: #F5F5F5;
 }
 
-.home-container > .row {
+.landing-container > .row {
   display: flex;
   padding: 0 7rem;
 }
 
-.home-container > .row > .info {
+.landing-container > .row > .info {
   width: 50vw;
   margin: auto 14rem;
   color: #4A4A4A;
 }
 
-.home-container > .row > .info > .title {
+.landing-container > .row > .info > .title {
   font-size: 30px;
   font-weight: bold;
 }
 
-.home-container > .row > .info > .body {
+.landing-container > .row > .info > .body {
   font-size: 20px;
   font-weight: lighter;
 }
