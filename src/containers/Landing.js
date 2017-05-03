@@ -3,9 +3,10 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Cover from '../components/Cover';
 import Register from '../components/Register';
 import Login from '../components/Login';
-import '../styles/Home.css';
+import Banner from '../components/Banner';
+import '../styles/Landing.css';
 
-class Home extends Component {
+class Landing extends Component {
   componentWillMount() {
     this.setState({
       compress: false,
@@ -13,7 +14,8 @@ class Home extends Component {
   }
   render() {
     return (
-      <div className="home-container">
+      <div className="landing-container">
+        <Banner location="landing" />
         <Cover compress={this.state.compress}>
           <RaisedButton
             label="¡Comienza ya!"
@@ -37,4 +39,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default Landing;

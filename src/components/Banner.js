@@ -7,7 +7,7 @@ import { clearState } from '../actions/user';
 import '../styles/Banner.css';
 
 
-function Banner(props, context) {
+function Banner(props) {
   function handleClick() {
     if (is.not.empty(props.error)) props.clearState();
     props.toggleShowLogin();
@@ -25,9 +25,9 @@ function Banner(props, context) {
     />
     ) : null;
   return (
-    <div className={`banner-container ${props.compress ? 'compress' : ''}`}>
+    <div className={`banner-container ${props.location === 'site' ? 'site' : ''}`}>
       <div className="title" />
-      {context.router.location.pathname === '/' ? innerContent : null}
+      {props.location === 'landing' ? innerContent : null}
     </div>
   );
 }
@@ -36,6 +36,7 @@ Banner.propTypes = {
   compress: PropTypes.bool,
   toggleShowLogin: PropTypes.func.isRequired,
   clearState: PropTypes.func.isRequired,
+  location: PropTypes.string.isRequired,
   user: PropTypes.object,
   error: PropTypes.object.isRequired,
 };
@@ -43,10 +44,6 @@ Banner.propTypes = {
 Banner.defaultProps = {
   compress: false,
   user: null,
-};
-
-Banner.contextTypes = {
-  router: PropTypes.object,
 };
 
 function mapStateToProps(state) {

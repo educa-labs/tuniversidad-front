@@ -1,0 +1,36 @@
+.site-container > .children {
+  margin-left: 256px;
+}
+
+.side-menu {
+  background-color: #424242;
+}
+
+.side-menu >.banner {
+  background-color: #424242;
+  height: 3rem;
+  background-image: url(../assets/tuniversidad-logotipo-blanco.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 60% 60%;
+}
+
+.side-menu > .profile-banner {
+  height: 12rem;
+  background-color: #0091EA;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  color: white;
+  width: 100%;
+}
+
+.side-menu > .profile-banner > .box > .picture {
+  width: 100%;
+}
+
+.side-menu > .profile-banner > .box > .name {
+  margin-top: 10px;
+  width: 100%;
+}

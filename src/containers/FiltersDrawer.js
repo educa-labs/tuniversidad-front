@@ -11,6 +11,7 @@ function FiltersDrawer(props) {
     <Drawer
       docked={false}
       open={props.open}
+      openSecondary
       width={300}
       onRequestChange={() => props.toggleFilters()}
     >
