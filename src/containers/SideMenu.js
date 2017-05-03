@@ -7,6 +7,7 @@ import CompareIcon from 'material-ui/svg-icons/image/compare';
 import LightbulbIcon from 'material-ui/svg-icons/action/lightbulb-outline';
 import NewsIcon from 'material-ui/svg-icons/av/fiber-new';
 import QuestionIcon from 'material-ui/svg-icons/action/question-answer';
+import ProfileBanner from '../components/ProfileBanner';
 
 const styles = {
   root: {
@@ -32,11 +33,16 @@ class SideMenu extends Component {
   }
 
   render() {
+    const { selected } = this.state;
     return (
-      <Drawer containerClassName="side-menu" open>
+      <Drawer
+        containerClassName="side-menu"
+        open
+
+      >
         <div className="banner" />
+        <ProfileBanner />
         <Menu
-          style={styles.root}
           menuItemStyle={styles.menuItem}
           selectedMenuItemStyle={styles.selected}
           value={this.state.selected}
@@ -44,27 +50,27 @@ class SideMenu extends Component {
         >
           <MenuItem
             primaryText="Buscador"
-            leftIcon={<Search />}
+            leftIcon={selected === 'search' ? <Search color="white" /> : <Search />}
             value="search"
           />
           <MenuItem
             primaryText="Comparador"
-            leftIcon={<CompareIcon />}
+            leftIcon={selected === 'compare' ? <CompareIcon color="white" /> : <CompareIcon />}
             value="compare"
           />
           <MenuItem
             primaryText="Recomendaciones"
-            leftIcon={<LightbulbIcon />}
+            leftIcon={selected === 'recomend' ? <LightbulbIcon color="white" /> : <LightbulbIcon />}
             value="recomend"
           />
           <MenuItem
             primaryText="Noticias"
-            leftIcon={<NewsIcon />}
+            leftIcon={selected === 'news' ? <NewsIcon color="white" /> : <NewsIcon />}
             value="news"
           />
           <MenuItem
             primaryText="Newton"
-            leftIcon={<QuestionIcon />}
+            leftIcon={selected === 'newton' ? <QuestionIcon color="white" /> : <QuestionIcon />}
             value="newton"
           />
         </Menu>
