@@ -24,6 +24,11 @@ const styles = {
 class SideMenu extends Component {
   componentWillMount() {
     this.setState({ selected: 'search' });
+    if (this.context.router.location.pathname === '/site/') {
+      this.setState({ selected: 'search' });
+    } else {
+      this.setState({ selected: this.context.router.routes[2].path });
+    }
     this.handleSelectItem = this.handleSelectItem.bind(this);
   }
 
