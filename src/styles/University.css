@@ -1,5 +1,10 @@
+.university {
+  height: 100vh;
+  overflow: hidden;
+}
+
 .university > .university-cover {
-  height: 25rem;
+  height: 20rem;
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
@@ -22,8 +27,27 @@
 
 .university > .university-cover > .content > .subtitle {
   font-size: 18px;
+  margin: 5px 0;
 }
 
+.university > .main-content {
+   height: 100%;
+}
+
+.university > .main-content > .banner {
+  width: 100%;
+  box-shadow: 1px 1px 10px 0px rgba(0,0,0,0.75);
+}
+
+.university > .main-content > .banner > .tabs {
+  width: 40rem;
+  margin-left: 3rem;
+}
+
+.university > .main-content > .views {
+  height: 100%;
+  background-color: #F5F5F5;
+}
 
 
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import Banner from '../components/Banner';
 import Cover from '../components/university/Cover';
+import Content from '../components/university/Content';
 import '../styles/University.css';
 
 const university = {
@@ -18,6 +19,7 @@ function University(props) {
         subtitle={university.lema}
         src={university.src}
       />
+      <Content />
     </div>
   );
 }
