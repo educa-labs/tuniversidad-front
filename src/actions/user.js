@@ -1,5 +1,6 @@
 import Request from 'superagent';
 import {
+  SETUP_USER,
   LOG_USER_REQUEST,
   LOG_USER_SUCCESS,
   LOG_USER_FAILURE,
@@ -14,6 +15,13 @@ import url from '../constants/url';
 export function clearState() {
   return {
     type: CLEAR_STATE,
+  };
+}
+
+export function setupUser(user) {
+  return {
+    type: SETUP_USER,
+    user,
   };
 }
 
