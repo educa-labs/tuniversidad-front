@@ -8,7 +8,7 @@ import Questions from './Questions';
 
 
 const style = {
-  height: '3.5rem',
+  height: '3rem',
 };
 
 class Content extends Component {
@@ -41,7 +41,7 @@ class Content extends Component {
             index={this.state.slideIndex}
             onChangeIndex={this.handleChange}
           >
-            <GeneralInfo />
+            <GeneralInfo university={this.props.university} />
             <CareerList />
             <Questions />
           </SwipeableViews>

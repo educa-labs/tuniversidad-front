@@ -1,10 +1,12 @@
+
 .university {
   height: 100vh;
   overflow: hidden;
 }
 
+
 .university > .university-cover {
-  height: 20rem;
+  height: 18rem;
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
@@ -45,8 +47,10 @@
 }
 
 .university > .main-content > .views {
-  height: 100%;
   background-color: #F5F5F5;
+  position: relative;
+  z-index: -1;
+  height: 100%;
 }
 
 
