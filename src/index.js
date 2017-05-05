@@ -15,7 +15,12 @@ injectTapEventPlugin();
 const muiTheme = getMuiTheme({
   palette: {
     primary1Color: '#424242',
-    accent1Color: 'white',
+    accent1Color: '#0091EA',
+  },
+  tabs: {
+    backgroundColor: 'white',
+    selectedTextColor: '#424242',
+    textColor: '#D2D2D2',
   },
 });
 

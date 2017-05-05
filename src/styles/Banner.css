@@ -17,5 +17,17 @@
   background-size: contain;
 }
 .banner-container.site > .title {
-  background-image: none;
+  display: none;
+}
+
+.banner-container.site > .left-content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.banner-container > .left-content > .title {
+  color: white;
+  font-size: 17px;
+
 }

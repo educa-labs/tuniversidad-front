@@ -18,6 +18,7 @@ const styles = {
   },
   selected: {
     backgroundColor: '#0091EA',
+    color: 'white',
   },
 };
 
