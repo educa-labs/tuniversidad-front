@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import Drawer from 'material-ui/Drawer';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
@@ -35,7 +36,8 @@ class SideMenu extends Component {
 
   handleSelectItem(selected) {
     this.setState({ selected });
-    this.context.router.push(`site/${selected}`);
+    // this.context.router.push(`site/${selected}`);
+    this.context.router.push('site/university/1');
   }
 
   render() {
@@ -47,7 +49,7 @@ class SideMenu extends Component {
 
       >
         <div className="banner" />
-        <ProfileBanner />
+        <ProfileBanner user={this.props.user} />
         <Menu
           menuItemStyle={styles.menuItem}
           selectedMenuItemStyle={styles.selected}
@@ -89,4 +91,10 @@ SideMenu.contextTypes = {
   router: PropTypes.object,
 };
 
-export default SideMenu;
+function mapStateToProps(state) {
+  return {
+    user: state.user.currentUser,
+  };
+}
+
+export default connect(mapStateToProps)(SideMenu);

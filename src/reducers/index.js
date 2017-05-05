@@ -4,6 +4,7 @@ import { compress, showLogin } from './compress';
 import filter from './filter';
 import favs from './favs';
 import compare from './compare';
+import fetch from './fetch';
 
 export default combineReducers({
   user,
@@ -12,4 +13,5 @@ export default combineReducers({
   filter,
   favs,
   compare,
+  fetch,
 });
