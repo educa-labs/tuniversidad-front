@@ -6,6 +6,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import is from 'is_js';
 import { logUser, clearState } from '../actions/user';
 import { toggleShowLogin } from '../actions/compress';
+import { saveUser } from '../helpers/storage';
 import '../styles/Login.css';
 
 const modalStyle = {
@@ -28,7 +29,8 @@ class Login extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.user !== this.props.user) {
-      if (is.not.null(nextProps.user.currentUser)) {
+      if (is.not.null(nextProps.user)) {
+        saveUser(nextProps.user);
         this.props.toggleShowLogin();
         this.context.router.push('/site');
       }
