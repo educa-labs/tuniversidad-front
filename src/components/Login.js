@@ -47,7 +47,6 @@ class Login extends Component {
   }
 
   handleSumbit(event) {
-    // Validar los datos,
     event.preventDefault();
     const { email, password } = this.state;
     this.props.logUser(email, password);

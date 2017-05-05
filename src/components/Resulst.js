@@ -6,6 +6,7 @@ const carrera = {
   id: 1,
   title: 'Arte',
   universidad: 'Pontificia Universidad Católica de Chile',
+  university_id: 1,
   admision: {
     weights: {
       nem: 20,

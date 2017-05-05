@@ -38,13 +38,17 @@ function ResultCard(props, context) {
     context.router.push(`careers/${career.id}`);
   }
 
+  function handleSubTitleClick() {
+    context.router.push(`site/university/${career.university_id}`);
+  }
+
   return (
     <div className="result-card" >
       <Paper zDepth={props.general ? 0 : 2}>
         {props.general ? null : (
-          <div className="result-header" onClick={handleInfoClick}>
-            <span className="title">{career.title}</span> <br />
-            <span>{career.universidad}</span>
+          <div className="result-header">
+            <div className="title">{career.title}</div>
+            <div className="subtitle" onClick={handleSubTitleClick} >{career.universidad}</div>
           </div>
         )}
         <div className="content">

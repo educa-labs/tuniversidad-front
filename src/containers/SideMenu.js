@@ -36,8 +36,7 @@ class SideMenu extends Component {
 
   handleSelectItem(selected) {
     this.setState({ selected });
-    // this.context.router.push(`site/${selected}`);
-    this.context.router.push('site/university/1');
+    this.context.router.push(`site/${selected}`);
   }
 
   render() {
