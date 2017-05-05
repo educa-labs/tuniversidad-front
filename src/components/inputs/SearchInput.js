@@ -8,9 +8,6 @@ import '../../styles/SearchInput.css';
 function SearchInput({ value, handleOnChange, onClick, compress, onFilterClick }) {
   return (
     <div className="input-container" onClick={onClick}>
-      <IconButton onTouchTap={onFilterClick}>
-        <FilterList color="#C9C9C9" />
-      </IconButton>
       <IconButton><Search color="#C9C9C9" /></IconButton>
       <input
         type="text"
@@ -18,6 +15,9 @@ function SearchInput({ value, handleOnChange, onClick, compress, onFilterClick }
         onChange={e => handleOnChange(e.target.value)}
         placeholder="Busca lo que quieras"
       />
+      <IconButton onTouchTap={onFilterClick}>
+        <FilterList color="#C9C9C9" />
+      </IconButton>
     </div>
   );
 }
