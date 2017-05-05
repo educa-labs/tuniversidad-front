@@ -9,6 +9,7 @@ import Compare from '../containers/Compare';
 import Recommend from '../containers/Recommend';
 import Newton from '../containers/Newton';
 import Site from '../containers/Site';
+import University from '../containers/University';
 
 export default (
   <Route path="/" component={App}>
@@ -20,6 +21,7 @@ export default (
       <Route path="recomend" component={Recommend} />
       <Route path="news" component={News} />
       <Route path="newton" component={Newton} />
+      <Route path="university/:id" component={University} />
     </Route>
   </Route>
 );
