@@ -47,9 +47,7 @@ function GeneralInfo({ university }) {
             <div className="label">Doctorados</div>
           </div>
         </div>
-        <div className="row">
-          <div className="description">{university.description}</div>
-        </div>
+        <div className="description">{university.description}</div>
       </div>
     </div>
   );

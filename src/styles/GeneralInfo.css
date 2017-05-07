@@ -23,7 +23,7 @@
 }
 
 .general-info > .card > .row > .item {
-  width: 32%;
+  width: 100%;
 }
 
 .general-info > .card > .row > .item > .label {
@@ -31,7 +31,7 @@
   color: #C9C9C9;
 }
 
-.general-info > .card > .row > .description {
+.general-info > .card > .description {
   margin-top: 1rem;
   color: #747474;
 }
