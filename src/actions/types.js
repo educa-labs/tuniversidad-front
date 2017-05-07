@@ -1,5 +1,3 @@
-export const COMPRESS = 'COMPRESS';
-
 export const SHOW_LOGIN = 'SHOW_LOGIN';
 
 export const SET_ACTIVE_FILTER = 'SET_ACTIVE_FILTER';
@@ -24,3 +22,7 @@ export const CLEAR_STATE = 'CLEAR_STATE';
 export const FETCH_REQUEST = 'FETCH_REQUEST';
 export const FETCH_SUCCESS = 'FETCH_SUCCESS';
 export const FETCH_FAILURE = 'FETCH_FAILURE';
+
+export const SEARCH_REQUEST = 'SEARCH_REQUEST';
+export const SEARCH_SUCCESS = 'SEARCH_SUCCESS';
+export const SEARCH_FAILURE = 'SEARCH_FAILURE';

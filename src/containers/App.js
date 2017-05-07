@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import is from 'is_js';
 import { getUser } from '../helpers/storage';
@@ -7,8 +7,12 @@ import { setupUser } from '../actions/user';
 class App extends Component {
   componentWillMount() {
     const user = getUser();
-    if (is.existy(user)) this.props.setupUser(user);
+    if (is.existy(user)) {
+      this.props.setupUser(user);
+      this.context.router.push('/site');
+    }
   }
+
   render() {
     return this.props.children;
   }
@@ -17,6 +21,10 @@ class App extends Component {
 App.propTypes = {
   setupUser: PropTypes.func.isRequired,
   children: PropTypes.node,
+};
+
+App.contextTypes = {
+  router: PropTypes.object,
 };
 
 export default connect(null, {

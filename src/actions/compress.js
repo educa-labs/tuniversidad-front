@@ -1,10 +1,4 @@
-import { COMPRESS, SHOW_LOGIN } from './types';
-
-export function toggleCompress() {
-  return {
-    type: COMPRESS,
-  };
-}
+import { SHOW_LOGIN } from './types';
 
 export function toggleShowLogin() {
   return {
