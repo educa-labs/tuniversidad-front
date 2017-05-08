@@ -14,7 +14,7 @@ export function search(active, text, token) {
     .accept('application/tuniversidad.v1')
     .withCredentials()
     .send({
-      [active ? 'career' : 'university']: {
+      [active]: {
         text,
       },
     });

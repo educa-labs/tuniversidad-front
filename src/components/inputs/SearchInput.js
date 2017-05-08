@@ -5,7 +5,7 @@ import FilterList from 'material-ui/svg-icons/content/filter-list';
 import '../../styles/SearchInput.css';
 
 
-function SearchInput({ value, handleOnChange, handleSubmit, onFilterClick }) {
+function SearchInput({ value, handleOnChange, handleSubmit, onFilterClick, active }) {
   return (
     <div className="input-container">
       <form onSubmit={handleSubmit}>
@@ -14,7 +14,7 @@ function SearchInput({ value, handleOnChange, handleSubmit, onFilterClick }) {
           type="text"
           value={value}
           onChange={e => handleOnChange(e.target.value)}
-          placeholder="Busca lo que quieras"
+          placeholder={active === 'university' ? 'Busca una Universidad' : 'Busca una carrera'}
         />
         <IconButton type="button" onTouchTap={onFilterClick}>
           <FilterList color="#C9C9C9" />
@@ -29,6 +29,7 @@ SearchInput.propTypes = {
   handleOnChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   onFilterClick: PropTypes.func.isRequired,
+  active: PropTypes.string.isRequired,
 };
 
 export default SearchInput;

@@ -27,12 +27,12 @@ function FiltersDrawer(props) {
           >
             <RadioButton
               style={{ margin: '1rem 0' }}
-              value={0}
+              value="university"
               label="Universidades"
             />
             <RadioButton
               style={{ margin: '1rem 0' }}
-              value={1}
+              value="carreer"
               label="Carreras"
             />
           </RadioButtonGroup>
@@ -40,13 +40,13 @@ function FiltersDrawer(props) {
         <Divider />
         <Fields
           type={0}
-          hide={props.active === 1}
+          hide={props.active === 'carreer'}
           values={props.universities}
           changeFilterValue={props.changeFilterValue}
         />
         <Fields
           type={1}
-          hide={props.active === 0 || !props.open}
+          hide={props.active === 'university' || !props.open}
           values={props.careers}
           changeFilterValue={props.changeFilterValue}
         />
