@@ -34,7 +34,7 @@ class Buscador extends Component {
 
 
   render() {
-    const { data, requesting } = this.props;
+    const { data, requesting, active } = this.props;
     let renderResults = null;
     if (is.null(data)) renderResults = <div>Busca lo que quieras</div>;
     else if (is.empty(data)) renderResults = <div>No hay resultados</div>;
@@ -53,6 +53,7 @@ class Buscador extends Component {
           handleOnChange={value => this.setState({ input: value })}
           onFilterClick={this.toggleFilters}
           handleSubmit={this.handleSubmit}
+          active={active}
         />
         <FiltersDrawer
           open={this.state.showFilters}
@@ -66,7 +67,7 @@ class Buscador extends Component {
 
 Buscador.propTypes = {
   token: PropTypes.string.isRequired,
-  active: PropTypes.number.isRequired,
+  active: PropTypes.string.isRequired,
   search: PropTypes.func.isRequired,
 };
 
