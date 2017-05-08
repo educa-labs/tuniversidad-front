@@ -7,14 +7,14 @@ import FlatButton from 'material-ui/FlatButton';
 import { addToFavorites, removeFromFavorites } from '../actions/favs';
 import { addToCompare, removeFromCompare } from '../actions/compare';
 import numeral from '../helpers/numeral';
-import '../styles/ResultCard.css';
+import '../styles/CareerCard.css';
 
 const labelStyle = {
   color: '#0091EA',
   fontSize: '12px',
 };
 
-function ResultCard(props, context) {
+function CareerCard(props, context) {
   const { career, favs, compare } = props;
 
   const isFavorite = is.inArray(career.id, favs);
@@ -146,7 +146,7 @@ function ResultCard(props, context) {
   );
 }
 
-ResultCard.propTypes = {
+CareerCard.propTypes = {
   addToFavorites: PropTypes.func.isRequired,
   removeFromFavorites: PropTypes.func.isRequired,
   addToCompare: PropTypes.func.isRequired,
@@ -156,11 +156,11 @@ ResultCard.propTypes = {
   general: PropTypes.bool,
 };
 
-ResultCard.defaultProps = {
+CareerCard.defaultProps = {
   general: false,
 };
 
-ResultCard.contextTypes = {
+CareerCard.contextTypes = {
   router: PropTypes.object,
 };
 
@@ -177,4 +177,4 @@ export default connect(mapStateToProps, {
   removeFromFavorites,
   addToCompare,
   removeFromCompare,
-})(ResultCard);
+})(CareerCard);

@@ -1,5 +1,5 @@
-import React from 'react';
-import ResultCard from './ResultCard';
+import React, { PropTypes }from 'react';
+import is from 'is_js';
 import '../styles/Results.css';
 
 const carrera = {
@@ -31,13 +31,35 @@ const carrera = {
   },
 };
 
-function Results() {
+function Results(props) {
+  console.log(props);
+  if (is.null(props.result)) {
+    return (
+      <div>Escribe algo para comenzar la búsqueda</div>
+    );
+  }
+  if (props.requesting) {
+    return (
+      <div>
+        Loading...
+      </div>
+    );
+  }
+  if (is.empty(props.result)) {
+    return (
+      <div>No hay resultados</div>
+    );
+  }
   return (
     <div className="result-container">
-      <ResultCard career={carrera} />
-      <ResultCard career={carrera} />
+      {this.props.results.map(uni => uni.title)}
     </div>
   );
 }
+
+Results.propTypes = {
+  result: PropTypes.oneOf(null, PropTypes.array),
+  requesting: PropTypes.bool.isRequired,
+};
 
 export default Results;
