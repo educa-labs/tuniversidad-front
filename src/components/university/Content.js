@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import SwipeableViews from 'react-swipeable-views';
 import UniversityCard from '../UniversityCard';
@@ -41,7 +41,7 @@ class Content extends Component {
             index={this.state.slideIndex}
             onChangeIndex={this.handleChange}
           >
-            <UniversityCard univ={this.props.university} />
+            <UniversityCard {...this.props} />
             <CareerList />
             <Questions />
           </SwipeableViews>
@@ -50,5 +50,7 @@ class Content extends Component {
     );
   }
 }
+
+
 
 export default Content;

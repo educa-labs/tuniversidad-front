@@ -1,17 +1,20 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import RaisedButton from 'material-ui/RaisedButton';
 import '../styles/Cover.css';
 
-function Cover({ compress, children }) {
+function Cover() {
   return (
-    <div className={`cover ${compress ? 'compress' : ''}`}>
-      <div className="title">Información de más de 100 universidades</div>
-      <div className="children">{children}</div>
+    <div className="cover">
+      <div className="cover__title">Información de más de 100 universidades</div>
+      <div className="cover__button">
+        <RaisedButton
+          label="¡Comienza ya!"
+          backgroundColor="#0091EA"
+          labelColor="#FFFFFF"
+        />
+      </div>
     </div>
   );
 }
-
-Cover.propTypes = {
-  compress: PropTypes.bool.isRequired,
-};
 
 export default Cover;

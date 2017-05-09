@@ -5,7 +5,7 @@ import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
 import { toggleShowLogin } from '../actions/compress';
-import { clearState } from '../actions/user';
+import { clearState, logoutUser } from '../actions/user';
 import '../styles/Banner.css';
 
 
@@ -14,10 +14,14 @@ function Banner(props, context) {
     if (is.not.empty(props.error)) props.clearState();
     props.toggleShowLogin();
   }
-  const rightContent = is.null(props.user) ? (
+
+  function handleLogout() {
+    props.logoutUser(props.user.id, props.user.auth_token);
+  }
+  const rightContent = (
     <FlatButton
-      onTouchTap={handleClick}
-      label="Inicia sesión"
+      onTouchTap={is.null(props.user) ? handleClick : handleLogout}
+      label={is.null(props.user) ? 'Inicia sesión' : 'Cerrar sesión'}
       labelStyle={{
         color: 'white',
       }}
@@ -25,22 +29,22 @@ function Banner(props, context) {
         margin: 'auto 1rem auto auto',
       }}
     />
-    ) : null;
+    );
 
   const leftContent = is.not.null(props.title) ? (
     <div className="left-content">
       <IconButton onTouchTap={() => context.router.goBack()}>
         <ArrowBack color="white" />
       </IconButton>
-      <div className="title">{props.title}</div>
+      <div className="letf-content__title">{props.title}</div>
     </div>
   ) : null;
 
   return (
-    <div className={`banner-container ${props.location === 'site' ? 'site' : ''}`}>
-      <div className="title" />
+    <div className={`banner ${props.location === 'site' ? 'banner_site' : ''}`}>
+      <div className={`banner__title ${props.location === 'site' ? 'banner__title_site' : ''}`} />
       {props.location === 'site' ? leftContent : null}
-      {props.location === 'landing' ? rightContent : null}
+      {rightContent}
     </div>
   );
 }
@@ -64,7 +68,6 @@ Banner.contextTypes = {
 
 function mapStateToProps(state) {
   return {
-    compress: state.compress,
     user: state.user.currentUser,
     error: state.user.error,
   };
@@ -73,4 +76,5 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, {
   toggleShowLogin,
   clearState,
+  logoutUser,
 })(Banner);

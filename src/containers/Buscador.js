@@ -2,12 +2,12 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import is from 'is_js';
 import FiltersDrawer from './FiltersDrawer';
-import Results from '../components/Results';
 import SearchInput from '../components/inputs/SearchInput';
 import Banner from '../components/Banner';
 import { search } from '../actions/search';
-import { fetchUniversity } from '../actions/fetch';
 import UniversityCard from '../components/UniversityCard';
+import CareerCard from '../components/CareerCard';
+
 class Buscador extends Component {
   constructor(props) {
     super(props);
@@ -31,21 +31,21 @@ class Buscador extends Component {
     const { active, token } = this.props;
     const { input } = this.state;
     this.props.search(active, input, token);
-    this.props.fetchUniversity(1, token);
   }
 
 
   render() {
     const { data, requesting, active } = this.props;
-    let renderResults = null;
-    if (is.null(data)) renderResults = <div>Busca lo que quieras</div>;
-    else if (is.empty(data)) renderResults = <div>No hay resultados</div>;
-    else {
-      renderResults = (
-        <div>
-          {this.props.data.map(uni => uni.title)}
-        </div>
-      );
+    const beforeSearch = <div>Recuerda que puedes aplicar filtros a tu búsqueda</div>;
+    let afterSearch = null;
+    if (is.not.null(data)) {
+      afterSearch = data.map((res) => {
+        if (active === 'university') return <UniversityCard university={res} key={res.id} />;
+        return <CareerCard career={res} key={res.id} />;
+      });
+      if (is.empty(afterSearch)) {
+        afterSearch = <div>No hay resultados</div>;
+      }
     }
     return (
       <div className="buscador-container">
@@ -61,9 +61,7 @@ class Buscador extends Component {
           open={this.state.showFilters}
           toggleFilters={this.toggleFilters}
         />
-        {is.not.null(this.props.result) ? (
-          <UniversityCard univ={this.props.result} />
-        ) : null}
+        {afterSearch || beforeSearch}
       </div>
     );
   }
@@ -87,6 +85,5 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
   search,
-  fetchUniversity,
 })(Buscador);
 

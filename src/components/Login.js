@@ -69,7 +69,7 @@ class Login extends Component {
             hintText="ivan@mail.com"
             floatingLabelText="Correo electrónico"
             onChange={(e, val) => this.setState({ email: val })}
-            errorText={is.not.empty(error) ? 'Usuario no existe' : ''}
+            errorText={error.email ? 'Usuario no existente' : ''}
           />
           <br />
           <TextField
@@ -77,7 +77,7 @@ class Login extends Component {
             floatingLabelText="Contraseña"
             type="password"
             onChange={(e, val) => this.setState({ password: val })}
-            errorText={is.not.empty(error) ? 'Contraseña inconrrecta' : ''}
+            errorText={error.password ? 'Contraseña inconrrecta' : ''}
           />
           <br />
           <RaisedButton

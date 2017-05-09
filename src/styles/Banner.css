@@ -1,13 +1,13 @@
-.banner-container {
+.banner {
   background-color: #0091EA;
   display: flex;
   height: 3rem;
   transition: height 300ms ease;
 }
-.banner-container.site {
+.banner_site {
   background-color: #424242;
 }
-.banner-container > .title {
+.banner__title {
   height: 1.5rem;
   width: 20rem;
   margin: auto 0;
@@ -16,17 +16,17 @@
   background-repeat: no-repeat;
   background-size: contain;
 }
-.banner-container.site > .title {
+.banner__title_site {
   display: none;
 }
 
-.banner-container.site > .left-content {
+.left-content {
   width: 100%;
   display: flex;
   align-items: center;
 }
 
-.banner-container > .left-content > .title {
+.left-content__title {
   color: white;
   font-size: 17px;
 
