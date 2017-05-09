@@ -6,7 +6,8 @@ import Results from '../components/Results';
 import SearchInput from '../components/inputs/SearchInput';
 import Banner from '../components/Banner';
 import { search } from '../actions/search';
-
+import { fetchUniversity } from '../actions/fetch';
+import UniversityCard from '../components/UniversityCard';
 class Buscador extends Component {
   constructor(props) {
     super(props);
@@ -30,6 +31,7 @@ class Buscador extends Component {
     const { active, token } = this.props;
     const { input } = this.state;
     this.props.search(active, input, token);
+    this.props.fetchUniversity(1, token);
   }
 
 
@@ -59,7 +61,9 @@ class Buscador extends Component {
           open={this.state.showFilters}
           toggleFilters={this.toggleFilters}
         />
-        {renderResults}
+        {is.not.null(this.props.result) ? (
+          <UniversityCard univ={this.props.result} />
+        ) : null}
       </div>
     );
   }
@@ -76,11 +80,13 @@ function mapStateToProps(state) {
     token: state.user.currentUser.auth_token,
     active: state.filter.active,
     data: state.search.result,
+    result: state.fetch.result,
     requesting: state.search.requesting,
   };
 }
 
 export default connect(mapStateToProps, {
   search,
+  fetchUniversity,
 })(Buscador);
 
