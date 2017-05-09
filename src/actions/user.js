@@ -1,6 +1,9 @@
 import Request from 'superagent';
 import {
   SETUP_USER,
+  LOGOUT_USER_FAILURE,
+  LOGOUT_USER_REQUEST,
+  LOGOUT_USER_SUCCESS,
   LOG_USER_REQUEST,
   LOG_USER_SUCCESS,
   LOG_USER_FAILURE,
@@ -22,6 +25,33 @@ export function setupUser(user) {
   return {
     type: SETUP_USER,
     user,
+  };
+}
+
+export function logoutUser(id, token) {
+  const request = Request.delete(`${url}/sessions/${id}`)
+    .set('Content-Type', 'application/json')
+    .set('Authorization', token)
+    .accept('application/tuniversidad.v1')
+    .withCredentials();
+  return (dispatch) => {
+    dispatch({
+      type: LOGOUT_USER_REQUEST,
+    });
+    return request
+      .then((res) => {
+        if (res.ok) {
+          dispatch({
+            type: LOGOUT_USER_SUCCESS,
+          });
+        }
+      })
+      .catch((err) => {
+        dispatch({
+          type: LOGOUT_USER_FAILURE,
+          error: err.response.body.errors,
+        });
+      });
   };
 }
 

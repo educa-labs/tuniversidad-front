@@ -57,7 +57,7 @@ function FiltersDrawer(props) {
 
 FiltersDrawer.propTypes = {
   open: PropTypes.bool.isRequired,
-  active: PropTypes.number.isRequired,
+  active: PropTypes.string.isRequired,
   toggleFilters: PropTypes.func.isRequired,
   setActiveFilter: PropTypes.func.isRequired,
   changeFilterValue: PropTypes.func.isRequired,

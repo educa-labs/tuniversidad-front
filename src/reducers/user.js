@@ -7,6 +7,9 @@ import {
   SIGN_USER_FAILURE,
   CLEAR_STATE,
   SETUP_USER,
+  LOGOUT_USER_FAILURE,
+  LOGOUT_USER_REQUEST,
+  LOGOUT_USER_SUCCESS,
 } from '../actions/types';
 
 const initialState = {
@@ -18,11 +21,13 @@ const initialState = {
 function user(state = initialState, action) {
   switch (action.type) {
     case LOG_USER_REQUEST:
+    case LOGOUT_USER_REQUEST:
     case SIGN_USER_REQUEST:
       return Object.assign({}, state, {
         requesting: true,
       });
     case LOG_USER_FAILURE:
+    case LOGOUT_USER_FAILURE:
     case SIGN_USER_FAILURE:
       return Object.assign({}, state, {
         requesting: false,
@@ -31,6 +36,12 @@ function user(state = initialState, action) {
     case LOG_USER_SUCCESS:
       return Object.assign({}, state, {
         currentUser: action.user,
+        requesting: false,
+        error: {},
+      });
+    case LOGOUT_USER_SUCCESS:
+      return Object.assign({}, state, {
+        currentUser: null,
         requesting: false,
         error: {},
       });

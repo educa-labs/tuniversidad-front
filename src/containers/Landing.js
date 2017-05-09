@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
 import Cover from '../components/Cover';
 import Register from '../components/Register';
 import Login from '../components/Login';
@@ -16,13 +15,7 @@ class Landing extends Component {
     return (
       <div className="landing-container">
         <Banner location="landing" />
-        <Cover compress={this.state.compress}>
-          <RaisedButton
-            label="¡Comienza ya!"
-            backgroundColor="#0091EA"
-            labelColor="#FFFFFF"
-          />
-        </Cover>
+        <Cover />
         <div className="row">
           <div className="info">
             <div className="title">Prepara la PSU como nunca antes.</div>
