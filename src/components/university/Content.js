@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import SwipeableViews from 'react-swipeable-views';
-import GeneralInfo from './GeneralInfo';
+import UniversityCard from '../UniversityCard';
 import CareerList from './CareerList';
 import Questions from './Questions';
 
@@ -41,7 +41,7 @@ class Content extends Component {
             index={this.state.slideIndex}
             onChangeIndex={this.handleChange}
           >
-            <GeneralInfo university={this.props.university} />
+            <UniversityCard univ={this.props.university} />
             <CareerList />
             <Questions />
           </SwipeableViews>
