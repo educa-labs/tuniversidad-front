@@ -7,8 +7,20 @@ import {
 
 import url from '../constants/url';
 
-export function fetchUniversity(id, token) {
-  const request = Request.get(`${url}/universities/${id}`)
+export function fetch(key, id, token) {
+  let path = null;
+  if (key === 'university') path = `${url}/universities/${id}`;
+  else if (key === 'career') path = `${url}/carreers/${id}`;
+  else if (key === 'areas') path = `${url}/areas`;
+  else if (key === 'types') path = `${url}/university_types`;
+  else if (key === 'schedules') path = `${url}/schedules`;
+  else if (key === 'regions') path = `${url}/regions`;
+  else {
+    console.error('Key error', key);
+  }
+
+
+  const request = Request.get(path)
     .set('Content-Type', 'application/json')
     .set('Authorization', token)
     .accept('application/tuniversidad.v1')
@@ -22,6 +34,7 @@ export function fetchUniversity(id, token) {
         if (res.ok) {
           dispatch({
             type: FETCH_SUCCESS,
+            key,
             payload: res.body,
           });
         }

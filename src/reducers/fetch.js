@@ -1,11 +1,16 @@
 import {
   FETCH_FAILURE,
-  FETCH_REQUEST,
   FETCH_SUCCESS,
+  FETCH_REQUEST,
 } from '../actions/types';
 
 const initialState = {
-  result: null,
+  university: null,
+  career: null,
+  types: null,
+  areas: null,
+  schedules: null,
+  regions: null,
   requesting: false,
   error: {},
 };
@@ -23,7 +28,7 @@ function fetch(state = initialState, action) {
       });
     case FETCH_SUCCESS:
       return Object.assign({}, state, {
-        result: action.payload,
+        [action.key]: action.payload,
         requesting: false,
         error: {},
       });

@@ -7,6 +7,12 @@ import Fields from '../components/Fields';
 import { setActiveFilter, changeFilterValue } from '../actions/filter';
 
 function FiltersDrawer(props) {
+  const fields = {
+    regions: props.regions || null,
+    areas: props.areas ? props.areas.areas : null,
+    schedules: props.schedules ? props.schedules.schedules : null,
+    types: props.types ? props.types.university_types : null,
+  };
   return (
     <Drawer
       docked={false}
@@ -41,12 +47,14 @@ function FiltersDrawer(props) {
           hide={props.active === 'carreer'}
           values={props.universities}
           changeFilterValue={props.changeFilterValue}
+          fields={fields}
         />
-        <Fields
+        <Fields // Careers
           type={1}
           hide={props.active === 'university' || !props.open}
           values={props.careers}
           changeFilterValue={props.changeFilterValue}
+          fields={fields}
         />
       </div >
     </Drawer >
@@ -59,40 +67,30 @@ FiltersDrawer.propTypes = {
   toggleFilters: PropTypes.func.isRequired,
   setActiveFilter: PropTypes.func.isRequired,
   changeFilterValue: PropTypes.func.isRequired,
-  universities: PropTypes.shape({
-    region: PropTypes.number.isRequired,
-    city: PropTypes.number.isRequired,
-    gratuity: PropTypes.number.isRequired,
-    type: PropTypes.number.isRequired,
-  }).isRequired,
-  careers: PropTypes.shape({
-    region: PropTypes.number.isRequired,
-    city: PropTypes.number.isRequired,
-    area: PropTypes.number.isRequired,
-    duration: PropTypes.arrayOf(PropTypes.number).isRequired,
-    tariff: PropTypes.arrayOf(PropTypes.number).isRequired,
-    cut: PropTypes.arrayOf(PropTypes.number).isRequired,
-  }).isRequired,
 };
 
 function mapSatetToProps(state) {
   return {
     active: state.filter.active,
     universities: {
-      type: state.filter.type,
-      gratuity: state.filter.gratuity,
-      city: state.filter.city,
-      region: state.filter.region,
+      university_type: state.filter.university_type,
+      freeness: state.filter.freeness,
+      cities: state.filter.cities,
+      region: state.filter.region_id,
     },
     careers: {
       area: state.filter.area,
-      city: state.filter.city,
-      region: state.filter.region,
+      citites: state.filter.citites,
+      region: state.filter.region_id,
       duration: state.filter.duration,
-      tariff: state.filter.tariff,
+      price: state.filter.tariff,
       cut: state.filter.cut,
       schedule: state.filter.schedule,
     },
+    areas: state.fetch.areas,
+    types: state.fetch.types,
+    schedules: state.fetch.schedules,
+    regions: state.fetch.regions,
   };
 }
 

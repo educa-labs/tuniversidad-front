@@ -1,5 +1,4 @@
 import React, { PropTypes, Component } from 'react';
-import Request from 'superagent';
 import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import is from 'is_js';
@@ -8,16 +7,16 @@ import { getCareers } from '../helpers/api';
 import Banner from '../components/Banner';
 import UniversityCard from '../components/UniversityCard';
 import CareerCard from '../components/CareerCard';
-//import CareerList from './CareerList';
 //import Questions from './Questions';
-import { fetchUniversity } from '../actions/fetch';
+import { fetch } from '../actions/fetch';
 import '../styles/University.css';
 
 
 class University extends Component {
 
   componentWillMount() {
-    this.props.fetchUniversity(this.props.params.id, this.props.token);
+    const { params, token } = this.props;
+    this.props.fetch('university', params.id, token);
     this.setState({
       src: '',
       slideIndex: 0,
@@ -80,15 +79,17 @@ class University extends Component {
 function mapStateToProps(state) {
   return {
     token: state.user.currentUser.auth_token,
-    university: state.fetch.result,
+    university: state.fetch.university,
   };
 }
 
 University.propTypes = {
-  fetchUniversity: PropTypes.func.isRequired,
+  fetch: PropTypes.func.isRequired,
+  token: PropTypes.string.isRequired,
+  params: PropTypes.object,
   university: PropTypes.object,
 };
 
 export default connect(mapStateToProps, {
-  fetchUniversity,
+  fetch,
 })(University);

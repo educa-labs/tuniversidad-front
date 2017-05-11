@@ -5,6 +5,7 @@ import FiltersDrawer from './FiltersDrawer';
 import SearchInput from '../components/inputs/SearchInput';
 import Banner from '../components/Banner';
 import { search } from '../actions/search';
+import { fetch } from '../actions/fetch';
 import UniversityCard from '../components/UniversityCard';
 import CareerCard from '../components/CareerCard';
 
@@ -21,6 +22,10 @@ class Buscador extends Component {
   componentWillMount() {
     this.toggleFilters = this.toggleFilters.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.props.fetch('areas', null, null);
+    this.props.fetch('types', null, null);
+    this.props.fetch('schedules', null, null);
+    this.props.fetch('regions', null, this.props.token);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -38,7 +43,9 @@ class Buscador extends Component {
   }
 
   toggleFilters() {
-    this.setState({ showFilters: !this.state.showFilters });
+    if (!this.props.requesting) {
+      this.setState({ showFilters: !this.state.showFilters });
+    }
   }
 
   handleSubmit(event) {
@@ -61,6 +68,7 @@ class Buscador extends Component {
       else if (active === 'university') afterSearch = dataTypeHasChanged ? null : data.map(res => <UniversityCard university={res} key={res.id} />);
       else if (active === 'carreer') afterSearch = dataTypeHasChanged ? null : data.map(res => <CareerCard career={res} key={res.id} />);
     }
+    
     return (
       <div className="buscador-container">
         <Banner location="site" />
@@ -86,6 +94,7 @@ Buscador.propTypes = {
   active: PropTypes.string.isRequired,
   search: PropTypes.func.isRequired,
   requesting: PropTypes.bool.isRequired,
+  fetch: PropTypes.func.isRequired,
   data: PropTypes.array,
 };
 
@@ -95,11 +104,12 @@ function mapStateToProps(state) {
     active: state.filter.active,
     data: state.search.result,
     result: state.fetch.result,
-    requesting: state.search.requesting,
+    requesting: state.search.requesting || state.fetch.requesting,
   };
 }
 
 export default connect(mapStateToProps, {
   search,
+  fetch,
 })(Buscador);
 
