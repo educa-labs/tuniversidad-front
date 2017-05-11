@@ -80,7 +80,7 @@ function mapSatetToProps(state) {
     },
     careers: {
       area: state.filter.area,
-      citites: state.filter.citites,
+      cities: state.filter.cities,
       region: state.filter.region_id,
       duration: state.filter.duration,
       price: state.filter.tariff,
