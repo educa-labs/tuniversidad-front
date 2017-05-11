@@ -15,11 +15,9 @@ function FiltersDrawer(props) {
       width={300}
       onRequestChange={() => props.toggleFilters()}
     >
-      <div className="filters-drawer">
-        <div className="banner">
-          FILTROS
-        </div>
-        <div className="radio-input">
+      <div className="filters">
+        <div className="filters__banner">FILTROS</div>
+        <div className="filters__radio-input">
           <RadioButtonGroup
             name="filter options"
             defaultSelected={props.active}

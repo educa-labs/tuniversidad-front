@@ -3,6 +3,7 @@
   display: flex;
   height: 3rem;
   position: fixed;
+  top: 0;
   width: 100%;
 }
 .banner_site {

@@ -5,9 +5,9 @@ import '../styles/Site.css';
 
 function Site(props) {
   return (
-    <div className="site-container">
+    <div className="site">
       <SideMenu />
-      <div className="children">
+      <div className="site__children">
         {props.children}
       </div>
     </div>
