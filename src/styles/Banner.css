@@ -2,7 +2,8 @@
   background-color: #0091EA;
   display: flex;
   height: 3rem;
-  transition: height 300ms ease;
+  position: fixed;
+  width: 100%;
 }
 .banner_site {
   background-color: #424242;

@@ -45,42 +45,43 @@ class SideMenu extends Component {
       <Drawer
         containerClassName="side-menu"
         open
-
       >
-        <div className="banner" />
-        <ProfileBanner user={this.props.user} />
-        <Menu
-          menuItemStyle={styles.menuItem}
-          selectedMenuItemStyle={styles.selected}
-          value={this.state.selected}
-          onChange={(e, val) => this.handleSelectItem(val)}
-        >
-          <MenuItem
-            primaryText="Buscador"
-            leftIcon={selected === 'search' ? <Search color="white" /> : <Search />}
-            value="search"
-          />
-          <MenuItem
-            primaryText="Comparador"
-            leftIcon={selected === 'compare' ? <CompareIcon color="white" /> : <CompareIcon />}
-            value="compare"
-          />
-          <MenuItem
-            primaryText="Recomendaciones"
-            leftIcon={selected === 'recomend' ? <LightbulbIcon color="white" /> : <LightbulbIcon />}
-            value="recomend"
-          />
-          <MenuItem
-            primaryText="Noticias"
-            leftIcon={selected === 'news' ? <NewsIcon color="white" /> : <NewsIcon />}
-            value="news"
-          />
-          <MenuItem
-            primaryText="Newton"
-            leftIcon={selected === 'newton' ? <QuestionIcon color="white" /> : <QuestionIcon />}
-            value="newton"
-          />
-        </Menu>
+        <div className="side-menu__banner" />
+        <div className="side-menu__content">
+          <ProfileBanner user={this.props.user} />
+          <Menu
+            menuItemStyle={styles.menuItem}
+            selectedMenuItemStyle={styles.selected}
+            value={this.state.selected}
+            onChange={(e, val) => this.handleSelectItem(val)}
+          >
+            <MenuItem
+              primaryText="Buscador"
+              leftIcon={selected === 'search' ? <Search color="white" /> : <Search />}
+              value="search"
+            />
+            <MenuItem
+              primaryText="Comparador"
+              leftIcon={selected === 'compare' ? <CompareIcon color="white" /> : <CompareIcon />}
+              value="compare"
+            />
+            <MenuItem
+              primaryText="Recomendaciones"
+              leftIcon={selected === 'recomend' ? <LightbulbIcon color="white" /> : <LightbulbIcon />}
+              value="recomend"
+            />
+            <MenuItem
+              primaryText="Noticias"
+              leftIcon={selected === 'news' ? <NewsIcon color="white" /> : <NewsIcon />}
+              value="news"
+            />
+            <MenuItem
+              primaryText="Newton"
+              leftIcon={selected === 'newton' ? <QuestionIcon color="white" /> : <QuestionIcon />}
+              value="newton"
+            />
+          </Menu>
+        </div>
       </Drawer>
     );
   }
