@@ -24,10 +24,9 @@
   width: 100%;
   display: flex;
   align-items: center;
+  color: white
 }
 
 .left-content__title {
-  color: white;
   font-size: 17px;
-
 }

@@ -74,6 +74,7 @@ UniversityCard.contextTypes = {
 };
 
 UniversityCard.propTypes = {
+  detail: PropTypes.bool.isRequired,
   university: PropTypes.shape({
     id: PropTypes.number.isRequired,
     foundation: PropTypes.string.isRequired,

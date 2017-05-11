@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Tabs, Tab } from 'material-ui/Tabs';
 import SwipeableViews from 'react-swipeable-views';
 import UniversityCard from '../UniversityCard';
 import CareerList from './CareerList';
@@ -24,18 +23,6 @@ class Content extends Component {
   render() {
     return (
       <div className="main-content">
-        <div className="banner">
-          <Tabs
-            onChange={this.handleChange}
-            value={this.state.slideIndex}
-            tabItemContainerStyle={style}
-            className="tabs"
-          >
-            <Tab label="Información general" value={0} />
-            <Tab label="Carreras" value={1} />
-            <Tab label="Preguntas y respuestas" value={2} />
-          </Tabs >
-        </div>
         <div className="views">
           <SwipeableViews
             index={this.state.slideIndex}

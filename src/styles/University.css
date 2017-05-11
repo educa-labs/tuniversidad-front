@@ -1,33 +1,26 @@
 
 .university {
   height: 100vh;
-  overflow: hidden;
 }
-
-
-.university > .university-cover {
+.university-cover {
   height: 18rem;
+  background-image: url(../assets/univ-cover.jpg);
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  display: flex;
-  align-items: flex-end;
-}
-
-.university > .university-cover > .content {
-  width: 100%;
   color: white;
-  display: block;
-  margin-left: 4rem;
-  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 4rem;
 }
 
-.university > .university-cover > .content > .title {
+.university-cover__title {
   text-transform: uppercase;
-  font-size: 35px;
+  font-size: 30px;
   width: 30rem;
 }
-
-.university > .university-cover > .content > .subtitle {
+.university-cover__subtitle {
   font-size: 18px;
   margin: 5px 0;
 }
@@ -36,12 +29,13 @@
    height: 100%;
 }
 
-.university > .main-content > .banner {
+.tabs-container {
   width: 100%;
+  background-color: white;
   box-shadow: 1px 1px 10px 0px rgba(0,0,0,0.75);
 }
 
-.university > .main-content > .banner > .tabs {
+.tabs {
   width: 40rem;
   margin-left: 3rem;
 }

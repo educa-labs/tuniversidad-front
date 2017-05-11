@@ -7,9 +7,10 @@ import { setupUser } from '../actions/user';
 class App extends Component {
   componentWillMount() {
     const user = getUser();
-    if (is.existy(user)) {
+    if (is.not.existy(user)) {
+      this.context.router.replace('/');
+    } else {
       this.props.setupUser(user);
-      this.context.router.push('/site');
     }
   }
 
