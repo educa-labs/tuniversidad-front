@@ -14,12 +14,27 @@ class Buscador extends Component {
     this.state = {
       input: '',
       showFilters: false,
+      dataTypeHasChanged: false,
     };
   }
 
   componentWillMount() {
     this.toggleFilters = this.toggleFilters.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.active !== this.props.active) {
+      this.setState({
+        dataTypeHasChanged: true,
+        input: '',
+      });
+    }
+    if (nextProps.data !== this.props.data) {
+      if (nextProps.active === this.props.active) {
+        this.setState({ dataTypeHasChanged: false });
+      }
+    }
   }
 
   toggleFilters() {
@@ -36,16 +51,15 @@ class Buscador extends Component {
 
   render() {
     const { data, requesting, active } = this.props;
+    const { dataTypeHasChanged } = this.state;
     const beforeSearch = <div>Recuerda que puedes aplicar filtros a tu búsqueda</div>;
+
     let afterSearch = null;
     if (is.not.null(data)) {
-      afterSearch = data.map((res) => {
-        if (active === 'university') return <UniversityCard university={res} key={res.id} />;
-        return <CareerCard career={res} key={res.id} />;
-      });
-      if (is.empty(afterSearch)) {
-        afterSearch = <div>No hay resultados</div>;
-      }
+      if (requesting) afterSearch = <div>Cargando ...</div>;
+      else if (data === []) afterSearch = <div>No hay resultados</div>;
+      else if (active === 'university') afterSearch = dataTypeHasChanged ? null : data.map(res => <UniversityCard university={res} key={res.id} />);
+      else if (active === 'carreer') afterSearch = dataTypeHasChanged ? null : data.map(res => <CareerCard career={res} key={res.id} />);
     }
     return (
       <div className="buscador-container">
@@ -71,6 +85,8 @@ Buscador.propTypes = {
   token: PropTypes.string.isRequired,
   active: PropTypes.string.isRequired,
   search: PropTypes.func.isRequired,
+  requesting: PropTypes.bool.isRequired,
+  data: PropTypes.array,
 };
 
 function mapStateToProps(state) {

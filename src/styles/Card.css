@@ -7,15 +7,27 @@
   align-items: center;
   flex: 1;
 }
-.card .row .col {
+.card .col {
   flex: 1;
 }
-.card .row .col .label {
-  font-size: 12px;
+.card .col_subtitle {
+  display: flex;
+  justify-content: flex-end;
+}
+.card .col_row {
+  flex-direction: column;
+  display: flex;
+  margin: 2rem 0;
+}
+.card .label {
+  font-size: 11px;
   color: #C9C9C9;
 }
 
 .card__title {
+  cursor: pointer;
+}
+.card__subtitle {
   cursor: pointer;
 }
 .card__header {
@@ -35,6 +47,9 @@
   display: flex;
   flex-direction: column;
 }
+.card__body_career {
+  flex-direction: row;
+}
 .card__description {
   height: 2rem;
   padding: 0 2rem;
@@ -44,4 +59,9 @@
 .card__description_hide {
   display: none;
 }
-
+.card__psu-item {
+  width: 66px;
+}
+.card__psu-item_extended {
+  width: 80px;
+}

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import Paper from 'material-ui/Paper';
-import '../styles/UniversityCard.css';
+import '../styles/Card.css';
 
 function UniversityCard(props, context) {
   const { university, detail } = props;
@@ -86,7 +86,7 @@ UniversityCard.propTypes = {
     initials: PropTypes.string.isRequired,
     students: PropTypes.number.isRequired,
     teachers: PropTypes.number.isRequired,
-    degees: PropTypes.number.isRequired,
+    degrees: PropTypes.number.isRequired,
     postgraduates: PropTypes.number.isRequired,
     doctorates: PropTypes.number.isRequired,
     institution_id: PropTypes.number,
