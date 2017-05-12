@@ -1,6 +1,6 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
-function Compare(props) {
+function Compare() {
   return (
     <div>
       Somos el comparador

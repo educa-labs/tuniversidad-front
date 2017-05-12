@@ -1,10 +1,13 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import is from 'is_js';
 import FiltersDrawer from './FiltersDrawer';
-import Results from '../components/Resulst';
-import { toggleCompress } from '../actions/compress';
 import SearchInput from '../components/inputs/SearchInput';
-import Cover from '../components/Cover';
+import Banner from '../components/Banner';
+import { search } from '../actions/search';
+import { fetch } from '../actions/fetch';
+import UniversityCard from '../components/UniversityCard';
+import CareerCard from '../components/CareerCard';
 
 class Buscador extends Component {
   constructor(props) {
@@ -12,55 +15,117 @@ class Buscador extends Component {
     this.state = {
       input: '',
       showFilters: false,
+      dataTypeHasChanged: false,
     };
   }
 
   componentWillMount() {
     this.toggleFilters = this.toggleFilters.bind(this);
-    this.handleInputClick = this.handleInputClick.bind(this);
-    if (this.props.compress) this.props.toggleCompress();
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.props.fetch('areas', null, null);
+    this.props.fetch('types', null, null);
+    this.props.fetch('schedules', null, null);
+    this.props.fetch('regions', null, this.props.token);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.active !== this.props.active) {
+      this.setState({
+        dataTypeHasChanged: true,
+        input: '',
+      });
+    }
+    if (nextProps.data !== this.props.data) {
+      if (nextProps.active === this.props.active) {
+        this.setState({ dataTypeHasChanged: false });
+      }
+    }
   }
 
   toggleFilters() {
-    this.setState({ showFilters: !this.state.showFilters });
+    if (!this.props.requesting) {
+      this.setState({ showFilters: !this.state.showFilters });
+    }
   }
 
-  handleInputClick() {
-    if (!this.props.compress) this.props.toggleCompress();
+  handleSubmit(event) {
+    event.preventDefault();
+    const { active, token } = this.props;
+    const { input } = this.state;
+    const filters = active === 'university' ? this.props.university_filters : this.props.career_filters;
+    this.props.search(active, input, token, filters);
   }
+
 
   render() {
+    const { data, requesting, active } = this.props;
+    const { dataTypeHasChanged } = this.state;
+    const beforeSearch = <div>Recuerda que puedes aplicar filtros a tu búsqueda</div>;
+
+    let afterSearch = null;
+    if (is.not.null(data)) {
+      if (requesting) afterSearch = <div>Cargando ...</div>;
+      else if (data === []) afterSearch = <div>No hay resultados</div>;
+      else if (active === 'university') afterSearch = dataTypeHasChanged ? null : data.map(res => <UniversityCard university={res} key={res.id} />);
+      else if (active === 'carreer') afterSearch = dataTypeHasChanged ? null : data.map(res => <CareerCard career={res} key={res.id} />);
+    }
+    
     return (
       <div className="buscador-container">
-        <Cover compress={this.props.compress} />
+        <Banner location="site" />
         <SearchInput
           value={this.state.input}
           handleOnChange={value => this.setState({ input: value })}
-          onClick={this.handleInputClick}
           onFilterClick={this.toggleFilters}
-          compress={this.props.compress}
+          handleSubmit={this.handleSubmit}
+          active={active}
         />
         <FiltersDrawer
           open={this.state.showFilters}
           toggleFilters={this.toggleFilters}
         />
-        <Results />
+        {afterSearch || beforeSearch}
       </div>
     );
   }
 }
 
 Buscador.propTypes = {
-  compress: PropTypes.bool.isRequired,
-  toggleCompress: PropTypes.func.isRequired,
+  token: PropTypes.string.isRequired,
+  active: PropTypes.string.isRequired,
+  search: PropTypes.func.isRequired,
+  requesting: PropTypes.bool.isRequired,
+  fetch: PropTypes.func.isRequired,
+  data: PropTypes.array,
 };
 
 function mapStateToProps(state) {
   return {
-    compress: state.compress,
+    token: state.user.currentUser.auth_token,
+    active: state.filter.active,
+    data: state.search.result,
+    result: state.fetch.result,
+    requesting: state.search.requesting || state.fetch.requesting,
+    university_filters: {
+      cities: state.filter.cities,
+      finance_type: state.filter.university_type,
+      freeness: state.filter.freeness,
+    },
+    career_filters: {
+      cities: state.filter.cities,
+      area: state.filter.area,
+      min_cut: state.filter.cut ? state.filter.cut[0] : null,
+      max_cut: state.filter.cut ? state.filter.cut[1] : null,
+      min_price: state.filter.price ? state.filter.price[0] : null,
+      max_price: state.filter.price ? state.filter.price[1] : null,
+      min_semesters: state.filter.duration ? state.filter.duration[0] : null,
+      max_semesters: state.filter.duration ? state.filter.duration[1] : null,
+    },
   };
 }
 
 export default connect(mapStateToProps, {
-  toggleCompress,
+  search,
+  fetch,
 })(Buscador);
+

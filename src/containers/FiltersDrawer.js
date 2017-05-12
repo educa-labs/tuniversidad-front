@@ -7,18 +7,23 @@ import Fields from '../components/Fields';
 import { setActiveFilter, changeFilterValue } from '../actions/filter';
 
 function FiltersDrawer(props) {
+  const fields = {
+    regions: props.regions || null,
+    areas: props.areas ? props.areas.areas : null,
+    schedules: props.schedules ? props.schedules.schedules : null,
+    types: props.types ? props.types.university_types : null,
+  };
   return (
     <Drawer
       docked={false}
       open={props.open}
+      openSecondary
       width={300}
       onRequestChange={() => props.toggleFilters()}
     >
-      <div className="filters-drawer">
-        <div className="banner">
-          FILTROS
-        </div>
-        <div className="radio-input">
+      <div className="filters">
+        <div className="filters__banner">FILTROS</div>
+        <div className="filters__radio-input">
           <RadioButtonGroup
             name="filter options"
             defaultSelected={props.active}
@@ -26,12 +31,12 @@ function FiltersDrawer(props) {
           >
             <RadioButton
               style={{ margin: '1rem 0' }}
-              value={0}
+              value="university"
               label="Universidades"
             />
             <RadioButton
               style={{ margin: '1rem 0' }}
-              value={1}
+              value="carreer"
               label="Carreras"
             />
           </RadioButtonGroup>
@@ -39,15 +44,17 @@ function FiltersDrawer(props) {
         <Divider />
         <Fields
           type={0}
-          hide={props.active === 1}
+          hide={props.active === 'carreer'}
           values={props.universities}
           changeFilterValue={props.changeFilterValue}
+          fields={fields}
         />
-        <Fields
+        <Fields // Careers
           type={1}
-          hide={props.active === 0 || !props.open}
+          hide={props.active === 'university' || !props.open}
           values={props.careers}
           changeFilterValue={props.changeFilterValue}
+          fields={fields}
         />
       </div >
     </Drawer >
@@ -56,43 +63,34 @@ function FiltersDrawer(props) {
 
 FiltersDrawer.propTypes = {
   open: PropTypes.bool.isRequired,
-  active: PropTypes.number.isRequired,
+  active: PropTypes.string.isRequired,
   toggleFilters: PropTypes.func.isRequired,
   setActiveFilter: PropTypes.func.isRequired,
   changeFilterValue: PropTypes.func.isRequired,
-  universities: PropTypes.shape({
-    country: PropTypes.number.isRequired,
-    region: PropTypes.number.isRequired,
-    gratuity: PropTypes.number.isRequired,
-    type: PropTypes.number.isRequired,
-  }).isRequired,
-  careers: PropTypes.shape({
-    country: PropTypes.number.isRequired,
-    region: PropTypes.number.isRequired,
-    area: PropTypes.number.isRequired,
-    language: PropTypes.number.isRequired,
-    duration: PropTypes.arrayOf(PropTypes.number).isRequired,
-    tariff: PropTypes.arrayOf(PropTypes.number).isRequired,
-  }).isRequired,
 };
 
 function mapSatetToProps(state) {
   return {
     active: state.filter.active,
     universities: {
-      type: state.filter.type,
-      gratuity: state.filter.gratuity,
-      country: state.filter.country,
-      region: state.filter.region,
+      university_type: state.filter.university_type,
+      freeness: state.filter.freeness,
+      cities: state.filter.cities,
+      region: state.filter.region_id,
     },
     careers: {
       area: state.filter.area,
-      language: state.filter.language,
-      country: state.filter.country,
-      region: state.filter.region,
+      cities: state.filter.cities,
+      region: state.filter.region_id,
       duration: state.filter.duration,
-      tariff: state.filter.tariff,
+      price: state.filter.price,
+      cut: state.filter.cut,
+      schedule: state.filter.schedule,
     },
+    areas: state.fetch.areas,
+    types: state.fetch.types,
+    schedules: state.fetch.schedules,
+    regions: state.fetch.regions,
   };
 }
 

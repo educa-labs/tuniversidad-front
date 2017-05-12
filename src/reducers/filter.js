@@ -1,15 +1,16 @@
 import { SET_ACTIVE_FILTER, CHANGE_FILTER_VALUE } from '../actions/types';
 
 const initialState = {
-  active: 1,
-  type: 0,
-  gratuity: 0,
-  country: 1,
-  region: 1,
-  area: 0,
-  language: 0,
-  duration: [1, 14],
-  tariff: [0, 1000000],
+  active: 'university',
+  university_type: null,
+  freeness: null,
+  cities: null,
+  region_id: null,
+  area: null,
+  duration: null,
+  price: null,
+  cut: null,
+  schedule: null,
 };
 
 function filter(state = initialState, action) {

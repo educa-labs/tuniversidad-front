@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import is from 'is_js';
-import { logUser } from '../actions/user';
+import { logUser, clearState } from '../actions/user';
 import { toggleShowLogin } from '../actions/compress';
+import { saveUser } from '../helpers/storage';
 import '../styles/Login.css';
 
 const modalStyle = {
@@ -23,31 +24,44 @@ class Login extends Component {
       password: '',
     });
     this.handleSumbit = this.handleSumbit.bind(this);
+    this.handleModalClose = this.handleModalClose.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.user !== this.props.user) {
-      if (is.not.null(nextProps.user.currentUser)) {
+      if (is.not.null(nextProps.user)) {
+        saveUser(nextProps.user);
         this.props.toggleShowLogin();
+        this.context.router.push('/site');
       }
     }
   }
+  handleModalClose() {
+    if (this.props.open) {
+      if (is.not.empty(this.props.error)) {
+        this.props.clearState();
+      }
+      this.setState({ email: '', password: '' });
+    }
+    this.props.toggleShowLogin();
+  }
 
   handleSumbit(event) {
-    // Validar los datos,
     event.preventDefault();
     const { email, password } = this.state;
     this.props.logUser(email, password);
   }
 
   render() {
+    const { error, requesting, open } = this.props;
+    const { password, email } = this.state;
     return (
       <Dialog
         title="Inicia sesion en Tuniversidad"
-        open={this.props.open}
+        open={open}
         contentClassName="login-modal"
         titleClassName="login-title"
-        onRequestClose={this.props.toggleShowLogin}
+        onRequestClose={this.handleModalClose}
         contentStyle={modalStyle}
       >
         <form onSubmit={this.handleSumbit}>
@@ -55,7 +69,7 @@ class Login extends Component {
             hintText="ivan@mail.com"
             floatingLabelText="Correo electrónico"
             onChange={(e, val) => this.setState({ email: val })}
-            errorText={this.props.user.error ? 'Usuario no existe' : ''}
+            errorText={error.email ? 'Usuario no existente' : ''}
           />
           <br />
           <TextField
@@ -63,7 +77,7 @@ class Login extends Component {
             floatingLabelText="Contraseña"
             type="password"
             onChange={(e, val) => this.setState({ password: val })}
-            errorText={this.props.user.error ? 'Contraseña inconrrecta' : ''}
+            errorText={error.password ? 'Contraseña inconrrecta' : ''}
           />
           <br />
           <RaisedButton
@@ -73,7 +87,7 @@ class Login extends Component {
             backgroundColor="#0091EA"
             labelColor="#FFFFFF"
             style={buttonStyle}
-            disabled={this.state.password === '' || this.state.email === ''}
+            disabled={password === '' || email === '' || requesting}
           />
           <div className="forgot">¿Olvidaste tu contraseña?</div>
         </form>
@@ -84,19 +98,29 @@ class Login extends Component {
 
 Login.propTypes = {
   open: PropTypes.bool.isRequired,
-  user: PropTypes.object.isRequired,
+  user: PropTypes.object,
+  error: PropTypes.object.isRequired,
+  requesting: PropTypes.bool.isRequired,
   toggleShowLogin: PropTypes.func.isRequired,
   logUser: PropTypes.func.isRequired,
+  clearState: PropTypes.func.isRequired,
+};
+
+Login.contextTypes = {
+  router: PropTypes.object,
 };
 
 function mapStateToProps(state) {
   return {
     open: state.showLogin,
-    user: state.user,
+    user: state.user.currentUser,
+    error: state.user.error,
+    requesting: state.user.requesting,
   };
 }
 
 export default connect(mapStateToProps, {
   toggleShowLogin,
   logUser,
+  clearState,
 })(Login);
