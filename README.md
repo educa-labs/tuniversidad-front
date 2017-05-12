@@ -10,6 +10,7 @@ Hay dos ramas principales ```master``` y ```development```. Para acceder a las �
 ``` 
 git checkout -b development
 ```
+**Importante:** Para reportar un bug por favor dejar una issue replicando el bug, es decir, describiendo paso a paso lo que se hizo para llegar al error.
 
 ## Última actualización: 11 mayo 2017
 
