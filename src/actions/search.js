@@ -7,7 +7,7 @@ import {
 
 import url from '../constants/url';
 
-export function search(active, text, token) {
+export function search(active, text, token, filters) {
   const request = Request.post(`${url}/search/`)
     .set('Content-Type', 'application/json')
     .set('Authorization', token)
@@ -16,6 +16,7 @@ export function search(active, text, token) {
     .send({
       [active]: {
         text,
+        ...filters,
       },
     });
   return (dispath) => {

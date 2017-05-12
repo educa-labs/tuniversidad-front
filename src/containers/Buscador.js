@@ -52,7 +52,8 @@ class Buscador extends Component {
     event.preventDefault();
     const { active, token } = this.props;
     const { input } = this.state;
-    this.props.search(active, input, token);
+    const filters = active === 'university' ? this.props.university_filters : this.props.career_filters;
+    this.props.search(active, input, token, filters);
   }
 
 
@@ -105,6 +106,21 @@ function mapStateToProps(state) {
     data: state.search.result,
     result: state.fetch.result,
     requesting: state.search.requesting || state.fetch.requesting,
+    university_filters: {
+      cities: state.filter.cities,
+      finance_type: state.filter.university_type,
+      freeness: state.filter.freeness,
+    },
+    career_filters: {
+      cities: state.filter.cities,
+      area: state.filter.area,
+      min_cut: state.filter.cut ? state.filter.cut[0] : null,
+      max_cut: state.filter.cut ? state.filter.cut[1] : null,
+      min_price: state.filter.price ? state.filter.price[0] : null,
+      max_price: state.filter.price ? state.filter.price[1] : null,
+      min_semesters: state.filter.duration ? state.filter.duration[0] : null,
+      max_semesters: state.filter.duration ? state.filter.duration[1] : null,
+    },
   };
 }
 

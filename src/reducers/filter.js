@@ -7,10 +7,10 @@ const initialState = {
   cities: null,
   region_id: null,
   area: null,
-  duration: [1, 14],
-  tariff: [0, 1000000],
-  cut: [450, 850],
-  schedule: '',
+  duration: null,
+  price: null,
+  cut: null,
+  schedule: null,
 };
 
 function filter(state = initialState, action) {

@@ -3,10 +3,14 @@ import { connect } from 'react-redux';
 import is from 'is_js';
 import { getUser } from '../helpers/storage';
 import { setupUser } from '../actions/user';
+import { fetch } from '../actions/fetch';
 
 class App extends Component {
   componentWillMount() {
     const user = getUser();
+    this.props.fetch('areas', null, null);
+    this.props.fetch('types', null, null);
+    this.props.fetch('schedules', null, null);
     if (is.not.existy(user)) {
       this.context.router.replace('/');
     } else {
@@ -22,6 +26,7 @@ class App extends Component {
 App.propTypes = {
   setupUser: PropTypes.func.isRequired,
   children: PropTypes.node,
+  fetch: PropTypes.func.isRequired,
 };
 
 App.contextTypes = {
@@ -30,4 +35,5 @@ App.contextTypes = {
 
 export default connect(null, {
   setupUser,
+  fetch,
 })(App);

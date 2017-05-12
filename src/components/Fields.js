@@ -13,8 +13,8 @@ const ciudades = [
 ];
 
 const yesNo = [
-  { value: false, label: 'No' },
-  { value: true, label: 'Sí' },
+  { value: 0, label: 'No' },
+  { value: 1, label: 'Sí' },
 ];
 
 class Fields extends Component {
@@ -113,7 +113,7 @@ class Fields extends Component {
           minValue={0}
           maxValue={7000000}
           step={100000}
-          onChange={tariff => props.changeFilterValue('tariff', tariff)}
+          onChange={price => props.changeFilterValue('price', price)}
           hide={props.hide}
           custom
         />

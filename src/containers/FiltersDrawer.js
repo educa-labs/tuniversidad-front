@@ -83,7 +83,7 @@ function mapSatetToProps(state) {
       cities: state.filter.cities,
       region: state.filter.region_id,
       duration: state.filter.duration,
-      price: state.filter.tariff,
+      price: state.filter.price,
       cut: state.filter.cut,
       schedule: state.filter.schedule,
     },
