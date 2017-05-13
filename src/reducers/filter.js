@@ -7,9 +7,9 @@ const initialState = {
   cities: null,
   region_id: null,
   area: null,
-  duration: null,
-  price: null,
-  cut: null,
+  duration: [null, null],
+  price: [null, null],
+  cut: [null, null],
   schedule: null,
 };
 

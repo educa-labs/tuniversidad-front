@@ -50,7 +50,7 @@ function CareerCard(props, context) {
             <div className="card__title">{career.title}</div>
           </div>
           <div className="col col_subtitle">
-            <div className="card__subtitle" onClick={handleSubTitleClick}>Nombre de la universidad</div>
+            <div className="card__subtitle" onClick={handleSubTitleClick}>{career.university_name}</div>
           </div>
         </div>
         <div className="card__body card__body_career">
