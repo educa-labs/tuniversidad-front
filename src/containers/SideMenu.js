@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import Drawer from 'material-ui/Drawer';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import Search from 'material-ui/svg-icons/action/search';
@@ -16,6 +15,7 @@ const styles = {
   },
   menuItem: {
     color: '#757575',
+    width: '256px',
   },
   selected: {
     backgroundColor: '#0091EA',
@@ -42,47 +42,42 @@ class SideMenu extends Component {
   render() {
     const { selected } = this.state;
     return (
-      <Drawer
-        containerClassName="side-menu"
-        open
-      >
+      <div className="side-menu">
         <div className="side-menu__banner" />
-        <div className="side-menu__content">
-          <ProfileBanner user={this.props.user} />
-          <Menu
-            menuItemStyle={styles.menuItem}
-            selectedMenuItemStyle={styles.selected}
-            value={this.state.selected}
-            onChange={(e, val) => this.handleSelectItem(val)}
-          >
-            <MenuItem
-              primaryText="Buscador"
-              leftIcon={selected === 'search' ? <Search color="white" /> : <Search />}
-              value="search"
-            />
-            <MenuItem
-              primaryText="Comparador"
-              leftIcon={selected === 'compare' ? <CompareIcon color="white" /> : <CompareIcon />}
-              value="compare"
-            />
-            <MenuItem
-              primaryText="Recomendaciones"
-              leftIcon={selected === 'recomend' ? <LightbulbIcon color="white" /> : <LightbulbIcon />}
-              value="recomend"
-            />
-            <MenuItem
-              primaryText="Noticias"
-              leftIcon={selected === 'news' ? <NewsIcon color="white" /> : <NewsIcon />}
-              value="news"
-            />
-            <MenuItem
-              primaryText="Newton"
-              leftIcon={selected === 'newton' ? <QuestionIcon color="white" /> : <QuestionIcon />}
-              value="newton"
-            />
-          </Menu>
-        </div>
-      </Drawer>
+        <ProfileBanner user={this.props.user} />
+        <Menu
+          menuItemStyle={styles.menuItem}
+          selectedMenuItemStyle={styles.selected}
+          value={this.state.selected}
+          onChange={(e, val) => this.handleSelectItem(val)}
+        >
+          <MenuItem
+            primaryText="Buscador"
+            leftIcon={selected === 'search' ? <Search color="white" /> : <Search />}
+            value="search"
+          />
+          <MenuItem
+            primaryText="Comparador"
+            leftIcon={selected === 'compare' ? <CompareIcon color="white" /> : <CompareIcon />}
+            value="compare"
+          />
+          <MenuItem
+            primaryText="Recomendaciones"
+            leftIcon={selected === 'recomend' ? <LightbulbIcon color="white" /> : <LightbulbIcon />}
+            value="recomend"
+          />
+          <MenuItem
+            primaryText="Noticias"
+            leftIcon={selected === 'news' ? <NewsIcon color="white" /> : <NewsIcon />}
+            value="news"
+          />
+          <MenuItem
+            primaryText="Newton"
+            leftIcon={selected === 'newton' ? <QuestionIcon color="white" /> : <QuestionIcon />}
+            value="newton"
+          />
+        </Menu>
+      </div>
     );
   }
 }

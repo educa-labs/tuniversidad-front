@@ -1,15 +1,15 @@
 import React, { PropTypes } from 'react';
 import SideMenu from './SideMenu';
+import Banner from '../components/Banner';
 import '../styles/Site.css';
 
 
 function Site(props) {
   return (
     <div className="site">
+      <Banner location="site" />
       <SideMenu />
-      <div className="site__children">
-        {props.children}
-      </div>
+      {props.children}
     </div>
   );
 }

@@ -7,7 +7,7 @@ import '../../styles/SearchInput.css';
 
 function SearchInput({ value, handleOnChange, handleSubmit, onFilterClick, active }) {
   return (
-    <div className="input-container">
+    <div className="search-input">
       <form onSubmit={handleSubmit}>
         <IconButton type="submit"><Search color="#C9C9C9" /></IconButton>
         <input

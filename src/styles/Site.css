@@ -1,9 +1,20 @@
+.site {
+  display: flex;
+}
+
 .site__children {
-  margin-left: 256px;
+  padding-top: 3rem;
+  width: 100%;
 }
 
 .side-menu {
   background-color: #424242;
+  width: 256px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  box-shadow: 6px 0px 18px -4px rgba(0,0,0,0.75);
 }
 
 .side-menu__banner {
@@ -13,12 +24,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: 60% 60%;
-  position: fixed;
   width: 100%;
-}
-
-.side-menu__content {
-  padding-top: 3rem;
 }
 
 .profile-banner {

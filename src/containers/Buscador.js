@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import is from 'is_js';
 import FiltersDrawer from './FiltersDrawer';
 import SearchInput from '../components/inputs/SearchInput';
-import Banner from '../components/Banner';
 import { search } from '../actions/search';
 import { fetch } from '../actions/fetch';
 import UniversityCard from '../components/UniversityCard';
@@ -71,8 +70,7 @@ class Buscador extends Component {
     }
     
     return (
-      <div className="buscador-container">
-        <Banner location="site" />
+      <div className="site__children">
         <SearchInput
           value={this.state.input}
           handleOnChange={value => this.setState({ input: value })}
