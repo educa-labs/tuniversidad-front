@@ -10,12 +10,11 @@ import QuestionIcon from 'material-ui/svg-icons/action/question-answer';
 import ProfileBanner from '../components/ProfileBanner';
 
 const styles = {
-  root: {
-    backgroundColor: '#424242',
+  style: {
+    width: '256px',
   },
   menuItem: {
     color: '#757575',
-    width: '256px',
   },
   selected: {
     backgroundColor: '#0091EA',
@@ -46,8 +45,12 @@ class SideMenu extends Component {
         <div className="side-menu__banner" />
         <ProfileBanner user={this.props.user} />
         <Menu
+          autoWidth
           menuItemStyle={styles.menuItem}
+          listStyle={styles.style}
           selectedMenuItemStyle={styles.selected}
+          width="256"
+          style={styles.style}
           value={this.state.selected}
           onChange={(e, val) => this.handleSelectItem(val)}
         >

@@ -4,12 +4,12 @@
 
 .site__children {
   padding-top: 3rem;
-  width: 100%;
+  flex: 1;
 }
 
 .side-menu {
   background-color: #424242;
-  width: 256px;
+  flex: 0 0 256px;
   height: 100vh;
   display: flex;
   flex-direction: column;
