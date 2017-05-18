@@ -13,18 +13,20 @@ class Landing extends Component {
   }
   render() {
     return (
-      <div className="landing-container">
+      <div className="landing">
         <Banner location="landing" />
         <Cover />
         <div className="row">
-          <div className="info">
-            <div className="title">Prepara la PSU como nunca antes.</div>
+          <div className="col">
+            <div className="landing__title">Prepara la PSU como nunca antes.</div>
             <br />
-            <div className="body">
+            <div className="landing__body">
               En Tuniversidad podrás encontrar información detallada de universidades y carreras, compararlas y llevar el registro de tu progreso
             </div>
           </div>
-          <Register />
+          <div className="col">
+            <Register />
+          </div>
         </div>
         <Login />
       </div>

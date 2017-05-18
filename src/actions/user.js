@@ -49,7 +49,7 @@ export function logoutUser(id, token) {
       .catch((err) => {
         dispatch({
           type: LOGOUT_USER_FAILURE,
-          error: err.response.body.errors,
+          error: err.response.body,
         });
       });
   };
