@@ -9,3 +9,7 @@ export function getUser() {
 export function saveUser(user) {
   localStorage.setItem('user', JSON.stringify(user));
 }
+
+export function clearUser() {
+  localStorage.removeItem('user');
+}

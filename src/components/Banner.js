@@ -6,6 +6,7 @@ import IconButton from 'material-ui/IconButton';
 import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
 import { toggleShowLogin } from '../actions/compress';
 import { clearState, logoutUser } from '../actions/user';
+import { clearUser } from '../helpers/storage';
 import '../styles/Banner.css';
 
 
@@ -16,7 +17,10 @@ function Banner(props, context) {
   }
 
   function handleLogout() {
-    props.logoutUser(props.user.id, props.user.auth_token);
+    props.clearState();
+    clearUser();
+    context.router.replace('/');
+    // props.logoutUser(props.user.id, props.user.auth_token);
   }
   const rightContent = (
     <FlatButton
