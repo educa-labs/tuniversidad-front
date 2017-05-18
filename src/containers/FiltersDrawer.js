@@ -6,6 +6,10 @@ import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import Fields from '../components/Fields';
 import { setActiveFilter, changeFilterValue } from '../actions/filter';
 
+const radioStyle = {
+  margin: '0',
+};
+
 function FiltersDrawer(props) {
   const fields = {
     regions: props.regions || null,
@@ -14,13 +18,6 @@ function FiltersDrawer(props) {
     types: props.types ? props.types.university_types : null,
   };
   return (
-    <Drawer
-      docked={false}
-      open={props.open}
-      openSecondary
-      width={300}
-      onRequestChange={() => props.toggleFilters()}
-    >
       <div className="filters">
         <div className="filters__banner">FILTROS</div>
         <div className="filters__radio-input">
@@ -30,12 +27,12 @@ function FiltersDrawer(props) {
             onChange={(event, value) => props.setActiveFilter(value)}
           >
             <RadioButton
-              style={{ margin: '1rem 0' }}
+              style={{ margin: '10px 0' }}
               value="university"
               label="Universidades"
             />
             <RadioButton
-              style={{ margin: '1rem 0' }}
+              style={{ margin: '10px 0' }}
               value="carreer"
               label="Carreras"
             />
@@ -51,13 +48,12 @@ function FiltersDrawer(props) {
         />
         <Fields // Careers
           type={1}
-          hide={props.active === 'university' || !props.open}
+          hide={props.active === 'university'}
           values={props.careers}
           changeFilterValue={props.changeFilterValue}
           fields={fields}
         />
       </div >
-    </Drawer >
   );
 }
 

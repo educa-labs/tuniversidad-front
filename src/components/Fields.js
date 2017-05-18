@@ -52,24 +52,28 @@ class Fields extends Component {
             items={regions}
             value={props.values.region}
             handleChange={region => props.changeFilterValue('region_id', region)}
+            fullWidth
           />
           <SelectInput
             title="Ciudad"
             items={ciudades}
             value={props.values.cities}
             handleChange={id => props.changeFilterValue('city_id', id)}
+            fullWidth
           />
           <SelectInput
             title="Tipo de Universidad"
             items={types}
             value={props.values.university_type}
             handleChange={type => props.changeFilterValue('university_type', type)}
+            fullWidth
           />
           <SelectInput
             title="Gratuidad"
             items={yesNo}
             value={props.values.freeness}
             handleChange={freeness => props.changeFilterValue('freeness', freeness)}
+            fullWidth
           />
         </div>
       );
@@ -81,6 +85,7 @@ class Fields extends Component {
           title="Region"
           items={regions}
           value={props.values.region}
+          fullWidth
           handleChange={region => props.changeFilterValue('region', region)}
         />
         <SelectInput
@@ -88,18 +93,21 @@ class Fields extends Component {
           items={ciudades}
           value={props.values.cities}
           handleChange={city => props.changeFilterValue('city_id', city)}
+          fullWidth
         />
         <SelectInput
           title="Area"
           items={areas}
           value={props.values.area}
           handleChange={area => props.changeFilterValue('area', area)}
+          fullWidth
         />
         <SelectInput
           title="Horario"
           items={schedules}
           value={props.values.schedule}
           handleChange={schedule => props.changeFilterValue('schedule', schedule)}
+          fullWidth
         />
         <RangeInput
           title="Duración (semestres)"

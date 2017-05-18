@@ -4,6 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-right: 240px;
 }
 
 .search-input form {
@@ -32,4 +33,19 @@
 
 .search-input form :focus {
   outline-width: 0;
+}
+
+.search-content {
+  display: flex;
+  height: 100%;
+}
+
+.search-results {
+  flex: 1;
+  order: 1;
+}
+
+.filters {
+  flex: 0 0 240px;
+  order: 2;
 }

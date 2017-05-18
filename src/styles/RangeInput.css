@@ -1,6 +1,6 @@
 .range-input-container {
   display: block;
-  width: 15rem;
+  width: 11rem;
   margin: 0 1rem;
   padding-bottom: 1rem;
 }
@@ -17,19 +17,27 @@
 
 .rc-slider-rail {
   background-color: #B9B9B9;
+  height: 2px;
 }
 
 .rc-slider-track {
   background-color: #0091EA;
+  height: 2px;
 }
 
 .rc-slider-handle {
   background-color: #0091EA;
   border-color: #0091EA;
+  height: 12px;
+  width: 12px;
 }
 
 .rc-slider-tooltip {
   z-index: 2000;
+}
+
+.rc-slider-step {
+  height: 2px;
 }
 
 

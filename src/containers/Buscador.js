@@ -78,11 +78,15 @@ class Buscador extends Component {
           handleSubmit={this.handleSubmit}
           active={active}
         />
-        <FiltersDrawer
-          open={this.state.showFilters}
-          toggleFilters={this.toggleFilters}
-        />
-        {afterSearch || beforeSearch}
+        <div className="search-content">
+          <FiltersDrawer
+            open={this.state.showFilters}
+            toggleFilters={this.toggleFilters}
+          />
+          <div className="search-results">
+            {afterSearch || beforeSearch}
+          </div>
+        </div>
       </div>
     );
   }
