@@ -7,7 +7,6 @@ import '../styles/Site.css';
 function Site(props) {
   return (
     <div className="site">
-      <Banner location="site" />
       <SideMenu />
       {props.children}
     </div>

@@ -7,11 +7,13 @@ import CompareIcon from 'material-ui/svg-icons/image/compare';
 import LightbulbIcon from 'material-ui/svg-icons/action/lightbulb-outline';
 import NewsIcon from 'material-ui/svg-icons/av/fiber-new';
 import QuestionIcon from 'material-ui/svg-icons/action/question-answer';
+import FlatButton from 'material-ui/FlatButton';
 import ProfileBanner from '../components/ProfileBanner';
 
 const styles = {
   style: {
     width: '256px',
+    padding: '0',
   },
   menuItem: {
     color: '#757575',
@@ -40,11 +42,43 @@ class SideMenu extends Component {
 
   render() {
     const { selected } = this.state;
+
+
     return (
       <div className="side-menu">
         <div className="side-menu__banner" />
         <ProfileBanner user={this.props.user} />
-        <Menu
+        <div
+          className={`side-menu__item ${selected === 'search' ? 'side-menu__item_selected' : ''}`}
+          onClick={() => this.handleSelectItem('search')}
+        >
+          <div className="icon" ><Search color="white" /></div>
+          <div className="label">Buscador</div>
+        </div>
+        <div
+          className={`side-menu__item ${selected === 'compare' ? 'side-menu__item_selected' : ''}`}
+          onClick={() => this.handleSelectItem('compare')}
+        >
+          <div className="icon" ><CompareIcon color="white" /></div>
+          <div className="label">Comparador</div>
+        </div>
+        <div
+          className={`side-menu__item ${selected === 'recommend' ? 'side-menu__item_selected' : ''}`}
+          onClick={() => this.handleSelectItem('recommend')}
+        >
+          <div className="icon" ><LightbulbIcon color="white" /></div>
+          <div className="label">Comparador</div>
+        </div>
+        <div
+          className={`side-menu__item ${selected === 'news' ? 'side-menu__item_selected' : ''}`}
+          onClick={() => this.handleSelectItem('news')}
+        >
+          <div className="icon" ><NewsIcon color="white" /></div>
+          <div className="label">Comparador</div>
+        </div>
+        
+        
+        {/*<Menu
           autoWidth
           menuItemStyle={styles.menuItem}
           listStyle={styles.style}
@@ -79,7 +113,7 @@ class SideMenu extends Component {
             leftIcon={selected === 'newton' ? <QuestionIcon color="white" /> : <QuestionIcon />}
             value="newton"
           />
-        </Menu>
+        </Menu>*/}
       </div>
     );
   }

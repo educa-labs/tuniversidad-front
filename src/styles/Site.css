@@ -3,23 +3,21 @@
 }
 
 .site__children {
-  padding-top: 3rem;
   flex: 1;
 }
 
 .side-menu {
   background-color: #424242;
-  flex: 0 0 256px;
+  flex: 0 0 230px;
   height: 100vh;
   display: flex;
   flex-direction: column;
   z-index: 100;
   box-shadow: 6px 0px 18px -4px rgba(0,0,0,0.75);
 }
-
 .side-menu__banner {
   background-color: #424242;
-  height: 3rem;
+  flex: 0 0 60px;
   background-image: url(../assets/tuniversidad-logotipo-blanco.svg);
   background-position: center;
   background-repeat: no-repeat;
@@ -27,9 +25,40 @@
   width: 100%;
 }
 
+.side-menu__item {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  color: white;
+}
+
+.side-menu__item:hover {
+  background-color: #616161;
+  cursor: pointer;
+}
+
+.side-menu__item_selected {
+  background-color: #0091EA;
+}
+.side-menu__item_selected:hover {
+  background-color: #0091EA;
+}
+
+
+.side-menu__item .icon {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.side-menu__item .label {
+  flex: 2;
+}
+
+
 .profile-banner {
   height: 12rem;
-  background-color: #0091EA;
+  background-color: #616161;
   justify-content: center;
   align-items: center;
   display: flex;
