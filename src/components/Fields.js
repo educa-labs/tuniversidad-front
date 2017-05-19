@@ -108,7 +108,7 @@ class Fields extends Component {
         />
         <SelectInput
           title="Ciudad"
-          items={this.state.cities}
+          items={cities}
           multiple
           value={props.values.cities}
           handleChange={city => props.changeFilterValue('cities', city)}

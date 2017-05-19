@@ -4,6 +4,7 @@
 
 .site__children {
   flex: 1;
+  height: 100vh;
 }
 
 .side-menu {

@@ -82,9 +82,9 @@ function CareerCard(props, context) {
                   <div className="value">{career.last_cut}</div>
                   <div className="label">Corte 2016</div>
                 </div>
-                <div className="card__psu-item-extended">
+                <div className="card__psu-item">
                   <div className="value">{career.admission}</div>
-                  <div className="label">Sistema de admisión</div>
+                  <div className="label">Admisión</div>
                 </div>
               </div>
             </div>
@@ -120,6 +120,16 @@ function CareerCard(props, context) {
                 </div>
               </div>
             </div>
+        </div>
+        <Divider />
+        <div className="card__footer">
+          <div className="start">
+            <FlatButton label="Añadir a favoritos" secondary labelStyle={labelStyle} />
+            <FlatButton label="Comparar" secondary labelStyle={labelStyle} />
+          </div>
+          <div className="end">
+            <FlatButton label="Más información" secondary labelStyle={labelStyle} />
+          </div>
         </div>
       </Paper>
     </div>

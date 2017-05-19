@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import Drawer from 'material-ui/Drawer';
 import Divider from 'material-ui/Divider';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import Fields from '../components/Fields';

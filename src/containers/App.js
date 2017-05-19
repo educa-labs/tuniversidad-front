@@ -8,9 +8,9 @@ import { fetch } from '../actions/fetch';
 class App extends Component {
   componentWillMount() {
     const user = getUser();
-    this.props.fetch('areas', null, null);
-    this.props.fetch('types', null, null);
-    this.props.fetch('schedules', null, null);
+    if (is.null(this.props.areas)) this.props.fetch('areas', null, null);
+    if (is.null(this.props.types)) this.props.fetch('types', null, null);
+    if (is.null(this.props.schedules)) this.props.fetch('schedules', null, null);
     if (is.not.existy(user)) {
       this.context.router.replace('/');
     } else {
@@ -34,7 +34,15 @@ App.contextTypes = {
   router: PropTypes.object,
 };
 
-export default connect(null, {
+function mapStateToProps(state) {
+  return {
+    areas: state.fetch.areas,
+    types: state.fetch.types,
+    schedules: state.fetch.schedules,
+  };
+}
+
+export default connect(mapStateToProps, {
   setupUser,
   fetch,
 })(App);

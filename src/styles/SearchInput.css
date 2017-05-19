@@ -43,6 +43,7 @@
 .search-results {
   flex: 1;
   order: 1;
+  overflow: scroll;
 }
 
 .filters {

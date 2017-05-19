@@ -1,13 +1,13 @@
 .banner {
   background-color: #0091EA;
   display: flex;
-  height: 65px;
+  height: 60px;
   position: fixed;
   top: 0;
   width: 100%;
 }
 .banner_site {
-  background-color: #424242;
+  background-color: transparent;
 }
 .banner__title {
   height: 1.5rem;
