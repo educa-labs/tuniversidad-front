@@ -64,6 +64,10 @@
   display: flex;
   color: white;
   flex-direction: column;
+  cursor: pointer;
+}
+.profile-banner_selected {
+  background-color: #0091EA;
 }
 
 .profile-banner__name {

@@ -10,6 +10,7 @@ import Recommend from '../containers/Recommend';
 import Newton from '../containers/Newton';
 import Site from '../containers/Site';
 import University from '../containers/University';
+import Profile from '../containers/Profile';
 
 export default (
   <Route path="/" component={App}>
@@ -22,6 +23,7 @@ export default (
       <Route path="news" component={News} />
       <Route path="newton" component={Newton} />
       <Route path="university/:id" component={University} />
+      <Route path="profile" component={Profile} />
     </Route>
   </Route>
 );

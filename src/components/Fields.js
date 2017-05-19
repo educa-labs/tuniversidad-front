@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import is from 'is_js';
-import Request from 'superagent';
 import capitalize from '../helpers/capitalize';
 import SelectInput from './inputs/SelectInput';
 import RangeInput from './inputs/RangeInput';
+import { getCities } from '../helpers/api';
 import '../styles/Fields.css';
 
 const ciudades = [
@@ -22,7 +23,15 @@ class Fields extends Component {
     this.setState({
       cities: [],
     });
+    this.handleRegionChange = this.handleRegionChange.bind(this);
   }
+
+  handleRegionChange(id) {
+    getCities(id, this.props.token)
+      .then(res => this.setState({ cities: res.body }))
+      .catch(() => this.setState({ cities: [] }));
+  }
+
   render() {
     const { props } = this;
     if (!is.all.existy(props.fields.regions, props.fields.types, props.fields.schedules, props.fields.areas)) {
@@ -34,6 +43,9 @@ class Fields extends Component {
     }
     const regions = props.fields.regions.map((reg) => {
       return { value: reg.id, label: reg.title };
+    });
+    const cities = this.state.cities.map((city) => {
+      return { label: city.title, value: city.id };
     });
     const types = props.fields.types.map((type) => {
       return { value: type, label: capitalize(type) };
@@ -51,14 +63,17 @@ class Fields extends Component {
             title="Region"
             items={regions}
             value={props.values.region}
-            handleChange={region => props.changeFilterValue('region_id', region)}
+            handleChange={(region) => {
+              props.changeFilterValue('region_id', region);
+              this.handleRegionChange(region);
+            }}
             fullWidth
           />
           <SelectInput
             title="Ciudad"
-            items={ciudades}
+            items={cities}
             value={props.values.cities}
-            handleChange={id => props.changeFilterValue('city_id', id)}
+            handleChange={id => props.changeFilterValue('cities', id)}
             fullWidth
           />
           <SelectInput
@@ -86,13 +101,17 @@ class Fields extends Component {
           items={regions}
           value={props.values.region}
           fullWidth
-          handleChange={region => props.changeFilterValue('region', region)}
+          handleChange={(region) => {
+            props.changeFilterValue('region_id', region);
+            this.handleRegionChange(region);
+          }}
         />
         <SelectInput
           title="Ciudad"
-          items={ciudades}
+          items={this.state.cities}
+          multiple
           value={props.values.cities}
-          handleChange={city => props.changeFilterValue('city_id', city)}
+          handleChange={city => props.changeFilterValue('cities', city)}
           fullWidth
         />
         <SelectInput
@@ -146,5 +165,11 @@ Fields.propTypes = {
   fields: PropTypes.object,
 };
 
+function mapStateToProps(state) {
+  return {
+    token: state.user.currentUser.auth_token,
+  };
+}
 
-export default Fields;
+
+export default connect(mapStateToProps)(Fields);

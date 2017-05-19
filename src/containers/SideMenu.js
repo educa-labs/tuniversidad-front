@@ -47,7 +47,11 @@ class SideMenu extends Component {
     return (
       <div className="side-menu">
         <div className="side-menu__banner" />
-        <ProfileBanner user={this.props.user} />
+        <ProfileBanner
+          user={this.props.user}
+          onClick={ () => this.handleSelectItem('profile')}
+          selected={selected === 'profile'}
+        />
         <div
           className={`side-menu__item ${selected === 'search' ? 'side-menu__item_selected' : ''}`}
           onClick={() => this.handleSelectItem('search')}
@@ -67,14 +71,14 @@ class SideMenu extends Component {
           onClick={() => this.handleSelectItem('recommend')}
         >
           <div className="icon" ><LightbulbIcon color="white" /></div>
-          <div className="label">Comparador</div>
+          <div className="label">Recomendaciones</div>
         </div>
         <div
           className={`side-menu__item ${selected === 'news' ? 'side-menu__item_selected' : ''}`}
           onClick={() => this.handleSelectItem('news')}
         >
           <div className="icon" ><NewsIcon color="white" /></div>
-          <div className="label">Comparador</div>
+          <div className="label">Noticias</div>
         </div>
         
         
