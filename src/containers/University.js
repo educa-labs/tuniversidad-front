@@ -33,7 +33,7 @@ class University extends Component {
   }
 
   render() {
-    const { src, careers } = this.state;
+    const { src, careers, slideIndex } = this.state;
     const { university } = this.props;
     if (is.any.null(university, careers)) {
       return (
@@ -61,16 +61,9 @@ class University extends Component {
             <Tab label="Preguntas y respuestas" value={2} />
           </Tabs >
         </div>
-        <SwipeableViews
-          index={this.state.slideIndex}
-          onChangeIndex={this.handleSlideChange}
-        >
-          <UniversityCard university={university} detail />
-          <div>
-            {this.state.careers.map(car => <CareerCard career={car} key={car.id} />)}
-          </div>
-          <div>Preguntas</div>
-        </SwipeableViews>
+        {slideIndex === 0 ? <UniversityCard university={university} detail /> : null }
+        {slideIndex === 1 ? this.state.careers.map(car => <CareerCard career={car} key={car.id} />) : null}
+        {slideIndex === 2 ? <div>Preguntas</div> : null} 
       </div>
     );
   }

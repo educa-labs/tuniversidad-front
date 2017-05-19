@@ -19,7 +19,7 @@ export default (
       <IndexRoute component={Buscador} />
       <Route path="search" component={Buscador} />
       <Route path="compare" component={Compare} />
-      <Route path="recomend" component={Recommend} />
+      <Route path="recommend" component={Recommend} />
       <Route path="news" component={News} />
       <Route path="newton" component={Newton} />
       <Route path="university/:id" component={University} />
