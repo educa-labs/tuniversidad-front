@@ -25,7 +25,7 @@ function UniversityCard(props, context) {
         <div className="card__body">
           <div className="row">
             <div className="col">
-              <div className="value">{university.finance_type}</div>
+              <div className="value">{university.u_type}</div>
               <div className="label">Tipo</div>
             </div>
             <div className="col">

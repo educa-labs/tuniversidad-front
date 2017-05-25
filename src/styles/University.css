@@ -1,10 +1,11 @@
 .university {
   flex: 1;
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
 .university-cover {
-  flex: 0 0 250px;
+  height: 250px;
   flex-direction: column;
   background-image: url(../assets/univ-cover.jpg);
   background-position: center;
@@ -28,6 +29,7 @@
 }
 .university-children {
   flex: 2;
+  height: 100%;
   overflow: scroll;
   background-color: #F5F5F5;
 }

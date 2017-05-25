@@ -42,13 +42,13 @@ class Fields extends Component {
       return { label: city.title, value: city.id };
     });
     const types = props.fields.types.map((type) => {
-      return { value: type, label: capitalize(type) };
+      return { value: type.id, label: capitalize(type.title) };
+    });
+    const areas = props.fields.areas.map((area) => {
+      return { value: area.id, label: capitalize(area.title) };
     });
     const schedules = props.fields.schedules.map((sch) => {
       return { value: sch, label: capitalize(sch) };
-    });
-    const areas = props.fields.areas.map((area) => {
-      return { value: area, label: capitalize(area) };
     });
     if (props.type === 0) {
       return (

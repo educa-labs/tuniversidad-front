@@ -17,7 +17,7 @@ export default (
   <Route path="/" component={App}>
     <IndexRoute component={Landing} />
     <Route path="site" component={Site}>
-      <IndexRoute component={Buscador} />
+      <IndexRoute component={Profile} />
       <Route path="search" component={Buscador} />
       <Route path="compare" component={Compare} />
       <Route path="recommend" component={Recommend} />

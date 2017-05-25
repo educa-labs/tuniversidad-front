@@ -42,7 +42,7 @@ class University extends Component {
       );
     }
     return (
-      <div className="university">
+      <div className="site__children">
         <Banner location="site" title={university.title} />
         <div className="university-cover">
           <div className="university-cover__title">{university.title}</div>

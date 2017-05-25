@@ -10,9 +10,9 @@ class FiltersDrawer extends Component {
     const { props } = this;
     const fields = {
       regions: props.regions || null,
-      areas: props.areas ? props.areas.areas : null,
+      areas: props.areas || null,
+      types: props.types || null,
       schedules: props.schedules ? props.schedules.schedules : null,
-      types: props.types ? props.types.university_types : null,
     };
     return (
         <div className="filters">

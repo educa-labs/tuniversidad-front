@@ -1,10 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Search from 'material-ui/svg-icons/action/search';
+import RaisedButton from 'material-ui/RaisedButton';
 import CompareIcon from 'material-ui/svg-icons/image/compare';
 import LightbulbIcon from 'material-ui/svg-icons/action/lightbulb-outline';
 import NewsIcon from 'material-ui/svg-icons/av/fiber-new';
 import ProfileBanner from '../components/ProfileBanner';
+import { clearUser } from '../helpers/storage';
+import { clearState } from '../actions/user';
 
 
 class SideMenu extends Component {
@@ -15,6 +18,14 @@ class SideMenu extends Component {
       this.setState({ selected: this.context.router.routes[2].path });
     }
     this.handleSelectItem = this.handleSelectItem.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
+  }
+
+  handleLogout() {
+    this.props.clearState();
+    clearUser();
+    this.context.router.replace('/');
+    // props.logoutUser(props.user.id, props.user.auth_token);
   }
 
   handleSelectItem(selected) {
@@ -60,44 +71,14 @@ class SideMenu extends Component {
           <div className="icon" ><NewsIcon color="white" /></div>
           <div className="label">Noticias</div>
         </div>
-        
-        
-        {/*<Menu
-          autoWidth
-          menuItemStyle={styles.menuItem}
-          listStyle={styles.style}
-          selectedMenuItemStyle={styles.selected}
-          width="256"
-          style={styles.style}
-          value={this.state.selected}
-          onChange={(e, val) => this.handleSelectItem(val)}
-        >
-          <MenuItem
-            primaryText="Buscador"
-            leftIcon={selected === 'search' ? <Search color="white" /> : <Search />}
-            value="search"
+        <div className="side-menu__button-container">
+          <RaisedButton
+            onTouchTap={this.handleLogout}
+            label="Cerrar sesión"
+            backgroundColor="#0091EA"
+            labelColor="white"
           />
-          <MenuItem
-            primaryText="Comparador"
-            leftIcon={selected === 'compare' ? <CompareIcon color="white" /> : <CompareIcon />}
-            value="compare"
-          />
-          <MenuItem
-            primaryText="Recomendaciones"
-            leftIcon={selected === 'recomend' ? <LightbulbIcon color="white" /> : <LightbulbIcon />}
-            value="recomend"
-          />
-          <MenuItem
-            primaryText="Noticias"
-            leftIcon={selected === 'news' ? <NewsIcon color="white" /> : <NewsIcon />}
-            value="news"
-          />
-          <MenuItem
-            primaryText="Newton"
-            leftIcon={selected === 'newton' ? <QuestionIcon color="white" /> : <QuestionIcon />}
-            value="newton"
-          />
-        </Menu>*/}
+        </div>
       </div>
     );
   }
@@ -113,4 +94,6 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(SideMenu);
+export default connect(mapStateToProps, {
+  clearState,
+})(SideMenu);

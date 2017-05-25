@@ -110,7 +110,7 @@ function mapStateToProps(state) {
     requesting: state.search.requesting || state.fetch.requesting,
     university_filters: {
       cities: state.filter.cities,
-      finance_type: state.filter.university_type,
+      university_type_id: state.filter.university_type,
       freeness: state.filter.freeness,
     },
     career_filters: {

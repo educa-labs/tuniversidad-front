@@ -40,7 +40,7 @@ function CareerCard(props, context) {
     context.router.push(`site/university/${career.university_id}`);
   }
 
-  const science = is.existy(career.weighing.science);
+  const science = career.weighing ? is.existy(career.weighing.science) : null;
 
   return (
     <div className={`card ${detail ? 'card_detail' : ''}`}>
@@ -57,23 +57,23 @@ function CareerCard(props, context) {
             <div className="col col_row">
               <div className="row">
                 <div className="card__psu-item">
-                  <div className="value">{career.weighing.NEM}%</div>
+                  <div className="value">{career.weighing ? career.weighing.NEM : null}%</div>
                   <div className="label">NEM</div>
                 </div>
                 <div className="card__psu-item">
-                  <div className="value">{career.weighing.ranking}%</div>
+                  <div className="value">{career.weighing ? career.weighing.ranking : null}%</div>
                   <div className="label">Ranking</div>
                 </div>
                 <div className="card__psu-item">
-                  <div className="value">{career.weighing.language}%</div>
+                  <div className="value">{career.weighing ? career.weighing.language : null}%</div>
                   <div className="label">Lenguaje</div>
                 </div>
                 <div className="card__psu-item">
-                  <div className="value">{career.weighing.math}%</div>
+                  <div className="value">{career.weighing ? career.weighing.math : null}%</div>
                   <div className="label">Matematica</div>
                 </div>
                 <div className="card__psu-item">
-                  <div className="value">{career.weighing.science || career.weighing.history}%</div>
+                  <div className="value">{career.weighing ? career.weighing.science || career.weighing.history : null}%</div>
                   <div className="label">{science ? 'Ciencias' : 'Historia'}</div>
                 </div>
               </div>
@@ -91,7 +91,7 @@ function CareerCard(props, context) {
             <div className="col col_row">
               <div className="row">
                 <div className="col">
-                  <div className="value">{career.area}</div>
+                  <div className="value">{career.area_title}</div>
                   <div className="label">Área</div>
                 </div>
                 <div className="col">
@@ -105,7 +105,7 @@ function CareerCard(props, context) {
                   <div className="label">Duración</div>
                 </div>
                 <div className="col">
-                  <div className="value">${numeral(career.income)}</div>
+                  <div className="value">${career.income ? numeral(career.income) : null}</div>
                   <div className="label">Sueldo promedio (3er año)</div>
                 </div>
               </div>
