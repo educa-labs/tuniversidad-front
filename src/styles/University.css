@@ -1,51 +1,50 @@
-
 .university {
-  height: 100vh;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 .university-cover {
-  height: 18rem;
+  flex: 0 0 250px;
+  flex-direction: column;
   background-image: url(../assets/univ-cover.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   color: white;
   display: flex;
-  flex-direction: column;
   justify-content: flex-end;
   padding: 0 4rem;
 }
 
 .university-cover__title {
   text-transform: uppercase;
-  font-size: 30px;
+  font-size: 24px;
   width: 30rem;
 }
 .university-cover__subtitle {
   font-size: 18px;
   margin: 5px 0;
+  cursor: pointer;
 }
-
-.university > .main-content {
-   height: 100%;
+.university-children {
+  flex: 2;
+  overflow: scroll;
+  background-color: #F5F5F5;
 }
 
 .tabs-container {
+  position: relative;
   width: 100%;
   background-color: white;
   box-shadow: 1px 1px 10px 0px rgba(0,0,0,0.75);
 }
 
 .tabs {
-  width: 40rem;
+  width: 45%;
+  min-width: 25rem;
   margin-left: 3rem;
 }
 
-.university > .main-content > .views {
-  background-color: #F5F5F5;
-  position: relative;
-  z-index: -1;
-  height: 100%;
-}
 
 
 

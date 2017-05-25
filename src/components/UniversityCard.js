@@ -17,7 +17,7 @@ function UniversityCard(props, context) {
   }
 
   return (
-    <div className="card">
+    <div className={`card ${detail ? 'card_detail' : ''}`}>
       <Paper zDepth={2}>
         <div className={`card__header ${detail ? 'card__header_hide' : ''}`} >
           <div className="card__title" onClick={onTitleClick}>{university.title}</div>
@@ -72,7 +72,7 @@ function UniversityCard(props, context) {
           </div>
         </div>
         <Divider />
-        <div className={`card__footer ${detail ? '' : 'card__footer_hide'}`}>
+        <div className={`card__footer ${detail ? 'card__footer_hide' : ''}`}>
           <div className="start">
             <FlatButton label="Comparar" secondary labelStyle={labelStyle} />
           </div>

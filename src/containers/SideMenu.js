@@ -1,33 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import Menu from 'material-ui/Menu';
-import MenuItem from 'material-ui/MenuItem';
 import Search from 'material-ui/svg-icons/action/search';
 import CompareIcon from 'material-ui/svg-icons/image/compare';
 import LightbulbIcon from 'material-ui/svg-icons/action/lightbulb-outline';
 import NewsIcon from 'material-ui/svg-icons/av/fiber-new';
-import QuestionIcon from 'material-ui/svg-icons/action/question-answer';
-import FlatButton from 'material-ui/FlatButton';
 import ProfileBanner from '../components/ProfileBanner';
 
-const styles = {
-  style: {
-    width: '256px',
-    padding: '0',
-  },
-  menuItem: {
-    color: '#757575',
-  },
-  selected: {
-    backgroundColor: '#0091EA',
-    color: 'white',
-  },
-};
 
 class SideMenu extends Component {
   componentWillMount() {
-    this.setState({ selected: 'search' });
-    if (this.context.router.location.pathname === '/site/') {
+    if (this.context.router.location.pathname === '/site') {
       this.setState({ selected: 'search' });
     } else {
       this.setState({ selected: this.context.router.routes[2].path });
@@ -42,8 +24,6 @@ class SideMenu extends Component {
 
   render() {
     const { selected } = this.state;
-
-
     return (
       <div className="side-menu">
         <div className="side-menu__banner" />

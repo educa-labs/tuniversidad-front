@@ -37,20 +37,22 @@ class FiltersDrawer extends Component {
             </RadioButtonGroup>
           </div>
           <Divider />
-          <Fields
-            type={0}
-            hide={props.active === 'carreer'}
-            values={props.universities}
-            changeFilterValue={props.changeFilterValue}
-            fields={fields}
-          />
-          <Fields // Careers
-            type={1}
-            hide={props.active === 'university'}
-            values={props.careers}
-            changeFilterValue={props.changeFilterValue}
-            fields={fields}
-          />
+          {props.active === 'university' ? (
+            <Fields
+              type={0}
+              values={props.universities}
+              changeFilterValue={props.changeFilterValue}
+              fields={fields}
+            />
+          ) : null}
+          {props.active === 'carreer' ? (
+            <Fields // Careers
+              type={1}
+              values={props.careers}
+              changeFilterValue={props.changeFilterValue}
+              fields={fields}
+            />
+          ) : null}
         </div >
     );
   }

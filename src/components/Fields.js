@@ -7,15 +7,9 @@ import RangeInput from './inputs/RangeInput';
 import { getCities } from '../helpers/api';
 import '../styles/Fields.css';
 
-const ciudades = [
-  { value: 0, label: 'Todo' },
-  { value: 1, label: 'Santiago' },
-  { value: 2, label: 'La Serena' },
-];
-
 const yesNo = [
-  { value: 0, label: 'No' },
-  { value: 1, label: 'Sí' },
+  { value: false, label: 'No' },
+  { value: true, label: 'Sí' },
 ];
 
 class Fields extends Component {
@@ -58,7 +52,7 @@ class Fields extends Component {
     });
     if (props.type === 0) {
       return (
-        <div className={`fields-container ${props.hide ? 'hide' : ''}`}>
+        <div className="fields-container">
           <SelectInput
             title="Region"
             items={regions}
@@ -95,7 +89,7 @@ class Fields extends Component {
     }
 
     return (
-      <div className={`fields-container ${props.hide ? 'hide' : ''}`}>
+      <div className="fields-container">
         <SelectInput
           title="Region"
           items={regions}
@@ -160,9 +154,9 @@ class Fields extends Component {
 Fields.propTypes = {
   values: PropTypes.object,
   changeFilterValue: PropTypes.func.isRequired,
-  hide: PropTypes.bool.isRequired,
   type: PropTypes.number.isRequired,
   fields: PropTypes.object,
+  token: PropTypes.string.isRequired,
 };
 
 function mapStateToProps(state) {

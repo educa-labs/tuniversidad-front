@@ -14,7 +14,7 @@ const labelStyle = {
 };
 
 function CareerCard(props, context) {
-  const { career, favs, compare } = props;
+  const { career, favs, compare, detail } = props;
   const isFavorite = is.inArray(career.id, favs);
   const isCompare = is.inArray(career.id, compare);
 
@@ -33,7 +33,7 @@ function CareerCard(props, context) {
     }
   }
   function handleInfoClick() {
-    context.router.push(`careers/${career.id}`);
+    context.router.push(`site/career/${career.id}`);
   }
 
   function handleSubTitleClick() {
@@ -43,11 +43,11 @@ function CareerCard(props, context) {
   const science = is.existy(career.weighing.science);
 
   return (
-    <div className="card" >
+    <div className={`card ${detail ? 'card_detail' : ''}`}>
       <Paper zDepth={2}>
-        <div className="card__header">
+        <div className={`card__header ${detail ? 'card__header_hide' : ''}`}>
           <div className="col">
-            <div className="card__title">{career.title}</div>
+            <div className="card__title" onClick={handleInfoClick} >{career.title}</div>
           </div>
           <div className="col col_subtitle">
             <div className="card__subtitle" onClick={handleSubTitleClick}>{career.university_name}</div>
@@ -121,14 +121,19 @@ function CareerCard(props, context) {
               </div>
             </div>
         </div>
+        <div className={`card__description ${detail ? '' : 'card__description_hide'}`} >
+          <div className="row">
+            <div className="col">{career.description}</div>
+          </div>
+        </div>
         <Divider />
-        <div className="card__footer">
+        <div className={`card__footer ${detail ? 'card__footer_hide' : ''}`}>
           <div className="start">
-            <FlatButton label="Añadir a favoritos" secondary labelStyle={labelStyle} />
-            <FlatButton label="Comparar" secondary labelStyle={labelStyle} />
+            <FlatButton label="Añadir a favoritos" secondary labelStyle={labelStyle} onTouchTap={handleFavButton} />
+            <FlatButton label="Comparar" secondary labelStyle={labelStyle} onTouchTap={handleCompareButton} />
           </div>
           <div className="end">
-            <FlatButton label="Más información" secondary labelStyle={labelStyle} />
+            <FlatButton label="Más información" secondary labelStyle={labelStyle} onTouchTap={handleInfoClick} />
           </div>
         </div>
       </Paper>

@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import Search from 'material-ui/svg-icons/action/search';
 import IconButton from 'material-ui/IconButton';
 import RaisedButton from 'material-ui/RaisedButton';
-import FilterList from 'material-ui/svg-icons/content/filter-list';
 import '../../styles/SearchInput.css';
 
 
@@ -15,7 +14,7 @@ function SearchInput({ value, handleOnChange, handleSubmit, active }) {
           type="text"
           value={value}
           onChange={e => handleOnChange(e.target.value)}
-          placeholder={active === 'university' ? 'Busca una Universidad' : 'Busca una carrera'}
+          placeholder={active === 'university' ? 'Busca una universidad' : 'Busca una carrera'}
         />
       </form>
       <RaisedButton

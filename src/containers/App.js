@@ -15,7 +15,6 @@ class App extends Component {
       this.context.router.replace('/');
     } else {
       this.props.setupUser(user);
-      this.context.router.replace('/site');
     }
   }
 

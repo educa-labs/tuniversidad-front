@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import SideMenu from './SideMenu';
-import Banner from '../components/Banner';
 import '../styles/Site.css';
 
 

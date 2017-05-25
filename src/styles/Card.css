@@ -1,7 +1,13 @@
 .card {
-  width: 42rem;
-  margin: 2rem auto;
+  width: 75%;
+  margin: auto;
+  min-width: 40rem;
+  border: transparent solid 20px;
 }
+.card_detail {
+  width: 90%;
+}
+
 .card .row {
   display: flex;
   align-items: center;
@@ -18,7 +24,7 @@
 .card .col_row {
   flex-direction: column;
   display: flex;
-  margin: 1rem 0;
+  margin: 0.5rem 0;
 }
 .card .label {
   font-size: 11px;
@@ -45,7 +51,7 @@
 }
 .card__body {
   height: 10rem;
-  padding: 0 2rem;
+  padding: 1rem 2rem;
   display: flex;
   flex-direction: column;
 }
