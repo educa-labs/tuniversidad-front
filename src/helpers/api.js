@@ -10,7 +10,6 @@ export function getCareers(id, token) {
 }
 
 export function getCities(id, token) {
-  console.log(token);
   return Request.get(`${url}/regions/${id}/cities`)
       .set('Content-Type', 'application/json')
       .set('Authorization', token)
@@ -18,3 +17,10 @@ export function getCities(id, token) {
       .withCredentials();
 }
 
+export function getGoals(id, token) {
+  return Request.get(`${url}/goals`)
+    .set('Content-Type', 'application/json')
+    .set('Authorization', token)
+    .accept('application/tuniversidad.v1')
+    .withCredentials();
+}

@@ -1,10 +1,11 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import is from 'is_js';
+import _ from 'lodash';
 import Paper from 'material-ui/Paper';
 import Divider from 'material-ui/Divider';
 import FlatButton from 'material-ui/FlatButton';
-import { addToFavorites, removeFromFavorites } from '../actions/favs';
+import { addGoal } from '../actions/goals';
 import { addToCompare, removeFromCompare } from '../actions/compare';
 import numeral from '../helpers/numeral';
 
@@ -14,8 +15,10 @@ const labelStyle = {
 };
 
 function CareerCard(props, context) {
-  const { career, favs, compare, detail } = props;
-  const isFavorite = is.inArray(career.id, favs);
+  const { career, goals, compare, detail } = props;
+  console.log(goals);
+  const isFavorite = _.find(goals, car => car.id === career.id);
+  console.log(isFavorite);
   const isCompare = is.inArray(career.id, compare);
 
   function handleFavButton() {
@@ -142,11 +145,7 @@ function CareerCard(props, context) {
 }
 
 CareerCard.propTypes = {
-  addToFavorites: PropTypes.func.isRequired,
-  removeFromFavorites: PropTypes.func.isRequired,
   addToCompare: PropTypes.func.isRequired,
-  removeFromCompare: PropTypes.func.isRequired,
-  favs: PropTypes.arrayOf(PropTypes.number).isRequired,
   compare: PropTypes.arrayOf(PropTypes.number).isRequired,
   general: PropTypes.bool,
 };
@@ -161,15 +160,14 @@ CareerCard.contextTypes = {
 
 function mapStateToProps(state) {
   return {
-    favs: state.favs,
+    goals: state.goals.goals,
     compare: state.compare,
   };
 }
 
 
 export default connect(mapStateToProps, {
-  addToFavorites,
-  removeFromFavorites,
+  addGoal,
   addToCompare,
   removeFromCompare,
 })(CareerCard);

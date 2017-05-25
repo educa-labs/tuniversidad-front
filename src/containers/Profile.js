@@ -1,9 +1,12 @@
 import React, { PropTypes, Component } from 'react';
+import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
+import { getGoals } from '../actions/goals';
 import '../styles/Profile.css';
 
 class Profile extends Component {
   componentWillMount() {
+    this.props.getGoals(this.props.token);
     this.setState({ slideIndex: 0 });
   }
 
@@ -30,4 +33,18 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+Profile.propTypes = {
+  getGoals: PropTypes.func.isRequired,
+  token: PropTypes.string.isRequired,
+};
+
+function mapStateToProps(state) {
+  return {
+    user: state.user.currentUser,
+    token: state.user.currentUser.auth_token,
+  };
+}
+
+export default connect(mapStateToProps, {
+  getGoals,
+})(Profile);
