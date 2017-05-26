@@ -1,7 +1,8 @@
 .card {
-  width: 90%;
+  width: 85%;
   margin: auto;
   min-width: 40rem;
+  max-width: 60rem;
   border: transparent solid 20px;
 }
 .card_detail {
