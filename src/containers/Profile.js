@@ -6,7 +6,6 @@ import '../styles/Profile.css';
 
 class Profile extends Component {
   componentWillMount() {
-    this.props.getGoals(this.props.token);
     this.setState({ slideIndex: 0 });
   }
 

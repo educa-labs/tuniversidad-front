@@ -5,7 +5,7 @@ import _ from 'lodash';
 import Paper from 'material-ui/Paper';
 import Divider from 'material-ui/Divider';
 import FlatButton from 'material-ui/FlatButton';
-import { addGoal } from '../actions/goals';
+import { addGoal, removeGoal } from '../actions/goals';
 import { addToCompare, removeFromCompare } from '../actions/compare';
 import numeral from '../helpers/numeral';
 
@@ -15,17 +15,15 @@ const labelStyle = {
 };
 
 function CareerCard(props, context) {
-  const { career, goals, compare, detail } = props;
-  console.log(goals);
-  const isFavorite = _.find(goals, car => car.id === career.id);
-  console.log(isFavorite);
-  const isCompare = is.inArray(career.id, compare);
+  const { career } = props;
+  const isFavorite = _.findIndex(props.goals, item => item.id === career.id) > -1;
+  const isCompare = is.inArray(career.id, props.compare);
 
   function handleFavButton() {
     if (isFavorite) {
-      props.removeFromFavorites(career.id);
+      props.removeGoal(career.id, props.token);
     } else {
-      props.addToFavorites(career.id);
+      props.addGoal(career.id, props.token);
     }
   }
   function handleCompareButton() {
@@ -46,9 +44,9 @@ function CareerCard(props, context) {
   const science = career.weighing ? is.existy(career.weighing.science) : null;
 
   return (
-    <div className={`card ${detail ? 'card_detail' : ''}`}>
+    <div className={`card ${props.detail ? 'card_detail' : ''}`}>
       <Paper zDepth={2}>
-        <div className={`card__header ${detail ? 'card__header_hide' : ''}`}>
+        <div className={`card__header ${props.detail ? 'card__header_hide' : ''}`}>
           <div className="col">
             <div className="card__title" onClick={handleInfoClick} >{career.title}</div>
           </div>
@@ -124,15 +122,21 @@ function CareerCard(props, context) {
               </div>
             </div>
         </div>
-        <div className={`card__description ${detail ? '' : 'card__description_hide'}`} >
+        <div className={`card__description ${props.detail ? '' : 'card__description_hide'}`} >
           <div className="row">
             <div className="col">{career.description}</div>
           </div>
         </div>
         <Divider />
-        <div className={`card__footer ${detail ? 'card__footer_hide' : ''}`}>
+        <div className={`card__footer ${props.detail ? 'card__footer_hide' : ''}`}>
           <div className="start">
-            <FlatButton label="Añadir a favoritos" secondary labelStyle={labelStyle} onTouchTap={handleFavButton} />
+            <FlatButton
+              label={isFavorite ? 'Remover de mis metas' : 'Añadir a mis metas'}
+              secondary
+              labelStyle={labelStyle}
+              onTouchTap={handleFavButton}
+              disabled={props.requesting}
+            />
             <FlatButton label="Comparar" secondary labelStyle={labelStyle} onTouchTap={handleCompareButton} />
           </div>
           <div className="end">
@@ -147,11 +151,14 @@ function CareerCard(props, context) {
 CareerCard.propTypes = {
   addToCompare: PropTypes.func.isRequired,
   compare: PropTypes.arrayOf(PropTypes.number).isRequired,
-  general: PropTypes.bool,
+  detail: PropTypes.bool,
+  requesting: PropTypes.bool.isRequired,
+  addGoal: PropTypes.func.isRequired,
+  token: PropTypes.string.isRequired,
 };
 
 CareerCard.defaultProps = {
-  general: false,
+  detail: false,
 };
 
 CareerCard.contextTypes = {
@@ -161,6 +168,8 @@ CareerCard.contextTypes = {
 function mapStateToProps(state) {
   return {
     goals: state.goals.goals,
+    requesting: state.goals.requesting,
+    token: state.user.currentUser.auth_token,
     compare: state.compare,
   };
 }
@@ -168,6 +177,7 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
   addGoal,
+  removeGoal,
   addToCompare,
   removeFromCompare,
 })(CareerCard);

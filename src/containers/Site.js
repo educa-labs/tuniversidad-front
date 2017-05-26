@@ -1,12 +1,14 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import SideMenu from './SideMenu';
+import { getGoals } from '../actions/goals';
 import '../styles/Site.css';
 
 
 class Site extends Component {
-  componentWillMount() {
-    console.log(this.props.user);
+  componentDidMount() {
+    console.log(this.props.requesting);
+    this.props.getGoals(this.props.token);
   }
 
   render() {
@@ -25,6 +27,17 @@ Site.defaultProps = {
 
 Site.propTypes = {
   children: PropTypes.node,
+  getGoals: PropTypes.func.isRequired,
+  token: PropTypes.string.isRequired,
 };
 
-export default Site;
+function mapStateToProps(state) {
+  return {
+    token: state.user.currentUser.auth_token,
+    requesting: state.goals.requesting,
+  };
+}
+
+export default connect(mapStateToProps, {
+  getGoals,
+})(Site);

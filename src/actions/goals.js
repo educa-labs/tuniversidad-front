@@ -70,3 +70,31 @@ export function addGoal(id, token) {
       });
   };
 }
+
+export function removeGoal(id, token) {
+  const request = Request.delete(`${url}/goals/${id}`)
+    .set('Content-Type', 'application/json')
+    .set('Authorization', token)
+    .accept('application/tuniversidad.v1')
+    .withCredentials();
+  return (dispath) => {
+    dispath({
+      type: GOAL_REQUEST,
+    });
+    return request
+      .then((res) => {
+        if (res.ok) {
+          dispath({
+            type: REMOVE_GOAL,
+            id,
+          });
+        }
+      })
+      .catch((err) => {
+        dispath({
+          type: GOAL_FAILURE,
+          error: err.response.body,
+        });
+      });
+  };
+}
