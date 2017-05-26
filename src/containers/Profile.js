@@ -34,7 +34,7 @@ class Profile extends Component {
           </Tabs >
         </div>
         <div className="profile-children">
-          {slideIndex === 0 ? <ProfileGeneral user={this.props.user} /> : null }
+          {slideIndex === 0 ? <ProfileGeneral user={this.props.user} goals={this.props.goals} /> : null }
           {slideIndex === 1 ? <div>Progreso</div> : null }
           {slideIndex === 2 ? <div>Recomnedaciones</div> : null }
         </div>
@@ -51,6 +51,7 @@ Profile.propTypes = {
 function mapStateToProps(state) {
   return {
     user: state.user.currentUser,
+    goals: state.goals.goals,
     token: state.user.currentUser.auth_token,
   };
 }

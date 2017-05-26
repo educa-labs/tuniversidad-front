@@ -54,7 +54,7 @@
   background-color: white;
   margin: 2rem;
   padding: 0 1rem;
-  box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 8px 0.5px rgba(0,0,0,0.75);
   z-index: 10;
 }
 
@@ -73,5 +73,11 @@
 .general-card__item {
   display: flex;
   flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.general-card__goal {
+  font-size: medium;
+  color: #424242;
   margin-bottom: 10px;
 }
