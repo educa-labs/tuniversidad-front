@@ -1,0 +1,43 @@
+.bar-chart {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.bar {
+ display: flex;
+ flex: 1;
+ align-items: center;
+ margin: 2px 0;
+}
+
+.bar__label {
+  display: flex;
+  flex: 1;
+}
+
+.bar__value {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.bar .rectangle {
+  color: white;
+  height: 2rem;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+}
+
+.bar .rectangle-1 {
+  background-color: #0091EA;
+}
+
+.bar .rectangle-2 {
+  background-color: #969696;
+}
+
+.bar .rectangle-3 {
+  background-color: #616161;
+}
