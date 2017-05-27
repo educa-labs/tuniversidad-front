@@ -3,7 +3,7 @@ import round from '../helpers/round';
 import '../styles/BarChart.css';
 
 const data = {
-  me: 613,
+  me: 513,
   goal: 670,
   cut: 647,
 };

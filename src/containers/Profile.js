@@ -1,7 +1,7 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
-import { getGoals } from '../actions/goals';
+import { removeGoal } from '../actions/goals';
 import ProfileGeneral from '../components/ProfileGeneral';
 import '../styles/Profile.css';
 
@@ -19,9 +19,6 @@ class Profile extends Component {
     const { slideIndex } = this.state;
     return (
       <div className="site__children">
-        {/*<div className="profile-cover">
-          <div className="profile-cover__title">Mi Perfil</div>
-        </div>*/}
         <div className="tabs-container">
           <Tabs
             onChange={this.handleSlideChange}
@@ -34,7 +31,7 @@ class Profile extends Component {
           </Tabs >
         </div>
         <div className="profile-children">
-          {slideIndex === 0 ? <ProfileGeneral user={this.props.user} goals={this.props.goals} /> : null }
+          {slideIndex === 0 ? <ProfileGeneral {...this.props} /> : null }
           {slideIndex === 1 ? <div>Progreso</div> : null }
           {slideIndex === 2 ? <div>Recomnedaciones</div> : null }
         </div>
@@ -43,10 +40,6 @@ class Profile extends Component {
   }
 }
 
-Profile.propTypes = {
-  getGoals: PropTypes.func.isRequired,
-  token: PropTypes.string.isRequired,
-};
 
 function mapStateToProps(state) {
   return {
@@ -57,5 +50,5 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
-  getGoals,
+  removeGoal,
 })(Profile);

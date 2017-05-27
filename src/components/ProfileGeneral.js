@@ -6,7 +6,7 @@ function ProfileGeneral(props) {
   return (
     <div className="general">
       <div className="col col-3">
-        <UserGoals goals={props.goals} />
+        <UserGoals {...props} />
       </div>
       <div className="col col-2">
         <UserInfo user={props.user} />

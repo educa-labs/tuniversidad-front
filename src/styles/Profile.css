@@ -80,7 +80,19 @@
   margin: 20px 0;
 }
 
+.goal__header {
+  display: flex;
+  align-items: center;
+  height: 48px;
+}
+
 .goal__title {
   font-size: medium;
   margin: 5px 0;
+}
+
+.goal__delete-button {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
 }
