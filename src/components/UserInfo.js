@@ -5,7 +5,7 @@ import IconButton from 'material-ui/IconButton';
 function UserInfo({ user }) {
   return (
     <div className="general-card">
-      <div className="row">
+      <div className="general-card__header">
         <div className="general-card__title">Mis Datos</div>
         <div className="general-card__edit-button">
           <IconButton><EditIcon color="#424242" /></IconButton>

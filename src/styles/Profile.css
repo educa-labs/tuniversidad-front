@@ -14,17 +14,13 @@
 .profile-children {
   height: 100%;
   background-color: #F5F5F5;
+  overflow: scroll;
 }
 
 .general {
   display: flex;
 }
 
-.general .row {
-  display: flex;
-  align-items: center;
-  flex: 1;
-}
 
 .general .col {
   display: flex;
@@ -50,12 +46,17 @@
 }
 
 .general-card {
-  flex: 1;
   background-color: white;
   margin: 2rem;
-  padding: 0 1rem;
   box-shadow: 0px 0px 8px 0.5px rgba(0,0,0,0.75);
   z-index: 10;
+}
+
+.general-card__header {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  padding: 0 1rem;
 }
 
 .general-card__title {
@@ -71,13 +72,15 @@
 }
 
 .general-card__item {
+  padding: 0 1rem;
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
 }
 
 .goal {
-  margin: 20px 0;
+  margin-bottom: 20px;
+  padding: 0 1rem;
 }
 
 .goal__header {

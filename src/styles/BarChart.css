@@ -30,6 +30,10 @@
   align-items: center;
 }
 
+.bar .rectangle:hover {
+  opacity: 0.80;
+}
+
 .bar .rectangle-1 {
   background-color: #0091EA;
 }
