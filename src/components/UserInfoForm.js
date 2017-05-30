@@ -18,6 +18,8 @@ class UserInfoForm extends Component {
       birth_date: this.props.user.birth_date,
       email: this.props.user.email,
       phone: this.props.user.phone,
+      nem: this.props.user.nem,
+      ranking: this.props.user.ranking,
     });
   }
 
@@ -88,6 +90,26 @@ class UserInfoForm extends Component {
           </div>
           <div className="form__field form__field-3">
             <DatePicker handleChange={val => this.setState({ birth_date: val })} />
+          </div>
+        </div>
+        <div className="row">
+          <div className="form__field">
+            <TextField
+              onChange={(e, val) => this.setState({ nem: val })}
+              floatingLabelText="Nem"
+              fullWidth
+              type="number"
+              value={this.state.nem}
+            />
+          </div>
+          <div className="form__field">
+            <TextField
+              onChange={(e, val) => this.setState({ ranking: val })}
+              floatingLabelText="Ranking"
+              fullWidth
+              type="number"
+              value={this.state.ranking}
+            />
           </div>
         </div>
       </Dialog>

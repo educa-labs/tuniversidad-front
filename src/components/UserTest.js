@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import AddIcon from 'material-ui/svg-icons/content/add';
 import IconButton from 'material-ui/IconButton';
 import Divider from 'material-ui/Divider';
-import NewTestForm from './NewTestForm';
+import UserTestForm from './UserTestForm';
 
 const tests = [
   {
@@ -68,7 +68,7 @@ class UserTest extends Component {
   render() {
     return (
       <div className="general-card">
-        <NewTestForm open={this.state.editMode} handleClose={this.closeModal} />
+        <UserTestForm open={this.state.editMode} handleClose={this.closeModal} />
         <div className="general-card__header">
           <div className="general-card__title">Mis Ensayos</div>
           <div className="general-card__edit-button">
