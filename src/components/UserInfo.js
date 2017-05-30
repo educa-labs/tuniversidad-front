@@ -8,7 +8,7 @@ function UserInfo({ user }) {
       <div className="general-card__header">
         <div className="general-card__title">Mis Datos</div>
         <div className="general-card__edit-button">
-          <IconButton><EditIcon color="#424242" /></IconButton>
+          <IconButton><EditIcon color="#0091EA" /></IconButton>
         </div>
       </div>
       <br />
