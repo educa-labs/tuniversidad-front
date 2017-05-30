@@ -49,7 +49,7 @@ class UserGoals extends Component {
               tooltipPosition="bottom-left"
               onTouchTap={() => this.setState({ editMode: !this.state.editMode })}
             >
-              <EditIcon color={this.state.editMode ? '#424242' : '#C9C9C9'} />
+              <EditIcon color="#0091EA" />
             </IconButton>
           </div>
         </div>

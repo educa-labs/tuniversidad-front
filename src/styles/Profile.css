@@ -54,9 +54,10 @@
 
 .general-card {
   background-color: white;
-  margin: 2rem;
-  box-shadow: 0px 0px 8px 0.5px rgba(0,0,0,0.75);
+  margin: 1rem;
+  box-shadow: 0px 0px 4px 0.5px rgba(0,0,0,0.50);
   z-index: 10;
+  border-radius: 2px;
 }
 
 .general-card__header {
@@ -83,6 +84,18 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
+}
+
+.general-card__footer {
+  display: flex;
+  padding: 0 1rem;
+  margin: 10px 0;
+}
+
+.general-card__footer_item {
+  flex: 1;
+  flex-direction: column;
+  display: flex;
 }
 
 
@@ -121,4 +134,25 @@
   flex: 1;
   justify-content: center;
   margin: 0 4rem;
+}
+
+.test {
+  padding: 0 1rem;
+}
+
+.test__title {
+  font-size: medium;
+  margin: 10px 0;
+}
+
+.test__item {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 5px 0;
+}
+
+.target {
+  display: flex;
+  padding: 0 1rem;
 }

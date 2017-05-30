@@ -1,7 +1,8 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import UserInfo from './UserInfo';
 import UserGoals from './UserGoals';
-import UserTest from './UserTest';
+import UserTarget from './UserTarget';
+
 
 function ProfileGeneral(props) {
   return (
@@ -10,8 +11,8 @@ function ProfileGeneral(props) {
         <UserGoals {...props} />
       </div>
       <div className="col col-2">
-        <UserInfo user={props.user} />
-        <UserTest />
+        <UserInfo {...props} />
+        <UserTarget {...props} />
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import { removeGoal } from '../actions/goals';
 import ProfileGeneral from '../components/ProfileGeneral';
+import ProfileProgress from '../components/ProfileProgress';
 import '../styles/Profile.css';
 
 class Profile extends Component {
@@ -32,7 +33,7 @@ class Profile extends Component {
         </div>
         <div className="profile-children">
           {slideIndex === 0 ? <ProfileGeneral {...this.props} /> : null }
-          {slideIndex === 1 ? <div>Progreso</div> : null }
+          {slideIndex === 1 ? <ProfileProgress {...this.props} /> : null }
           {slideIndex === 2 ? <div>Recomnedaciones</div> : null }
         </div>
       </div>
