@@ -23,6 +23,7 @@ function SelectInput(props) {
         onChange={onChange}
         fullWidth
         floatingLabelText={props.title}
+        {...props}
       >
         {props.items.map((item, index) => renderItems(item, index))}
       </SelectField>

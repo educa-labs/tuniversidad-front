@@ -39,7 +39,6 @@ class UserTest extends Component {
   renderTest(goal, index) {
     return (
       <div>
-        <Divider />
         <div className="test" key={index}>
           <div className="test__title">{goal.title}</div>
           <div className="row">
@@ -61,6 +60,7 @@ class UserTest extends Component {
             </div>
           </div>
         </div>
+        <Divider />
       </div>
     );
   }

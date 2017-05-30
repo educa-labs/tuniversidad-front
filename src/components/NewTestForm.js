@@ -38,47 +38,48 @@ class NewTestForm extends Component {
       <Dialog
         title="Agregar un ensayo"
         actions={actions}
-        modal
         open={this.props.open}
-        className="new-test-form"
+        className="form"
         contentStyle={{ width: '32rem' }}
+        onRequestClose={this.props.handleClose}
       >
-        <div className="new-test-form__field">
+        <div className="form__field">
           <TextField
             floatingLabelText="Título"
             hintText="Ej: Primer ensayo"
             floatingLabelFixed
             fullWidth
-            onChange={(e, val) => this.setState({ title: val })}
+            onChange={(e, val) => this.setState({ title: Number(val) })}
           />
         </div>
         <div className="row">
-          <div className="new-test-form__field">
+          <div className="form__field">
             <TextField
-              onChange={(e, val) => this.setState({ language: val })}
+              onChange={(e, val) => this.setState({ language: Number(val) })}
               floatingLabelText="Lenguaje"
               fullWidth
+              type="number"
             />
           </div>
-          <div className="new-test-form__field">
+          <div className="form__field">
             <TextField
-              onChange={(e, val) => this.setState({ math: val })}
+              onChange={(e, val) => this.setState({ math: Number(val) })}
               floatingLabelText="Matemáticas"
               fullWidth
             />
           </div>
         </div>
         <div className="row">
-          <div className="new-test-form__field">
+          <div className="form__field">
             <TextField
-              onChange={(e, val) => this.setState({ science: val })}
+              onChange={(e, val) => this.setState({ science: Number(val) })}
               floatingLabelText="Ciencias"
               fullWidth
             />
           </div>
-          <div className="new-test-form__field">
+          <div className="form__field">
             <TextField
-              onChange={(e, val) => this.setState({ history: val })}
+              onChange={(e, val) => this.setState({ history: Number(val) })}
               floatingLabelText="Historia"
               fullWidth
             />

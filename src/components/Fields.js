@@ -62,6 +62,7 @@ class Fields extends Component {
               this.handleRegionChange(region);
             }}
             fullWidth
+            maxHeight={150}
           />
           <SelectInput
             title="Ciudad"
@@ -99,6 +100,7 @@ class Fields extends Component {
             props.changeFilterValue('region_id', region);
             this.handleRegionChange(region);
           }}
+          maxHeight={150}
         />
         <SelectInput
           title="Ciudad"

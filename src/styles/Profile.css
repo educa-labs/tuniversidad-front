@@ -121,19 +121,34 @@
   justify-content: flex-end;
 }
 
-.new-test-form {
+.form {
   width: 50%;
 }
 
-.new-test-form .row {
-  display: flex;
+.form .row {
+  display: flex;  
 }
 
-.new-test-form__field {
+.form__field {
   display: flex;
   flex: 1;
   justify-content: center;
-  margin: 0 4rem;
+  margin: 0 2rem;
+}
+
+.form__field-2 {
+  color: black;
+  font-weight: 100;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 2;
+  margin: 5px 2rem;
+}
+
+.form__field-3 {
+  flex: 3;
+  margin: 5px 2rem;
 }
 
 .test {
@@ -155,4 +170,16 @@
 .target {
   display: flex;
   padding: 0 1rem;
+}
+
+
+.date-picker {
+  display: flex;
+}
+
+.date-picker .select-input-container {
+  display: flex;
+  margin: 0;
+  width: 8rem;
+  align-items: flex-end;
 }
