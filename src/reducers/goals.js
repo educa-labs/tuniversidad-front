@@ -1,7 +1,5 @@
-import is from 'is_js';
 import _ from 'lodash';
 import {
-  GOAL_FAILURE,
   GOAL_REQUEST,
   GET_GOALS,
   ADD_GOAL,

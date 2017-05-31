@@ -15,8 +15,8 @@ class UserGoals extends Component {
 
   renderGoal(goal) {
     return (
-      <div>
-        <div className="goal" key={goal.id}>
+      <div key={goal.id}>
+        <div className="goal">
           <div className="goal__header">
             <div className="goal__title">{`${goal.title} en ${goal.university_name}`}</div>
             {this.state.editMode ? (

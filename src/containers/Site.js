@@ -7,7 +7,6 @@ import '../styles/Site.css';
 
 class Site extends Component {
   componentDidMount() {
-    console.log(this.props.requesting);
     this.props.getGoals(this.props.token);
   }
 

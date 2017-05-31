@@ -38,8 +38,8 @@ class UserTest extends Component {
 
   renderTest(goal, index) {
     return (
-      <div>
-        <div className="test" key={index}>
+      <div key={index}>
+        <div className="test" >
           <div className="test__title">{goal.title}</div>
           <div className="row">
             <div className="test__item">

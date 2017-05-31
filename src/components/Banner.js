@@ -20,7 +20,6 @@ function Banner(props, context) {
     props.clearState();
     clearUser();
     context.router.replace('/');
-    // props.logoutUser(props.user.id, props.user.auth_token);
   }
   const rightContent = (
     <FlatButton

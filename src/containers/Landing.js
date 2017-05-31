@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import is from 'is_js';
 import Cover from '../components/Cover';
 import Register from '../components/Register';
 import Login from '../components/Login';
@@ -7,8 +9,9 @@ import '../styles/Landing.css';
 
 class Landing extends Component {
   componentWillMount() {
-    console.log('Hola');
+    if (is.not.null(this.props.user)) this.context.router.replace('/site/profile');
   }
+  
   render() {
     return (
       <div className="landing">
@@ -36,4 +39,10 @@ Landing.contextTypes = {
   router: PropTypes.object,
 };
 
-export default Landing;
+function mapStateToProps(state) {
+  return {
+    user: state.user.currentUser,
+  };
+}
+
+export default connect(mapStateToProps)(Landing);
