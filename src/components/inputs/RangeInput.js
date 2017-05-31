@@ -7,11 +7,9 @@ import '../../styles/RangeInput.css';
 
 
 function RangeInput(props) {
-  const { hide, custom } = props;
   const CustomHandler = restprops => (
     <Handler
-      hide={hide}
-      custom={custom}
+      custom={props.custom}
       key={restprops.index}
       {...restprops}
     />
@@ -37,7 +35,6 @@ function RangeInput(props) {
 RangeInput.propTypes = {
   step: PropTypes.number,
   custom: PropTypes.bool,
-  hide: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   minValue: PropTypes.number.isRequired,

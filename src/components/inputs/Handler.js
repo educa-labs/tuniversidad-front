@@ -5,7 +5,7 @@ import 'rc-tooltip/assets/bootstrap.css';
 import numeral from '../../helpers/numeral';
 
 function Handler(props) {
-  const { value, dragging, custom, hide, index, ...restProps } = props;
+  const { value, dragging, custom, index, ...restProps } = props;
   let placement = 'bottom';
   if (custom) {
     if (index === 0) placement = 'bottom';
@@ -13,7 +13,7 @@ function Handler(props) {
   }
   return (
     <Tooltip
-      prefixCls={`rc-slider-tooltip${hide ? ' hide' : ''}`}
+      prefixCls="rc-slider-tooltip"
       overlay={custom ? `$${numeral(value)}` : value}
       visible
       placement={placement}
@@ -28,7 +28,6 @@ function Handler(props) {
 Handler.propTypes = {
   index: PropTypes.number.isRequired,
   value: PropTypes.number.isRequired,
-  hide: PropTypes.bool.isRequired,
 };
 
 export default Handler;

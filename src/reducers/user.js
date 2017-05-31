@@ -53,6 +53,7 @@ function user(state = initialState, action) {
       });
     case CLEAR_STATE:
       return Object.assign({}, state, {
+        currentUser: null,
         error: {},
         requesting: false,
       });

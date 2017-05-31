@@ -2,39 +2,34 @@ import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import is from 'is_js';
-import { getCareers } from '../helpers/api';
 import Banner from '../components/Banner';
-import UniversityCard from '../components/UniversityCard';
 import CareerCard from '../components/CareerCard';
-// import Questions from './Questions';
 import { fetch } from '../actions/fetch';
-import '../styles/University.css';
 
-
-class University extends Component {
-
+class Career extends Component {
   componentWillMount() {
     const { params, token } = this.props;
-    this.props.fetch('university', params.id, token);
+    this.props.fetch('career', params.id, token);
     this.setState({
       src: '',
       slideIndex: 0,
-      careers: null,
     });
     this.handleSlideChange = this.handleSlideChange.bind(this);
-    getCareers(this.props.params.id, this.props.token)
-      .then(res => this.setState({ careers: res.body }))
-      .catch(err => this.setState({ careers: err.body }));
+    this.handleSubtitleClick = this.handleSubtitleClick.bind(this);
   }
 
   handleSlideChange(value) {
     this.setState({ slideIndex: value });
   }
 
+  handleSubtitleClick() {
+    this.context.router.push(`site/university/${this.props.career.university_id}`);
+  }
+
   render() {
-    const { careers, slideIndex } = this.state;
-    const { university } = this.props;
-    if (is.any.null(university, careers)) {
+    const { slideIndex } = this.state;
+    const { career } = this.props;
+    if (is.any.null(career)) {
       return (
         <div>
           Cargando ...
@@ -42,11 +37,16 @@ class University extends Component {
       );
     }
     return (
-      <div className="site__children">
-        <Banner location="site" title={university.title} />
+      <div className="university">
+        <Banner location="site" title={career.title} />
         <div className="university-cover">
-          <div className="university-cover__title">{university.title}</div>
-          <div className="university-cover__subtitle">{university.motto}</div>
+          <div className="university-cover__title">{career.title}</div>
+          <div
+            className="university-cover__subtitle"
+            onClick={this.handleSubtitleClick}
+          >
+            {career.university_name}
+          </div>
         </div>
         <div className="tabs-container">
           <Tabs
@@ -55,14 +55,14 @@ class University extends Component {
             className="tabs"
           >
             <Tab label="Información general" value={0} />
-            <Tab label="Carreras" value={1} />
+            <Tab label="Malla" value={1} />
             <Tab label="Preguntas y respuestas" value={2} />
           </Tabs >
         </div>
         <div className="university-children">
-          {slideIndex === 0 ? <UniversityCard university={university} detail /> : null }
-          {slideIndex === 1 ? this.state.careers.map(car => <CareerCard career={car} key={car.id} />) : null}
-          {slideIndex === 2 ? <div>Preguntas</div> : null } 
+          {slideIndex === 0 ? <CareerCard career={career} detail /> : null }
+          {slideIndex === 1 ? <div>Malla</div> : null}
+          {slideIndex === 2 ? <div>Preguntas</div> : null}
         </div>
       </div>
     );
@@ -72,17 +72,21 @@ class University extends Component {
 function mapStateToProps(state) {
   return {
     token: state.user.currentUser.auth_token,
-    university: state.fetch.university,
+    career: state.fetch.career,
   };
 }
 
-University.propTypes = {
+Career.propTypes = {
   fetch: PropTypes.func.isRequired,
   token: PropTypes.string.isRequired,
   params: PropTypes.object,
-  university: PropTypes.object,
+  career: PropTypes.object,
+};
+
+Career.contextTypes = {
+  router: PropTypes.object,
 };
 
 export default connect(mapStateToProps, {
   fetch,
-})(University);
+})(Career);

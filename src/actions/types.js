@@ -3,8 +3,11 @@ export const SHOW_LOGIN = 'SHOW_LOGIN';
 export const SET_ACTIVE_FILTER = 'SET_ACTIVE_FILTER';
 export const CHANGE_FILTER_VALUE = 'CHANGE_FILTER_VALUE';
 
-export const ADD_FAVORITE = 'ADD_FAVORITE';
-export const REMOVE_FAVORITE = 'REMOVE_FAVORITE';
+export const GOAL_REQUEST = 'GOAL_REQUEST';
+export const GOAL_FAILURE = 'GOAL_FAILURE';
+export const ADD_GOAL = 'ADD_GOAL';
+export const REMOVE_GOAL = 'REMOVE_GOAL';
+export const GET_GOALS = 'GET_GOALS';
 
 export const ADD_COMPARE = 'ADD_COMPARE';
 export const REMOVE_COMPARE = 'REMOVE_COMPARE';

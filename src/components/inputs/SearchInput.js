@@ -1,25 +1,30 @@
 import React, { PropTypes } from 'react';
 import Search from 'material-ui/svg-icons/action/search';
 import IconButton from 'material-ui/IconButton';
-import FilterList from 'material-ui/svg-icons/content/filter-list';
+import RaisedButton from 'material-ui/RaisedButton';
 import '../../styles/SearchInput.css';
 
 
-function SearchInput({ value, handleOnChange, handleSubmit, onFilterClick, active }) {
+function SearchInput({ value, handleOnChange, handleSubmit, active }) {
   return (
-    <div className="input-container">
+    <div className="search-input">
       <form onSubmit={handleSubmit}>
         <IconButton type="submit"><Search color="#C9C9C9" /></IconButton>
         <input
           type="text"
           value={value}
           onChange={e => handleOnChange(e.target.value)}
-          placeholder={active === 'university' ? 'Busca una Universidad' : 'Busca una carrera'}
+          placeholder={active === 'university' ? 'Busca una universidad' : 'Busca una carrera'}
         />
-        <IconButton type="button" onTouchTap={onFilterClick}>
-          <FilterList color="#C9C9C9" />
-        </IconButton>
       </form>
+      <RaisedButton
+        label="buscar"
+        secondary
+        style={{
+          margin: '0 10px',
+        }}
+        onTouchTap={handleSubmit}
+      />
     </div>
   );
 }

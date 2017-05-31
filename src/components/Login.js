@@ -32,7 +32,7 @@ class Login extends Component {
       if (is.not.null(nextProps.user)) {
         saveUser(nextProps.user);
         this.props.toggleShowLogin();
-        this.context.router.push('/site');
+        this.context.router.push('/site/profile');
       }
     }
   }

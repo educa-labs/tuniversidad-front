@@ -1,20 +1,15 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import is from 'is_js';
-import Request from 'superagent';
 import capitalize from '../helpers/capitalize';
 import SelectInput from './inputs/SelectInput';
 import RangeInput from './inputs/RangeInput';
+import { getCities } from '../helpers/api';
 import '../styles/Fields.css';
 
-const ciudades = [
-  { value: 0, label: 'Todo' },
-  { value: 1, label: 'Santiago' },
-  { value: 2, label: 'La Serena' },
-];
-
 const yesNo = [
-  { value: 0, label: 'No' },
-  { value: 1, label: 'Sí' },
+  { value: false, label: 'No' },
+  { value: true, label: 'Sí' },
 ];
 
 class Fields extends Component {
@@ -22,7 +17,15 @@ class Fields extends Component {
     this.setState({
       cities: [],
     });
+    this.handleRegionChange = this.handleRegionChange.bind(this);
   }
+
+  handleRegionChange(id) {
+    getCities(id, this.props.token)
+      .then(res => this.setState({ cities: res.body }))
+      .catch(() => this.setState({ cities: [] }));
+  }
+
   render() {
     const { props } = this;
     if (!is.all.existy(props.fields.regions, props.fields.types, props.fields.schedules, props.fields.areas)) {
@@ -35,71 +38,91 @@ class Fields extends Component {
     const regions = props.fields.regions.map((reg) => {
       return { value: reg.id, label: reg.title };
     });
+    const cities = this.state.cities.map((city) => {
+      return { label: city.title, value: city.id };
+    });
     const types = props.fields.types.map((type) => {
-      return { value: type, label: capitalize(type) };
+      return { value: type.id, label: capitalize(type.title) };
+    });
+    const areas = props.fields.areas.map((area) => {
+      return { value: area.id, label: capitalize(area.title) };
     });
     const schedules = props.fields.schedules.map((sch) => {
       return { value: sch, label: capitalize(sch) };
     });
-    const areas = props.fields.areas.map((area) => {
-      return { value: area, label: capitalize(area) };
-    });
     if (props.type === 0) {
       return (
-        <div className={`fields-container ${props.hide ? 'hide' : ''}`}>
+        <div className="fields-container">
           <SelectInput
             title="Region"
             items={regions}
             value={props.values.region}
-            handleChange={region => props.changeFilterValue('region_id', region)}
+            handleChange={(region) => {
+              props.changeFilterValue('region_id', region);
+              this.handleRegionChange(region);
+            }}
+            fullWidth
+            maxHeight={150}
           />
           <SelectInput
             title="Ciudad"
-            items={ciudades}
+            items={cities}
             value={props.values.cities}
-            handleChange={id => props.changeFilterValue('city_id', id)}
+            handleChange={id => props.changeFilterValue('cities', id)}
+            fullWidth
           />
           <SelectInput
             title="Tipo de Universidad"
             items={types}
             value={props.values.university_type}
             handleChange={type => props.changeFilterValue('university_type', type)}
+            fullWidth
           />
           <SelectInput
             title="Gratuidad"
             items={yesNo}
             value={props.values.freeness}
             handleChange={freeness => props.changeFilterValue('freeness', freeness)}
+            fullWidth
           />
         </div>
       );
     }
 
     return (
-      <div className={`fields-container ${props.hide ? 'hide' : ''}`}>
+      <div className="fields-container">
         <SelectInput
           title="Region"
           items={regions}
           value={props.values.region}
-          handleChange={region => props.changeFilterValue('region', region)}
+          fullWidth
+          handleChange={(region) => {
+            props.changeFilterValue('region_id', region);
+            this.handleRegionChange(region);
+          }}
+          maxHeight={150}
         />
         <SelectInput
           title="Ciudad"
-          items={ciudades}
+          items={cities}
+          multiple
           value={props.values.cities}
-          handleChange={city => props.changeFilterValue('city_id', city)}
+          handleChange={city => props.changeFilterValue('cities', city)}
+          fullWidth
         />
         <SelectInput
           title="Area"
           items={areas}
           value={props.values.area}
           handleChange={area => props.changeFilterValue('area', area)}
+          fullWidth
         />
         <SelectInput
           title="Horario"
           items={schedules}
           value={props.values.schedule}
           handleChange={schedule => props.changeFilterValue('schedule', schedule)}
+          fullWidth
         />
         <RangeInput
           title="Duración (semestres)"
@@ -133,10 +156,16 @@ class Fields extends Component {
 Fields.propTypes = {
   values: PropTypes.object,
   changeFilterValue: PropTypes.func.isRequired,
-  hide: PropTypes.bool.isRequired,
   type: PropTypes.number.isRequired,
   fields: PropTypes.object,
+  token: PropTypes.string.isRequired,
 };
 
+function mapStateToProps(state) {
+  return {
+    token: state.user.currentUser.auth_token,
+  };
+}
 
-export default Fields;
+
+export default connect(mapStateToProps)(Fields);

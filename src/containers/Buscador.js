@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import is from 'is_js';
 import FiltersDrawer from './FiltersDrawer';
 import SearchInput from '../components/inputs/SearchInput';
-import Banner from '../components/Banner';
 import { search } from '../actions/search';
 import { fetch } from '../actions/fetch';
 import UniversityCard from '../components/UniversityCard';
@@ -71,8 +70,7 @@ class Buscador extends Component {
     }
     
     return (
-      <div className="buscador-container">
-        <Banner location="site" />
+      <div className="site__children">
         <SearchInput
           value={this.state.input}
           handleOnChange={value => this.setState({ input: value })}
@@ -80,11 +78,15 @@ class Buscador extends Component {
           handleSubmit={this.handleSubmit}
           active={active}
         />
-        <FiltersDrawer
-          open={this.state.showFilters}
-          toggleFilters={this.toggleFilters}
-        />
-        {afterSearch || beforeSearch}
+        <div className="search-content">
+          <FiltersDrawer
+            open={this.state.showFilters}
+            toggleFilters={this.toggleFilters}
+          />
+          <div className="search-results">
+            {afterSearch || beforeSearch}
+          </div>
+        </div>
       </div>
     );
   }
@@ -108,7 +110,7 @@ function mapStateToProps(state) {
     requesting: state.search.requesting || state.fetch.requesting,
     university_filters: {
       cities: state.filter.cities,
-      finance_type: state.filter.university_type,
+      university_type_id: state.filter.university_type,
       freeness: state.filter.freeness,
     },
     career_filters: {

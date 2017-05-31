@@ -1,17 +1,24 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
+import { connect } from 'react-redux';
 import SideMenu from './SideMenu';
+import { getGoals } from '../actions/goals';
 import '../styles/Site.css';
 
 
-function Site(props) {
-  return (
-    <div className="site">
-      <SideMenu />
-      <div className="site__children">
-        {props.children}
+class Site extends Component {
+  componentDidMount() {
+    console.log(this.props.requesting);
+    this.props.getGoals(this.props.token);
+  }
+
+  render() {
+    return (
+      <div className="site">
+        <SideMenu />
+        {this.props.children}
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 Site.defaultProps = {
@@ -20,6 +27,17 @@ Site.defaultProps = {
 
 Site.propTypes = {
   children: PropTypes.node,
+  getGoals: PropTypes.func.isRequired,
+  token: PropTypes.string.isRequired,
 };
 
-export default Site;
+function mapStateToProps(state) {
+  return {
+    token: state.user.currentUser.auth_token,
+    requesting: state.goals.requesting,
+  };
+}
+
+export default connect(mapStateToProps, {
+  getGoals,
+})(Site);
