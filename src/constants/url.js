@@ -1,1 +1,1 @@
-export default 'http://api.tuniversidad.cl';
+export default 'https://api.tuniversidad.cl';
