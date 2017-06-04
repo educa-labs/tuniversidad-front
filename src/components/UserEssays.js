@@ -3,6 +3,7 @@ import AddIcon from 'material-ui/svg-icons/content/add';
 import IconButton from 'material-ui/IconButton';
 import Divider from 'material-ui/Divider';
 import UserTestForm from './UserTestForm';
+import Essay from './Essay';
 
 const tests = [
   {
@@ -55,14 +56,14 @@ function renderTest(goal, index) {
   );
 }
 
-class UserTest extends Component {
+class UserEssays extends Component {
   componentWillMount() {
-    this.setState({ editMode: false });
-    this.closeModal = this.closeModal.bind(this);
+    this.setState({ active: null });
+    this.handleSubjectClick = this.handleSubjectClick.bind(this);
   }
 
-  closeModal() {
-    this.setState({ editMode: false });
+  handleSubjectClick(value) {
+    this.setState({ active: value });
   }
 
   render() {
@@ -71,19 +72,30 @@ class UserTest extends Component {
         <UserTestForm open={this.state.editMode} handleClose={this.closeModal} />
         <div className="general-card__header">
           <div className="general-card__title">Mis Ensayos</div>
-          <div className="general-card__edit-button">
-            <IconButton
-              tooltip="Agrega un ensayo"
-              onTouchTap={() => this.setState({ editMode: true })}
-            >
-              <AddIcon color="#0091EA" />
-            </IconButton>
-          </div>
         </div>
-        {tests.map((test, index) => renderTest(test, index))}
+        <Essay
+          title="Lenguaje"
+          active={this.state.active === 1}
+          handleClick={() => this.handleSubjectClick(1)}
+        />
+        <Essay
+          title="Matemáticas"
+          active={this.state.active === 2}
+          handleClick={() => this.handleSubjectClick(2)}
+        />
+        <Essay
+          title="Ciencias Naturales"
+          active={this.state.active === 4}
+          handleClick={() => this.handleSubjectClick(4)}
+        />
+        <Essay
+          title="Historia"
+          active={this.state.active === 3}
+          handleClick={() => this.handleSubjectClick(3)}
+        />
       </div>
     );
   }
 }
 
-export default UserTest;
+export default UserEssays;

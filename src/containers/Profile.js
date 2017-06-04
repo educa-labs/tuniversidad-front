@@ -9,7 +9,7 @@ import '../styles/Profile.css';
 
 class Profile extends Component {
   componentWillMount() {
-    this.setState({ slideIndex: 0 });
+    this.setState({ slideIndex: 1 });
     this.handleSlideChange = this.handleSlideChange.bind(this);
     this.props.getUserObjectives(this.props.token);
   }

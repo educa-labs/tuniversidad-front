@@ -46,6 +46,7 @@
   font-size: small;
   color: #C9C9C9;
   margin: 3px 0;
+  font-weight: 100;
 }
 
 .general .value {
@@ -71,6 +72,7 @@
   flex: 1;
   font-size: large;
   color: #424242;
+  margin: 1rem 0;
 }
 
 .general-card__edit-button {
@@ -151,14 +153,57 @@
   margin: 5px 2rem;
 }
 
-.test {
-  padding: 0 1rem;
+.essay {
+  overflow: hidden;
 }
 
-.test__title {
-  font-size: medium;
-  margin: 10px 0;
+.essay__header {
+  display: flex;
+  align-items: center;
+  height: 48px;
 }
+
+.essay__header:hover {
+  background-color: #0091EA;
+  color: white;
+}
+
+.essay__header_active {
+  background-color: #0091EA;
+  color: white;
+}
+
+.essay__title {
+  flex: 1;
+  font-size: medium;
+  margin: 10px 1rem;
+}
+
+.essay__expand-button {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1;
+}
+.essay__body {
+  transition: 1s ease; 
+  overflow: hidden;
+  max-height: 0;
+  margin: 0 1rem;
+}
+
+.essay__body_active {
+  margin: 0 1rem;
+  max-height: 15rem;
+}
+.essay__score {
+  display: flex;
+  height: 3rem;
+  align-items: center;
+}
+
+.essay__score .score {
+}
+
 
 .test__item {
   display: flex;

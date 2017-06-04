@@ -1,7 +1,7 @@
 import React from 'react';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import UserTest from './UserTest';
+import UserEssays from './UserEssays';
 
 function PropfileProgress(props) {
   return (
@@ -11,7 +11,7 @@ function PropfileProgress(props) {
           Graficos
         </div>
         <div className="col col-2">
-          <UserTest />
+          <UserEssays />
         </div>
       </div>
       <div className="action-button">
