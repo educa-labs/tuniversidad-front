@@ -183,3 +183,15 @@
   width: 8rem;
   align-items: flex-end;
 }
+
+.progress {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.progress .action-button {
+  display: flex;
+  justify-content: flex-end;
+  height: 3rem;
+}

@@ -26,6 +26,35 @@ const tests = [
   },
 ];
 
+function renderTest(goal, index) {
+  return (
+    <div key={index}>
+      <div className="test" >
+        <div className="test__title">{goal.title}</div>
+        <div className="row">
+          <div className="test__item">
+            <div className="value">{goal.language}</div>
+            <div className="label">Lenguaje</div>
+          </div>
+          <div className="test__item">
+            <div className="value">{goal.math}</div>
+            <div className="label">Matemáticas</div>
+          </div>
+          <div className="test__item">
+            <div className="value">{goal.science || '--'}</div>
+            <div className="label">Ciencias</div>
+          </div>
+          <div className="test__item">
+            <div className="value">{goal.history || '--'}</div>
+            <div className="label">Histotria</div>
+          </div>
+        </div>
+      </div>
+      <Divider />
+    </div>
+  );
+}
+
 class UserTest extends Component {
   componentWillMount() {
     this.setState({ editMode: false });
@@ -34,35 +63,6 @@ class UserTest extends Component {
 
   closeModal() {
     this.setState({ editMode: false });
-  }
-
-  renderTest(goal, index) {
-    return (
-      <div key={index}>
-        <div className="test" >
-          <div className="test__title">{goal.title}</div>
-          <div className="row">
-            <div className="test__item">
-              <div className="value">{goal.language}</div>
-              <div className="label">Lenguaje</div>
-            </div>
-            <div className="test__item">
-              <div className="value">{goal.math}</div>
-              <div className="label">Matemáticas</div>
-            </div>
-            <div className="test__item">
-              <div className="value">{goal.science || '--'}</div>
-              <div className="label">Ciencias</div>
-            </div>
-            <div className="test__item">
-              <div className="value">{goal.history || '--'}</div>
-              <div className="label">Histotria</div>
-            </div>
-          </div>
-        </div>
-        <Divider />
-      </div>
-    );
   }
 
   render() {
@@ -80,7 +80,7 @@ class UserTest extends Component {
             </IconButton>
           </div>
         </div>
-        {tests.map((test, index) => this.renderTest(test, index))}
+        {tests.map((test, index) => renderTest(test, index))}
       </div>
     );
   }

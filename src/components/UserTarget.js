@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import IconButton from 'material-ui/IconButton';
 import EditIcon from 'material-ui/svg-icons/image/edit';
+import UserTargetForm from './UserTargetForm';
 
 const data = {
   language: 700,
@@ -11,11 +12,17 @@ const data = {
 class UserTarget extends Component {
   componentWillMount() {
     this.setState({ editMode: false });
+    this.closeModal = this.closeModal.bind(this);
+  }
+
+  closeModal() {
+    this.setState({ editMode: false });
   }
 
   render() {
     return (
       <div className="general-card">
+        <UserTargetForm open={this.state.editMode} handleClose={this.closeModal} />
         <div className="general-card__header">
           <div className="general-card__title">Mi Objetivo</div>
           <div className="general-card__edit-button">
