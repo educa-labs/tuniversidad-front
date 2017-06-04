@@ -1,7 +1,5 @@
 import React, { PropTypes } from 'react';
 import Divider from 'material-ui/Divider';
-import DropDown from 'material-ui/svg-icons/hardware/keyboard-arrow-down';
-import IconButton from 'material-ui/IconButton';
 
 
 const essays = [
@@ -32,11 +30,6 @@ function Essay(props) {
       <div className="essay">
         <div className={`essay__header ${props.active ? 'essay__header_active' : ''}`} onClick={props.handleClick}>
           <div className="essay__title">{props.title}</div>
-          {/*<div className="essay__expand-button">
-            <IconButton onTouchTap={props.handleClick}>
-              <DropDown color="#0091EA" />
-            </IconButton>
-          </div>*/}
         </div>
         <div className={`essay__body ${props.active ? 'essay__body_active' : ''}`}>
           {essays.map(essay => renderEssay(essay))}

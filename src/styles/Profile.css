@@ -100,6 +100,10 @@
   display: flex;
 }
 
+.general-card__chart {
+  display: flex;
+  justify-content: center;
+}
 
 .goal {
   margin-bottom: 20px;
@@ -200,10 +204,6 @@
   height: 3rem;
   align-items: center;
 }
-
-.essay__score .score {
-}
-
 
 .test__item {
   display: flex;
