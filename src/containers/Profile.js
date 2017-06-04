@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import { removeGoal } from '../actions/goals';
+import { getUserObjectives } from '../actions/user';
 import ProfileGeneral from '../components/ProfileGeneral';
 import ProfileProgress from '../components/ProfileProgress';
 import '../styles/Profile.css';
@@ -10,6 +11,7 @@ class Profile extends Component {
   componentWillMount() {
     this.setState({ slideIndex: 0 });
     this.handleSlideChange = this.handleSlideChange.bind(this);
+    this.props.getUserObjectives(this.props.token);
   }
 
   handleSlideChange(value) {
@@ -45,6 +47,7 @@ class Profile extends Component {
 function mapStateToProps(state) {
   return {
     user: state.user.currentUser,
+    objectives: state.user.objectives,
     goals: state.goals.goals,
     token: state.user.currentUser.auth_token,
   };
@@ -52,4 +55,5 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
   removeGoal,
+  getUserObjectives,
 })(Profile);

@@ -10,6 +10,9 @@ import {
   SIGN_USER_REQUEST,
   SIGN_USER_SUCCESS,
   SIGN_USER_FAILURE,
+  OBJECTIVES_FAILURE,
+  OBJECTIVES_REQUEST,
+  OBJECTIVES_SUCCESS,
   CLEAR_STATE,
 } from './types';
 
@@ -89,7 +92,6 @@ export function logUser(email, password) {
 }
 
 export function signUser(firstname, lastname, email, password) {
-  console.log(firstname, lastname, email, password);
   const request = Request.post(`${url}/users`)
     .set('Content-Type', 'application/json')
     .accept('application/tuniversidad.v1')
@@ -119,6 +121,34 @@ export function signUser(firstname, lastname, email, password) {
         dispatch({
           type: SIGN_USER_FAILURE,
           error: err.response.body.errors,
+        });
+      });
+  };
+}
+
+export function getUserObjectives(token) {
+  const request = Request.get(`${url}/objectives`)
+    .set('Content-Type', 'application/json')
+    .set('Authorization', token)
+    .accept('application/tuniversidad.v1')
+    .withCredentials();
+  return (dispatch) => {
+    dispatch({
+      type: OBJECTIVES_REQUEST,
+    });
+    return request
+      .then((res) => {
+        if (res.ok) {
+          dispatch({
+            type: OBJECTIVES_SUCCESS,
+            objectives: res.body,
+          });
+        }
+      })
+      .catch((err) => {
+        dispatch({
+          type: OBJECTIVES_FAILURE,
+          error: err.response.body,
         });
       });
   };

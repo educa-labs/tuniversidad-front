@@ -10,10 +10,14 @@ import {
   LOGOUT_USER_FAILURE,
   LOGOUT_USER_REQUEST,
   LOGOUT_USER_SUCCESS,
+  OBJECTIVES_REQUEST,
+  OBJECTIVES_SUCCESS,
+  OBJECTIVES_FAILURE,
 } from '../actions/types';
 
 const initialState = {
   currentUser: null,
+  objectives: null,
   requesting: false,
   error: {},
 };
@@ -23,12 +27,14 @@ function user(state = initialState, action) {
     case LOG_USER_REQUEST:
     case LOGOUT_USER_REQUEST:
     case SIGN_USER_REQUEST:
+    case OBJECTIVES_REQUEST:
       return Object.assign({}, state, {
         requesting: true,
       });
     case LOG_USER_FAILURE:
     case LOGOUT_USER_FAILURE:
     case SIGN_USER_FAILURE:
+    case OBJECTIVES_FAILURE:
       return Object.assign({}, state, {
         requesting: false,
         error: action.error,
@@ -51,11 +57,18 @@ function user(state = initialState, action) {
         requesting: false,
         error: {},
       });
+    case OBJECTIVES_SUCCESS:
+      return Object.assign({}, state, {
+        objectives: action.objectives,
+        requesting: false,
+        error: {},
+      });
     case CLEAR_STATE:
       return Object.assign({}, state, {
         currentUser: null,
         error: {},
         requesting: false,
+        objectives: null,
       });
     case SETUP_USER:
       return Object.assign({}, state, {
