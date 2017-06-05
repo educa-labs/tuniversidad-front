@@ -157,6 +157,11 @@
   margin: 5px 2rem;
 }
 
+/*
+  Ensayos
+*/
+
+
 .essay {
   overflow: hidden;
 }
@@ -192,17 +197,25 @@
   transition: 1s ease; 
   overflow: hidden;
   max-height: 0;
-  margin: 0 1rem;
 }
 
 .essay__body_active {
-  margin: 0 1rem;
   max-height: 15rem;
 }
 .essay__score {
   display: flex;
   height: 3rem;
   align-items: center;
+  padding: 0 1rem;
+}
+
+.essay__score:hover {
+  background-color: #C9C9C9;
+  color: white;
+}
+
+.essay__score:hover .label {
+  color: white;
 }
 
 .test__item {
@@ -236,7 +249,8 @@
 }
 
 .progress .action-button {
-  display: flex;
-  justify-content: flex-end;
-  height: 3rem;
+  float: right;
+  position: fixed;
+  top: 87%;
+  left: 92%;
 }

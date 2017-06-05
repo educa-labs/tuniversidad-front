@@ -3,6 +3,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import UserEssays from './UserEssays';
 import UserEssayChart from './UserEssayChart';
+import UserEssayForm from './UserEssayForm';
 
 const essays = [
   { title: 'Primer ensayo', score: 678, date: '17-05-2017' },
@@ -14,12 +15,16 @@ const essays = [
 
 class PropfileProgress extends Component {
   componentWillMount() {
-    this.setState({ active: 1 });
+    this.setState({
+      active: 1,
+      openModal: false,
+    });
   }
 
   render() {
     return (
       <div className="progress">
+        <UserEssayForm handleClose={() => this.setState({ openModal: !this.state.openModal })} open={this.state.openModal} />
         <div className="general">
           <div className="col col-3">
             <UserEssayChart data={essays} active={this.state.active} />
@@ -29,7 +34,7 @@ class PropfileProgress extends Component {
           </div>
         </div>
         <div className="action-button">
-          <FloatingActionButton secondary>
+          <FloatingActionButton secondary onTouchTap={() => this.setState({ openModal: true })}>
             <ContentAdd />
           </FloatingActionButton>
         </div>

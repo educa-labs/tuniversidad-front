@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
+import SelectInput from './inputs/SelectInput';
 
 const styles = {
   button: {
@@ -9,14 +10,19 @@ const styles = {
   },
 };
 
-class NewTestForm extends Component {
+const subjects = [
+  { value: 1, label: 'Lenguaje' },
+  { value: 2, label: 'Matemáticas' },
+  { value: 3, label: 'Historia' },
+  { value: 4, label: 'Ciencias Naturales' },
+];
+
+class UserEssayForm extends Component {
   componentWillMount() {
     this.setState({
       title: null,
-      language: null,
-      math: null,
-      science: null,
-      history: null,
+      score: null,
+      subject_id: null,
     });
   }
   render() {
@@ -44,7 +50,7 @@ class NewTestForm extends Component {
         onRequestClose={this.props.handleClose}
       >
         <div className="form__field">
-          <TextField
+          <SelectInput
             floatingLabelText="Título"
             hintText="Ej: Primer ensayo"
             floatingLabelFixed
@@ -54,33 +60,19 @@ class NewTestForm extends Component {
         </div>
         <div className="row">
           <div className="form__field">
-            <TextField
-              onChange={(e, val) => this.setState({ language: Number(val) })}
-              floatingLabelText="Lenguaje"
+            {/*<SelectInput
+              title="Asignatura"
+              items={subjects}
+              value={this.state.subject_id}
+              handleChange={subject_id => this.setState({ subject_id })}
               fullWidth
+            />*/}
+          </div>
+          <div className="form__field">
+            <TextField
+              onChange={(e, val) => this.setState({ score: Number(val) })}
+              floatingLabelText="Puntaje"
               type="number"
-            />
-          </div>
-          <div className="form__field">
-            <TextField
-              onChange={(e, val) => this.setState({ math: Number(val) })}
-              floatingLabelText="Matemáticas"
-              fullWidth
-            />
-          </div>
-        </div>
-        <div className="row">
-          <div className="form__field">
-            <TextField
-              onChange={(e, val) => this.setState({ science: Number(val) })}
-              floatingLabelText="Ciencias"
-              fullWidth
-            />
-          </div>
-          <div className="form__field">
-            <TextField
-              onChange={(e, val) => this.setState({ history: Number(val) })}
-              floatingLabelText="Historia"
               fullWidth
             />
           </div>
@@ -90,9 +82,9 @@ class NewTestForm extends Component {
   }
 }
 
-NewTestForm.propTypes = {
+UserEssayForm.propTypes = {
   handleClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
 };
 
-export default NewTestForm;
+export default UserEssayForm;

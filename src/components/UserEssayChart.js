@@ -1,5 +1,5 @@
 import React from 'react';
-import { LineChart, XAxis, YAxis, Tooltip, Line, ReferenceLine } from 'recharts';
+import { LineChart, XAxis, YAxis, Tooltip, Line, ReferenceLine, Legend } from 'recharts';
 
 function CustomizedLabel(props) {
   const { x, y, stroke, value } = props;
@@ -30,7 +30,7 @@ function UserEssayChart(props) {
           <YAxis domain={['dataMin - 100', 850]} padding={{ top:30, bottom: 30 }} />
           <Tooltip />
           <ReferenceLine y={600} stroke="#424242" strokeDasharray="3 3" label={<CustomizedLabel />} />
-          <Line type="basisOpen" dataKey="score" stroke="#0091EA" label={<CustomizedLabel />} dot={{ strokeWidth: 2 }} />
+          <Line name="Puntaje" type="basis" dataKey="score" stroke="#0091EA" label={<CustomizedLabel />} dot={{ strokeWidth: 2 }} />
         </LineChart>
       </div>
     </div>
