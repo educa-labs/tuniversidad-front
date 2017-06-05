@@ -10,13 +10,6 @@ const styles = {
   },
 };
 
-const subjects = [
-  { value: 1, label: 'Lenguaje' },
-  { value: 2, label: 'Matemáticas' },
-  { value: 3, label: 'Historia' },
-  { value: 4, label: 'Ciencias Naturales' },
-];
-
 class UserEssayForm extends Component {
   componentWillMount() {
     this.setState({
@@ -62,7 +55,7 @@ class UserEssayForm extends Component {
           <div className="form__field">
             <SelectInput
               title="Asignatura"
-              items={subjects}
+              items={this.props.subjects}
               value={this.state.subject_id}
               handleChange={subject_id => this.setState({ subject_id })}
             />

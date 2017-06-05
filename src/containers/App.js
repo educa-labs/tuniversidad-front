@@ -11,6 +11,7 @@ class App extends Component {
     if (is.null(this.props.areas)) this.props.fetch('areas', null, null);
     if (is.null(this.props.types)) this.props.fetch('types', null, null);
     if (is.null(this.props.schedules)) this.props.fetch('schedules', null, null);
+    if (is.null(this.props.subjects)) this.props.fetch('subjects', null, null);
     if (is.not.existy(user)) {
       this.context.router.replace('/');
     } else {
@@ -38,6 +39,7 @@ function mapStateToProps(state) {
     areas: state.fetch.areas,
     types: state.fetch.types,
     schedules: state.fetch.schedules,
+    subjects: state.fetch.subjects,
   };
 }
 

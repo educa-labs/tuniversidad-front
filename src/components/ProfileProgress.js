@@ -29,7 +29,7 @@ class PropfileProgress extends Component {
   render() {
     return (
       <div className="progress">
-        <UserEssayForm open={this.state.openModal} handleClose={this.closeModal} />
+        <UserEssayForm open={this.state.openModal} handleClose={this.closeModal} subjects={this.props.subjects} />
         <div className="general">
           <div className="col col-3">
             <UserEssayChart data={essays} active={this.state.active} />

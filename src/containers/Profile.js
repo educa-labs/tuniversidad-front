@@ -50,6 +50,7 @@ function mapStateToProps(state) {
     objectives: state.user.objectives,
     goals: state.goals.goals,
     token: state.user.currentUser.auth_token,
+    subjects: state.fetch.subjects,
   };
 }
 
