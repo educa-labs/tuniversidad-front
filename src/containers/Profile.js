@@ -11,7 +11,7 @@ class Profile extends Component {
   componentWillMount() {
     this.setState({ slideIndex: 1 });
     this.handleSlideChange = this.handleSlideChange.bind(this);
-    this.props.getUserObjectives(this.props.token);
+    if (this.props.objectives === null) this.props.getUserObjectives(this.props.token);
   }
 
   handleSlideChange(value) {

@@ -19,12 +19,17 @@ class PropfileProgress extends Component {
       active: 1,
       openModal: false,
     });
+    this.closeModal = this.closeModal.bind(this);
+  }
+
+  closeModal() {
+    this.setState({ openModal: false });
   }
 
   render() {
     return (
       <div className="progress">
-        <UserEssayForm handleClose={() => this.setState({ openModal: !this.state.openModal })} open={this.state.openModal} />
+        <UserEssayForm open={this.state.openModal} handleClose={this.closeModal} />
         <div className="general">
           <div className="col col-3">
             <UserEssayChart data={essays} active={this.state.active} />

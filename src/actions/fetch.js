@@ -15,6 +15,7 @@ export function fetch(key, id, token) {
   else if (key === 'types') path = `${url}/university_types`;
   else if (key === 'schedules') path = `${url}/schedules`;
   else if (key === 'regions') path = `${url}/regions`;
+  else if (key === 'subjects') path = `${url}/subjects`;
   else {
     console.error('Key error', key);
   }

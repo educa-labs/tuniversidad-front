@@ -11,9 +11,9 @@ const essays = [
 ];
 
 function Essay(props) {
-  function renderEssay(ess) {
+  function renderEssay(ess, index) {
     return (
-      <div className="essay__score">
+      <div className="essay__score" key={index}>
         <div className="col col-1">
           <div>{ess.title}</div>
           <div className="label">{ess.date}</div>
@@ -32,7 +32,7 @@ function Essay(props) {
           <div className="essay__title">{props.title}</div>
         </div>
         <div className={`essay__body ${props.active ? 'essay__body_active' : ''}`}>
-          {essays.map(essay => renderEssay(essay))}
+          {essays.map((essay, index) => renderEssay(essay, index))}
         </div>
       </div>
       <Divider />

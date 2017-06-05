@@ -30,7 +30,7 @@ class UserEssayForm extends Component {
       <FlatButton
         label="Cancelar"
         onTouchTap={this.props.handleClose}
-        labelColor="#0091EA"
+        style={styles.button}
         secondary
       />,
       <FlatButton
@@ -50,7 +50,7 @@ class UserEssayForm extends Component {
         onRequestClose={this.props.handleClose}
       >
         <div className="form__field">
-          <SelectInput
+          <TextField
             floatingLabelText="Título"
             hintText="Ej: Primer ensayo"
             floatingLabelFixed
@@ -60,13 +60,12 @@ class UserEssayForm extends Component {
         </div>
         <div className="row">
           <div className="form__field">
-            {/*<SelectInput
+            <SelectInput
               title="Asignatura"
               items={subjects}
               value={this.state.subject_id}
               handleChange={subject_id => this.setState({ subject_id })}
-              fullWidth
-            />*/}
+            />
           </div>
           <div className="form__field">
             <TextField
