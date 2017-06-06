@@ -27,6 +27,13 @@ export const OBJECTIVES_SUCCESS = 'OBJECTIVES_SUCCESS';
 export const OBJECTIVES_FAILURE = 'OBJECTIVES_FAULIRE';
 
 
+export const ESSAY_REQUEST = 'ESSAYS_REQUEST';
+export const ESSAY_FAILURE = 'ESSAYS_FAILURE';
+export const ADD_ESSAY = 'ADD_ESSAY';
+export const REMOVE_ESSAY = 'REMAOVE_ESSAY';
+export const GET_ESSAYS = 'GET_ESSAYS';
+
+
 export const CLEAR_STATE = 'CLEAR_STATE';
 
 export const FETCH_REQUEST = 'FETCH_REQUEST';
