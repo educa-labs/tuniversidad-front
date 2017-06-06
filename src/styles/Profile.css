@@ -88,6 +88,10 @@
   margin-bottom: 10px;
 }
 
+.general-card__empty-msg {
+  padding: 1rem 0;
+}
+
 .general-card__footer {
   display: flex;
   padding: 0 1rem;

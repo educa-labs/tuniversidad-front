@@ -5,13 +5,6 @@ import UserEssays from './UserEssays';
 import UserEssayChart from './UserEssayChart';
 import UserEssayForm from './UserEssayForm';
 
-const essays = [
-  { title: 'Primer ensayo', score: 678, date: '17-05-2017' },
-  { title: 'Primer ensayo preu', score: 578, date: '17-06-2017' },
-  { title: 'Segundo', score: 750, date: '12-07-2017' },
-  { title: 'Tercero ensayo', score: 678, date: '22-08-2017' },
-  { title: 'Jornada', score: 450, date: '19-09-2017' },
-];
 
 class PropfileProgress extends Component {
   componentWillMount() {

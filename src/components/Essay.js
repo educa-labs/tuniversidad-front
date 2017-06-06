@@ -1,16 +1,18 @@
 import React, { PropTypes } from 'react';
 import Divider from 'material-ui/Divider';
+import is from 'is_js';
 
-
-const essays = [
-  { title: 'Primer ensayo', score: 678, date: '17-05-2017' },
-  { title: 'Primer ensayo preu', score: 578, date: '17-06-2017' },
-  { title: 'Segundo', score: 750, date: '12-07-2017' },
-  { title: 'Tercero ensayo', score: 678, date: '22-08-2017' },
-  { title: 'Jornada', score: 450, date: '19-09-2017' },
-];
 
 function Essay(props) {
+  if (props.essays === null) {
+    return (
+      <div>
+        Cargando ...
+      </div>
+    );
+  }
+  console.log(props.essays);
+  console.log(is.empty(props.essays));
   function renderEssay(ess, index) {
     return (
       <div className="essay__score" key={index}>
@@ -25,6 +27,7 @@ function Essay(props) {
       </div>
     );
   }
+  const essays = props.essays.map((essay, index) => renderEssay(essay, index));
   return (
     <div>
       <div className="essay">
@@ -32,7 +35,11 @@ function Essay(props) {
           <div className="essay__title">{props.title}</div>
         </div>
         <div className={`essay__body ${props.active ? 'essay__body_active' : ''}`}>
-          {essays.map((essay, index) => renderEssay(essay, index))}
+          {is.empty(props.essays) ? (
+            <div>
+              No has agregado ensayos de {props.title}
+            </div>
+          ) : essays}
         </div>
       </div>
       <Divider />
