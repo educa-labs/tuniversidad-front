@@ -28,7 +28,9 @@ function essays(state = initialState, action) {
       });
     case ADD_ESSAY:
       return Object.assign({}, state, {
-        essays: [...state.essays, action.essay],
+        essays: Object.assign({}, state.essays, {
+          [action.id]: [...state.essays[action.id], action.essay],
+        }),
         requesting: false,
       });
     case REMOVE_ESSAY:

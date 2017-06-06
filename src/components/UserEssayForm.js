@@ -17,7 +17,16 @@ class UserEssayForm extends Component {
       score: null,
       subject_id: null,
     });
+    this.onSubmit = this.onSubmit.bind(this);
   }
+
+  onSubmit() {
+    const { token } = this.props;
+    const { title, score, subject_id } = this.state;
+    this.props.addEssay(token, title, subject_id, score);
+    this.props.handleClose();
+  }
+
   render() {
     const actions = [
       <FlatButton
@@ -27,8 +36,8 @@ class UserEssayForm extends Component {
         secondary
       />,
       <FlatButton
-        label="Agregar"
-        onTouchTap={this.props.handleClose}
+        label="OK"
+        onTouchTap={this.onSubmit}
         style={styles.button}
         secondary
       />,
@@ -48,7 +57,7 @@ class UserEssayForm extends Component {
             hintText="Ej: Primer ensayo"
             floatingLabelFixed
             fullWidth
-            onChange={(e, val) => this.setState({ title: Number(val) })}
+            onChange={(e, val) => this.setState({ title: val })}
           />
         </div>
         <div className="row">
@@ -77,6 +86,8 @@ class UserEssayForm extends Component {
 UserEssayForm.propTypes = {
   handleClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
+  addEssay: PropTypes.func.isRequired,
+  token: PropTypes.string.isRequired,
 };
 
 export default UserEssayForm;

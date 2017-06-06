@@ -38,3 +38,40 @@ export function getEssays(token, id) {
       });
   };
 }
+
+
+export function addEssay(token, title, subjectId, score) {
+  const request = Request.post(`${url}/essays`)
+    .set('Content-Type', 'application/json')
+    .set('Authorization', token)
+    .accept('application/tuniversidad.v1')
+    .withCredentials()
+    .send({
+      essay: {
+        subject_id: subjectId,
+        score,
+        title,
+      },
+    });
+  return (dispath) => {
+    dispath({
+      type: ESSAY_REQUEST,
+    });
+    return request
+      .then((res) => {
+        if (res.ok) {
+          dispath({
+            type: ADD_ESSAY,
+            essay: res.body,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        dispath({
+          type: ESSAY_FAILURE,
+          error: err.response.body,
+        });
+      });
+  };
+}
