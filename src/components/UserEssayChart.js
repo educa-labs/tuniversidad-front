@@ -1,4 +1,5 @@
 import React from 'react';
+import is from 'is_js';
 import { LineChart, XAxis, YAxis, Tooltip, Line, ReferenceLine, Legend } from 'recharts';
 
 function CustomizedLabel(props) {
@@ -19,13 +20,26 @@ const subjects = {
 };
 
 function UserEssayChart(props) {
+  if (is.null(props.subjects)) {
+    return (
+      <div>
+        Cargando ...
+      </div>
+    );
+  }
+  
+  const subjects = {};
+  props.subjects.forEach(sub => (
+    subjects[sub.id] = sub.title
+  ));
+
   return (
     <div className="general-card">
       <div className="general-card__header">
         <div className="general-card__title">Mi progreso en {subjects[props.active]}</div>
       </div>
       <div className="general-card__chart">
-        <LineChart width={600} height={300} data={props.data} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+        <LineChart width={600} height={300} data={props.essays[props.active].essays} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
           <XAxis dataKey="date" type="category" padding={{ left: 30, right: 30 }} />
           <YAxis domain={['dataMin - 100', 850]} padding={{ top:30, bottom: 30 }} />
           <Tooltip />

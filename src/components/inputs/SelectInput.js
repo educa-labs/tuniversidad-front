@@ -32,12 +32,6 @@ function SelectInput(props) {
 }
 
 SelectInput.propTypes = {
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
-      value: PropTypes.number.isRequired,
-      label: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
   value: PropTypes.number,
   handleChange: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,

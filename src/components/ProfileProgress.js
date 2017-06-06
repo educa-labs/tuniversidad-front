@@ -29,13 +29,27 @@ class PropfileProgress extends Component {
   render() {
     return (
       <div className="progress">
-        <UserEssayForm open={this.state.openModal} handleClose={this.closeModal} subjects={this.props.subjects} />
+        <UserEssayForm
+          open={this.state.openModal}
+          handleClose={this.closeModal}
+          subjects={this.props.subjects}
+          token={this.props.token}
+          addEssay={this.props.addEssay}
+        />
         <div className="general">
           <div className="col col-3">
-            <UserEssayChart data={essays} active={this.state.active} />
+            <UserEssayChart
+              essays={this.props.essays}
+              subjects={this.props.subjects}
+              active={this.state.active}
+            />
           </div>
           <div className="col col-2">
-            <UserEssays active={this.state.active} handleSubjectClick={active => this.setState({ active })} />
+            <UserEssays
+              active={this.state.active}
+              handleSubjectClick={active => this.setState({ active })}
+              essays={this.props.essays}
+            />
           </div>
         </div>
         <div className="action-button">
