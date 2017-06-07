@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
+import is from 'is_js';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import UserEssays from './UserEssays';
 import UserEssayChart from './UserEssayChart';
@@ -7,19 +8,38 @@ import UserEssayForm from './UserEssayForm';
 
 
 class PropfileProgress extends Component {
-  componentWillMount() {
-    this.setState({
+  constructor(props) {
+    super(props);
+    this.state = {
       active: 1,
       openModal: false,
-    });
+    };
+  }
+
+  componentDidMount() {
+    for (let i = 1; i < 5; i += 1) {
+      if (is.null(this.props.essays[i])) this.props.getEssays(this.props.token, i);
+    }
     this.closeModal = this.closeModal.bind(this);
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (is.not.null(nextProps.essays.shouldFetch)) {
+      if (nextProps.essays.shouldFetch !== this.props.essays.shouldFetch) {
+        this.props.getEssays(nextProps.token, nextProps.essays.shouldFetch);
+      }
+    }
+  }
+
 
   closeModal() {
     this.setState({ openModal: false });
   }
 
   render() {
+    for (let i = 1; i < 5; i += 1) {
+      if (is.null(this.props.essays[i])) return <div>Cargando ... </div>;
+    }
     return (
       <div className="progress">
         <UserEssayForm

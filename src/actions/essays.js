@@ -61,7 +61,6 @@ export function addEssay(token, title, subjectId, score) {
         if (res.ok) {
           dispatch({
             type: ADD_ESSAY,
-            essay: res.body,
             id: subjectId,
           });
         }

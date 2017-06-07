@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import is from 'is_js';
 import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import { removeGoal } from '../actions/goals';
@@ -19,10 +18,6 @@ class Profile extends Component {
   componentDidMount() {
     this.handleSlideChange = this.handleSlideChange.bind(this);
     if (this.props.objectives === null) this.props.getUserObjectives(this.props.token);
-    if (is.null(this.props.essays[1])) this.props.getEssays(this.props.token, 1);
-    if (is.null(this.props.essays[2])) this.props.getEssays(this.props.token, 2);
-    if (is.null(this.props.essays[3])) this.props.getEssays(this.props.token, 3);
-    if (is.null(this.props.essays[4])) this.props.getEssays(this.props.token, 4);
   }
 
   handleSlideChange(value) {
@@ -69,6 +64,7 @@ function mapStateToProps(state) {
       2: state.essays[2],
       3: state.essays[3],
       4: state.essays[4],
+      shouldFetch: state.essays.shouldFetch,
     },
     goals: state.goals.goals,
     subjects: state.fetch.subjects,

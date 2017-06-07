@@ -4,6 +4,7 @@ import {
   ADD_ESSAY,
   REMOVE_ESSAY,
   GET_ESSAYS,
+  ESSAY_FAILURE,
 } from '../actions/types';
 
 const initialState = {
@@ -11,6 +12,7 @@ const initialState = {
   2: null,
   3: null,
   4: null,
+  shouldFetch: null,
   requesting: false,
   error: {},
 };
@@ -21,16 +23,18 @@ function essays(state = initialState, action) {
       return Object.assign({}, state, {
         requesting: true,
       });
+    case ESSAY_FAILURE:
+      return Object.assign({}, state, {
+        requesting: false,
+      });
     case GET_ESSAYS:
       return Object.assign({}, state, {
         [action.id]: action.essays,
         requesting: false,
       });
     case ADD_ESSAY:
-    console.log(action)
-    console.log(state)
       return Object.assign({}, state, {
-        [action.id]: Object.assign({}, state[action.id])
+        shouldFetch: action.id,
         requesting: false,
       });
 
