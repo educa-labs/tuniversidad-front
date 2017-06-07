@@ -7,10 +7,6 @@ function CustomizedLabel(props) {
   return <text x={x} y={y} dy={-8} fill={stroke} fontSize={10} textAnchor="middle">{value}</text>;
 }
 
-function CustomizedReferenceLabel(props) {
-  const { x, y, stroke, value } = props;
-  return <text x={x} y={y} dy={-8} fill={stroke} fontSize={10} textAnchor="middle">{value}</text>;
-}
 
 function UserEssayChart(props) {
   if (is.null(props.subjects)) {
@@ -25,7 +21,10 @@ function UserEssayChart(props) {
   props.subjects.forEach(sub => (
     subjects[sub.id] = sub.title
   ));
+
   const data = props.essays[props.active].essays;
+
+
   const chart = (
     <LineChart width={600} height={300} data={data} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
       <XAxis dataKey="date" type="category" padding={{ left: 30, right: 30 }} />

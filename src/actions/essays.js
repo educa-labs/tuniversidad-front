@@ -30,10 +30,9 @@ export function getEssays(token, id) {
           });
         }
       })
-      .catch((err) => {
+      .catch(() => {
         dispatch({
           type: ESSAY_FAILURE,
-          error: err.response.body,
         });
       });
   };
@@ -59,15 +58,12 @@ export function addEssay(token, title, subjectId, score) {
     });
     return request
       .then((res) => {
-        console.log(res);
         if (res.ok) {
-          console.log('La request fue buena', ADD_ESSAY);
           dispatch({
             type: ADD_ESSAY,
             essay: res.body,
             id: subjectId,
           });
-          console.log('esto está abajo', ADD_ESSAY);
         }
       })
       .catch(() => dispatch({ type: ESSAY_FAILURE }));

@@ -7,7 +7,10 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  essays: null,
+  1: null,
+  2: null,
+  3: null,
+  4: null,
   requesting: false,
   error: {},
 };
@@ -20,22 +23,20 @@ function essays(state = initialState, action) {
       });
     case GET_ESSAYS:
       return Object.assign({}, state, {
-        essays: Object.assign({}, state.essays, {
-          [action.id]: action.essays,
-        }),
+        [action.id]: action.essays,
         requesting: false,
-        error: {},
       });
     case ADD_ESSAY:
-      console.log(action);
+    console.log(action)
+    console.log(state)
       return Object.assign({}, state, {
-        essay: Object.assign({}, state.essays, {
-          [action.id]: [...state.essays[action.id].essays, action.essay],
-        }),
+        [action.id]: Object.assign({}, state[action.id])
+        requesting: false,
       });
+
     case REMOVE_ESSAY:
       return Object.assign({}, state, {
-        essay: _.filter(state.essays, ess => ess.id !== action.id),
+        [action.id]: _.filter(state[action.id], ess => ess.id !== action.essay_id),
         requesting: false,
       });
     default: return state;
