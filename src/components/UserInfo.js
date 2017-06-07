@@ -18,7 +18,12 @@ class UserInfo extends Component {
     const { user } = this.props;
     return (
       <div className="general-card">
-        <UserInfoForm user={user} open={this.state.editMode} handleClose={this.closeModal} />
+        <UserInfoForm
+          user={user}
+          open={this.state.editMode}
+          handleClose={this.closeModal}
+          updateUserInfo={fields => this.props.updateUserInfo(this.props.user.id, this.props.token, fields)}
+        />
         <div className="general-card__header">
           <div className="general-card__title">Información General</div>
           <div className="general-card__edit-button">

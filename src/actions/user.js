@@ -13,6 +13,9 @@ import {
   OBJECTIVES_FAILURE,
   OBJECTIVES_REQUEST,
   OBJECTIVES_SUCCESS,
+  UPDATE_USER_FAILURE,
+  UPDATE_USER_REQUEST,
+  UPDATE_USER_SUCCESS,
   CLEAR_STATE,
 } from './types';
 
@@ -126,6 +129,35 @@ export function signUser(firstname, lastname, email, password) {
   };
 }
 
+export function updateUserInfo(id, token, fields) {
+  const request = Request.put(`${url}/users/${id}`)
+    .set('Content-Type', 'application/json')
+    .set('Authorization', token)
+    .accept('application/tuniversidad.v1')
+    .withCredentials()
+    .send(fields);
+  return (dispatch) => {
+    dispatch({
+      type: UPDATE_USER_REQUEST,
+    });
+    return request
+      .then((res) => {
+        if (res.ok) {
+          dispatch({
+            type: UPDATE_USER_SUCCESS,
+            user: res.body,
+          });
+        }
+      })
+      .catch((err) => {
+        dispatch({
+          type: UPDATE_USER_FAILURE,
+          error: err.response.body.errors,
+        });
+      });
+  };
+}
+
 export function getUserObjectives(token) {
   const request = Request.get(`${url}/objectives`)
     .set('Content-Type', 'application/json')
@@ -146,5 +178,46 @@ export function getUserObjectives(token) {
         }
       })
       .catch(() => dispatch({ type: OBJECTIVES_FAILURE }));
+  };
+}
+
+
+export function updateUserObjectives(token, language, math, history, science) {
+
+  const values = [language, math, history, science].map((score, index) => {
+    return {
+      objective: {
+        score,
+        subject_id: index + 1,
+      },
+    };
+  });
+
+  const request = Request.post(`${url}/objectives`)
+    .set('Content-Type', 'application/json')
+    .set('Authorization', token)
+    .send(values)
+    .accept('application/tuniversidad.v1')
+    .withCredentials();
+
+  return (dispatch) => {
+    dispatch({
+      type: OBJECTIVES_REQUEST,
+    });
+    return request
+      .then((res) => {
+        if (res.ok) {
+          dispatch({
+            type: OBJECTIVES_SUCCESS,
+            goals: res.body,
+          });
+        }
+      })
+      .catch((err) => {
+        dispatch({
+          type: OBJECTIVES_FAILURE,
+          error: err.response.body,
+        });
+      });
   };
 }

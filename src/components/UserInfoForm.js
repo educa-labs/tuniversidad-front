@@ -11,8 +11,9 @@ const styles = {
 };
 
 class UserInfoForm extends Component {
-  componentWillMount() {
-    this.setState({
+  constructor(props) {
+    super(props);
+    this.state = {
       first_name: this.props.user.first_name,
       last_name: this.props.user.last_name,
       birth_date: this.props.user.birth_date,
@@ -20,7 +21,13 @@ class UserInfoForm extends Component {
       phone: this.props.user.phone,
       nem: this.props.user.nem,
       ranking: this.props.user.ranking,
-    });
+    };
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onSubmit() {
+    this.props.updateUserInfo(this.state);
+    this.props.handleClose();
   }
 
   render() {
@@ -28,12 +35,11 @@ class UserInfoForm extends Component {
       <FlatButton
         label="Cancelar"
         onTouchTap={this.props.handleClose}
-        labelColor="#0091EA"
         secondary
       />,
       <FlatButton
         label="Ok"
-        onTouchTap={this.props.handleClose}
+        onTouchTap={this.onSubmit}
         style={styles.button}
         secondary
       />,

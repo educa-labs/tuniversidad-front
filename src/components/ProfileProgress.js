@@ -24,6 +24,12 @@ class PropfileProgress extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    if (this.props.essays.requesting) {
+      if (!nextProps.essays.requesting && this.state.openModal) {
+        this.closeModal();
+      }
+    }
+
     if (is.not.null(nextProps.essays.shouldFetch)) {
       if (nextProps.essays.shouldFetch !== this.props.essays.shouldFetch) {
         this.props.getEssays(nextProps.token, nextProps.essays.shouldFetch);
@@ -47,7 +53,7 @@ class PropfileProgress extends Component {
           handleClose={this.closeModal}
           subjects={this.props.subjects}
           token={this.props.token}
-          addEssay={this.props.addEssay}
+          addEssay={(title, subjectId, score) => this.props.addEssay(this.props.token, title, subjectId, score)}
         />
         <div className="general">
           <div className="col col-3">

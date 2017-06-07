@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import { removeGoal } from '../actions/goals';
 import { getEssays, addEssay, removeEssay } from '../actions/essays';
-import { getUserObjectives } from '../actions/user';
+import { getUserObjectives, updateUserInfo } from '../actions/user';
 import ProfileGeneral from '../components/ProfileGeneral';
 import ProfileProgress from '../components/ProfileProgress';
 import '../styles/Profile.css';
@@ -65,6 +65,7 @@ function mapStateToProps(state) {
       3: state.essays[3],
       4: state.essays[4],
       shouldFetch: state.essays.shouldFetch,
+      requesting: state.essays.requesting,
     },
     goals: state.goals.goals,
     subjects: state.fetch.subjects,
@@ -77,4 +78,5 @@ export default connect(mapStateToProps, {
   getEssays,
   addEssay,
   removeEssay,
+  updateUserInfo,
 })(Profile);

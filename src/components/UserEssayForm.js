@@ -11,20 +11,19 @@ const styles = {
 };
 
 class UserEssayForm extends Component {
-  componentWillMount() {
-    this.setState({
+  constructor(props) {
+    super(props);
+    this.state = {
       title: null,
       score: null,
       subject_id: null,
-    });
+    };
     this.onSubmit = this.onSubmit.bind(this);
   }
 
   onSubmit() {
-    const { token } = this.props;
     const { title, score, subject_id } = this.state;
-    this.props.addEssay(token, title, subject_id, score);
-    this.props.handleClose();
+    this.props.addEssay(title, subject_id, score);
   }
 
   render() {
@@ -87,7 +86,6 @@ UserEssayForm.propTypes = {
   handleClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
   addEssay: PropTypes.func.isRequired,
-  token: PropTypes.string.isRequired,
 };
 
 export default UserEssayForm;

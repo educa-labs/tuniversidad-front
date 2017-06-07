@@ -1,6 +1,6 @@
 import React from 'react';
 import is from 'is_js';
-import { LineChart, XAxis, YAxis, Tooltip, Line, ReferenceLine, Legend } from 'recharts';
+import { LineChart, XAxis, YAxis, Tooltip, Line, ReferenceLine, Legend, CartesianGrid } from 'recharts';
 
 function CustomizedLabel(props) {
   const { x, y, stroke, value } = props;
@@ -31,8 +31,8 @@ function UserEssayChart(props) {
       <YAxis domain={['dataMin - 100', 850]} padding={{ top: 30, bottom: 30 }} />
       <Tooltip />
       <Legend />
+      <CartesianGrid strokeDasharray="3 3" />
       <ReferenceLine
-        name="Promedio"
         y={data.stats.expectation}
         stroke="#424242"
         strokeDasharray="3 3"
