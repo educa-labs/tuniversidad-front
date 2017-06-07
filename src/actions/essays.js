@@ -68,3 +68,27 @@ export function addEssay(token, title, subjectId, score) {
       .catch(() => dispatch({ type: ESSAY_FAILURE }));
   };
 }
+
+export function removeEssay(token, essayId, subjectId) {
+  const request = Request.delete(`${url}/essays/${essayId}`)
+    .set('Content-Type', 'application/json')
+    .set('Authorization', token)
+    .accept('application/tuniversidad.v1')
+    .withCredentials();
+
+  return (dispatch) => {
+    dispatch({
+      type: ESSAY_REQUEST,
+    });
+    return request
+      .then((res) => {
+        if (res.ok) {
+          dispatch({
+            type: REMOVE_ESSAY,
+            id: subjectId,
+          });
+        }
+      })
+      .catch(() => dispatch({ type: ESSAY_FAILURE }));
+  };
+}

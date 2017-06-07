@@ -21,24 +21,28 @@ function UserEssays(props) {
         active={props.active === 1}
         handleClick={() => props.handleSubjectClick(1)}
         essays={props.essays[props.active].essays}
+        removeEssay={props.removeEssay}
       />
       <Essay
         title="Matemáticas"
         active={props.active === 2}
         handleClick={() => props.handleSubjectClick(2)}
         essays={props.essays[props.active].essays}
+        removeEssay={props.removeEssay}
       />
       <Essay
         title="Ciencias Naturales"
         active={props.active === 4}
         handleClick={() => props.handleSubjectClick(4)}
         essays={props.essays[props.active].essays}
+        removeEssay={props.removeEssay}
       />
       <Essay
         title="Historia"
         active={props.active === 3}
         handleClick={() => props.handleSubjectClick(3)}
         essays={props.essays[props.active].essays}
+        removeEssay={props.removeEssay}
       />
     </div>
   );

@@ -62,6 +62,7 @@ class PropfileProgress extends Component {
               active={this.state.active}
               handleSubjectClick={active => this.setState({ active })}
               essays={this.props.essays}
+              removeEssay={(essayId, subjectId) => this.props.removeEssay(this.props.token, essayId, subjectId)}
             />
           </div>
         </div>

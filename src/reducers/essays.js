@@ -30,17 +30,13 @@ function essays(state = initialState, action) {
     case GET_ESSAYS:
       return Object.assign({}, state, {
         [action.id]: action.essays,
+        shouldFetch: null,
         requesting: false,
       });
     case ADD_ESSAY:
-      return Object.assign({}, state, {
-        shouldFetch: action.id,
-        requesting: false,
-      });
-
     case REMOVE_ESSAY:
       return Object.assign({}, state, {
-        [action.id]: _.filter(state[action.id], ess => ess.id !== action.essay_id),
+        shouldFetch: action.id,
         requesting: false,
       });
     default: return state;

@@ -174,6 +174,7 @@
   display: flex;
   align-items: center;
   height: 48px;
+  padding: 0 1rem;
 }
 
 .essay__header:hover {
@@ -189,7 +190,6 @@
 .essay__title {
   flex: 1;
   font-size: medium;
-  margin: 10px 1rem;
 }
 
 .essay__expand-button {
@@ -205,6 +205,7 @@
 
 .essay__body_active {
   max-height: 15rem;
+  overflow: scroll;
 }
 .essay__score {
   display: flex;
@@ -220,6 +221,10 @@
 
 .essay__score:hover .label {
   color: white;
+}
+
+.essay__delete-button {
+  flex: 0 0 48px;
 }
 
 .test__item {
