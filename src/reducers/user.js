@@ -13,6 +13,9 @@ import {
   OBJECTIVES_REQUEST,
   OBJECTIVES_SUCCESS,
   OBJECTIVES_FAILURE,
+  UPDATE_USER_FAILURE,
+  UPDATE_USER_REQUEST,
+  UPDATE_USER_SUCCESS,
 } from '../actions/types';
 
 const initialState = {
@@ -28,6 +31,7 @@ function user(state = initialState, action) {
     case LOGOUT_USER_REQUEST:
     case SIGN_USER_REQUEST:
     case OBJECTIVES_REQUEST:
+    case UPDATE_USER_REQUEST:
       return Object.assign({}, state, {
         requesting: true,
       });
@@ -35,6 +39,7 @@ function user(state = initialState, action) {
     case LOGOUT_USER_FAILURE:
     case SIGN_USER_FAILURE:
     case OBJECTIVES_FAILURE:
+    case UPDATE_USER_FAILURE:
       return Object.assign({}, state, {
         requesting: false,
         error: action.error,
@@ -51,6 +56,7 @@ function user(state = initialState, action) {
         requesting: false,
         error: {},
       });
+    case UPDATE_USER_SUCCESS:
     case SIGN_USER_SUCCESS:
       return Object.assign({}, state, {
         currentUser: action.user,

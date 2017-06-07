@@ -2,11 +2,13 @@ import React from 'react';
 import UserInfo from './UserInfo';
 import UserGoals from './UserGoals';
 import UserTarget from './UserTarget';
+import UserNemForm from './UserNemForm';
 
 
 function ProfileGeneral(props) {
   return (
     <div className="general">
+      <UserNemForm open={props.missingInfo} handleSubmit={props.updateUser} />
       <div className="col col-3">
         <UserGoals {...props} />
       </div>

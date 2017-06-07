@@ -4,6 +4,7 @@ import { Tabs, Tab } from 'material-ui/Tabs';
 import { removeGoal } from '../actions/goals';
 import { getEssays, addEssay, removeEssay } from '../actions/essays';
 import { getUserObjectives, updateUserInfo } from '../actions/user';
+import { saveUser } from '../helpers/storage';
 import ProfileGeneral from '../components/ProfileGeneral';
 import ProfileProgress from '../components/ProfileProgress';
 import '../styles/Profile.css';
@@ -15,13 +16,25 @@ class Profile extends Component {
       slideIndex: 0,
     };
     this.handleSlideChange = this.handleSlideChange.bind(this);
+    this.updateUser = this.updateUser.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.user !== nextProps.user) {
+      saveUser(nextProps.user);
+    }
   }
 
   handleSlideChange(value) {
     this.setState({ slideIndex: value });
   }
 
+  updateUser(fields) {
+    this.props.updateUserInfo(this.props.user.id, this.props.token, fields);
+  }
+
   render() {
+    const missingInfo = this.props.user.nem === null || this.props.user.ranking === null;
     const { slideIndex } = this.state;
     return (
       <div className="site__children">
@@ -37,7 +50,7 @@ class Profile extends Component {
           </Tabs >
         </div>
         <div className="profile-children">
-          {slideIndex === 0 ? <ProfileGeneral {...this.props} /> : null }
+          {slideIndex === 0 ? <ProfileGeneral {...this.props} missingInfo={missingInfo} updateUser={this.updateUser} /> : null }
           {slideIndex === 1 ? <ProfileProgress {...this.props} /> : null }
           {slideIndex === 2 ? <div>Recomnedaciones</div> : null }
         </div>
@@ -48,6 +61,7 @@ class Profile extends Component {
 
 Profile.propTypes = {
   getEssays: PropTypes.func.isRequired,
+  updateUserInfo: PropTypes.func.isRequired,
 };
 
 

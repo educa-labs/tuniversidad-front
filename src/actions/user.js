@@ -130,7 +130,7 @@ export function signUser(firstname, lastname, email, password) {
 }
 
 export function updateUserInfo(id, token, fields) {
-  const request = Request.putç(`${url}/users/${id}`)
+  const request = Request.put(`${url}/users/${id}`)
     .set('Content-Type', 'application/json')
     .set('Authorization', token)
     .accept('application/tuniversidad.v1')

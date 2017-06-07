@@ -23,7 +23,7 @@ class UserInfoForm extends Component {
       ranking: this.props.user.ranking,
       errors: {
         score: '',
-      }
+      },
     };
     this.onSubmit = this.onSubmit.bind(this);
     this.disabled = this.disabled.bind(this);
