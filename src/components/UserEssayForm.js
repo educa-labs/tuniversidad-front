@@ -14,16 +14,27 @@ class UserEssayForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: null,
-      score: null,
-      subject_id: null,
+      title: '',
+      score: '',
+      subject_id: '',
+      error: '',
     };
     this.onSubmit = this.onSubmit.bind(this);
+    this.disabled = this.disabled.bind(this);
   }
 
   onSubmit() {
     const { title, score, subject_id } = this.state;
-    this.props.addEssay(title, subject_id, score);
+    if (score <= 300 || score >= 850) {
+      this.setState({ error: 'Puntaje Inválido' });
+    } else {
+      this.props.addEssay(title, subject_id, score);
+    }
+  }
+
+  disabled() {
+    const { title, score, subject_id } = this.state;
+    return title === '' || score === '' || subject_id === '';
   }
 
   render() {
@@ -39,6 +50,7 @@ class UserEssayForm extends Component {
         onTouchTap={this.onSubmit}
         style={styles.button}
         secondary
+        disabled={this.disabled()}
       />,
     ];
     return (
@@ -74,6 +86,7 @@ class UserEssayForm extends Component {
               floatingLabelText="Puntaje"
               type="number"
               fullWidth
+              errorText={this.state.error}
             />
           </div>
         </div>
