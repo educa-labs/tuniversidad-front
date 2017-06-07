@@ -1,7 +1,7 @@
 import React from 'react';
 import UserInfo from './UserInfo';
 import UserGoals from './UserGoals';
-import UserTarget from './UserTarget';
+import UserObjectives from './UserObjectives';
 import UserNemForm from './UserNemForm';
 
 
@@ -17,7 +17,7 @@ function ProfileGeneral(props) {
       </div>
       <div className="col col-2">
         <UserInfo {...props} />
-        <UserTarget {...props} />
+        <UserObjectives {...props} />
       </div>
     </div>
   );

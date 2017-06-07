@@ -13,7 +13,7 @@ class UserGoals extends Component {
     this.state = {
       editMode: false,
     };
-    this.renderGoal = this.renderGoal.bind(this); 
+    this.renderGoal = this.renderGoal.bind(this);
   }
 
   renderGoal(goal) {
@@ -30,7 +30,7 @@ class UserGoals extends Component {
       obj: both ? Math.max(goal.scores.science.obj, goal.scores.history.obj) : source.obj,
     });
     return (
-      <div key={goal.id}>
+      <div key={goal.carreer.id}>
         <div className="goal">
           <div className="goal__header">
             <div className="goal__title">{`${goal.carreer.title} en ${goal.carreer.university_name}`}</div>

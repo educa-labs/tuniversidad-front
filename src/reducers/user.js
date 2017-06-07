@@ -10,9 +10,6 @@ import {
   LOGOUT_USER_FAILURE,
   LOGOUT_USER_REQUEST,
   LOGOUT_USER_SUCCESS,
-  OBJECTIVES_REQUEST,
-  OBJECTIVES_SUCCESS,
-  OBJECTIVES_FAILURE,
   UPDATE_USER_FAILURE,
   UPDATE_USER_REQUEST,
   UPDATE_USER_SUCCESS,
@@ -20,7 +17,6 @@ import {
 
 const initialState = {
   currentUser: null,
-  objectives: null,
   requesting: false,
   error: {},
 };
@@ -30,7 +26,6 @@ function user(state = initialState, action) {
     case LOG_USER_REQUEST:
     case LOGOUT_USER_REQUEST:
     case SIGN_USER_REQUEST:
-    case OBJECTIVES_REQUEST:
     case UPDATE_USER_REQUEST:
       return Object.assign({}, state, {
         requesting: true,
@@ -38,7 +33,6 @@ function user(state = initialState, action) {
     case LOG_USER_FAILURE:
     case LOGOUT_USER_FAILURE:
     case SIGN_USER_FAILURE:
-    case OBJECTIVES_FAILURE:
     case UPDATE_USER_FAILURE:
       return Object.assign({}, state, {
         requesting: false,
@@ -60,12 +54,6 @@ function user(state = initialState, action) {
     case SIGN_USER_SUCCESS:
       return Object.assign({}, state, {
         currentUser: action.user,
-        requesting: false,
-        error: {},
-      });
-    case OBJECTIVES_SUCCESS:
-      return Object.assign({}, state, {
-        objectives: action.objectives,
         requesting: false,
         error: {},
       });

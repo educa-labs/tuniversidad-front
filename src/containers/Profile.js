@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import { removeGoal } from '../actions/goals';
 import { getEssays, addEssay, removeEssay } from '../actions/essays';
-import { getUserObjectives, updateUserInfo } from '../actions/user';
+import { getUserObjectives, updateUserInfo } from '../actions/objectives';
 import { saveUser } from '../helpers/storage';
 import ProfileGeneral from '../components/ProfileGeneral';
 import ProfileProgress from '../components/ProfileProgress';
@@ -17,6 +17,10 @@ class Profile extends Component {
     };
     this.handleSlideChange = this.handleSlideChange.bind(this);
     this.updateUser = this.updateUser.bind(this);
+  }
+
+  componentDidMount() {
+    if (this.props.objectives === null) this.props.getUserObjectives(this.props.token);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -69,7 +73,7 @@ function mapStateToProps(state) {
   return {
     token: state.user.currentUser.auth_token,
     user: state.user.currentUser,
-    objectives: state.user.objectives,
+    objectives: state.objectives.objectives,
     essays: {
       1: state.essays[1],
       2: state.essays[2],

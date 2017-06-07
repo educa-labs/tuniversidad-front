@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import IconButton from 'material-ui/IconButton';
 import EditIcon from 'material-ui/svg-icons/image/edit';
-import UserTargetForm from './UserTargetForm';
+import UserObjectivesForm from './UserObjectivesForm';
 
 const data = {
   language: 700,
@@ -22,7 +22,7 @@ class UserTarget extends Component {
   render() {
     return (
       <div className="general-card">
-        <UserTargetForm open={this.state.editMode} handleClose={this.closeModal} />
+        <UserObjectivesForm open={this.state.editMode} handleClose={this.closeModal} />
         <div className="general-card__header">
           <div className="general-card__title">Mi Objetivo</div>
           <div className="general-card__edit-button">

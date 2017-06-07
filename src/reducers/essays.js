@@ -14,7 +14,6 @@ const initialState = {
   4: null,
   shouldFetch: null,
   requesting: false,
-  error: {},
 };
 
 function essays(state = initialState, action) {

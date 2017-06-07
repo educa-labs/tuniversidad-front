@@ -7,6 +7,7 @@ import compare from './compare';
 import fetch from './fetch';
 import search from './search';
 import essays from './essays';
+import objectives from './objectives';
 
 export default combineReducers({
   user,
@@ -17,4 +18,5 @@ export default combineReducers({
   fetch,
   search,
   essays,
+  objectives,
 });
