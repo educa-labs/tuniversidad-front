@@ -22,15 +22,21 @@ function UserEssayChart(props) {
     subjects[sub.id] = sub.title
   ));
 
-  const data = props.essays[props.active].essays;
+  const data = props.essays[props.active];
 
 
   const chart = (
-    <LineChart width={600} height={300} data={data} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+    <LineChart width={600} height={300} data={data.essays} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
       <XAxis dataKey="date" type="category" padding={{ left: 30, right: 30 }} />
       <YAxis domain={['dataMin - 100', 850]} padding={{ top: 30, bottom: 30 }} />
       <Tooltip />
-      <ReferenceLine y={600} stroke="#424242" strokeDasharray="3 3" label={<CustomizedLabel />} />
+      <Legend />
+      <ReferenceLine
+        name="Promedio"
+        y={data.stats.expectation}
+        stroke="#424242"
+        strokeDasharray="3 3"
+      />
       <Line name="Puntaje" type="basis" dataKey="score" stroke="#0091EA" label={<CustomizedLabel />} dot={{ strokeWidth: 2 }} />
     </LineChart>
   );
