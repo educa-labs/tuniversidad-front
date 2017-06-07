@@ -21,13 +21,37 @@ class UserInfoForm extends Component {
       phone: this.props.user.phone,
       nem: this.props.user.nem,
       ranking: this.props.user.ranking,
+      errors: {
+        score: '',
+      }
     };
     this.onSubmit = this.onSubmit.bind(this);
+    this.disabled = this.disabled.bind(this);
   }
 
+
   onSubmit() {
-    this.props.updateUserInfo(this.state);
-    this.props.handleClose();
+    if (this.state.nem <= 300 || this.state.nem >= 800 || this.state.ranking <= 300 || this.state >= 850) {
+      this.setState({
+        errors: Object.assign({}, this.state.errors, {
+          score: 'Puntaje Inválido',
+        }),
+      });
+    } else if (this.state.phone.length !== 11){
+      this.setState({
+        errors: Object.assign({}, this.state.errors, {
+          phone: 'Número Inválido',
+        }),
+      });
+    } else {
+      this.props.updateUserInfo(this.state);
+      this.props.handleClose();
+    }
+  }
+
+  disabled() {
+    const { first_name, last_name, email } = this.state;
+    return first_name === '' || last_name === '' || email === '';
   }
 
   render() {
@@ -42,6 +66,7 @@ class UserInfoForm extends Component {
         onTouchTap={this.onSubmit}
         style={styles.button}
         secondary
+        disabled={this.disabled()}
       />,
     ];
     return (
@@ -87,6 +112,7 @@ class UserInfoForm extends Component {
               hintText="56961403258"
               fullWidth
               value={this.state.phone}
+              errorText={this.state.phone ? this.state.errors.phone : ''}
             />
           </div>
         </div>
@@ -106,6 +132,7 @@ class UserInfoForm extends Component {
               fullWidth
               type="number"
               value={this.state.nem}
+              errorText={this.state.nem ? this.state.errors.score : ''}
             />
           </div>
           <div className="form__field">
@@ -115,6 +142,7 @@ class UserInfoForm extends Component {
               fullWidth
               type="number"
               value={this.state.ranking}
+              errorText={this.state.ranking ? this.state.errors.score : ''}
             />
           </div>
         </div>

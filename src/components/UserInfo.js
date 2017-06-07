@@ -5,13 +5,11 @@ import Divider from 'material-ui/Divider';
 import UserInfoForm from './UserInfoForm';
 
 class UserInfo extends Component {
-  componentWillMount() {
-    this.setState({ editMode: false });
-    this.closeModal = this.closeModal.bind(this);
-  }
-
-  closeModal() {
-    this.setState({ editMode: false });
+  constructor(props) {
+    super(props);
+    this.state = {
+      editMode: false,
+    };
   }
 
   render() {
@@ -21,16 +19,13 @@ class UserInfo extends Component {
         <UserInfoForm
           user={user}
           open={this.state.editMode}
-          handleClose={this.closeModal}
+          handleClose={() => this.setState({ editMode: false })}
           updateUserInfo={fields => this.props.updateUserInfo(this.props.user.id, this.props.token, fields)}
         />
         <div className="general-card__header">
           <div className="general-card__title">Información General</div>
           <div className="general-card__edit-button">
-            <IconButton
-              tooltip="Editar"
-              onTouchTap={() => this.setState({ editMode: true })}
-            >
+            <IconButton onTouchTap={() => this.setState({ editMode: true })}>
               <EditIcon color="#0091EA" />
             </IconButton>
           </div>
