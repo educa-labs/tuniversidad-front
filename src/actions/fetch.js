@@ -43,7 +43,7 @@ export function fetch(key, id, token) {
       .catch((err) => {
         dispatch({
           type: FETCH_FAILURE,
-          error: err.response.body,
+          error: err.response,
         });
       });
   };

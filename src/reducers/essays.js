@@ -27,11 +27,11 @@ function essays(state = initialState, action) {
         error: {},
       });
     case ADD_ESSAY:
+      console.log(action);
       return Object.assign({}, state, {
-        essays: Object.assign({}, state.essays, {
-          [action.id]: [...state.essays[action.id], action.essay],
+        essay: Object.assign({}, state.essays, {
+          [action.id]: [...state.essays[action.id].essays, action.essay],
         }),
-        requesting: false,
       });
     case REMOVE_ESSAY:
       return Object.assign({}, state, {

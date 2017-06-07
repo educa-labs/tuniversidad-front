@@ -11,8 +11,6 @@ function Essay(props) {
       </div>
     );
   }
-  console.log(props.essays);
-  console.log(is.empty(props.essays));
   function renderEssay(ess, index) {
     return (
       <div className="essay__score" key={index}>

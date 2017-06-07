@@ -145,11 +145,6 @@ export function getUserObjectives(token) {
           });
         }
       })
-      .catch((err) => {
-        dispatch({
-          type: OBJECTIVES_FAILURE,
-          error: err.response.body,
-        });
-      });
+      .catch(() => dispatch({ type: OBJECTIVES_FAILURE }));
   };
 }

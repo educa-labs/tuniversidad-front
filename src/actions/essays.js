@@ -53,25 +53,23 @@ export function addEssay(token, title, subjectId, score) {
         title,
       },
     });
-  return (dispath) => {
-    dispath({
+  return (dispatch) => {
+    dispatch({
       type: ESSAY_REQUEST,
     });
     return request
       .then((res) => {
+        console.log(res);
         if (res.ok) {
-          dispath({
+          console.log('La request fue buena', ADD_ESSAY);
+          dispatch({
             type: ADD_ESSAY,
             essay: res.body,
+            id: subjectId,
           });
+          console.log('esto está abajo', ADD_ESSAY);
         }
       })
-      .catch((err) => {
-        console.log(err);
-        dispath({
-          type: ESSAY_FAILURE,
-          error: err.response.body,
-        });
-      });
+      .catch(() => dispatch({ type: ESSAY_FAILURE }));
   };
 }

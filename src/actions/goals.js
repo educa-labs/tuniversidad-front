@@ -77,21 +77,21 @@ export function removeGoal(id, token) {
     .set('Authorization', token)
     .accept('application/tuniversidad.v1')
     .withCredentials();
-  return (dispath) => {
-    dispath({
+  return (dispatch) => {
+    dispatch({
       type: GOAL_REQUEST,
     });
     return request
       .then((res) => {
         if (res.ok) {
-          dispath({
+          dispatch({
             type: REMOVE_GOAL,
             id,
           });
         }
       })
       .catch((err) => {
-        dispath({
+        dispatch({
           type: GOAL_FAILURE,
           error: err.response.body,
         });
