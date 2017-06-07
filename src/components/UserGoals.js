@@ -8,21 +8,36 @@ import BarChart from './BarChart';
 
 
 class UserGoals extends Component {
-  componentWillMount() {
-    this.setState({ editMode: false });
-    this.renderGoal = this.renderGoal.bind(this);
+  constructor(props) {
+    super(props);
+    this.state = {
+      editMode: false,
+    };
+    this.renderGoal = this.renderGoal.bind(this); 
   }
 
   renderGoal(goal) {
+    let source = null;
+    if (goal.scores.science === null) {
+      source = goal.scores.history;
+    } else {
+      source = goal.scores.science;
+    }
+    const both = goal.scores.science !== null && goal.scores.history !== null;
+    const scores = Object.assign({}, {
+      last_cut: goal.scores.last_cut,
+      avg: both ? Math.max(goal.scores.science.avg, goal.scores.history.avg) : source.max,
+      obj: both ? Math.max(goal.scores.science.obj, goal.scores.history.obj) : source.obj,
+    });
     return (
       <div key={goal.id}>
         <div className="goal">
           <div className="goal__header">
-            <div className="goal__title">{`${goal.title} en ${goal.university_name}`}</div>
+            <div className="goal__title">{`${goal.carreer.title} en ${goal.carreer.university_name}`}</div>
             {this.state.editMode ? (
               <div className="goal__delete-button">
                 <IconButton
-                  onTouchTap={() => this.props.removeGoal(goal.id, this.props.token)}
+                  onTouchTap={() => this.props.removeGoal(goal.carreer.id)}
                   tooltip="Remover"
                 >
                   <ClearIcon color="#F44336" />
@@ -30,7 +45,7 @@ class UserGoals extends Component {
               </div>
             ) : null}
           </div>
-          <BarChart max={850} />
+          <BarChart max={850} scores={scores} />
         </div>
         <Divider />
       </div>
@@ -44,11 +59,7 @@ class UserGoals extends Component {
         <div className="general-card__header">
           <div className="general-card__title">Mis Metas</div>
           <div className="general-card__edit-button">
-            <IconButton
-              tooltip="Editar metas"
-              tooltipPosition="bottom-left"
-              onTouchTap={() => this.setState({ editMode: !this.state.editMode })}
-            >
+            <IconButton onTouchTap={() => this.setState({ editMode: !this.state.editMode })}>
               <EditIcon color="#0091EA" />
             </IconButton>
           </div>

@@ -32,7 +32,7 @@ function goals(state = initialState, action) {
 
     case REMOVE_GOAL:
       return Object.assign({}, state, {
-        goals: _.filter(state.goals, car => car.id !== action.id),
+        goals: _.filter(state.goals, goal => goal.carreer.id !== action.id),
         requesting: false,
       });
     default: return state;

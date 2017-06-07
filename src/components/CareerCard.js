@@ -7,7 +7,7 @@ import Divider from 'material-ui/Divider';
 import FlatButton from 'material-ui/FlatButton';
 import { addGoal, removeGoal } from '../actions/goals';
 import { addToCompare, removeFromCompare } from '../actions/compare';
-import numeral from '../helpers/numeral';
+import { numeral } from '../helpers/numeral';
 
 const labelStyle = {
   color: '#0091EA',
@@ -16,7 +16,7 @@ const labelStyle = {
 
 function CareerCard(props, context) {
   const { career } = props;
-  const isFavorite = _.findIndex(props.goals, item => item.id === career.id) > -1;
+  const isFavorite = _.findIndex(props.goals, goal => goal.carreer.id === career.id) > -1;
   const isCompare = is.inArray(career.id, props.compare);
 
   function handleFavButton() {

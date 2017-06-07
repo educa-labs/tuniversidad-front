@@ -10,7 +10,10 @@ function ProfileGeneral(props) {
     <div className="general">
       <UserNemForm open={props.missingInfo} handleSubmit={props.updateUser} />
       <div className="col col-3">
-        <UserGoals {...props} />
+        <UserGoals
+          removeGoal={id => props.removeGoal(id, props.token)}
+          goals={props.goals}
+        />
       </div>
       <div className="col col-2">
         <UserInfo {...props} />
