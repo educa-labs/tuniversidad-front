@@ -17,9 +17,7 @@ Para production
 Url servidor: tuniversidad.com
 Via ssh hacer
 ```bash
-cd /home/felipe/tuni-front
-git pull origin development
-npm run build
+sh /home/felipe/deploy.sh
 ```
 En caso de no verse reflejados los cambios, reiniciar nginx con
 ```bash
