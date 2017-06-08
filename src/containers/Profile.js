@@ -20,6 +20,13 @@ class Profile extends Component {
     this.updateUser = this.updateUser.bind(this);
   }
 
+  componentWillMount() {
+    this.setState({
+      missingInfo: this.props.user.nem === null || this.props.user.ranking === null,
+      second: false,
+    });
+  }
+
   componentDidMount() {
     if (this.props.objectives.objectives === null) this.props.getUserObjectives(this.props.token);
   }
@@ -42,7 +49,6 @@ class Profile extends Component {
   }
 
   render() {
-    const missingInfo = this.props.user.nem === null || this.props.user.ranking === null;
     const { slideIndex } = this.state;
     return (
       <div className="site__children">
@@ -58,7 +64,13 @@ class Profile extends Component {
           </Tabs >
         </div>
         <div className="profile-children">
-          {slideIndex === 0 ? <ProfileGeneral {...this.props} missingInfo={missingInfo} updateUser={this.updateUser} /> : null }
+          {slideIndex === 0 ? (
+            <ProfileGeneral
+              {...this.props}
+              missingInfo={this.state.missingInfo}
+              updateUser={this.updateUser}
+            />
+            ) : null }
           {slideIndex === 1 ? <ProfileProgress {...this.props} /> : null }
           {slideIndex === 2 ? <div>Recomnedaciones</div> : null }
         </div>
