@@ -12,6 +12,10 @@ class UserObjectives extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.objectives !== this.props.objectives) this.setState({ editMode: false });
+  }
+
   render() {
     const { objectives } = this.props;
     if (objectives === null) return <div>Cargando ...</div>;

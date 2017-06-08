@@ -21,12 +21,15 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    if (this.props.objectives === null) this.props.getUserObjectives(this.props.token);
+    if (this.props.objectives.objectives === null) this.props.getUserObjectives(this.props.token);
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.user !== nextProps.user) {
       saveUser(nextProps.user);
+    }
+    if (this.props.objectives.shouldFetch !== nextProps.objectives.shouldFetch) {
+      if (nextProps.objectives.shouldFetch) this.props.getUserObjectives(this.props.token);
     }
   }
 
@@ -74,7 +77,7 @@ function mapStateToProps(state) {
   return {
     token: state.user.currentUser.auth_token,
     user: state.user.currentUser,
-    objectives: state.objectives.objectives,
+    objectives: state.objectives,
     essays: {
       1: state.essays[1],
       2: state.essays[2],

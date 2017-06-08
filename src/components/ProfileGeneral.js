@@ -18,11 +18,11 @@ function ProfileGeneral(props) {
       <div className="col col-2">
         <UserInfo
           user={props.user}
-          updateUserInfo={props.updateUserInfo}
+          updateUser={props.updateUser}
           token={props.token}
         />
         <UserObjectives
-          objectives={props.objectives}
+          objectives={props.objectives.objectives}
           handleSubmit={(l, m, h, s) => props.updateUserObjectives(props.token, l, m, h, s)}
         />
       </div>

@@ -69,6 +69,7 @@ class UserObjectivesForm extends Component {
           <div className="form__field">
             <TextField
               onChange={(e, val) => this.setState({ language: Number(val), error: '' })}
+              value={this.state.language}
               floatingLabelText="Lenguaje"
               fullWidth
               type="number"
@@ -78,6 +79,7 @@ class UserObjectivesForm extends Component {
           <div className="form__field">
             <TextField
               onChange={(e, val) => this.setState({ math: Number(val), error: '' })}
+              value={this.state.math}
               floatingLabelText="Matemáticas"
               fullWidth
               type="number"
@@ -89,6 +91,7 @@ class UserObjectivesForm extends Component {
           <div className="form__field">
             <TextField
               onChange={(e, val) => this.setState({ history: Number(val), error: '' })}
+              value={this.state.history}
               floatingLabelText="Historia"
               fullWidth
               type="number"
@@ -98,6 +101,7 @@ class UserObjectivesForm extends Component {
           <div className="form__field">
             <TextField
               onChange={(e, val) => this.setState({ science: Number(val), error: '' })}
+              value={this.state.science}
               floatingLabelText="Ciencias"
               fullWidth
               type="number"

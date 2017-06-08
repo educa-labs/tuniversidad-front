@@ -20,10 +20,16 @@ export function getUserObjectives(token) {
     });
     return request
       .then((res) => {
+        const objectives = Object.assign({
+          language: res.body[1],
+          math: res.body[2],
+          history: res.body[3],
+          science: res.body[4],
+        });
         if (res.ok) {
           dispatch({
             type: GET_OBJECTIVES,
-            objectives: res.body,
+            objectives,
           });
         }
       })
@@ -57,16 +63,7 @@ export function updateUserObjectives(token, language, math, history, science) {
     return request
       .then((res) => {
         if (res.ok) {
-          const objectives = Object.assign({
-            language: res.body[1],
-            math: res.body[2],
-            history: res.body[3],
-            science: res.body[4],
-          });
-          dispatch({
-            type: UPDATE_OBJECTIVES,
-            objectives,
-          });
+          dispatch({ type: UPDATE_OBJECTIVES });
         }
       })
       .catch(() => {
