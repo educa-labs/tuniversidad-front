@@ -3,6 +3,7 @@ import {
   OBJECTIVES_REQUEST,
   GET_OBJECTIVES,
   UPDATE_OBJECTIVES,
+  CLEAR_STATE,
 } from '../actions/types';
 
 const initalState = {
@@ -32,6 +33,7 @@ function objectives(state = initalState, action) {
         shouldFetch: true,
         requesting: false,
       });
+    case CLEAR_STATE: return initalState;
     default: return state;
   }
 }

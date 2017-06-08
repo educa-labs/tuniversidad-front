@@ -57,17 +57,11 @@ function user(state = initialState, action) {
         requesting: false,
         error: {},
       });
-    case CLEAR_STATE:
-      return Object.assign({}, state, {
-        currentUser: null,
-        error: {},
-        requesting: false,
-        objectives: null,
-      });
     case SETUP_USER:
       return Object.assign({}, state, {
         currentUser: action.user,
       });
+    case CLEAR_STATE: return initialState;
     default: return state;
   }
 }

@@ -3,6 +3,7 @@ import UserInfo from './UserInfo';
 import UserGoals from './UserGoals';
 import UserObjectives from './UserObjectives';
 import UserNemForm from './UserNemForm';
+import UserObjectivesForm from './UserObjectivesForm';
 
 
 function ProfileGeneral(props) {

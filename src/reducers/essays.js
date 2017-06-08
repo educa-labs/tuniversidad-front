@@ -5,6 +5,7 @@ import {
   REMOVE_ESSAY,
   GET_ESSAYS,
   ESSAY_FAILURE,
+  CLEAR_STATE,
 } from '../actions/types';
 
 const initialState = {
@@ -38,6 +39,7 @@ function essays(state = initialState, action) {
         shouldFetch: action.id,
         requesting: false,
       });
+      case CLEAR_STATE: return initialState;
     default: return state;
   }
 }

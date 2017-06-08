@@ -41,7 +41,7 @@ class UserInfoForm extends Component {
         }),
       });
     }
-    if (this.state.phone.length !== 11 && this.state.phone) {
+    if (this.state.phone.length !== 12 && this.state.phone && this.state.phone.slice(0, 4) !== '+569') {
       this.setState({
         errors: Object.assign({}, this.state.errors, {
           phone: 'Número Inválido',
@@ -49,7 +49,6 @@ class UserInfoForm extends Component {
       });
     } else {
       const fields = _.omit(this.state, ['errors']);
-      console.log(fields);
       this.props.handleSubmit(fields);
       this.props.handleClose();
     }
@@ -115,7 +114,7 @@ class UserInfoForm extends Component {
             <TextField
               onChange={(e, val) => this.setState({ phone: val })}
               floatingLabelText="Teléfono"
-              hintText="56961403258"
+              hintText="+56961403258"
               fullWidth
               value={this.state.phone}
               errorText={this.state.phone ? this.state.errors.phone : ''}

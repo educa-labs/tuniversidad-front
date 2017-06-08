@@ -4,6 +4,7 @@ import {
   GET_GOALS,
   ADD_GOAL,
   REMOVE_GOAL,
+  CLEAR_STATE,
 } from '../actions/types';
 
 const initialState = {
@@ -35,6 +36,7 @@ function goals(state = initialState, action) {
         goals: _.filter(state.goals, goal => goal.carreer.id !== action.id),
         requesting: false,
       });
+    case CLEAR_STATE: return initialState;
     default: return state;
   }
 }

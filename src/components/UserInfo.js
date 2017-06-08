@@ -44,17 +44,17 @@ class UserInfo extends Component {
           <div className="label">Cumpleaños</div>
         </div>
         <div className="general-card__item">
-          <div className="value">{user.phone === '' ? 'Sin número' : user.phone}</div>
+          <div className="value">{user.phone === '' ? 'Sin número' : `${user.phone.slice(0, 4)} ${user.phone.slice(4)}`}</div>
           <div className="label">Teléfono</div>
         </div>
         <Divider />
         <div className="general-card__footer">
           <div className="general-card__footer_item">
-            <div className="value">{user.nem || 720}</div>
+            <div className="value">{user.nem || 'Sin información'}</div>
             <div className="label">NEM</div>
           </div>
           <div className="general-card__footer_item">
-            <div className="value">{user.ranking || 850}</div>
+            <div className="value">{user.ranking || 'Sin información'}</div>
             <div className="label">Ranking</div>
           </div>
         </div>
