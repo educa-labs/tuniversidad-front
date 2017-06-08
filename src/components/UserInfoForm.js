@@ -1,8 +1,10 @@
 import React, { PropTypes, Component } from 'react';
+import _ from 'lodash';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import DatePicker from './inputs/DatePicker';
+import { checkScore } from '../helpers/numeral';
 
 const styles = {
   button: {
@@ -31,20 +33,24 @@ class UserInfoForm extends Component {
 
 
   onSubmit() {
-    if (this.state.nem <= 300 || this.state.nem >= 800 || this.state.ranking <= 300 || this.state >= 850) {
+    const { nem, ranking } = this.state;
+    if (!(checkScore(nem)) || !(checkScore(ranking))) {
       this.setState({
         errors: Object.assign({}, this.state.errors, {
           score: 'Puntaje Inválido',
         }),
       });
-    } else if (this.state.phone.length !== 11){
+    }
+    if (this.state.phone.length !== 11 && this.state.phone) {
       this.setState({
         errors: Object.assign({}, this.state.errors, {
           phone: 'Número Inválido',
         }),
       });
     } else {
-      this.props.updateUserInfo(this.state);
+      const fields = _.omit(this.state, ['errors']);
+      console.log(fields);
+      this.props.handleSubmit(fields);
       this.props.handleClose();
     }
   }
@@ -153,6 +159,7 @@ class UserInfoForm extends Component {
 
 UserInfoForm.propTypes = {
   handleClose: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
   user: PropTypes.object.isRequired,
 };

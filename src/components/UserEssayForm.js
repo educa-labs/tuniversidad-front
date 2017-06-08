@@ -3,6 +3,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import SelectInput from './inputs/SelectInput';
+import { checkScore } from '../helpers/numeral';
 
 const styles = {
   button: {
@@ -25,7 +26,7 @@ class UserEssayForm extends Component {
 
   onSubmit() {
     const { title, score, subject_id } = this.state;
-    if (score <= 300 || score >= 850) {
+    if (!checkScore(score)) {
       this.setState({ error: 'Puntaje Inválido' });
     } else {
       this.props.addEssay(title, subject_id, score);

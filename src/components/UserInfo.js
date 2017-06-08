@@ -20,7 +20,7 @@ class UserInfo extends Component {
           user={user}
           open={this.state.editMode}
           handleClose={() => this.setState({ editMode: false })}
-          updateUserInfo={fields => this.props.updateUserInfo(this.props.user.id, this.props.token, fields)}
+          handleSubmit={fields => this.props.updateUserInfo(this.props.user.id, this.props.token, fields)}
         />
         <div className="general-card__header">
           <div className="general-card__title">Información General</div>

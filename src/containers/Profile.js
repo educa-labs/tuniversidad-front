@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
+import { updateUserInfo } from '../actions/user';
 import { removeGoal } from '../actions/goals';
 import { getEssays, addEssay, removeEssay } from '../actions/essays';
 import { getUserObjectives, updateUserObjectives } from '../actions/objectives';
@@ -94,4 +95,5 @@ export default connect(mapStateToProps, {
   addEssay,
   removeEssay,
   updateUserObjectives,
+  updateUserInfo,
 })(Profile);
