@@ -3,49 +3,50 @@ import IconButton from 'material-ui/IconButton';
 import EditIcon from 'material-ui/svg-icons/image/edit';
 import UserObjectivesForm from './UserObjectivesForm';
 
-const data = {
-  language: 700,
-  math: 850,
-  science: 800,
-};
 
-class UserTarget extends Component {
-  componentWillMount() {
-    this.setState({ editMode: false });
-    this.closeModal = this.closeModal.bind(this);
-  }
-
-  closeModal() {
-    this.setState({ editMode: false });
+class UserObjectives extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      editMode: false,
+    };
   }
 
   render() {
+    const { objectives } = this.props;
+    if (objectives === null) return <div>Cargando ...</div>;
     return (
       <div className="general-card">
-        <UserObjectivesForm open={this.state.editMode} handleClose={this.closeModal} />
+        <UserObjectivesForm
+          open={this.state.editMode}
+          handleClose={() => this.setState({ editMode: false })}
+          objectives={objectives}
+          handleSubmit={this.props.handleSubmit}
+        />
         <div className="general-card__header">
           <div className="general-card__title">Mi Objetivo</div>
           <div className="general-card__edit-button">
-            <IconButton
-              tooltip="Editar"
-              onTouchTap={() => this.setState({ editMode: true })}
-            >
+            <IconButton onTouchTap={() => this.setState({ editMode: true })}>
               <EditIcon color="#0091EA" />
             </IconButton>
           </div>
         </div>
         <div className="target">
           <div className="test__item">
-            <div className="value">{data.language || '--'}</div>
+            <div className="value">{objectives.language || '--'}</div>
             <div className="label">Lenguaje</div>
           </div>
           <div className="test__item">
-            <div className="value">{data.math || '--'}</div>
+            <div className="value">{objectives.math || '--'}</div>
             <div className="label">Matemáticas</div>
           </div>
           <div className="test__item">
-            <div className="value">{data.science || '--'}</div>
+            <div className="value">{objectives.science || '--'}</div>
             <div className="label">Ciencias</div>
+          </div>
+          <div className="test__item">
+            <div className="value">{objectives.history || '--'}</div>
+            <div className="label">Historia</div>
           </div>
         </div>
       </div>
@@ -53,5 +54,5 @@ class UserTarget extends Component {
   }
 }
 
-export default UserTarget;
+export default UserObjectives;
 

@@ -1,12 +1,14 @@
 import {
   OBJECTIVES_FAILURE,
   OBJECTIVES_REQUEST,
-  OBJECTIVES_SUCCESS,
+  GET_OBJECTIVES,
+  UPDATE_OBJECTIVES,
 } from '../actions/types';
 
 const initalState = {
   objectives: null,
   requesting: false,
+  shouldFetch: false,
 };
 
 function objectives(state = initalState, action) {
@@ -19,9 +21,15 @@ function objectives(state = initalState, action) {
       return Object.assign({}, state, {
         requesting: false,
       });
-    case OBJECTIVES_SUCCESS:
+    case GET_OBJECTIVES:
       return Object.assign({}, state, {
         objectives: action.objectives,
+        requesting: false,
+        shouldFetch: false,
+      });
+    case UPDATE_OBJECTIVES:
+      return Object.assign({}, state, {
+        shouldFetch: true,
         requesting: false,
       });
     default: return state;

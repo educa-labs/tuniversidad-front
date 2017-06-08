@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import { removeGoal } from '../actions/goals';
 import { getEssays, addEssay, removeEssay } from '../actions/essays';
-import { getUserObjectives, updateUserInfo } from '../actions/objectives';
+import { getUserObjectives, updateUserObjectives } from '../actions/objectives';
 import { saveUser } from '../helpers/storage';
 import ProfileGeneral from '../components/ProfileGeneral';
 import ProfileProgress from '../components/ProfileProgress';
@@ -93,5 +93,5 @@ export default connect(mapStateToProps, {
   getEssays,
   addEssay,
   removeEssay,
-  updateUserInfo,
+  updateUserObjectives,
 })(Profile);

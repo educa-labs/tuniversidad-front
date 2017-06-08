@@ -2,7 +2,8 @@ import Request from 'superagent';
 import {
   OBJECTIVES_FAILURE,
   OBJECTIVES_REQUEST,
-  OBJECTIVES_SUCCESS,
+  GET_OBJECTIVES,
+  UPDATE_OBJECTIVES,
 } from './types';
 
 import url from '../constants/url';
@@ -21,7 +22,7 @@ export function getUserObjectives(token) {
       .then((res) => {
         if (res.ok) {
           dispatch({
-            type: OBJECTIVES_SUCCESS,
+            type: GET_OBJECTIVES,
             objectives: res.body,
           });
         }
@@ -56,9 +57,15 @@ export function updateUserObjectives(token, language, math, history, science) {
     return request
       .then((res) => {
         if (res.ok) {
+          const objectives = Object.assign({
+            language: res.body[1],
+            math: res.body[2],
+            history: res.body[3],
+            science: res.body[4],
+          });
           dispatch({
-            type: OBJECTIVES_SUCCESS,
-            objectives: res.body,
+            type: UPDATE_OBJECTIVES,
+            objectives,
           });
         }
       })
