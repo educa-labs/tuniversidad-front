@@ -34,7 +34,6 @@ function SelectInput(props) {
 SelectInput.propTypes = {
   value: PropTypes.number,
   handleChange: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired,
 };
 
 SelectInput.defaultProps = {

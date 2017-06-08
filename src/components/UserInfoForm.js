@@ -127,7 +127,10 @@ class UserInfoForm extends Component {
             Cumpleaños
           </div>
           <div className="form__field form__field-3">
-            <DatePicker handleChange={val => this.setState({ birth_date: val })} />
+            <DatePicker
+              handleChange={val => this.setState({ birth_date: val })}
+              date={this.state.birth_date}
+            />
           </div>
         </div>
         <div className="row">
