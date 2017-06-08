@@ -28,6 +28,17 @@
   padding: 0 10px;
   display: flex;
   align-items: center;
+  animation: 1s ease 0s 1 expandFromLeft;
+}
+
+@keyframes expandFromLeft {
+  0% {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  100% {
+    transform: scaleX(1);
+  }
 }
 
 .bar .rectangle:hover {
