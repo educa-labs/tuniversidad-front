@@ -2,14 +2,11 @@ import React from 'react';
 import UserInfo from './UserInfo';
 import UserGoals from './UserGoals';
 import UserObjectives from './UserObjectives';
-import UserNemForm from './UserNemForm';
-import UserObjectivesForm from './UserObjectivesForm';
 
 
 function ProfileGeneral(props) {
   return (
     <div className="general">
-      <UserNemForm open={props.missingInfo} handleSubmit={props.updateUser} />
       <div className="col col-3">
         <UserGoals
           removeGoal={id => props.removeGoal(id, props.token)}

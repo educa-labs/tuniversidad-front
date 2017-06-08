@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import { updateUserInfo } from '../actions/user';
-import { removeGoal } from '../actions/goals';
+import { removeGoal, getGoals } from '../actions/goals';
 import { getEssays, addEssay, removeEssay } from '../actions/essays';
 import { getUserObjectives, updateUserObjectives } from '../actions/objectives';
 import { saveUser } from '../helpers/storage';
@@ -37,6 +37,9 @@ class Profile extends Component {
     }
     if (this.props.objectives.shouldFetch !== nextProps.objectives.shouldFetch) {
       if (nextProps.objectives.shouldFetch) this.props.getUserObjectives(this.props.token);
+    }
+    if (this.props.objectives.objectives !== nextProps.objectives.objectives) {
+      this.props.getGoals(this.props.token);
     }
   }
 
@@ -111,4 +114,5 @@ export default connect(mapStateToProps, {
   removeEssay,
   updateUserObjectives,
   updateUserInfo,
+  getGoals,
 })(Profile);
