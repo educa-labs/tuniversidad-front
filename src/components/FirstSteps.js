@@ -7,13 +7,14 @@ import IconButton from 'material-ui/IconButton';
 import RigthArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-right';
 import LeftArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-left';
 import Welcome from './slides/Welcome';
+import City from './slides/City';
 
 import '../styles/FirstSteps.css';
 
 function getStepIndex(slideIndex) {
-  if (is.inArray(slideIndex, [1, 2, 3, 4])) return 1;
-  if (is.inArray(slideIndex, [5, 6])) return 2;
-  if (is.inArray(slideIndex, [7, 8, 9, 10, 11])) return 3;
+  if (is.inArray(slideIndex, [1, 2, 3, 4])) return 0;
+  if (is.inArray(slideIndex, [5, 6])) return 1;
+  if (is.inArray(slideIndex, [7, 8, 9, 10, 11])) return 2;
   return -1;
 }
 
@@ -46,6 +47,7 @@ class FirstSteps extends Component {
     const { slideIndex } = this.state;
     const steps = [
       <Welcome />,
+      <City token={this.props.token} regions={this.props.regions} />,
       <div key={0} className="step__slide">Hola</div>,
       <div key={1} className="step__slide">Chao</div>,
     ];
@@ -62,28 +64,30 @@ class FirstSteps extends Component {
               <LeftArrow color={is.inArray(slideIndex, [0, 1]) ? 'white' : 'black'} />
             </IconButton>
           </div>
-          <SwipeableViews index={slideIndex}>
-            {steps}
-          </SwipeableViews>
+          <div className="slide">
+            <SwipeableViews index={slideIndex}>
+              {steps}
+            </SwipeableViews>
+            {slideIndex > 0 ? (
+              <Stepper activeStep={getStepIndex(slideIndex)}>
+                <Step>
+                  <StepLabel>Información</StepLabel>
+                </Step>
+                <Step>
+                  <StepLabel>Notas</StepLabel>
+                </Step>
+                <Step>
+                  <StepLabel>Crea un ensayo</StepLabel>
+                </Step>
+              </Stepper>
+            ) : null }
+          </div>
           <div className="step__button">
             <IconButton onTouchTap={this.handleNext}>
               <RigthArrow />
             </IconButton>
           </div>
         </div>
-        {slideIndex === 1 ? (
-          <Stepper activeStep={getStepIndex(slideIndex)} style={{ padding: '1rem' }}>
-            <Step>
-              <StepLabel>Información</StepLabel>
-            </Step>
-            <Step>
-              <StepLabel>Notas</StepLabel>
-            </Step>
-            <Step>
-              <StepLabel>Crea un ensayo</StepLabel>
-            </Step>
-          </Stepper>
-        ) : null }
       </Dialog>
     );
   }

@@ -8,7 +8,6 @@ import FirstSteps from './FirstSteps';
 function ProfileGeneral(props) {
   return (
     <div className="general">
-      <FirstSteps />
       <div className="col col-3">
         <UserGoals
           removeGoal={id => props.removeGoal(id, props.token)}

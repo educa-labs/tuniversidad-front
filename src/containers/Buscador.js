@@ -24,7 +24,6 @@ class Buscador extends Component {
     this.props.fetch('areas', null, null);
     this.props.fetch('types', null, null);
     this.props.fetch('schedules', null, null);
-    this.props.fetch('regions', null, this.props.token);
   }
 
   componentWillReceiveProps(nextProps) {

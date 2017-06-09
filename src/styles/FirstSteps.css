@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 1;
+  width: 3rem;
   cursor: pointer;  
 }
 
@@ -26,6 +26,7 @@
 .slide {
   display: flex;
   flex-direction: column;
+  width: 24rem;
 }
 
 .slide-header {

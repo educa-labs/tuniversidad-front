@@ -8,6 +8,7 @@ import { getUserObjectives, updateUserObjectives } from '../actions/objectives';
 import { saveUser } from '../helpers/storage';
 import ProfileGeneral from '../components/ProfileGeneral';
 import ProfileProgress from '../components/ProfileProgress';
+import FirstSteps from '../components/FirstSteps';
 import '../styles/Profile.css';
 
 class Profile extends Component {
@@ -55,6 +56,7 @@ class Profile extends Component {
     const { slideIndex } = this.state;
     return (
       <div className="site__children">
+        <FirstSteps token={this.props.token} regions={this.props.regions} />
         <div className="tabs-container">
           <Tabs
             onChange={this.handleSlideChange}
@@ -103,6 +105,7 @@ function mapStateToProps(state) {
     },
     goals: state.goals.goals,
     subjects: state.fetch.subjects,
+    regions: state.fetch.regions,
   };
 }
 
