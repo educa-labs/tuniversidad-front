@@ -75,6 +75,9 @@
   flex-direction: column;
   cursor: pointer;
 }
+.profile-banner:hover {
+  background-color: #0091EA;
+}
 .profile-banner_selected {
   background-color: #0091EA;
 }

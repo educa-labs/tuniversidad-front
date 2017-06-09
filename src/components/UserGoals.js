@@ -60,7 +60,7 @@ class UserGoals extends Component {
           <div className="general-card__title">Mis Metas</div>
           <div className="general-card__edit-button">
             <IconButton onTouchTap={() => this.setState({ editMode: !this.state.editMode })}>
-              <EditIcon color="#0091EA" />
+              <EditIcon color="#969696" />
             </IconButton>
           </div>
         </div>

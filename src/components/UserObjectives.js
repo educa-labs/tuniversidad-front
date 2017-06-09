@@ -31,7 +31,7 @@ class UserObjectives extends Component {
           <div className="general-card__title">Mi Objetivo</div>
           <div className="general-card__edit-button">
             <IconButton onTouchTap={() => this.setState({ editMode: true })}>
-              <EditIcon color="#0091EA" />
+              <EditIcon color="#969696" />
             </IconButton>
           </div>
         </div>
