@@ -8,6 +8,7 @@ import RigthArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-right';
 import LeftArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-left';
 import Welcome from './slides/Welcome';
 import City from './slides/City';
+import BirthDate from './slides/BirthDate';
 
 import '../styles/FirstSteps.css';
 
@@ -40,7 +41,7 @@ class FirstSteps extends Component {
 
   handleBack() {
     const { slideIndex } = this.state;
-    if (slideIndex > 1) {
+    if (slideIndex > 0) {
       this.setState({ slideIndex: slideIndex - 1 });
     }
   }
@@ -54,6 +55,7 @@ class FirstSteps extends Component {
     const steps = [
       <Welcome />,
       <City token={this.props.token} regions={this.props.regions} logChange={id => this.logChange('city_id', id)} />,
+      <BirthDate logChange={date => this.logChange('birth_date', date)} />,
       <div key={0} className="step__slide">Hola</div>,
       <div key={1} className="step__slide">Chao</div>,
     ];
