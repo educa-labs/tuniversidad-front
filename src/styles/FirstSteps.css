@@ -6,10 +6,36 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 1
+  flex: 1;
+  cursor: pointer;  
 }
 
-.step__content {
+.step__swipeable {
   display: flex;
   flex: 20;
+}
+
+.step__slide {
+  padding: 15;
+  min-width: 200px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.slide {
+  display: flex;
+  flex-direction: column;
+}
+
+.slide-header {
+  font-size: large;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+.slide-body {
+  height: 12rem;
 }
