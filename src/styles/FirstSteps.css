@@ -1,0 +1,15 @@
+.step {
+  display: flex;
+}
+
+.step__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1
+}
+
+.step__content {
+  display: flex;
+  flex: 20;
+}

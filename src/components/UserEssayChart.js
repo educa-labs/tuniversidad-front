@@ -30,7 +30,6 @@ function UserEssayChart(props) {
       <XAxis dataKey="date" type="category" padding={{ left: 30, right: 30 }} />
       <YAxis domain={['dataMin - 100', 850]} padding={{ top: 30, bottom: 30 }} />
       <Tooltip />
-      <Legend />
       <CartesianGrid strokeDasharray="3 3" />
       <ReferenceLine
         y={data.stats.expectation}

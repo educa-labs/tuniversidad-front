@@ -4,9 +4,9 @@ import {
   Stepper,
   StepLabel,
 } from 'material-ui/Stepper';
-import RaisedButton from 'material-ui/RaisedButton';
-import FlatButton from 'material-ui/FlatButton';
+import SwipeableViews from 'react-swipeable-views';
 import Dialog from 'material-ui/Dialog';
+import '../styles/FirstSteps.css';
 
 
 class FirstSteps extends Component {
@@ -47,28 +47,20 @@ class FirstSteps extends Component {
   }
 
   render() {
-    const actions = [
-      <FlatButton
-        label="Atrás"
-        onTouchTap={this.props.handleClose}
-        style={styles.button}
-        secondary
-      />,
-      <FlatButton
-        label="Siguiente"
-        onTouchTap={this.onSubmit}
-        style={styles.button}
-        secondary
-        disabled={this.disabled()}
-      />,
-    ];
+    const { stepIndex } = this.state;
     return (
       <Dialog
         open
         modal
-        actions={actions}
+        contentStyle={{ width: '30rem'}}
+        bodyStyle={{ padding: '0' }}
       >
-        <Stepper activeStep={this.state.stepIndex}>
+        <SwipeableViews
+          index={stepIndex}
+        >
+          
+        </SwipeableViews>
+        <Stepper activeStep={stepIndex}>
           <Step>
             <StepLabel>Información</StepLabel>
           </Step>
