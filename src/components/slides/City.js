@@ -14,9 +14,15 @@ class City extends Component {
   }
 
   handleRegionChange(id) {
+    this.setState({ region: id });
     getCities(id, this.props.token)
       .then(res => this.setState({ cities: res.body }))
       .catch(() => this.setState({ cities: [] }));
+  }
+
+  handleCityChange(id) {
+    this.setState({ city: id });
+    this.props.logChange(id);
   }
 
   render() {
@@ -31,7 +37,7 @@ class City extends Component {
         </div>
         <div className="slide-body">
           <SelectInput
-            title="Region"
+            title="Región"
             items={regions}
             value={this.state.region}
             fullWidth
@@ -41,8 +47,8 @@ class City extends Component {
           <SelectInput
             title="Ciudad"
             items={this.state.cities}
-            value={this.state.city_id}
-            handleChange={city => this.state({ city })}
+            value={this.state.city}
+            handleChange={id => this.handleCityChange(id)}
             fullWidth
           />
         </div>

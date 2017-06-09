@@ -39,4 +39,7 @@
 
 .slide-body {
   height: 12rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

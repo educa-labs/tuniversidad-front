@@ -24,9 +24,11 @@ class FirstSteps extends Component {
     this.state = {
       finished: false,
       slideIndex: 0,
+      city_id: null,
     };
     this.handleBack = this.handleBack.bind(this);
     this.handleNext = this.handleNext.bind(this);
+    this.logChange = this.logChange.bind(this);
   }
 
   handleNext() {
@@ -43,11 +45,15 @@ class FirstSteps extends Component {
     }
   }
 
+  logChange(field, value) {
+    this.setState({ [field]: value });
+  }
+
   render() {
     const { slideIndex } = this.state;
     const steps = [
       <Welcome />,
-      <City token={this.props.token} regions={this.props.regions} />,
+      <City token={this.props.token} regions={this.props.regions} logChange={id => this.logChange('city_id', id)} />,
       <div key={0} className="step__slide">Hola</div>,
       <div key={1} className="step__slide">Chao</div>,
     ];
