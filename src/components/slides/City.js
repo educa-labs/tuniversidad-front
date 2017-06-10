@@ -11,6 +11,7 @@ class City extends Component {
       city: null,
     };
     this.handleRegionChange = this.handleRegionChange.bind(this);
+    this.handleCityChange = this.handleCityChange.bind(this);
   }
 
   handleRegionChange(id) {
@@ -33,24 +34,28 @@ class City extends Component {
     return (
       <div className="slide">
         <div className="slide-header">
-          De dónde eres?
+          ¿De dónde eres?
         </div>
         <div className="slide-body">
-          <SelectInput
-            title="Región"
-            items={regions}
-            value={this.state.region}
-            fullWidth
-            handleChange={region => this.handleRegionChange(region)}
-            maxHeight={150}
-          />
-          <SelectInput
-            title="Ciudad"
-            items={this.state.cities}
-            value={this.state.city}
-            handleChange={id => this.handleCityChange(id)}
-            fullWidth
-          />
+          <div className="slide-field">
+            <SelectInput
+              title="Región"
+              items={regions}
+              value={this.state.region}
+              fullWidth
+              handleChange={region => this.handleRegionChange(region)}
+              maxHeight={150}
+            />
+          </div>
+          <div className="slide-field">
+            <SelectInput
+              title="Ciudad"
+              items={this.state.cities}
+              value={this.state.city}
+              handleChange={id => this.handleCityChange(id)}
+              fullWidth
+            />
+          </div>
         </div>
       </div>
     );

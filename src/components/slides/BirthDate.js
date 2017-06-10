@@ -15,10 +15,12 @@ class BirthDate extends Component {
           ¿Cuándo naciste?
         </div>
         <div className="slide-body">
-          <DatePicker
-            handleChange={val => this.props.logChange(val)}
-            date={this.state.birth_date}
-          />
+          <div className="slide-date-picker">
+            <DatePicker
+              handleChange={val => this.props.logChange(val)}
+              date={this.state.birth_date}
+            />
+          </div>
         </div>
       </div>
     );

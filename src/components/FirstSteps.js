@@ -9,6 +9,9 @@ import LeftArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-left';
 import Welcome from './slides/Welcome';
 import City from './slides/City';
 import BirthDate from './slides/BirthDate';
+import Phone from './slides/Phone';
+import Rut from './slides/Rut';
+import Preu from './slides/Preu';
 
 import '../styles/FirstSteps.css';
 
@@ -25,7 +28,6 @@ class FirstSteps extends Component {
     this.state = {
       finished: false,
       slideIndex: 0,
-      city_id: null,
     };
     this.handleBack = this.handleBack.bind(this);
     this.handleNext = this.handleNext.bind(this);
@@ -56,6 +58,9 @@ class FirstSteps extends Component {
       <Welcome />,
       <City token={this.props.token} regions={this.props.regions} logChange={id => this.logChange('city_id', id)} />,
       <BirthDate logChange={date => this.logChange('birth_date', date)} />,
+      <Phone logChange={phone => this.logChange('phone', phone)} />,
+      <Rut logChange={rut => this.logChange('rut', rut)} />,
+      <Preu logChange={preuniversity => this.logChange('preuniversity', preuniversity)} />,
       <div key={0} className="step__slide">Hola</div>,
       <div key={1} className="step__slide">Chao</div>,
     ];
@@ -65,11 +70,12 @@ class FirstSteps extends Component {
         modal
         contentStyle={{ width: '30rem' }}
         bodyStyle={{ padding: '0' }}
+        overlayStyle={{ opacity: '0.85', backgroundColor: 'black' }}
       >
         <div className="step">
           <div className="step__button">
             <IconButton onTouchTap={this.handleBack}>
-              <LeftArrow color={is.inArray(slideIndex, [0, 1]) ? 'white' : 'black'} />
+              <LeftArrow color={is.inArray(slideIndex, [0]) ? 'white' : 'black'} />
             </IconButton>
           </div>
           <div className="slide">
