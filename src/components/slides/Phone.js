@@ -8,6 +8,11 @@ class Phone extends Component {
       phone: null,
     };
   }
+  handlePhoneChange(val) {
+    this.props.logChange(val);
+    this.setState({ phone: val });
+  }
+
   render() {
     return (
       <div className="slide">
@@ -17,7 +22,7 @@ class Phone extends Component {
         <div className="slide-body">
           <div className="slide-field">
             <TextField
-              onChange={(e, val) => this.props.logChange(val)}
+              onChange={(e, val) => this.handlePhoneChange(val)}
               floatingLabelText="Teléfono"
               hintText="+56961403258"
               value={this.state.phone}

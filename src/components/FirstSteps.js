@@ -12,6 +12,7 @@ import BirthDate from './slides/BirthDate';
 import Phone from './slides/Phone';
 import Rut from './slides/Rut';
 import Preu from './slides/Preu';
+import Nem from './slides/Nem';
 
 import '../styles/FirstSteps.css';
 
@@ -61,6 +62,7 @@ class FirstSteps extends Component {
       <Phone logChange={phone => this.logChange('phone', phone)} />,
       <Rut logChange={rut => this.logChange('rut', rut)} />,
       <Preu logChange={preuniversity => this.logChange('preuniversity', preuniversity)} />,
+      <Nem logNenChange={val => this.logChange('nem', val)} logRankingChange={val => this.logChange('ranking', val)} />,
       <div key={0} className="step__slide">Hola</div>,
       <div key={1} className="step__slide">Chao</div>,
     ];
