@@ -15,12 +15,14 @@ class Phone extends Component {
           ¿Cuál es tu número de teléfono?
         </div>
         <div className="slide-body">
-          <TextField
-            onChange={(e, val) => this.props.logChange(val)}
-            floatingLabelText="Teléfono"
-            hintText="+56961403258"
-            value={this.state.phone}
-          />
+          <div className="slide-field">
+            <TextField
+              onChange={(e, val) => this.props.logChange(val)}
+              floatingLabelText="Teléfono"
+              hintText="+56961403258"
+              value={this.state.phone}
+            />
+          </div>
         </div>
       </div>
     );

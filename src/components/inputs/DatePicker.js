@@ -24,7 +24,7 @@ class DatePicker extends Component {
     const date = this.props.date ? this.props.date.split('-') : [null, null, null];
     this.setState({
       day: date[0],
-      month: Number(date[1]),
+      month: date[1] ? Number(date[1]) : null,
       year: date[2],
     });
   }

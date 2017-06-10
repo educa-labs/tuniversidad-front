@@ -70,12 +70,12 @@ class FirstSteps extends Component {
         modal
         contentStyle={{ width: '30rem' }}
         bodyStyle={{ padding: '0' }}
-        overlayStyle={{ opacity: '0.85', backgroundColor: 'black' }}
+        overlayStyle={{ opacity: '0.95', backgroundColor: 'black' }}
       >
         <div className="step">
-          <div className="step__button">
-            <IconButton onTouchTap={this.handleBack}>
-              <LeftArrow color={is.inArray(slideIndex, [0]) ? 'white' : 'black'} />
+          <div className="step__button" onClick={this.handleBack}>
+            <IconButton>
+              <LeftArrow color={is.inArray(slideIndex, [0]) ? 'white' : '#9E9E9E'} />
             </IconButton>
           </div>
           <div className="slide">
@@ -96,8 +96,8 @@ class FirstSteps extends Component {
               </Stepper>
             ) : null }
           </div>
-          <div className="step__button">
-            <IconButton onTouchTap={this.handleNext}>
+          <div className="step__button" onClick={this.handleNext}>
+            <IconButton>
               <RigthArrow />
             </IconButton>
           </div>

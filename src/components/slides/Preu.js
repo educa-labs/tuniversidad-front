@@ -28,12 +28,14 @@ class Preu extends Component {
           ¿Asistes actualmente a un preuniversitario?
         </div>
         <div className="slide-body">
-          <SelectInput
-            title="Preuniversitario"
-            items={items}
-            value={this.state.preuniversity}
-            handleChange={res => this.handlePreuChange(res)}
-          />
+          <div className="slide-field">
+            <SelectInput
+              title="Preuniversitario"
+              items={items}
+              value={this.state.preuniversity}
+              handleChange={res => this.handlePreuChange(res)}
+            />
+          </div>
         </div>
       </div>
     );

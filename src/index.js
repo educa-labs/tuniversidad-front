@@ -22,6 +22,9 @@ const muiTheme = getMuiTheme({
     selectedTextColor: '#424242',
     textColor: '#D2D2D2',
   },
+  stepper: {
+    iconColor: '#0091EA',
+  },
 });
 
 ReactDOM.render(
