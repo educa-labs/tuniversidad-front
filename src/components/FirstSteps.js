@@ -30,7 +30,7 @@ class FirstSteps extends Component {
     super(props);
     this.state = {
       finished: false,
-      slideIndex: 8,
+      slideIndex: 0,
     };
     this.handleBack = this.handleBack.bind(this);
     this.handleNext = this.handleNext.bind(this);

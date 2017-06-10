@@ -52,6 +52,16 @@
   align-items: center;
 }
 
+.slide-body-welcome {
+  flex-direction: row;
+}
+
+.text {
+  margin: 2.5rem 0rem;
+  padding-left: 2rem;
+  display: flex;
+}
+
 .slide-button {
   width: 6rem;
 }
@@ -71,3 +81,14 @@
 .slide-date-picker {
   margin: 1.7rem 5rem;
 }
+
+.newton {
+  width: 210px;
+  height: 180px;
+  background-image: url('../assets/newton.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-left: 1rem;
+}
+
