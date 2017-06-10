@@ -13,13 +13,15 @@ import Phone from './slides/Phone';
 import Rut from './slides/Rut';
 import Preu from './slides/Preu';
 import Nem from './slides/Nem';
+import Objectives from './slides/Objectives';
+import Ready from './slides/Ready';
 
 import '../styles/FirstSteps.css';
 
 function getStepIndex(slideIndex) {
   if (is.inArray(slideIndex, [1, 2, 3, 4])) return 0;
-  if (is.inArray(slideIndex, [5, 6])) return 1;
-  if (is.inArray(slideIndex, [7, 8, 9, 10, 11])) return 2;
+  if (is.inArray(slideIndex, [5, 6, 7])) return 1;
+  if (is.inArray(slideIndex, [8])) return 3;
   return -1;
 }
 
@@ -28,7 +30,7 @@ class FirstSteps extends Component {
     super(props);
     this.state = {
       finished: false,
-      slideIndex: 0,
+      slideIndex: 8,
     };
     this.handleBack = this.handleBack.bind(this);
     this.handleNext = this.handleNext.bind(this);
@@ -37,7 +39,7 @@ class FirstSteps extends Component {
 
   handleNext() {
     const { slideIndex } = this.state;
-    if (slideIndex < 11) {
+    if (slideIndex < 8) {
       this.setState({ slideIndex: slideIndex + 1 });
     }
   }
@@ -55,22 +57,11 @@ class FirstSteps extends Component {
 
   render() {
     const { slideIndex } = this.state;
-    const steps = [
-      <Welcome />,
-      <City token={this.props.token} regions={this.props.regions} logChange={id => this.logChange('city_id', id)} />,
-      <BirthDate logChange={date => this.logChange('birth_date', date)} />,
-      <Phone logChange={phone => this.logChange('phone', phone)} />,
-      <Rut logChange={rut => this.logChange('rut', rut)} />,
-      <Preu logChange={preuniversity => this.logChange('preuniversity', preuniversity)} />,
-      <Nem logNenChange={val => this.logChange('nem', val)} logRankingChange={val => this.logChange('ranking', val)} />,
-      <div key={0} className="step__slide">Hola</div>,
-      <div key={1} className="step__slide">Chao</div>,
-    ];
     return (
       <Dialog
         open
         modal
-        contentStyle={{ width: '30rem' }}
+        contentStyle={{ width: '34rem' }}
         bodyStyle={{ padding: '0' }}
         overlayStyle={{ opacity: '0.95', backgroundColor: 'black' }}
       >
@@ -82,7 +73,23 @@ class FirstSteps extends Component {
           </div>
           <div className="slide">
             <SwipeableViews index={slideIndex}>
-              {steps}
+              <Welcome />
+              <City token={this.props.token} regions={this.props.regions} logChange={id => this.logChange('city_id', id)} />
+              <BirthDate logChange={date => this.logChange('birth_date', date)} />
+              <Phone logChange={phone => this.logChange('phone', phone)} />
+              <Rut logChange={rut => this.logChange('rut', rut)} />
+              <Preu logChange={preuniversity => this.logChange('preuniversity', preuniversity)} />
+              <Nem
+                logNenChange={val => this.logChange('nem', val)}
+                logRankingChange={val => this.logChange('ranking', val)}
+              />
+              <Objectives
+                logLangChange={val => this.logChange('language', val)}
+                logMathChange={val => this.logChange('math', val)}
+                loghistoryChange={val => this.logChange('history', val)}
+                logScienceChange={val => this.logChange('science', val)}
+              />
+              <Ready />
             </SwipeableViews>
             {slideIndex > 0 ? (
               <Stepper activeStep={getStepIndex(slideIndex)}>
@@ -90,17 +97,17 @@ class FirstSteps extends Component {
                   <StepLabel>Información</StepLabel>
                 </Step>
                 <Step>
-                  <StepLabel>Notas</StepLabel>
+                  <StepLabel>Mi objetivo</StepLabel>
                 </Step>
                 <Step>
-                  <StepLabel>Crea un ensayo</StepLabel>
+                  <StepLabel>Comenzar</StepLabel>
                 </Step>
               </Stepper>
             ) : null }
           </div>
           <div className="step__button" onClick={this.handleNext}>
             <IconButton>
-              <RigthArrow />
+              <RigthArrow color={is.inArray(slideIndex, [8]) ? 'white' : 'black'} />
             </IconButton>
           </div>
         </div>

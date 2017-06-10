@@ -31,7 +31,7 @@ class Nem extends Component {
             <TextField
               onChange={(e, val) => this.handleNemChange(val)}
               floatingLabelText="Nem"
-              value={this.state.phone}
+              value={this.state.nem}
               type="number"
             />
           </div>
@@ -39,7 +39,7 @@ class Nem extends Component {
             <TextField
               onChange={(e, val) => this.handleRankingChange(val)}
               floatingLabelText="Ranking"
-              value={this.state.phone}
+              value={this.state.ranking}
               type="number"
             />
           </div>

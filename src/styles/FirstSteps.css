@@ -26,7 +26,11 @@
 .slide {
   display: flex;
   flex-direction: column;
-  width: 24rem;
+  width: 28rem;
+}
+
+.slide .row {
+  display: flex;
 }
 
 .slide-header {
@@ -38,9 +42,18 @@
 }
 
 .slide-body {
-  height: 12rem;
+  height: 14rem;
   display: flex;
   flex-direction: column;
+}
+
+.slide-body-ready {
+  justify-content: center;
+  align-items: center;
+}
+
+.slide-button {
+  width: 6rem;
 }
 
 .slide-field {
@@ -48,6 +61,11 @@
   display: flex;
   justify-content: center;
   margin: 0 7rem;
+}
+
+.slide-field__row {
+  width: 4rem;
+  margin: 0 1rem;
 }
 
 .slide-date-picker {
