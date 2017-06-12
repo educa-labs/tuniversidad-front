@@ -31,7 +31,7 @@ class FirstSteps extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      slideIndex: 4,
+      slideIndex: 7,
       error: '',
     };
     this.handleBack = this.handleBack.bind(this);
@@ -43,6 +43,7 @@ class FirstSteps extends Component {
 
   handleNext() {
     const { slideIndex } = this.state;
+    const scoreError = 'Debes ingresar un puntaje válido';
     if (slideIndex < 8 && !this.disabled()) {
       if (slideIndex === 2) {
         if (!validateDate(this.state.birth_date)) {
@@ -62,6 +63,26 @@ class FirstSteps extends Component {
           return;
         }
       }
+      if (slideIndex === 6) {
+        const error = {};
+        if (!checkScore(this.state.nem)) error.nem = scoreError;
+        if (!checkScore(this.state.ranking)) error.ranking = scoreError;
+        if (is.not.empty(error)) {
+          this.setState({ error });
+          return;
+        }
+      }
+      if (slideIndex === 7) {
+        const error = {};
+        if (!checkScore(this.state.language)) error.language = scoreError;
+        if (!checkScore(this.state.math)) error.math = scoreError;
+        if (!checkScore(this.state.history) && this.state.history) error.history = scoreError;
+        if (!checkScore(this.state.science) && this.state.science) error.science = scoreError;
+        if (is.not.empty(error)) {
+          this.setState({ error });
+          return;
+        }
+      }
       this.setState({ slideIndex: slideIndex + 1, error: '' });
     }
   }
@@ -74,7 +95,16 @@ class FirstSteps extends Component {
   }
 
   logChange(field, value) {
-    this.setState({ [field]: value, error: '' });
+    if (is.inArray(field, ['nem', 'ranking', 'language', 'math', 'history', 'science'])) {
+      this.setState({
+        [field]: value,
+        error: Object.assign({}, this.state.error, {
+          [field]: '',
+        }),
+      });
+    } else {
+      this.setState({ [field]: value, error: '' });
+    }
   }
 
   getError(index) {
@@ -126,12 +156,14 @@ class FirstSteps extends Component {
               <Nem
                 logNemChange={val => this.logChange('nem', val)}
                 logRankingChange={val => this.logChange('ranking', val)}
+                error={this.getError(6)}
               />
               <Objectives
                 logLangChange={val => this.logChange('language', val)}
                 logMathChange={val => this.logChange('math', val)}
                 logHistoryChange={val => this.logChange('history', val)}
                 logScienceChange={val => this.logChange('science', val)}
+                error={this.getError(7)}
               />
               <Ready />
             </SwipeableViews>

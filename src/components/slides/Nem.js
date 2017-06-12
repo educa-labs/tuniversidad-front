@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import TextField from 'material-ui/TextField';
 
 class Nem extends Component {
@@ -33,6 +33,7 @@ class Nem extends Component {
               floatingLabelText="Nem"
               value={this.state.nem}
               type="number"
+              errorText={this.props.error.nem}
             />
           </div>
           <div className="slide-field">
@@ -41,6 +42,7 @@ class Nem extends Component {
               floatingLabelText="Ranking"
               value={this.state.ranking}
               type="number"
+              errorText={this.props.error.ranking}
             />
           </div>
         </div>
@@ -48,5 +50,11 @@ class Nem extends Component {
     );
   }
 }
+
+Nem.propTypes = {
+  logNemChange: PropTypes.func.isRequired,
+  logRankingChange: PropTypes.func.isRequired,
+  error: PropTypes.object.isRequired,
+};
 
 export default Nem;

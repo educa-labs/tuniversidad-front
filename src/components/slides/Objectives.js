@@ -46,6 +46,7 @@ class Objectives extends Component {
                 floatingLabelText="Lenguaje"
                 value={this.state.language}
                 type="number"
+                errorText={this.props.error.language}
               />
             </div>
             <div className="slide-field slide-field__row">
@@ -54,6 +55,7 @@ class Objectives extends Component {
                 floatingLabelText="Matemáticas"
                 value={this.state.math}
                 type="number"
+                errorText={this.props.error.math}
               />
             </div>
           </div>
@@ -64,6 +66,7 @@ class Objectives extends Component {
                 floatingLabelText="Historia"
                 value={this.state.history}
                 type="number"
+                errorText={this.props.error.history}
               />
             </div>
             <div className="slide-field slide-field__row">
@@ -72,6 +75,7 @@ class Objectives extends Component {
                 floatingLabelText="Ciencias"
                 value={this.state.science}
                 type="number"
+                errorText={this.props.error.science}
               />
             </div>
           </div>
