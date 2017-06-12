@@ -24,6 +24,14 @@ function UserEssayChart(props) {
 
   const data = props.essays[props.active];
 
+  const noContent = (
+      <div className="general-card__no-content">
+        <div className="newton-pensando" />
+        <div className="general-card__empty-msg">
+          Aún no has agregado un ensayo de {subjects[props.active]}.
+        </div>
+      </div>
+  );
 
   const chart = (
     <LineChart width={600} height={300} data={data.essays} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
@@ -46,11 +54,7 @@ function UserEssayChart(props) {
         <div className="general-card__title">Mi progreso en {subjects[props.active]}</div>
       </div>
       <div className="general-card__chart">
-        {is.empty(data) ? (
-          <div className="general-card__empty-msg">
-            Aún no has agregado ensayos de {subjects[props.active]}
-          </div>
-        ) : chart}
+        {is.empty(data.essays) ? noContent : chart}
       </div>
     </div>
   );

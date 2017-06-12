@@ -93,7 +93,10 @@
 }
 
 .general-card__empty-msg {
+  display: flex;
+  align-items: center;
   padding: 1rem 0;
+  flex: 2;
 }
 
 .general-card__footer {
@@ -111,6 +114,12 @@
 .general-card__chart {
   display: flex;
   justify-content: center;
+}
+
+.general-card__no-content{
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
 }
 
 .goal {

@@ -45,7 +45,6 @@ class Essay extends Component {
         </div>
       );
     }
-    
     const essays = this.props.essays.map(essay => this.renderEssay(essay));
     const editSection = this.props.active ? (
       <div className="essay__edit-button">
@@ -63,11 +62,7 @@ class Essay extends Component {
             {editSection}
           </div>
           <div className={`essay__body ${this.props.active ? 'essay__body_active' : ''}`}>
-            {is.empty(this.props.essays) ? (
-              <div>
-                No has agregado ensayos de {this.props.title}
-              </div>
-            ) : essays}
+             {essays}
           </div>
         </div>
         <Divider />

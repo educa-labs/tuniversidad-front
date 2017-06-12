@@ -92,3 +92,13 @@
   margin-left: 1rem;
 }
 
+.newton-pensando {
+  width: 210px;
+  height: 200px;
+  background-image: url('../assets/newton-pensando.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin: 1rem;
+  flex: 1;
+}

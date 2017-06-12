@@ -49,6 +49,7 @@ class PropfileProgress extends Component {
     return (
       <div className="progress">
         <UserEssayForm
+          active={this.state.active}
           open={this.state.openModal}
           handleClose={this.closeModal}
           subjects={this.props.subjects}

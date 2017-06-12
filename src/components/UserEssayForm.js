@@ -17,11 +17,17 @@ class UserEssayForm extends Component {
     this.state = {
       title: '',
       score: '',
-      subject_id: '',
+      subject_id: this.props.active,
       error: '',
     };
     this.onSubmit = this.onSubmit.bind(this);
     this.disabled = this.disabled.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.active !== this.props.active) {
+      this.setState({ subject_id: nextProps.active});
+    }
   }
 
   onSubmit() {
