@@ -26,7 +26,6 @@ export function validateRut(value) {
 export function validateDate(value) {
   const data = value.split('-');
   const day = data[0];
-  const month = data[1];
   let max = 28;
   if (is.inArray(day, [1, 3, 5, 7, 8, 10, 12])) max = 31;
   if (is.inArray(day, [4, 6, 9, 11])) max = 30;

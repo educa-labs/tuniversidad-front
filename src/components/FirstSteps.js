@@ -31,14 +31,47 @@ class FirstSteps extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      slideIndex: 7,
+      slideIndex: 0,
       error: '',
+      city_id: null,
+      birth_date: null,
+      phone: null,
+      rut: null,
+      preuniversity: null,
+      nem: null,
+      ranking: null,
+      language: null,
+      math: null,
+      science: null,
+      history: null,
     };
+    this.getError = this.getError.bind(this);
     this.handleBack = this.handleBack.bind(this);
     this.handleNext = this.handleNext.bind(this);
     this.logChange = this.logChange.bind(this);
     this.disabled = this.disabled.bind(this);
-    this.getError = this.getError.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  getError(index) {
+    return index === this.state.slideIndex ? this.state.error : '';
+  }
+
+  handleSubmit() {
+    const { city_id, birth_date, phone, rut, preuniversity, nem, ranking } = this.state;
+    const fields = Object.assign({}, {
+      city_id,
+      birth_date,
+      phone,
+      rut,
+      preuniversity,
+      nem,
+      ranking,
+      tutorial: true,
+    });
+    const { language, math, history, science } = this.state;
+    this.props.updateUserInfo(this.props.user.id, this.props.token, fields);
+    this.props.updateUserObjectives(this.props.token, language, math, history, science);
   }
 
   handleNext() {
@@ -107,10 +140,6 @@ class FirstSteps extends Component {
     }
   }
 
-  getError(index) {
-    return index === this.state.slideIndex ? this.state.error : '';
-  }
-
   disabled() {
     const { slideIndex } = this.state;
     if (slideIndex === 1) return !this.state.city_id;
@@ -133,7 +162,7 @@ class FirstSteps extends Component {
     const { slideIndex } = this.state;
     return (
       <Dialog
-        open
+        open={this.props.open}
         modal
         contentStyle={{ width: '34rem' }}
         bodyStyle={{ padding: '0' }}
@@ -165,7 +194,7 @@ class FirstSteps extends Component {
                 logScienceChange={val => this.logChange('science', val)}
                 error={this.getError(7)}
               />
-              <Ready />
+              <Ready onSubmit={this.handleSubmit} />
             </SwipeableViews>
             {slideIndex > 0 ? (
               <Stepper activeStep={getStepIndex(slideIndex)}>

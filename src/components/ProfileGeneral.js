@@ -2,7 +2,6 @@ import React from 'react';
 import UserInfo from './UserInfo';
 import UserGoals from './UserGoals';
 import UserObjectives from './UserObjectives';
-import FirstSteps from './FirstSteps';
 
 
 function ProfileGeneral(props) {

@@ -13,6 +13,7 @@ function Ready(props) {
             label="Comenzar"
             backgroundColor="#0091EA"
             labelColor="white"
+            onTouchTap={props.onSubmit}
           />
         </div>
       </div>

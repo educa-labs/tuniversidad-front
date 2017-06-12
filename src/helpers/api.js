@@ -16,11 +16,3 @@ export function getCities(id, token) {
       .accept('application/tuniversidad.v1')
       .withCredentials();
 }
-
-export function getGoals(id, token) {
-  return Request.get(`${url}/goals`)
-    .set('Content-Type', 'application/json')
-    .set('Authorization', token)
-    .accept('application/tuniversidad.v1')
-    .withCredentials();
-}

@@ -21,13 +21,6 @@ class Profile extends Component {
     this.updateUser = this.updateUser.bind(this);
   }
 
-  componentWillMount() {
-    this.setState({
-      missingInfo: this.props.user.nem === null || this.props.user.ranking === null,
-      second: false,
-    });
-  }
-
   componentDidMount() {
     if (this.props.objectives.objectives === null) this.props.getUserObjectives(this.props.token);
   }
@@ -56,7 +49,14 @@ class Profile extends Component {
     const { slideIndex } = this.state;
     return (
       <div className="site__children">
-        <FirstSteps token={this.props.token} regions={this.props.regions} />
+        <FirstSteps
+          open={!this.props.user.tutorial}
+          token={this.props.token}
+          regions={this.props.regions}
+          updateUserInfo={this.props.updateUserInfo}
+          updateUserObjectives={this.props.updateUserObjectives}
+          user={this.props.user}
+        />
         <div className="tabs-container">
           <Tabs
             onChange={this.handleSlideChange}
