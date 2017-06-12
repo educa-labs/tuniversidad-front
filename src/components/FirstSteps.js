@@ -31,7 +31,7 @@ class FirstSteps extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      slideIndex: 3,
+      slideIndex: 4,
       error: '',
     };
     this.handleBack = this.handleBack.bind(this);
@@ -53,6 +53,12 @@ class FirstSteps extends Component {
       if (slideIndex === 3) {
         if (!validatePhone(this.state.phone)) {
           this.setState({ error: 'Debes ingresar un número válido' });
+          return;
+        }
+      }
+      if (slideIndex === 4) {
+        if (!validateRut(this.state.rut)) {
+          this.setState({ error: 'Debes ingresar un rut válido' });
           return;
         }
       }
@@ -115,7 +121,7 @@ class FirstSteps extends Component {
               <City token={this.props.token} regions={this.props.regions} logChange={id => this.logChange('city_id', id)} />
               <BirthDate logChange={date => this.logChange('birth_date', date)} error={this.getError(2)} />
               <Phone logChange={phone => this.logChange('phone', phone)} error={this.getError(3)} />
-              <Rut logChange={rut => this.logChange('rut', rut)} />
+              <Rut logChange={rut => this.logChange('rut', rut)} error={this.getError(4)} />
               <Preu logChange={preuniversity => this.logChange('preuniversity', preuniversity)} />
               <Nem
                 logNemChange={val => this.logChange('nem', val)}

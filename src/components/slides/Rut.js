@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import TextField from 'material-ui/TextField';
 
 class Rut extends Component {
@@ -28,6 +28,7 @@ class Rut extends Component {
               floatingLabelText="Rut"
               hintText="18918496-4"
               value={this.state.rut}
+              errorText={this.props.error}
             />
           </div>
         </div>
@@ -35,5 +36,10 @@ class Rut extends Component {
     );
   }
 }
+
+Rut.propTypes = {
+  logChange: PropTypes.func.isRequired,
+  error: PropTypes.string.isRequired,
+};
 
 export default Rut;
