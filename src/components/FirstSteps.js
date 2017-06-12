@@ -29,17 +29,17 @@ class FirstSteps extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      finished: false,
-      slideIndex: 0,
+      slideIndex: 3,
     };
     this.handleBack = this.handleBack.bind(this);
     this.handleNext = this.handleNext.bind(this);
     this.logChange = this.logChange.bind(this);
+    this.disabled = this.disabled.bind(this);
   }
 
   handleNext() {
     const { slideIndex } = this.state;
-    if (slideIndex < 8) {
+    if (slideIndex < 8 && !this.disabled()) {
       this.setState({ slideIndex: slideIndex + 1 });
     }
   }
@@ -53,6 +53,24 @@ class FirstSteps extends Component {
 
   logChange(field, value) {
     this.setState({ [field]: value });
+  }
+
+  disabled() {
+    const { slideIndex } = this.state;
+    if (slideIndex === 1) return !this.state.city_id;
+    if (slideIndex === 2) {
+      if (!this.state.birth_date) return true;
+      for (const s of this.state.birth_date.split('-')) {
+        if (s === 'null') return true;
+      }
+      return false;
+    }
+    if (slideIndex === 3) return !this.state.phone;
+    if (slideIndex === 4) return !this.state.rut;
+    if (slideIndex === 5) return !this.state.preu;
+    if (slideIndex === 6) return !this.state.nem || !this.state.ranking;
+    if (slideIndex === 7) return !this.state.language || !this.state.math || !(this.state.history || this.state.sciene);
+    return false;
   }
 
   render() {
@@ -106,7 +124,7 @@ class FirstSteps extends Component {
             ) : null }
           </div>
           <div className="step__button" onClick={this.handleNext}>
-            <IconButton>
+            <IconButton disabled={this.disabled()}>
               <RigthArrow color={is.inArray(slideIndex, [8]) ? 'white' : 'black'} />
             </IconButton>
           </div>

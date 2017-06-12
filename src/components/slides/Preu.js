@@ -16,7 +16,6 @@ class Preu extends Component {
   }
 
   handlePreuChange(res) {
-    console.log(res);
     this.setState({ preuniversity: res });
     this.props.logChange(res);
   }

@@ -70,6 +70,7 @@ class Login extends Component {
             floatingLabelText="Correo electrónico"
             onChange={(e, val) => this.setState({ email: val })}
             errorText={error.email ? 'Usuario no existente' : ''}
+            autoFocus
           />
           <br />
           <TextField

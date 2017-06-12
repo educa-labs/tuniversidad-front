@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import TextField from 'material-ui/TextField';
 import SelectInput from './SelectInput';
 
-
 const months = [
   { label: 'Enero', value: 1 },
   { label: 'Febrero', value: 2 },
@@ -18,6 +17,21 @@ const months = [
   { label: 'Diciembre', value: 12 },
 ];
 
+const getDays = () => {
+  const days = [];
+  for (let i = 1; i <= 31; i ++) {
+    days.push({ label: i.toString(), value: i });
+  }
+  return days;
+};
+
+const getYears = () => {
+  const years = [];
+  for (let i = 1990; i <= 2010; i ++) {
+    years.push({ label: i.toString(), value: i});
+  }
+  return years;
+};
 
 class DatePicker extends Component {
   componentWillMount() {
@@ -39,15 +53,12 @@ class DatePicker extends Component {
   render() {
     return (
       <div className="date-picker">
-        <TextField
-          onChange={(e, val) => this.onChange('day', val)}
-          type="number"
-          hintText="Día"
+        <SelectInput
+          items={getDays()}
+          handleChange={val => this.onChange('day', val)}
           value={this.state.day}
-          style={{
-            width: '3rem',
-            marginRight: '3px',
-          }}
+          hintText="Día"
+          maxHeight={180}
         />
         <SelectInput
           items={months}
@@ -56,15 +67,12 @@ class DatePicker extends Component {
           hintText="Mes"
           maxHeight={180}
         />
-        <TextField
-          onChange={(e, val) => this.onChange('year', val)}
-          type="number"
-          hintText="Año"
+        <SelectInput
+          items={getYears()}
+          handleChange={val => this.onChange('year', val)}
           value={this.state.year}
-          style={{
-            width: '3rem',
-            marginLeft: '3px',
-          }}
+          hintText="Año"
+          maxHeight={180}
         />
       </div>
     );
