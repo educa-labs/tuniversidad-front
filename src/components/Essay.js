@@ -50,7 +50,7 @@ class Essay extends Component {
     const editSection = this.props.active ? (
       <div className="essay__edit-button">
         <IconButton onTouchTap={() => this.setState({ editMode: !this.state.editMode })}>
-          <EditIcon color="white" />
+          <EditIcon color="#FFFFFF" />
         </IconButton>
       </div>
       ) : null;

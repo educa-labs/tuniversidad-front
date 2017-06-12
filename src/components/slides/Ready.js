@@ -12,7 +12,7 @@ function Ready(props) {
           <RaisedButton
             label="Comenzar"
             backgroundColor="#0091EA"
-            labelColor="white"
+            labelColor="#FFFFFF"
             onTouchTap={props.onSubmit}
           />
         </div>

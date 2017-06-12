@@ -26,7 +26,7 @@ function Banner(props, context) {
       onTouchTap={is.null(props.user) ? handleClick : handleLogout}
       label={is.null(props.user) ? 'Inicia sesión' : 'Cerrar sesión'}
       labelStyle={{
-        color: 'white',
+        color: '#FFFFFF',
       }}
       style={{
         margin: 'auto 1rem auto auto',
@@ -37,7 +37,7 @@ function Banner(props, context) {
   const leftContent = is.not.null(props.title) ? (
     <div className="left-content">
       <IconButton onTouchTap={() => context.router.goBack()}>
-        <ArrowBack color="white" />
+        <ArrowBack color="#FFFFFF" />
       </IconButton>
       <div className="letf-content__title">{props.title}</div>
     </div>

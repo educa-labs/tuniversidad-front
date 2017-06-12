@@ -171,7 +171,7 @@ class FirstSteps extends Component {
         <div className="step">
           <div className="step__button" onClick={this.handleBack}>
             <IconButton>
-              <LeftArrow color={is.inArray(slideIndex, [0]) ? 'white' : '#9E9E9E'} />
+              <LeftArrow color={is.inArray(slideIndex, [0]) ? '#FFFFFF' : '#9E9E9E'} />
             </IconButton>
           </div>
           <div className="slide">
@@ -212,7 +212,7 @@ class FirstSteps extends Component {
           </div>
           <div className="step__button" onClick={this.handleNext}>
             <IconButton disabled={this.disabled()}>
-              <RigthArrow color={is.inArray(slideIndex, [8]) ? 'white' : 'black'} />
+              <RigthArrow color={is.inArray(slideIndex, [8]) ? '#FFFFFF' : 'black'} />
             </IconButton>
           </div>
         </div>

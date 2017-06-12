@@ -47,28 +47,28 @@ class SideMenu extends Component {
           className={`side-menu__item ${selected === 'search' ? 'side-menu__item_selected' : ''}`}
           onClick={() => this.handleSelectItem('search')}
         >
-          <div className="icon" ><Search color="white" /></div>
+          <div className="icon" ><Search color="#FFFFFF" /></div>
           <div className="label">Buscador</div>
         </div>
         <div
           className={`side-menu__item ${selected === 'compare' ? 'side-menu__item_selected' : ''}`}
           onClick={() => this.handleSelectItem('compare')}
         >
-          <div className="icon" ><CompareIcon color="white" /></div>
+          <div className="icon" ><CompareIcon color="#FFFFFF" /></div>
           <div className="label">Comparador</div>
         </div>
         <div
           className={`side-menu__item ${selected === 'recommend' ? 'side-menu__item_selected' : ''}`}
           onClick={() => this.handleSelectItem('recommend')}
         >
-          <div className="icon" ><LightbulbIcon color="white" /></div>
+          <div className="icon" ><LightbulbIcon color="#FFFFFF" /></div>
           <div className="label">Recomendaciones</div>
         </div>
         <div
           className={`side-menu__item ${selected === 'news' ? 'side-menu__item_selected' : ''}`}
           onClick={() => this.handleSelectItem('news')}
         >
-          <div className="icon" ><NewsIcon color="white" /></div>
+          <div className="icon" ><NewsIcon color="#FFFFFF" /></div>
           <div className="label">Noticias</div>
         </div>
         <div className="side-menu__button-container">
@@ -76,7 +76,7 @@ class SideMenu extends Component {
             onTouchTap={this.handleLogout}
             label="Cerrar sesión"
             backgroundColor="#0091EA"
-            labelColor="white"
+            labelColor="#FFFFFF"
           />
         </div>
       </div>

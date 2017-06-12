@@ -18,7 +18,7 @@ const muiTheme = getMuiTheme({
     accent1Color: '#0091EA',
   },
   tabs: {
-    backgroundColor: 'white',
+    backgroundColor: '#FFFFFF',
     selectedTextColor: '#424242',
     textColor: '#D2D2D2',
   },
