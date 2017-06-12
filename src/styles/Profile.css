@@ -122,6 +122,11 @@
   justify-content: flex-start;
 }
 
+.general-card__no-content span {
+  color: #0091EA;
+  cursor: pointer;
+}
+
 .goal {
   margin-bottom: 20px;
   padding: 0 1rem;

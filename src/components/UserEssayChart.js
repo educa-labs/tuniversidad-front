@@ -25,12 +25,12 @@ function UserEssayChart(props) {
   const data = props.essays[props.active];
 
   const noContent = (
-      <div className="general-card__no-content">
-        <div className="newton-pensando" />
-        <div className="general-card__empty-msg">
-          Aún no has agregado un ensayo de {subjects[props.active]}.
-        </div>
+    <div className="general-card__no-content">
+      <div className="newton-pensando" />
+      <div className="general-card__empty-msg">
+        Aún no has agregado un ensayo de {subjects[props.active]}.
       </div>
+    </div>
   );
 
   const chart = (

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import is from 'is_js';
 import EditIcon from 'material-ui/svg-icons/image/edit';
 import ClearIcon from 'material-ui/svg-icons/content/clear';
 import IconButton from 'material-ui/IconButton';
@@ -29,6 +30,7 @@ class UserGoals extends Component {
       avg: both ? Math.max(goal.scores.science.avg, goal.scores.history.avg) : source.max,
       obj: both ? Math.max(goal.scores.science.obj, goal.scores.history.obj) : source.obj,
     });
+
     return (
       <div key={goal.carreer.id}>
         <div className="goal">
@@ -54,6 +56,16 @@ class UserGoals extends Component {
 
   render() {
     if (this.props.goals === null) return <div>Cargando ... </div>;
+
+    const noContent = (
+      <div className="general-card__no-content">
+        <div className="newton-pensando" />
+        <div className="general-card__empty-msg">
+          <div>¿Tienes pensado estudiar alguna carrera? Te recomiendo usar el <span>buscador</span> para añadirla a tus metas.</div>
+        </div>
+      </div>
+    );
+
     return (
       <div className="general-card">
         <div className="general-card__header">
@@ -64,7 +76,7 @@ class UserGoals extends Component {
             </IconButton>
           </div>
         </div>
-        {this.props.goals.map(goal => this.renderGoal(goal))}
+        {is.empty(this.props.goals) ? noContent : this.props.goals.map(goal => this.renderGoal(goal))}
       </div>
     );
   }
