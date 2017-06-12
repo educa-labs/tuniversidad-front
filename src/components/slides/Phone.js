@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import TextField from 'material-ui/TextField';
 
 class Phone extends Component {
@@ -26,6 +26,7 @@ class Phone extends Component {
               floatingLabelText="Teléfono"
               hintText="+56961403258"
               value={this.state.phone}
+              errorText={this.props.error}
             />
           </div>
         </div>
@@ -33,5 +34,10 @@ class Phone extends Component {
     );
   }
 }
+
+Phone.propTypes = {
+  logChange: PropTypes.func.isRequired,
+  error: PropTypes.string.isRequired,
+};
 
 export default Phone;

@@ -16,7 +16,7 @@ import Nem from './slides/Nem';
 import Objectives from './slides/Objectives';
 import Ready from './slides/Ready';
 
-import { validateRut, validateDate, checkScore } from '../helpers/numeral';
+import { validateRut, validateDate, checkScore, validatePhone } from '../helpers/numeral';
 
 import '../styles/FirstSteps.css';
 
@@ -31,13 +31,14 @@ class FirstSteps extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      slideIndex: 2,
+      slideIndex: 3,
       error: '',
     };
     this.handleBack = this.handleBack.bind(this);
     this.handleNext = this.handleNext.bind(this);
     this.logChange = this.logChange.bind(this);
     this.disabled = this.disabled.bind(this);
+    this.getError = this.getError.bind(this);
   }
 
   handleNext() {
@@ -46,6 +47,12 @@ class FirstSteps extends Component {
       if (slideIndex === 2) {
         if (!validateDate(this.state.birth_date)) {
           this.setState({ error: 'Esta fecha no existe' });
+          return;
+        }
+      }
+      if (slideIndex === 3) {
+        if (!validatePhone(this.state.phone)) {
+          this.setState({ error: 'Debes ingresar un número válido' });
           return;
         }
       }
@@ -62,6 +69,10 @@ class FirstSteps extends Component {
 
   logChange(field, value) {
     this.setState({ [field]: value, error: '' });
+  }
+
+  getError(index) {
+    return index === this.state.slideIndex ? this.state.error : '';
   }
 
   disabled() {
@@ -102,8 +113,8 @@ class FirstSteps extends Component {
             <SwipeableViews index={slideIndex}>
               <Welcome />
               <City token={this.props.token} regions={this.props.regions} logChange={id => this.logChange('city_id', id)} />
-              <BirthDate logChange={date => this.logChange('birth_date', date)} error={this.state.error} />
-              <Phone logChange={phone => this.logChange('phone', phone)} />
+              <BirthDate logChange={date => this.logChange('birth_date', date)} error={this.getError(2)} />
+              <Phone logChange={phone => this.logChange('phone', phone)} error={this.getError(3)} />
               <Rut logChange={rut => this.logChange('rut', rut)} />
               <Preu logChange={preuniversity => this.logChange('preuniversity', preuniversity)} />
               <Nem

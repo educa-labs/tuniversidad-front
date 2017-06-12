@@ -33,3 +33,6 @@ export function validateDate(value) {
   return day <= max;
 }
 
+export function validatePhone(value) {
+  return value.length === 12 && value.slice(0, 4) === '+569' && !isNaN(value.slice(1));
+}
