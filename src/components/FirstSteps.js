@@ -29,7 +29,7 @@ class FirstSteps extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      slideIndex: 3,
+      slideIndex: 7,
     };
     this.handleBack = this.handleBack.bind(this);
     this.handleNext = this.handleNext.bind(this);
@@ -67,9 +67,9 @@ class FirstSteps extends Component {
     }
     if (slideIndex === 3) return !this.state.phone;
     if (slideIndex === 4) return !this.state.rut;
-    if (slideIndex === 5) return !this.state.preu;
+    if (slideIndex === 5) return !this.state.preuniversity;
     if (slideIndex === 6) return !this.state.nem || !this.state.ranking;
-    if (slideIndex === 7) return !this.state.language || !this.state.math || !(this.state.history || this.state.sciene);
+    if (slideIndex === 7) return !this.state.language || !this.state.math || !(this.state.history || this.state.science);
     return false;
   }
 
@@ -98,13 +98,13 @@ class FirstSteps extends Component {
               <Rut logChange={rut => this.logChange('rut', rut)} />
               <Preu logChange={preuniversity => this.logChange('preuniversity', preuniversity)} />
               <Nem
-                logNenChange={val => this.logChange('nem', val)}
+                logNemChange={val => this.logChange('nem', val)}
                 logRankingChange={val => this.logChange('ranking', val)}
               />
               <Objectives
                 logLangChange={val => this.logChange('language', val)}
                 logMathChange={val => this.logChange('math', val)}
-                loghistoryChange={val => this.logChange('history', val)}
+                logHistoryChange={val => this.logChange('history', val)}
                 logScienceChange={val => this.logChange('science', val)}
               />
               <Ready />

@@ -15,7 +15,7 @@ class Nem extends Component {
   }
 
   handleRankingChange(val) {
-    this.props.logRankingName(val);
+    this.props.logRankingChange(val);
     this.setState({ ranking: val });
   }
 

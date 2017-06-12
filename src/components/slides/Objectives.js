@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import TextField from 'material-ui/TextField';
 
 class Objectives extends Component {
@@ -80,5 +80,12 @@ class Objectives extends Component {
     );
   }
 }
+
+Objectives.propTypes = {
+  logHistoryChange: PropTypes.func.isRequired,
+  logLangChange: PropTypes.func.isRequired,
+  logMathChange: PropTypes.func.isRequired,
+  logScienceChange: PropTypes.func.isRequired,
+};
 
 export default Objectives;
