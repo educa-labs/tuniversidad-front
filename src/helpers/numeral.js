@@ -1,3 +1,5 @@
+import is from 'is_js';
+
 export function numeral(number) {
   return number.toString().replace(/./g, (c, i, a)  => {
     return i && c !== '.' && ((a.length - i) % 3 === 0) ? '.' + c : c;
@@ -20,3 +22,14 @@ export function validateRut(value) {
   };
   return true;
 }
+
+export function validateDate(value) {
+  const data = value.split('-');
+  const day = data[0];
+  const month = data[1];
+  let max = 28;
+  if (is.inArray(day, [1, 3, 5, 7, 8, 10, 12])) max = 31;
+  if (is.inArray(day, [4, 6, 9, 11])) max = 30;
+  return day <= max;
+}
+

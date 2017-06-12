@@ -16,6 +16,8 @@ import Nem from './slides/Nem';
 import Objectives from './slides/Objectives';
 import Ready from './slides/Ready';
 
+import { validateRut, validateDate, checkScore } from '../helpers/numeral';
+
 import '../styles/FirstSteps.css';
 
 function getStepIndex(slideIndex) {
@@ -29,7 +31,8 @@ class FirstSteps extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      slideIndex: 7,
+      slideIndex: 2,
+      error: '',
     };
     this.handleBack = this.handleBack.bind(this);
     this.handleNext = this.handleNext.bind(this);
@@ -40,7 +43,13 @@ class FirstSteps extends Component {
   handleNext() {
     const { slideIndex } = this.state;
     if (slideIndex < 8 && !this.disabled()) {
-      this.setState({ slideIndex: slideIndex + 1 });
+      if (slideIndex === 2) {
+        if (!validateDate(this.state.birth_date)) {
+          this.setState({ error: 'Esta fecha no existe' });
+          return;
+        }
+      }
+      this.setState({ slideIndex: slideIndex + 1, error: '' });
     }
   }
 
@@ -52,7 +61,7 @@ class FirstSteps extends Component {
   }
 
   logChange(field, value) {
-    this.setState({ [field]: value });
+    this.setState({ [field]: value, error: '' });
   }
 
   disabled() {
@@ -93,7 +102,7 @@ class FirstSteps extends Component {
             <SwipeableViews index={slideIndex}>
               <Welcome />
               <City token={this.props.token} regions={this.props.regions} logChange={id => this.logChange('city_id', id)} />
-              <BirthDate logChange={date => this.logChange('birth_date', date)} />
+              <BirthDate logChange={date => this.logChange('birth_date', date)} error={this.state.error} />
               <Phone logChange={phone => this.logChange('phone', phone)} />
               <Rut logChange={rut => this.logChange('rut', rut)} />
               <Preu logChange={preuniversity => this.logChange('preuniversity', preuniversity)} />

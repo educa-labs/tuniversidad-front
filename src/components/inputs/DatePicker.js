@@ -59,6 +59,7 @@ class DatePicker extends Component {
           value={this.state.day}
           hintText="Día"
           maxHeight={180}
+          errorText={this.props.errorText}
         />
         <SelectInput
           items={months}
@@ -85,6 +86,7 @@ DatePicker.defaultProps = {
 
 DatePicker.propTypes = {
   date: PropTypes.string,
+  errorText: PropTypes.string.isRequired,
 };
 
 export default DatePicker;
