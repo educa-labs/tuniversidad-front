@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import Divider from 'material-ui/Divider';
 import IconButton from 'material-ui/IconButton';
 import EditIcon from 'material-ui/svg-icons/image/edit';
 import UserObjectivesForm from './UserObjectivesForm';
-
 
 class UserObjectives extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class UserObjectives extends Component {
   }
 
   render() {
-    const { objectives } = this.props;
+    const { objectives, user } = this.props;
     if (objectives === null) return <div>Cargando ...</div>;
     return (
       <div className="general-card">
@@ -51,6 +51,17 @@ class UserObjectives extends Component {
           <div className="test__item">
             <div className="value">{objectives.history || '--'}</div>
             <div className="label">Historia</div>
+          </div>
+        </div>
+        <Divider />
+        <div className="general-card__footer">
+          <div className="general-card__footer_item">
+            <div className="value">{user.nem || 'Sin información'}</div>
+            <div className="label">NEM</div>
+          </div>
+          <div className="general-card__footer_item">
+            <div className="value">{user.ranking || 'Sin información'}</div>
+            <div className="label">Ranking</div>
           </div>
         </div>
       </div>

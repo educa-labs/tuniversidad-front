@@ -21,6 +21,7 @@ function ProfileGeneral(props) {
         />
         <UserObjectives
           objectives={props.objectives.objectives}
+          user={props.user}
           handleSubmit={(l, m, h, s) => props.updateUserObjectives(props.token, l, m, h, s)}
         />
       </div>
