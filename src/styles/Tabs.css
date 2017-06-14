@@ -1,6 +1,6 @@
 .tabs {
   position: fixed;
-  top: 0;
+  top: 48px;
   width: 100%;
   z-index: 10000;
   box-shadow: 6px 0px 18px -4px rgba(0,0,0,0.75);

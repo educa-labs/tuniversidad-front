@@ -9,6 +9,7 @@ import { saveUser } from '../helpers/storage';
 import ProfileGeneral from '../components/ProfileGeneral';
 import ProfileProgress from '../components/ProfileProgress';
 import FirstSteps from '../components/FirstSteps';
+import MobileBanner from './MobileBanner';
 import '../styles/Profile.css';
 import '../styles/Essay.css';
 import '../styles/Form.css';
@@ -16,6 +17,7 @@ import '../styles/Tabs.css';
 
 const tabStyle = {
   fontSize: '12px',
+  width: '33%',
 };
 
 class Profile extends Component {
@@ -64,6 +66,7 @@ class Profile extends Component {
           updateUserObjectives={this.props.updateUserObjectives}
           user={this.props.user}
         />
+        <MobileBanner />
         <Tabs
           onChange={this.handleSlideChange}
           value={slideIndex}
@@ -71,7 +74,7 @@ class Profile extends Component {
         >
           <Tab label="General" value={0} style={tabStyle} />
           <Tab label="Progreso" value={1} style={tabStyle} />
-          <Tab label="Recomendaciones" value={2} style={tabStyle} />
+          <Tab label="Sugerencias" value={2} style={tabStyle} />
         </Tabs >
         {slideIndex === 0 ? (
           <ProfileGeneral
