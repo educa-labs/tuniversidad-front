@@ -11,20 +11,20 @@ function BarChart(props) {
   
   return (
     <div className="bar-chart">
-      <div className="bar">
-        <div className="rectangle rectangle-1" style={{ width: getWidth(avg) }}>
+      <div className="bar" style={{ width: getWidth(avg) }}>
+        <div className="rectangle rectangle-1" >
           <div className="bar__label">Mi Puntaje</div>
           <div className="bar__value">{avg}</div>
         </div>
       </div>
-      <div className="bar">
-        <div className=" rectangle rectangle-2" style={{ width: getWidth(obj) }}>
+      <div className="bar" style={{ width: getWidth(obj) }}>
+        <div className=" rectangle rectangle-2">
           <div className="bar__label">Mi Objetivo</div>
           <div className="bar__value">{obj}</div>
         </div>
       </div>
-      <div className="bar">
-        <div className=" rectangle rectangle-3" style={{ width: getWidth(last_cut) }}>
+      <div className="bar" style={{ width: getWidth(last_cut) }} >
+        <div className=" rectangle rectangle-3">
           <div className="bar__label">Corte 2016</div>
           <div className="bar__value">{last_cut}</div>
         </div>
