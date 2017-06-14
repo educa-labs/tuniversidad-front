@@ -1,0 +1,22 @@
+.news-container {
+  flex: 1;
+  padding: 0 12rem;
+  background-color: #F5F5F5;
+  height: 100%;
+  overflow: scroll;
+}
+
+.news-photo {
+  height: 15rem;
+  background-position: center;
+  background-size: cover;
+ 
+}
+
+.news-photo-1 {
+  background-image: url('../assets/news.jpg');
+}
+
+.news-photo-2 {
+  background-image: url('../assets/news-2.jpg');
+}
