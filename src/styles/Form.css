@@ -1,0 +1,29 @@
+.form {
+  width: 50%;
+}
+
+.form .row {
+  display: flex;  
+}
+
+.form__field {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  margin: 0 2rem;
+}
+
+.form__field-2 {
+  color: black;
+  font-weight: 100;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 2;
+  margin: 5px 2rem;
+}
+
+.form__field-3 {
+  flex: 3;
+  margin: 5px 2rem;
+}

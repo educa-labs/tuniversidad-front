@@ -1,9 +1,10 @@
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes, Component, cloneElement } from 'react';
 import { connect } from 'react-redux';
 import SideMenu from './SideMenu';
 import { getGoals } from '../actions/goals';
 import { fetch } from '../actions/fetch';
 import '../styles/Site.css';
+import '../styles/GeneralCard.css';
 
 
 class Site extends Component {
@@ -15,8 +16,8 @@ class Site extends Component {
   render() {
     return (
       <div className="site">
-        <SideMenu />
-        {this.props.children}
+        <SideMenu mobile />
+        {cloneElement(this.props.children, { mobile: true }) }
       </div>
     );
   }

@@ -25,7 +25,6 @@ class SideMenu extends Component {
     this.props.clearState();
     clearUser();
     this.context.router.replace('/');
-    // props.logoutUser(props.user.id, props.user.auth_token);
   }
 
   handleSelectItem(selected) {
@@ -35,12 +34,13 @@ class SideMenu extends Component {
 
   render() {
     const { selected } = this.state;
+    const { mobile } = this.props;
     return (
-      <div className="side-menu">
+      <div className={`side-menu ${mobile ? 'side-menu__mobile' : ''}`}>
         <div className="side-menu__banner" />
         <ProfileBanner
           user={this.props.user}
-          onClick={ () => this.handleSelectItem('profile')}
+          onClick={() => this.handleSelectItem('profile')}
           selected={selected === 'profile'}
         />
         <div

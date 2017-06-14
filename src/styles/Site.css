@@ -18,6 +18,11 @@
   box-shadow: 6px 0px 18px -4px rgba(0,0,0,0.75);
   padding-bottom: 28px;
 }
+
+.side-menu__mobile {
+  display: none;
+}
+
 .side-menu__banner {
   background-color: #424242;
   flex: 0 0 60px;

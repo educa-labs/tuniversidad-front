@@ -7,7 +7,6 @@ import Divider from 'material-ui/Divider';
 import BarChart from './BarChart';
 
 
-
 class UserGoals extends Component {
   constructor(props) {
     super(props);
@@ -67,7 +66,7 @@ class UserGoals extends Component {
     );
 
     return (
-      <div className="general-card">
+      <div className={`general-card ${this.props.mobile ? 'general-card_mobile' : '' }`}>
         <div className="general-card__header">
           <div className="general-card__title">Mis Metas</div>
           <div className="general-card__edit-button">

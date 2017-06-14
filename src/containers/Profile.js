@@ -10,6 +10,9 @@ import ProfileGeneral from '../components/ProfileGeneral';
 import ProfileProgress from '../components/ProfileProgress';
 import FirstSteps from '../components/FirstSteps';
 import '../styles/Profile.css';
+import '../styles/Essay.css';
+import '../styles/Form.css';
+import '../styles/Tabs.css';
 
 class Profile extends Component {
   constructor(props) {
@@ -48,7 +51,7 @@ class Profile extends Component {
   render() {
     const { slideIndex } = this.state;
     return (
-      <div className="site__children">
+      <div className="col col-1">
         <FirstSteps
           open={!this.props.user.tutorial}
           token={this.props.token}
@@ -57,28 +60,24 @@ class Profile extends Component {
           updateUserObjectives={this.props.updateUserObjectives}
           user={this.props.user}
         />
-        <div className="tabs-container">
-          <Tabs
-            onChange={this.handleSlideChange}
-            value={slideIndex}
-            className="tabs tabs_profile"
-          >
-            <Tab label="General" value={0} />
-            <Tab label="Progreso" value={1} />
-            <Tab label="Recomendaciones" value={2} />
-          </Tabs >
-        </div>
-        <div className="profile-children">
-          {slideIndex === 0 ? (
-            <ProfileGeneral
-              {...this.props}
-              missingInfo={this.state.missingInfo}
-              updateUser={this.updateUser}
-            />
-            ) : null }
-          {slideIndex === 1 ? <ProfileProgress {...this.props} /> : null }
-          {slideIndex === 2 ? <div>Recomnedaciones</div> : null }
-        </div>
+        <Tabs
+          onChange={this.handleSlideChange}
+          value={slideIndex}
+          className="tabs"
+        >
+          <Tab label="General" value={0} />
+          <Tab label="Progreso" value={1} />
+          <Tab label="Recomendaciones" value={2} />
+        </Tabs >
+        {slideIndex === 0 ? (
+          <ProfileGeneral
+            {...this.props}
+            missingInfo={this.state.missingInfo}
+            updateUser={this.updateUser}
+          />
+          ) : null }
+        {slideIndex === 1 ? <ProfileProgress {...this.props} /> : null }
+        {slideIndex === 2 ? <div>Recomnedaciones</div> : null }
       </div>
     );
   }
