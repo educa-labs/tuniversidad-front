@@ -46,6 +46,38 @@ class PropfileProgress extends Component {
     for (let i = 1; i < 5; i += 1) {
       if (is.null(this.props.essays[i])) return <div>Cargando ... </div>;
     }
+    if (this.props.mobile) {
+      return (
+        <div className="col col-1 col-grey">
+          <UserEssayForm
+            active={this.state.active}
+            open={this.state.openModal}
+            handleClose={this.closeModal}
+            subjects={this.props.subjects}
+            token={this.props.token}
+            addEssay={(title, subjectId, score) => this.props.addEssay(this.props.token, title, subjectId, score)}
+          />
+          <UserEssayChart
+            essays={this.props.essays}
+            subjects={this.props.subjects}
+            active={this.state.active}
+            mobile
+          />
+          <UserEssays
+            mobile
+            active={this.state.active}
+            handleSubjectClick={active => this.setState({ active })}
+            essays={this.props.essays}
+            removeEssay={(essayId, subjectId) => this.props.removeEssay(this.props.token, essayId, subjectId)}
+          />
+          <div className="action-button">
+            <FloatingActionButton secondary onTouchTap={() => this.setState({ openModal: true })}>
+              <ContentAdd />
+            </FloatingActionButton>
+          </div>
+        </div>
+      );
+    }
     return (
       <div className="progress">
         <UserEssayForm

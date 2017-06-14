@@ -34,11 +34,11 @@ function UserEssayChart(props) {
   );
 
   const chart = (
-    <LineChart width={600} height={300} data={data.essays} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-      <XAxis dataKey="date" type="category" padding={{ left: 30, right: 30 }} />
-      <YAxis domain={['dataMin - 100', 850]} padding={{ top: 30, bottom: 30 }} />
+    <LineChart width={300} height={220} data={data.essays} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+      <XAxis dataKey="date" type="category" padding={{ left: 30, right: 30 }} width={320} />
+      <YAxis domain={['dataMin - 100', 850]} padding={{ top: 30, bottom: 30 }} tick={false} tickSize={0} />
       <Tooltip />
-      <CartesianGrid strokeDasharray="3 3" />
+      <CartesianGrid strokeDasharray="4 4" />
       <ReferenceLine
         y={data.stats.expectation}
         stroke="#424242"
@@ -47,12 +47,16 @@ function UserEssayChart(props) {
       <Line name="Puntaje" type="basis" dataKey="score" stroke="#0091EA" label={<CustomizedLabel />} dot={{ strokeWidth: 2 }} />
     </LineChart>
   );
+  
+  const header = props.mobile ? null : (
+    <div className="general-card__header">
+      <div className="general-card__title">Mi progreso en {subjects[props.active]}</div>
+    </div>
+  );
 
   return (
     <div className="general-card">
-      <div className="general-card__header">
-        <div className="general-card__title">Mi progreso en {subjects[props.active]}</div>
-      </div>
+      {header}
       <div className="general-card__chart">
         {is.empty(data.essays) ? noContent : chart}
       </div>

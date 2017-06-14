@@ -24,7 +24,7 @@ class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      slideIndex: 0,
+      slideIndex: 1,
     };
     this.handleSlideChange = this.handleSlideChange.bind(this);
     this.updateUser = this.updateUser.bind(this);

@@ -6,7 +6,7 @@
   background-color: white;
   margin: 0.5rem 0;
   box-shadow: 0px 0px 4px 0.5px rgba(0,0,0,0.10);
-  z-index: 10;
+  z-index: 1;
   border-radius: 2px;
 }
 
@@ -51,7 +51,7 @@
 
 .general-card__chart {
   display: flex;
-  justify-content: center;
+  margin-top: 1rem;
 }
 
 .general-card__no-content{
@@ -63,4 +63,11 @@
 .general-card__no-content span {
   color: #0091EA;
   cursor: pointer;
+}
+
+.action-button {
+  position: fixed;
+  top: 80%;
+  left: 75%;
+  z-index: 10;
 }
