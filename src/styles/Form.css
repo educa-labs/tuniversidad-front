@@ -1,16 +1,14 @@
-.form {
-  width: 50%;
-}
-
-.form .row {
-  display: flex;  
+.form-contianer {
+  max-width: '32rem';
+  min-width: '13rem';
+  width: '90%';
 }
 
 .form__field {
   display: flex;
   flex: 1;
   justify-content: center;
-  margin: 0 2rem;
+  margin: 0 1rem;
 }
 
 .form__field-2 {
