@@ -65,8 +65,7 @@ class UserEssayForm extends Component {
         title="Agregar un ensayo"
         actions={actions}
         open={this.props.open}
-        className="form"
-        contentStyle={{ width: '32rem' }}
+        contentContainerClassName="form-container"
         onRequestClose={this.props.handleClose}
       >
         <div className="form__field">
@@ -78,24 +77,22 @@ class UserEssayForm extends Component {
             onChange={(e, val) => this.setState({ title: val })}
           />
         </div>
-        <div className="row">
-          <div className="form__field">
-            <SelectInput
-              title="Asignatura"
-              items={this.props.subjects}
-              value={this.state.subject_id}
-              handleChange={subject_id => this.setState({ subject_id })}
-            />
-          </div>
-          <div className="form__field">
-            <TextField
-              onChange={(e, val) => this.setState({ score: Number(val) })}
-              floatingLabelText="Puntaje"
-              type="number"
-              fullWidth
-              errorText={this.state.error}
-            />
-          </div>
+        <div className="form__field">
+          <SelectInput
+            title="Asignatura"
+            items={this.props.subjects}
+            value={this.state.subject_id}
+            handleChange={subject_id => this.setState({ subject_id })}
+          />
+        </div>
+        <div className="form__field">
+          <TextField
+            onChange={(e, val) => this.setState({ score: Number(val) })}
+            floatingLabelText="Puntaje"
+            type="number"
+            fullWidth
+            errorText={this.state.error}
+          />
         </div>
       </Dialog>
     );
