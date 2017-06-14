@@ -8,6 +8,14 @@ import '../styles/GeneralCard.css';
 
 
 class Site extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      showMenu: false,
+    };
+  }
+
   componentDidMount() {
     this.props.getGoals(this.props.token);
     this.props.fetch('regions', null, this.props.token);
@@ -17,7 +25,10 @@ class Site extends Component {
     return (
       <div className="site">
         <SideMenu mobile />
-        {cloneElement(this.props.children, { mobile: true }) }
+        {cloneElement(this.props.children, {
+          mobile: true,
+          toggleMenu: () => this.setState({ showMenu: !this.state.showMenu }),
+        }) }
       </div>
     );
   }

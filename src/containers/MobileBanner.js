@@ -4,10 +4,10 @@ import Menu from 'material-ui/svg-icons/navigation/menu';
 import '../styles/MobileBanner.css';
 
 
-function MobileBanner() {
+function MobileBanner({ onClick }) {
   return (
     <div className="mobile-banner">
-      <IconButton>
+      <IconButton onTouchTap={onClick}>
         <Menu color="#FFFFFF" />
       </IconButton>
       <div className="tuni-logo" />

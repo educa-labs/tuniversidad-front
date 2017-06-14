@@ -66,7 +66,7 @@ class Profile extends Component {
           updateUserObjectives={this.props.updateUserObjectives}
           user={this.props.user}
         />
-        <MobileBanner />
+        <MobileBanner onClick={this.props.toggleMenu} />
         <Tabs
           onChange={this.handleSlideChange}
           value={slideIndex}
@@ -93,6 +93,7 @@ class Profile extends Component {
 Profile.propTypes = {
   getEssays: PropTypes.func.isRequired,
   updateUserInfo: PropTypes.func.isRequired,
+  toggleMenu: PropTypes.func,
 };
 
 
