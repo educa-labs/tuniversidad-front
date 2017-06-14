@@ -11,9 +11,6 @@
  margin: 2px 0;
 }
 
-.bar__label {
-}
-
 .bar__value {
   display: flex;
   flex: 1;
@@ -31,10 +28,10 @@
 }
 
 @keyframes expandFromLeft {
-  0% {
+  From {
     width: 32%;
   }
-  100% {
+  To {
     width: 100%;
   }
 }

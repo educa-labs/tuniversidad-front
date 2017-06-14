@@ -1,10 +1,18 @@
 import React, { PropTypes, Component } from 'react';
 import Divider from 'material-ui/Divider';
-import EditIcon from 'material-ui/svg-icons/image/edit';
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import ClearIcon from 'material-ui/svg-icons/content/clear';
 import IconButton from 'material-ui/IconButton';
 import is from 'is_js';
 
+
+const menuStyle = {
+  lineHeight: '20px',
+  minHeight: '0',
+  fontSize: '14px',
+};
 
 class Essay extends Component {
   constructor(props) {
@@ -14,7 +22,7 @@ class Essay extends Component {
     };
     this.renderEssay = this.renderEssay.bind(this);
   }
-
+  // 
   renderEssay(ess) {
     return (
       <div className="essay__score" key={ess.id}>
@@ -26,12 +34,20 @@ class Essay extends Component {
           <div className="score">{ess.score}</div>
           <div className="label">Puntaje</div>
         </div>
-        <div className="essay__delete-button">
-          {this.state.editMode ? (
-            <IconButton onTouchTap={() => this.props.removeEssay(ess.id, ess.subject.id)}>
-              <ClearIcon color="#F44336" />
-            </IconButton>
-          ) : null}
+        <div className="score-menu">
+          <div className="menu">
+            <IconMenu
+              iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
+              anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
+              targetOrigin={{ horizontal: 'right', vertical: 'top' }}
+            >
+              <MenuItem secondaryText="Editar" />
+              <MenuItem
+                secondaryText="Borrar"
+                onTouchTap={() => this.props.removeEssay(ess.id, ess.subject.id)}
+              />
+            </IconMenu>
+          </div>
         </div>
       </div>
     );
@@ -46,20 +62,12 @@ class Essay extends Component {
       );
     }
     const essays = this.props.essays.map(essay => this.renderEssay(essay));
-    const editSection = this.props.active ? (
-      <div className="essay__edit-button">
-        <IconButton onTouchTap={() => this.setState({ editMode: !this.state.editMode })}>
-          <EditIcon color="#FFFFFF" />
-        </IconButton>
-      </div>
-      ) : null;
 
     return (
       <div>
         <div className="essay">
           <div className={`essay__header ${this.props.active ? 'essay__header_active' : ''}`} onClick={this.props.handleClick}>
             <div className="essay__title">{this.props.title}</div>
-            {editSection}
           </div>
           <div className={`essay__body ${this.props.active ? 'essay__body_active' : ''}`}>
              {essays}

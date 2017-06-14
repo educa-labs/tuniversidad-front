@@ -217,15 +217,24 @@
   flex: 1;
 }
 .essay__body {
-  transition: 1s ease; 
-  overflow: hidden;
   max-height: 0;
+  transition: all 1s ease;
 }
 
 .essay__body_active {
-  max-height: 15rem;
   overflow: scroll;
+  max-height: 15rem;
 }
+
+@keyframes expand {
+  from {
+    height: 0%
+  }
+  to {
+    height: 100%
+  }
+}
+
 .essay__score {
   display: flex;
   height: 3rem;
@@ -234,15 +243,23 @@
 }
 
 .essay__score:hover {
-  background-color: #C9C9C9;
-  color: white;
+  background-color: #EEEEEE;
+  color: black;
+}
+
+.essay__score .menu {
+  display: none;
+}
+
+.essay__score:hover .menu {
+  display: inherit;
 }
 
 .essay__score:hover .label {
-  color: white;
+  color: #757575;
 }
 
-.essay__delete-button {
+.score-menu {
   flex: 0 0 48px;
 }
 
