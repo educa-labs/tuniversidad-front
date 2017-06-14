@@ -14,6 +14,10 @@ import '../styles/Essay.css';
 import '../styles/Form.css';
 import '../styles/Tabs.css';
 
+const tabStyle = {
+  fontSize: '12px',
+};
+
 class Profile extends Component {
   constructor(props) {
     super(props);
@@ -65,9 +69,9 @@ class Profile extends Component {
           value={slideIndex}
           className="tabs"
         >
-          <Tab label="General" value={0} />
-          <Tab label="Progreso" value={1} />
-          <Tab label="Recomendaciones" value={2} />
+          <Tab label="General" value={0} style={tabStyle} />
+          <Tab label="Progreso" value={1} style={tabStyle} />
+          <Tab label="Recomendaciones" value={2} style={tabStyle} />
         </Tabs >
         {slideIndex === 0 ? (
           <ProfileGeneral
