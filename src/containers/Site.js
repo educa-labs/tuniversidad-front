@@ -24,7 +24,11 @@ class Site extends Component {
   render() {
     return (
       <div className="site">
-        <SideMenu mobile />
+        <SideMenu
+          mobile
+          open={this.state.showMenu}
+          onRequestChange={open => this.setState({ showMenu: open })}
+        />
         {cloneElement(this.props.children, {
           mobile: true,
           toggleMenu: () => this.setState({ showMenu: !this.state.showMenu }),

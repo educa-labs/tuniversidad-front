@@ -9,13 +9,8 @@
 }
 
 .side-menu {
-  background-color: #424242;
-  flex: 0 0 230px;
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  z-index: 100;
-  box-shadow: 6px 0px 18px -4px rgba(0,0,0,0.75);
   padding-bottom: 28px;
 }
 

@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import Drawer from 'material-ui/Drawer';
 import Search from 'material-ui/svg-icons/action/search';
 import RaisedButton from 'material-ui/RaisedButton';
 import CompareIcon from 'material-ui/svg-icons/image/compare';
@@ -28,6 +29,7 @@ class SideMenu extends Component {
   }
 
   handleSelectItem(selected) {
+    if (this.props.mobile) this.props.onRequestChange(false);
     this.setState({ selected });
     this.context.router.push(`site/${selected}`);
   }
@@ -36,8 +38,17 @@ class SideMenu extends Component {
     const { selected } = this.state;
     const { mobile } = this.props;
     return (
-      <div className={`side-menu ${mobile ? 'side-menu__mobile' : ''}`}>
-        <div className="side-menu__banner" />
+      <Drawer
+        docked={false}
+        width={230}
+        open={this.props.open}
+        onRequestChange={this.props.onRequestChange}
+        containerClassName="side-menu"
+        containerStyle={{
+          backgroundColor: '#424242',
+        }}
+      >
+        {mobile ? null : <div className="side-menu__banner" />}
         <ProfileBanner
           user={this.props.user}
           onClick={() => this.handleSelectItem('profile')}
@@ -79,7 +90,7 @@ class SideMenu extends Component {
             labelColor="#FFFFFF"
           />
         </div>
-      </div>
+      </Drawer >
     );
   }
 }
