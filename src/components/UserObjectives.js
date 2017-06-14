@@ -35,31 +35,30 @@ class UserObjectives extends Component {
             </IconButton>
           </div>
         </div>
-        <div className="target">
-          <div className="test__item">
+        <div className="row">
+          <div className="general-card__item">
             <div className="value">{objectives.language || '--'}</div>
             <div className="label">Lenguaje</div>
           </div>
-          <div className="test__item">
+          <div className="general-card__item">
             <div className="value">{objectives.math || '--'}</div>
             <div className="label">Matemáticas</div>
           </div>
-          <div className="test__item">
+          <div className="general-card__item">
             <div className="value">{objectives.science || '--'}</div>
             <div className="label">Ciencias</div>
           </div>
-          <div className="test__item">
+        </div>
+        <div className="row">
+          <div className="general-card__item">
             <div className="value">{objectives.history || '--'}</div>
             <div className="label">Historia</div>
           </div>
-        </div>
-        <Divider />
-        <div className="general-card__footer">
-          <div className="general-card__footer_item">
+          <div className="general-card__item">
             <div className="value">{user.nem || 'Sin información'}</div>
             <div className="label">NEM</div>
           </div>
-          <div className="general-card__footer_item">
+          <div className="general-card__item">
             <div className="value">{user.ranking || 'Sin información'}</div>
             <div className="label">Ranking</div>
           </div>

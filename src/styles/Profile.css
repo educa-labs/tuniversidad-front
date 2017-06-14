@@ -50,21 +50,6 @@
   justify-content: flex-end;
 }
 
-
-
-.test__item {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  margin: 5px 0;
-}
-
-.target {
-  display: flex;
-  padding: 0 1rem;
-}
-
-
 .date-picker {
   display: flex;
 }
