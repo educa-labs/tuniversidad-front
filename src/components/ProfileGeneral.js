@@ -52,8 +52,12 @@ function ProfileGeneral(props) {
   );
 }
 
+ProfileGeneral.defaultProps = {
+  mobile: false,
+};
+
 ProfileGeneral.propTypes = {
-  mobile: PropTypes.bool.isRequired,
+  mobile: PropTypes.bool,
 };
 
 export default ProfileGeneral;

@@ -50,17 +50,6 @@
   justify-content: flex-end;
 }
 
-.date-picker {
-  display: flex;
-}
-
-.date-picker .select-input-container {
-  display: flex;
-  margin: 0;
-  width: 8rem;
-  align-items: flex-end;
-}
-
 .progress {
   display: flex;
   flex-direction: column;

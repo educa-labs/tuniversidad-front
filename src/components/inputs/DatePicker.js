@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import TextField from 'material-ui/TextField';
 import SelectInput from './SelectInput';
+import '../../styles/DatePicker.css';
 
 const months = [
   { label: 'Enero', value: 1 },
@@ -57,6 +57,7 @@ class DatePicker extends Component {
           items={getDays()}
           handleChange={val => this.onChange('day', val)}
           value={this.state.day}
+          floatingLabelText="Día"
           hintText="Día"
           maxHeight={180}
           errorText={this.props.errorText}
@@ -66,6 +67,7 @@ class DatePicker extends Component {
           handleChange={val => this.onChange('month', val)}
           value={this.state.month}
           hintText="Mes"
+          floatingLabelText="Mes"
           maxHeight={180}
         />
         <SelectInput
