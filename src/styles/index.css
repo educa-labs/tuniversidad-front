@@ -11,6 +11,10 @@ body {
     box-sizing: border-box;
 }
 
+.empty {
+  width: 230px;
+}
+
 .row {
   display: flex;
 }
@@ -34,6 +38,10 @@ body {
 .col-grey {
   background-color: #F5F5F5;
   margin-top: 96px;
+}
+
+.col-row {
+  flex-direction: row;
 }
 
 

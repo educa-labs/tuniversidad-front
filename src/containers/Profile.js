@@ -30,10 +30,6 @@ class Profile extends Component {
     this.updateUser = this.updateUser.bind(this);
   }
 
-  componentDidMount() {
-    if (this.props.objectives.objectives === null) this.props.getUserObjectives(this.props.token);
-  }
-
   componentWillReceiveProps(nextProps) {
     if (this.props.user !== nextProps.user) {
       saveUser(nextProps.user);
@@ -55,7 +51,8 @@ class Profile extends Component {
   }
 
   render() {
-    const { slideIndex } = this.state;
+    const { slideIndex, width } = this.state;
+    const { mobile } = this.props;
     return (
       <div className="col col-1">
         <FirstSteps
@@ -66,16 +63,18 @@ class Profile extends Component {
           updateUserObjectives={this.props.updateUserObjectives}
           user={this.props.user}
         />
-        <MobileBanner onClick={this.props.toggleMenu} />
-        <Tabs
-          onChange={this.handleSlideChange}
-          value={slideIndex}
-          className="tabs"
-        >
-          <Tab label="General" value={0} style={tabStyle} />
-          <Tab label="Progreso" value={1} style={tabStyle} />
-          <Tab label="Sugerencias" value={2} style={tabStyle} />
-        </Tabs >
+        {mobile ? <MobileBanner onClick={this.props.toggleMenu} /> : null}
+        <div className="tabs-container">
+          <Tabs
+            onChange={this.handleSlideChange}
+            value={slideIndex}
+            className={`tabs ${mobile ? '' : 'tabs-desk'}`}
+          >
+            <Tab label="General" value={0} style={tabStyle} />
+            <Tab label="Progreso" value={1} style={tabStyle} />
+            <Tab label="Sugerencias" value={2} style={tabStyle} />
+          </Tabs >
+        </div>
         {slideIndex === 0 ? (
           <ProfileGeneral
             {...this.props}

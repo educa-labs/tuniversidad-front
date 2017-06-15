@@ -39,7 +39,7 @@ class SideMenu extends Component {
     const { mobile } = this.props;
     return (
       <Drawer
-        docked={false}
+        docked={!mobile}
         width={230}
         open={this.props.open}
         onRequestChange={this.props.onRequestChange}
@@ -94,6 +94,14 @@ class SideMenu extends Component {
     );
   }
 }
+
+SideMenu.defaultProps = {
+  mobile: false,
+};
+
+SideMenu.propTypes = {
+  mobile: PropTypes.bool.isRequired,
+};
 
 SideMenu.contextTypes = {
   router: PropTypes.object,

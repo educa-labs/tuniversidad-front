@@ -1,7 +1,17 @@
 .tabs {
   position: fixed;
   top: 48px;
-  width: 100%;
   z-index: 10;
   box-shadow: 6px 0px 18px -4px rgba(0,0,0,0.75);
+}
+
+.tabs-desk {
+  top: 0;
+  right: 0;
+  left: 230px;
+}
+
+.tabs-container {
+  width: 100%;
+  position: relative;
 }
