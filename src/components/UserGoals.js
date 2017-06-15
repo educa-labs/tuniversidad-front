@@ -66,7 +66,7 @@ class UserGoals extends Component {
     );
 
     return (
-      <div className={`general-card ${this.props.mobile ? 'general-card_mobile' : '' }`}>
+      <div className={`general-card ${this.props.mobile ? '' : 'general-card_desk'}`}>
         <div className="general-card__header">
           <div className="general-card__title">Mis Metas</div>
           <div className="general-card__edit-button">

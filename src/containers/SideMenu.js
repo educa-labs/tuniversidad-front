@@ -46,6 +46,7 @@ class SideMenu extends Component {
         containerClassName="side-menu"
         containerStyle={{
           backgroundColor: '#424242',
+          minHeight: '32rem',
         }}
       >
         {mobile ? null : <div className="side-menu__banner" />}

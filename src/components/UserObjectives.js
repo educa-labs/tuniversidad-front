@@ -20,7 +20,7 @@ class UserObjectives extends Component {
     const { objectives, user } = this.props;
     if (objectives === null) return <div>Cargando ...</div>;
     return (
-      <div className="general-card">
+      <div className={`general-card ${this.props.mobile ? '' : 'general-card_desk'}`}>
         <UserObjectivesForm
           open={this.state.editMode}
           handleClose={() => this.setState({ editMode: false })}

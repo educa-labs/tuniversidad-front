@@ -28,7 +28,7 @@ function ProfileGeneral(props) {
     );
   }
   return (
-    <div className="col col-1 col-row col-grey">
+    <div className="col col-1 col-row col-grey-desk">
       <div className="col col-3">
         <UserGoals
           removeGoal={id => props.removeGoal(id, props.token)}

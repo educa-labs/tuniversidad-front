@@ -24,10 +24,14 @@ class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      slideIndex: 1,
+      slideIndex: 0,
     };
     this.handleSlideChange = this.handleSlideChange.bind(this);
     this.updateUser = this.updateUser.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.getUserObjectives(this.props.token);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -64,7 +68,6 @@ class Profile extends Component {
           user={this.props.user}
         />
         {mobile ? <MobileBanner onClick={this.props.toggleMenu} /> : null}
-        <div className="tabs-container">
           <Tabs
             onChange={this.handleSlideChange}
             value={slideIndex}
@@ -74,7 +77,6 @@ class Profile extends Component {
             <Tab label="Progreso" value={1} style={tabStyle} />
             <Tab label="Sugerencias" value={2} style={tabStyle} />
           </Tabs >
-        </div>
         {slideIndex === 0 ? (
           <ProfileGeneral
             {...this.props}

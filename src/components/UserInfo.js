@@ -1,8 +1,8 @@
 import React from 'react';
 
-function UserInfo({ user }) {
+function UserInfo({ user, mobile }) {
   return (
-    <div className="general-card">
+    <div className={`general-card ${mobile ? '' : 'general-card_desk'}`}>
       <div className="general-card__header">
         <div className="general-card__title">Información General</div>
       </div>
