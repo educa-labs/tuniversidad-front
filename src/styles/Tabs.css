@@ -1,11 +1,13 @@
 .tabs {
   position: fixed;
+  width: 100%;
   top: 48px;
   z-index: 10;
   box-shadow: 6px 0px 18px -4px rgba(0,0,0,0.75);
 }
 
 .tabs-desk {
+  width: auto;
   top: 0;
   right: 0;
   left: 230px;
