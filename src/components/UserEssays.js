@@ -12,7 +12,7 @@ function UserEssays(props) {
   if (!props.essays[1] || !props.essays[2] || !props.essays[3] || !props.essays[4]) return loading;
 
   return (
-    <div className="general-card">
+    <div className={`general-card ${props.mobile ? '' : 'general-card_desk'}`}>
       <div className="general-card__header">
         <div className="general-card__title">Mis Ensayos</div>
       </div>

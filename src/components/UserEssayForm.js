@@ -3,6 +3,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import SelectInput from './inputs/SelectInput';
+import DatePicker from './inputs/DatePicker';
 import { checkScore } from '../helpers/numeral';
 
 const styles = {
@@ -19,6 +20,7 @@ class UserEssayForm extends Component {
       score: '',
       subject_id: this.props.active,
       error: '',
+      date: '',
     };
     this.onSubmit = this.onSubmit.bind(this);
     this.disabled = this.disabled.bind(this);
@@ -60,6 +62,52 @@ class UserEssayForm extends Component {
         disabled={this.disabled()}
       />,
     ];
+
+    const titleInput = (
+      <div className="form__field">
+        <TextField
+          floatingLabelText="Título"
+          hintText="Ej: Primer ensayo"
+          floatingLabelFixed
+          fullWidth
+          onChange={(e, val) => this.setState({ title: val })}
+        />
+      </div>
+    );
+
+    const subjectInput = (
+      <div className="form__field">
+        <SelectInput
+          title="Asignatura"
+          items={this.props.subjects}
+          value={this.state.subject_id}
+          handleChange={subject_id => this.setState({ subject_id })}
+        />
+      </div>
+    );
+
+    const scoreInput = (
+      <div className="form__field">
+        <TextField
+          onChange={(e, val) => this.setState({ score: Number(val) })}
+          floatingLabelText="Puntaje"
+          type="number"
+          fullWidth
+          errorText={this.state.error}
+          style={{ width: '5rem' }}
+        />
+      </div>
+    );
+
+    const dateInput = (
+      <div className="form__field">
+        <DatePicker
+          handleChange={val => this.setState({ date: val })}
+          date={this.state.birth_date}
+        />
+      </div>
+    );
+
     return (
       <Dialog
         title="Agregar un ensayo"
@@ -68,32 +116,25 @@ class UserEssayForm extends Component {
         contentContainerClassName="form-container"
         onRequestClose={this.props.handleClose}
       >
-        <div className="form__field">
-          <TextField
-            floatingLabelText="Título"
-            hintText="Ej: Primer ensayo"
-            floatingLabelFixed
-            fullWidth
-            onChange={(e, val) => this.setState({ title: val })}
-          />
-        </div>
-        <div className="form__field">
-          <SelectInput
-            title="Asignatura"
-            items={this.props.subjects}
-            value={this.state.subject_id}
-            handleChange={subject_id => this.setState({ subject_id })}
-          />
-        </div>
-        <div className="form__field">
-          <TextField
-            onChange={(e, val) => this.setState({ score: Number(val) })}
-            floatingLabelText="Puntaje"
-            type="number"
-            fullWidth
-            errorText={this.state.error}
-          />
-        </div>
+        {this.props.mobile ? (
+          <div className="col">
+            {titleInput}
+            {subjectInput}
+            {dateInput}
+            {scoreInput}
+          </div>
+        ) : (
+          <div>
+            {titleInput}
+            {dateInput}
+            <div className="row">
+              {subjectInput}
+              {scoreInput}
+            </div>
+          </div>
+        )}
+        
+        
       </Dialog>
     );
   }

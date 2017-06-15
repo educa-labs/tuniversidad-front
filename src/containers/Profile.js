@@ -16,7 +16,7 @@ import '../styles/Form.css';
 import '../styles/Tabs.css';
 
 const tabStyle = {
-  fontSize: '12px',
+  fontSize: '14px',
   width: '33%',
 };
 

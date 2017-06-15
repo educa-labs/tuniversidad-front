@@ -17,6 +17,7 @@ function ProfileGeneral(props) {
           user={props.user}
           updateUser={props.updateUser}
           token={props.token}
+          mobile={props.mobile}
         />
         <UserObjectives
           objectives={props.objectives.objectives}
