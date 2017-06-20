@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import Drawer from 'material-ui/Drawer';
 import Divider from 'material-ui/Divider';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import Fields from '../components/Fields';
@@ -15,10 +16,16 @@ class FiltersDrawer extends Component {
       schedules: props.schedules ? props.schedules.schedules : null,
     };
     return (
-        <div className="filters">
-          <div className="filters__banner">FILTROS</div>
+        <Drawer
+          docked={!this.props.mobile}
+          open={this.props.open}
+          onRequestChange={this.props.onRequestChange}
+          containerClassName="filters"
+          openSecondary
+        >
+          <div className="filters__header">FILTROS</div>
           <Divider />
-          <div className="filters__radio-input">
+          <div className="filters__body">
             <RadioButtonGroup
               name="filter options"
               defaultSelected={props.active}
@@ -53,7 +60,7 @@ class FiltersDrawer extends Component {
               fields={fields}
             />
           ) : null}
-        </div >
+        </Drawer >
     );
   }
 }

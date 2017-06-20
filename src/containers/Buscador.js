@@ -75,19 +75,19 @@ class Buscador extends Component {
         <SearchInput
           value={this.state.input}
           handleOnChange={value => this.setState({ input: value })}
-          onFilterClick={this.toggleFilters}
+          toggleFilters={this.toggleFilters}
           handleSubmit={this.handleSubmit}
           active={active}
           mobile={mobile}
         />
-        <div className="search-content">
-          <FiltersDrawer
-            open={this.state.showFilters}
-            toggleFilters={this.toggleFilters}
-          />
-          <div className="search-results">
-            {afterSearch || beforeSearch}
-          </div>
+        <FiltersDrawer
+          open={this.state.showFilters}
+          mobile
+          toggleFilters={this.toggleFilters}
+          onRequestChange={open => this.setState({ showFilters: open })}
+        />
+        <div className="search-results">
+          {afterSearch || beforeSearch}
         </div>
       </div>
     );

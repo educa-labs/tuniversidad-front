@@ -31,6 +31,7 @@
   width: 80%;
   background-color: #F5F5F5;
   font-weight: 100;
+  outline: none
 }
 
 .search-input form ::-webkit-input-placeholder {

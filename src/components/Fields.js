@@ -52,7 +52,7 @@ class Fields extends Component {
     });
     if (props.type === 0) {
       return (
-        <div className="fields-container">
+        <div className="filters__body">
           <SelectInput
             title="Region"
             items={regions}
@@ -90,7 +90,7 @@ class Fields extends Component {
     }
 
     return (
-      <div className="fields-container">
+      <div className="filters__body">
         <SelectInput
           title="Region"
           items={regions}
