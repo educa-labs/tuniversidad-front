@@ -1,10 +1,11 @@
 import React, { PropTypes, Component } from 'react';
+import is from 'is_js';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import SelectInput from './inputs/SelectInput';
 import DatePicker from './inputs/DatePicker';
-import { checkScore } from '../helpers/numeral';
+import { checkScore, validateDate } from '../helpers/numeral';
 
 const styles = {
   button: {
@@ -19,7 +20,7 @@ class UserEssayForm extends Component {
       title: '',
       score: '',
       subject_id: this.props.active,
-      error: '',
+      error: {},
       date: '',
     };
     this.onSubmit = this.onSubmit.bind(this);
@@ -33,16 +34,25 @@ class UserEssayForm extends Component {
   }
 
   onSubmit() {
-    const { title, score, subject_id } = this.state;
-    if (!checkScore(score)) {
-      this.setState({ error: 'Puntaje Inválido' });
-    } else {
-      this.props.addEssay(title, subject_id, score);
+    const { title, score, subject_id, date } = this.state;
+    const error = {};
+    if (!checkScore(score)) error.score = 'Puntaje Inválido';
+    if (!validateDate(date)) error.date = 'Esta fecha no existe';
+    if (is.not.empty(error)) {
+      this.setState({ error });
+      return;
     }
+
+    this.props.addEssay(title, subject_id, score, date);
+    
   }
 
   disabled() {
-    const { title, score, subject_id } = this.state;
+    const { title, score, subject_id, date } = this.state;
+    if (!this.state.date) return true;
+      for (const s of this.state.date.split('-')) {
+        if (s === 'null') return true;
+      }
     return title === '' || score === '' || subject_id === '';
   }
 
@@ -89,12 +99,16 @@ class UserEssayForm extends Component {
     const scoreInput = (
       <div className="form__field">
         <TextField
-          onChange={(e, val) => this.setState({ score: Number(val) })}
+          onChange={(e, val) => this.setState({
+            score: Number(val),
+            error: Object.assign({}, this.state.error, {
+              score: '',
+            }),
+          })}
           floatingLabelText="Puntaje"
           type="number"
           fullWidth
-          errorText={this.state.error}
-          style={{ width: '5rem' }}
+          errorText={this.state.error ? this.state.error.score : ''}
         />
       </div>
     );
@@ -103,7 +117,9 @@ class UserEssayForm extends Component {
       <div className="form__field">
         <DatePicker
           handleChange={val => this.setState({ date: val })}
-          date={this.state.birth_date}
+          date={this.state.date}
+          errorText={this.state.error ? this.state.error.date : ''}
+          year={2017}
         />
       </div>
     );
@@ -113,7 +129,7 @@ class UserEssayForm extends Component {
         title="Agregar un ensayo"
         actions={actions}
         open={this.props.open}
-        contentContainerClassName="form-container"
+        contentClassName="form-container"
         onRequestClose={this.props.handleClose}
       >
         {this.props.mobile ? (

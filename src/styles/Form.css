@@ -1,7 +1,6 @@
-.form-contianer {
-  max-width: '32rem';
-  min-width: '13rem';
-  width: '90%';
+.form-container {
+  max-width: 22rem !important;
+  width: 50% !important;
 }
 
 .form__field {
@@ -11,17 +10,3 @@
   margin: 0 1rem;
 }
 
-.form__field-2 {
-  color: black;
-  font-weight: 100;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex: 2;
-  margin: 5px 2rem;
-}
-
-.form__field-3 {
-  flex: 3;
-  margin: 5px 2rem;
-}

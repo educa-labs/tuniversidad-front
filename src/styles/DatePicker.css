@@ -1,10 +1,4 @@
 .date-picker {
   display: flex;
-}
-
-.date-field {
-}
-
-.date-field-center {
-  width: 50%;
+  flex: 1;
 }

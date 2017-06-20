@@ -27,7 +27,7 @@ const getDays = () => {
 
 const getYears = () => {
   const years = [];
-  for (let i = 1990; i <= 2010; i ++) {
+  for (let i = 1990; i <= 2017; i ++) {
     years.push({ label: i.toString(), value: i});
   }
   return years;
@@ -39,7 +39,7 @@ class DatePicker extends Component {
     this.setState({
       day: date[0],
       month: date[1] ? Number(date[1]) : null,
-      year: date[2],
+      year: date[2] || this.props.year,
     });
   }
 
@@ -58,8 +58,9 @@ class DatePicker extends Component {
             items={getDays()}
             handleChange={val => this.onChange('day', val)}
             value={this.state.day}
-            floatingLabelText="Día"
-            hintText="Día"
+            floatingLabelText="Dia"
+            floatingLabelFixed
+            hintText="17"
             maxHeight={180}
             errorText={this.props.errorText}
             fullWidth
@@ -70,20 +71,22 @@ class DatePicker extends Component {
             items={months}
             handleChange={val => this.onChange('month', val)}
             value={this.state.month}
-            hintText="Mes"
+            hintText="Agosto"
             floatingLabelText="Mes"
+            floatingLabelFixed
             fullWidth
             maxHeight={180}
           />
         </div>
-        <div className="col col-2">
+        <div className="col col-1">
           <SelectInput
             fullWidth
             items={getYears()}
             handleChange={val => this.onChange('year', val)}
             value={this.state.year}
-            hintText="Año"
+            hintText="2017"
             floatingLabelText="Año"
+            floatingLabelFixed
             maxHeight={180}
           />
         </div>
@@ -94,6 +97,7 @@ class DatePicker extends Component {
 
 DatePicker.defaultProps = {
   date: null,
+  year: null,
 };
 
 DatePicker.propTypes = {
