@@ -3,7 +3,6 @@ import Search from 'material-ui/svg-icons/action/search';
 import FilterButton from 'material-ui/svg-icons/content/filter-list';
 import IconButton from 'material-ui/IconButton';
 import RaisedButton from 'material-ui/RaisedButton';
-import '../../styles/SearchInput.css';
 
 
 function SearchInput({ value, handleOnChange, handleSubmit, active, mobile, toggleFilters }) {

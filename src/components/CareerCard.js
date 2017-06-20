@@ -44,11 +44,11 @@ function CareerCard(props, context) {
   const science = career.weighing ? is.existy(career.weighing.science) : null;
 
   return (
-    <div className={`card ${props.detail ? 'card_detail' : ''}`}>
+    <div className={`general-card ${props.mobile ? 'general-card_desk' : ''}`}>
       <Paper zDepth={2}>
-        <div className={`card__header ${props.detail ? 'card__header_hide' : ''}`}>
+        <div className={`general-card__header ${props.detail ? 'card__header_hide' : ''}`}>
           <div className="col">
-            <div className="card__title" onClick={handleInfoClick} >{career.title}</div>
+            <div className="general-card__title" onClick={handleInfoClick} >{career.title}</div>
           </div>
           <div className="col col_subtitle">
             <div className="card__subtitle" onClick={handleSubTitleClick}>{career.university_name}</div>
@@ -57,33 +57,33 @@ function CareerCard(props, context) {
         <div className="card__body card__body_career">
             <div className="col col_row">
               <div className="row">
-                <div className="card__psu-item">
+                <div className="general-card-item">
                   <div className="value">{career.weighing ? career.weighing.NEM : null}%</div>
                   <div className="label">NEM</div>
                 </div>
-                <div className="card__psu-item">
+                <div className="general-card-item">
                   <div className="value">{career.weighing ? career.weighing.ranking : null}%</div>
                   <div className="label">Ranking</div>
                 </div>
-                <div className="card__psu-item">
+                <div className="general-card-item">
                   <div className="value">{career.weighing ? career.weighing.language : null}%</div>
                   <div className="label">Lenguaje</div>
                 </div>
-                <div className="card__psu-item">
+                <div className="general-card-item">
                   <div className="value">{career.weighing ? career.weighing.math : null}%</div>
                   <div className="label">Matematica</div>
                 </div>
-                <div className="card__psu-item">
+                <div className="general-card-item">
                   <div className="value">{career.weighing ? career.weighing.science || career.weighing.history : null}%</div>
                   <div className="label">{science ? 'Ciencias' : 'Historia'}</div>
                 </div>
               </div>
               <div className="row">
-                <div className="card__psu-item">
+                <div className="general-card-item">
                   <div className="value">{career.last_cut}</div>
                   <div className="label">Corte 2016</div>
                 </div>
-                <div className="card__psu-item">
+                <div className="general-card-item">
                   <div className="value">{career.admission}</div>
                   <div className="label">Admisión</div>
                 </div>

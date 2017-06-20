@@ -1,13 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import is from 'is_js';
 import FiltersDrawer from './FiltersDrawer';
 import SearchInput from '../components/inputs/SearchInput';
 import { search } from '../actions/search';
 import { fetch } from '../actions/fetch';
-import UniversityCard from '../components/UniversityCard';
-import CareerCard from '../components/CareerCard';
+import SearchResult from '../components/SearchResult';
 import MobileBanner from './MobileBanner';
+import '../styles/Buscador.css';
 
 class Buscador extends Component {
   constructor(props) {
@@ -57,42 +56,38 @@ class Buscador extends Component {
 
 
   render() {
-    const { data, requesting, active, mobile } = this.props;
-    const { dataTypeHasChanged } = this.state;
-    const beforeSearch = <div>Recuerda que puedes aplicar filtros a tu búsqueda</div>;
-
-    let afterSearch = null;
-    if (is.not.null(data)) {
-      if (requesting) afterSearch = <div>Cargando ...</div>;
-      else if (data === []) afterSearch = <div>No hay resultados</div>;
-      else if (active === 'university') afterSearch = dataTypeHasChanged ? null : data.map(res => <UniversityCard university={res} key={res.id} />);
-      else if (active === 'carreer') afterSearch = dataTypeHasChanged ? null : data.map(res => <CareerCard career={res} key={res.id} />);
-    }
-    
     return (
       <div className="col col-1">
-        {mobile ? <MobileBanner onClick={this.props.toggleMenu} /> : null}
+        {this.props.mobile ? <MobileBanner onClick={this.props.toggleMenu} /> : null}
         <SearchInput
           value={this.state.input}
           handleOnChange={value => this.setState({ input: value })}
           toggleFilters={this.toggleFilters}
           handleSubmit={this.handleSubmit}
-          active={active}
-          mobile={mobile}
+          active={this.props.active}
+          mobile={this.props.mobile}
         />
         <FiltersDrawer
+          mobile={this.props.mobile}
           open={this.state.showFilters}
-          mobile
           toggleFilters={this.toggleFilters}
           onRequestChange={open => this.setState({ showFilters: open })}
         />
-        <div className="search-results">
-          {afterSearch || beforeSearch}
-        </div>
+        <SearchResult
+          data={this.props.data}
+          active={this.props.active}
+          dataTypeHasChanged={this.state.dataTypeHasChanged}
+          requesting={this.props.requesting}
+          mobile={this.props.mobile}
+        />
       </div>
     );
   }
 }
+
+Buscador.defaultProps = {
+  mobile: false,
+};
 
 Buscador.propTypes = {
   token: PropTypes.string.isRequired,
@@ -100,6 +95,7 @@ Buscador.propTypes = {
   search: PropTypes.func.isRequired,
   requesting: PropTypes.bool.isRequired,
   fetch: PropTypes.func.isRequired,
+  mobile: PropTypes.bool,
   data: PropTypes.array,
 };
 

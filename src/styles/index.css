@@ -51,4 +51,14 @@ body {
   flex-direction: row;
 }
 
+.bg-blue {
+  background-color: #0091EA;
+}
 
+.color-white {
+  color: white;
+}
+
+.cursor {
+  cursor: pointer;
+}
