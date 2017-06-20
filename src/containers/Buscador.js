@@ -73,13 +73,16 @@ class Buscador extends Component {
           toggleFilters={this.toggleFilters}
           onRequestChange={open => this.setState({ showFilters: open })}
         />
-        <SearchResult
-          data={this.props.data}
-          active={this.props.active}
-          dataTypeHasChanged={this.state.dataTypeHasChanged}
-          requesting={this.props.requesting}
-          mobile={this.props.mobile}
-        />
+        <div className="row">
+          <SearchResult
+            data={this.props.data}
+            active={this.props.active}
+            dataTypeHasChanged={this.state.dataTypeHasChanged}
+            requesting={this.props.requesting}
+            mobile={this.props.mobile}
+          />
+          {this.props.mobile ? null : <div className="empty-left" />}
+        </div>
       </div>
     );
   }

@@ -16,6 +16,10 @@ body {
   height: 100vh;
 }
 
+.empty-left {
+  width: 256px;
+}
+
 .row {
   display: flex;
 }

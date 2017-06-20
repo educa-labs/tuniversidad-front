@@ -18,7 +18,7 @@ class FiltersDrawer extends Component {
     return (
         <Drawer
           docked={!this.props.mobile}
-          open={this.props.open}
+          open={this.props.mobile ? this.props.open : true}
           onRequestChange={this.props.onRequestChange}
           containerClassName="filters"
           openSecondary

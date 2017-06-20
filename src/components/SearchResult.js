@@ -10,7 +10,7 @@ function SearchResult(props) {
   );
   if (props.data === null) {
     return (
-      <div className="col col-1 col-grey">
+      <div className={`col col-1 col-grey${props.mobile ? '' : '-desk'}`}>
         {beforeSearch}
       </div>
     );
@@ -36,14 +36,14 @@ function SearchResult(props) {
   }
 
   return (
-    <div className="col col-1 col-grey">
+    <div className={`col col-1 col-grey${props.mobile ? '' : '-desk'}`}>
       {afterSearch || beforeSearch}
     </div>
   );
 }
 
 SearchResult.propTypes = {
-  active: PropTypes.bool.isRequired,
+  active: PropTypes.string.isRequired,
   mobile: PropTypes.bool.isRequired,
   dataTypeHasChanged: PropTypes.bool.isRequired,
   requesting: PropTypes.bool.isRequired,

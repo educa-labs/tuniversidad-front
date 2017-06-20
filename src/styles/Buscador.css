@@ -6,11 +6,17 @@
   align-items: center;
   z-index: 100;
   background-color: white;
+
+  position: fixed;
+  right: 256px;
+  top: 0;
+  left: 230px;
 }
 
 .search-input-mobile {
   position: fixed;
   top: 48px;
+  left: 0;
   width: 100%;
   z-index: 10;
 }
