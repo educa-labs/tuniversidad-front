@@ -7,6 +7,7 @@ import { search } from '../actions/search';
 import { fetch } from '../actions/fetch';
 import UniversityCard from '../components/UniversityCard';
 import CareerCard from '../components/CareerCard';
+import MobileBanner from './MobileBanner';
 
 class Buscador extends Component {
   constructor(props) {
@@ -56,7 +57,7 @@ class Buscador extends Component {
 
 
   render() {
-    const { data, requesting, active } = this.props;
+    const { data, requesting, active, mobile } = this.props;
     const { dataTypeHasChanged } = this.state;
     const beforeSearch = <div>Recuerda que puedes aplicar filtros a tu búsqueda</div>;
 
@@ -69,13 +70,15 @@ class Buscador extends Component {
     }
     
     return (
-      <div className="site__children">
+      <div className="col col-1">
+        {mobile ? <MobileBanner onClick={this.props.toggleMenu} /> : null}
         <SearchInput
           value={this.state.input}
           handleOnChange={value => this.setState({ input: value })}
           onFilterClick={this.toggleFilters}
           handleSubmit={this.handleSubmit}
           active={active}
+          mobile={mobile}
         />
         <div className="search-content">
           <FiltersDrawer
