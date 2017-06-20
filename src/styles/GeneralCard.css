@@ -3,7 +3,6 @@
   color: #C9C9C9;
 }
 
-
 .general-card {
   background-color: white;
   margin: 0.5rem 0;
@@ -34,6 +33,15 @@
   margin: 1rem 0;
 }
 
+.title_no-margin {
+  margin: 5px 0;
+}
+
+.general-card__subtitle {
+  font-size: small;
+  margin-bottom: 5px;
+}
+
 .general-card__edit-button {
   display: flex;
   flex: 1;
@@ -44,7 +52,7 @@
   padding: 0 1rem;
   display: flex;
   flex-direction: column;
-  margin: 10px 0;
+  margin: 5px 0;
   flex: 1;
 }
 

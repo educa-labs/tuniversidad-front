@@ -18,7 +18,6 @@ body {
 
 .row {
   display: flex;
-  margin-bottom: 10px;
 }
 
 .col {
@@ -61,4 +60,16 @@ body {
 
 .cursor {
   cursor: pointer;
+}
+
+.start {
+  justify-content: flex-start;
+  display: flex;
+  flex: 1;
+}
+
+.end {
+  justify-content: flex-end;
+  display: flex;
+  flex: 1;
 }
