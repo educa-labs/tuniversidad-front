@@ -55,7 +55,7 @@ class Profile extends Component {
   }
 
   render() {
-    const { slideIndex, width } = this.state;
+    const { slideIndex } = this.state;
     const { mobile } = this.props;
     return (
       <div className="col col-1">

@@ -3,6 +3,10 @@
   width: 50% !important;
 }
 
+.form-container-mobile {
+  width: 90% !important;
+}
+
 .form__field {
   display: flex;
   flex: 1;

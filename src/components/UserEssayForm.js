@@ -44,13 +44,12 @@ class UserEssayForm extends Component {
     }
 
     this.props.addEssay(title, subject_id, score, date);
-    
   }
 
   disabled() {
     const { title, score, subject_id, date } = this.state;
-    if (!this.state.date) return true;
-      for (const s of this.state.date.split('-')) {
+    if (!date) return true;
+      for (const s of date.split('-')) {
         if (s === 'null') return true;
       }
     return title === '' || score === '' || subject_id === '';
@@ -120,6 +119,7 @@ class UserEssayForm extends Component {
           date={this.state.date}
           errorText={this.state.error ? this.state.error.date : ''}
           year={2017}
+          mobile={this.props.mobile}
         />
       </div>
     );
@@ -129,7 +129,7 @@ class UserEssayForm extends Component {
         title="Agregar un ensayo"
         actions={actions}
         open={this.props.open}
-        contentClassName="form-container"
+        contentClassName={this.props.mobile ? 'form-container-mobile' : 'form-container'}
         onRequestClose={this.props.handleClose}
       >
         {this.props.mobile ? (

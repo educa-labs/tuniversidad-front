@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
@@ -29,7 +29,7 @@ class UserObjectivesForm extends Component {
   }
 
   disabled() {
-    const { language, math, science, history } = this.state;
+    const { language, math } = this.state;
     return language === '' || math === '';
   }
 

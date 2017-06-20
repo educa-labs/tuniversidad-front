@@ -37,7 +37,7 @@ class DatePicker extends Component {
   componentWillMount() {
     const date = this.props.date ? this.props.date.split('-') : [null, null, null];
     this.setState({
-      day: date[0],
+      day: date[0] ? Number(date[0]) : null,
       month: date[1] ? Number(date[1]) : null,
       year: date[2] || this.props.year,
     });
@@ -78,18 +78,21 @@ class DatePicker extends Component {
             maxHeight={180}
           />
         </div>
-        <div className="col col-1">
-          <SelectInput
-            fullWidth
-            items={getYears()}
-            handleChange={val => this.onChange('year', val)}
-            value={this.state.year}
-            hintText="2017"
-            floatingLabelText="Año"
-            floatingLabelFixed
-            maxHeight={180}
-          />
-        </div>
+        {this.props.mobile ? null : (
+          <div className="col col-1">
+            <SelectInput
+              fullWidth
+              items={getYears()}
+              handleChange={val => this.onChange('year', val)}
+              value={this.state.year}
+              hintText="2017"
+              floatingLabelText="Año"
+              floatingLabelFixed
+              maxHeight={180}
+            />
+          </div>
+
+        )}
       </div>
     );
   }
@@ -98,11 +101,12 @@ class DatePicker extends Component {
 DatePicker.defaultProps = {
   date: null,
   year: null,
+  errorText: '',
 };
 
 DatePicker.propTypes = {
   date: PropTypes.string,
-  errorText: PropTypes.string.isRequired,
+  errorText: PropTypes.string,
 };
 
 export default DatePicker;
