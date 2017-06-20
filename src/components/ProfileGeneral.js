@@ -3,6 +3,8 @@ import UserInfo from './UserInfo';
 import UserGoals from './UserGoals';
 import UserObjectives from './UserObjectives';
 
+import DatePicker from './inputs/DatePicker';
+
 
 function ProfileGeneral(props) {
   if (props.mobile) {

@@ -53,30 +53,40 @@ class DatePicker extends Component {
   render() {
     return (
       <div className="date-picker">
-        <SelectInput
-          items={getDays()}
-          handleChange={val => this.onChange('day', val)}
-          value={this.state.day}
-          floatingLabelText="Día"
-          hintText="Día"
-          maxHeight={180}
-          errorText={this.props.errorText}
-        />
-        <SelectInput
-          items={months}
-          handleChange={val => this.onChange('month', val)}
-          value={this.state.month}
-          hintText="Mes"
-          floatingLabelText="Mes"
-          maxHeight={180}
-        />
-        <SelectInput
-          items={getYears()}
-          handleChange={val => this.onChange('year', val)}
-          value={this.state.year}
-          hintText="Año"
-          maxHeight={180}
-        />
+        <div className="col col-1">
+          <SelectInput
+            items={getDays()}
+            handleChange={val => this.onChange('day', val)}
+            value={this.state.day}
+            floatingLabelText="Día"
+            hintText="Día"
+            maxHeight={180}
+            errorText={this.props.errorText}
+            fullWidth
+          />
+        </div>
+        <div className="col col-2">
+          <SelectInput
+            items={months}
+            handleChange={val => this.onChange('month', val)}
+            value={this.state.month}
+            hintText="Mes"
+            floatingLabelText="Mes"
+            fullWidth
+            maxHeight={180}
+          />
+        </div>
+        <div className="col col-2">
+          <SelectInput
+            fullWidth
+            items={getYears()}
+            handleChange={val => this.onChange('year', val)}
+            value={this.state.year}
+            hintText="Año"
+            floatingLabelText="Año"
+            maxHeight={180}
+          />
+        </div>
       </div>
     );
   }
