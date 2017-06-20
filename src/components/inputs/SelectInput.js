@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
-import '../../styles/SelectInput.css';
+// import '../../styles/SelectInput.css';
 
 function SelectInput(props) {
   function renderItems(item, index) {
@@ -17,17 +17,15 @@ function SelectInput(props) {
     props.handleChange(value);
   }
   return (
-    <div className="select-input-container">
-      <SelectField
-        value={props.value}
-        onChange={onChange}
-        fullWidth
-        floatingLabelText={props.title}
-        {...props}
-      >
-        {props.items.map((item, index) => renderItems(item, index))}
-      </SelectField>
-    </div>
+    <SelectField
+      value={props.value}
+      onChange={onChange}
+      fullWidth
+      floatingLabelText={props.title}
+      {...props}
+    >
+      {props.items.map((item, index) => renderItems(item, index))}
+    </SelectField>
   );
 }
 

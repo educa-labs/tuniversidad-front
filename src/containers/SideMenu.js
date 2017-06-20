@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import Drawer from 'material-ui/Drawer';
 import Search from 'material-ui/svg-icons/action/search';
 import RaisedButton from 'material-ui/RaisedButton';
 import CompareIcon from 'material-ui/svg-icons/image/compare';
@@ -25,22 +26,33 @@ class SideMenu extends Component {
     this.props.clearState();
     clearUser();
     this.context.router.replace('/');
-    // props.logoutUser(props.user.id, props.user.auth_token);
   }
 
   handleSelectItem(selected) {
+    if (this.props.mobile) this.props.onRequestChange(false);
     this.setState({ selected });
     this.context.router.push(`site/${selected}`);
   }
 
   render() {
     const { selected } = this.state;
+    const { mobile } = this.props;
     return (
-      <div className="side-menu">
-        <div className="side-menu__banner" />
+      <Drawer
+        docked={!mobile}
+        width={230}
+        open={this.props.open}
+        onRequestChange={this.props.onRequestChange}
+        containerClassName="side-menu"
+        containerStyle={{
+          backgroundColor: '#424242',
+          minHeight: '32rem',
+        }}
+      >
+        {mobile ? null : <div className="side-menu__banner" />}
         <ProfileBanner
           user={this.props.user}
-          onClick={ () => this.handleSelectItem('profile')}
+          onClick={() => this.handleSelectItem('profile')}
           selected={selected === 'profile'}
         />
         <div
@@ -79,10 +91,18 @@ class SideMenu extends Component {
             labelColor="#FFFFFF"
           />
         </div>
-      </div>
+      </Drawer >
     );
   }
 }
+
+SideMenu.defaultProps = {
+  mobile: false,
+};
+
+SideMenu.propTypes = {
+  mobile: PropTypes.bool.isRequired,
+};
 
 SideMenu.contextTypes = {
   router: PropTypes.object,

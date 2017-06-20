@@ -54,7 +54,6 @@ class Nem extends Component {
 Nem.propTypes = {
   logNemChange: PropTypes.func.isRequired,
   logRankingChange: PropTypes.func.isRequired,
-  error: PropTypes.object.isRequired,
 };
 
 export default Nem;

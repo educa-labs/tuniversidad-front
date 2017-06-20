@@ -9,7 +9,16 @@ import { saveUser } from '../helpers/storage';
 import ProfileGeneral from '../components/ProfileGeneral';
 import ProfileProgress from '../components/ProfileProgress';
 import FirstSteps from '../components/FirstSteps';
+import MobileBanner from './MobileBanner';
 import '../styles/Profile.css';
+import '../styles/Essay.css';
+import '../styles/Form.css';
+import '../styles/Tabs.css';
+
+const tabStyle = {
+  fontSize: '14px',
+  width: '33%',
+};
 
 class Profile extends Component {
   constructor(props) {
@@ -22,7 +31,7 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    if (this.props.objectives.objectives === null) this.props.getUserObjectives(this.props.token);
+    this.props.getUserObjectives(this.props.token);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -47,8 +56,9 @@ class Profile extends Component {
 
   render() {
     const { slideIndex } = this.state;
+    const { mobile } = this.props;
     return (
-      <div className="site__children">
+      <div className="col col-1">
         <FirstSteps
           open={!this.props.user.tutorial}
           token={this.props.token}
@@ -57,28 +67,25 @@ class Profile extends Component {
           updateUserObjectives={this.props.updateUserObjectives}
           user={this.props.user}
         />
-        <div className="tabs-container">
+        {mobile ? <MobileBanner onClick={this.props.toggleMenu} /> : null}
           <Tabs
             onChange={this.handleSlideChange}
             value={slideIndex}
-            className="tabs tabs_profile"
+            className={`tabs ${mobile ? '' : 'tabs-desk'}`}
           >
-            <Tab label="General" value={0} />
-            <Tab label="Progreso" value={1} />
-            <Tab label="Recomendaciones" value={2} />
+            <Tab label="General" value={0} style={tabStyle} />
+            <Tab label="Progreso" value={1} style={tabStyle} />
+            <Tab label="Sugerencias" value={2} style={tabStyle} />
           </Tabs >
-        </div>
-        <div className="profile-children">
-          {slideIndex === 0 ? (
-            <ProfileGeneral
-              {...this.props}
-              missingInfo={this.state.missingInfo}
-              updateUser={this.updateUser}
-            />
-            ) : null }
-          {slideIndex === 1 ? <ProfileProgress {...this.props} /> : null }
-          {slideIndex === 2 ? <div>Recomnedaciones</div> : null }
-        </div>
+        {slideIndex === 0 ? (
+          <ProfileGeneral
+            {...this.props}
+            missingInfo={this.state.missingInfo}
+            updateUser={this.updateUser}
+          />
+          ) : null }
+        {slideIndex === 1 ? <ProfileProgress {...this.props} /> : null }
+        {slideIndex === 2 ? <div>Recomnedaciones</div> : null }
       </div>
     );
   }
@@ -87,6 +94,7 @@ class Profile extends Component {
 Profile.propTypes = {
   getEssays: PropTypes.func.isRequired,
   updateUserInfo: PropTypes.func.isRequired,
+  toggleMenu: PropTypes.func,
 };
 
 

@@ -1,14 +1,8 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import { checkScore } from '../helpers/numeral';
-
-const styles = {
-  button: {
-    margin: '0 5px',
-  },
-};
 
 class UserObjectivesForm extends Component {
 
@@ -35,7 +29,7 @@ class UserObjectivesForm extends Component {
   }
 
   disabled() {
-    const { language, math, science, history } = this.state;
+    const { language, math } = this.state;
     return language === '' || math === '';
   }
 
@@ -50,7 +44,6 @@ class UserObjectivesForm extends Component {
       <FlatButton
         label="OK"
         onTouchTap={this.onSubmit}
-        style={styles.button}
         secondary
         disabled={this.disabled()}
 
@@ -61,8 +54,7 @@ class UserObjectivesForm extends Component {
         title="Mi Objetivo"
         actions={actions}
         open={this.props.open}
-        className="form"
-        contentStyle={{ width: '32rem' }}
+        contentContainerClassName="form-container"
         onRequestClose={this.props.handleClose}
       >
         <div className="row">

@@ -34,22 +34,6 @@
   background-color: #F5F5F5;
 }
 
-.tabs-container {
-  position: relative;
-  width: 100%;
-  background-color: white;
-  box-shadow: 1px 1px 10px 0px rgba(0,0,0,0.75);
-}
-
-.tabs {
-  width: 45%;
-  min-width: 25rem;
-  margin-left: 3rem;
-}
-
-.tabs_profile {
-  padding-top: 12px;
-}
 
 
 

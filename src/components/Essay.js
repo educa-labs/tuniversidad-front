@@ -3,16 +3,9 @@ import Divider from 'material-ui/Divider';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import ClearIcon from 'material-ui/svg-icons/content/clear';
 import IconButton from 'material-ui/IconButton';
 import is from 'is_js';
 
-
-const menuStyle = {
-  lineHeight: '20px',
-  minHeight: '0',
-  fontSize: '14px',
-};
 
 class Essay extends Component {
   constructor(props) {

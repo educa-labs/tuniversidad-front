@@ -79,27 +79,25 @@ class UserInfoForm extends Component {
         title="Información general"
         open={this.props.open}
         actions={actions}
-        contentStyle={{ width: '32rem' }}
+        contentContainerClassName="form-container"
         onRequestClose={this.props.handleClose}
         className="form"
       >
-        <div className="row">
-          <div className="form__field">
-            <TextField
-              onChange={(e, val) => this.setState({ first_name: val })}
-              floatingLabelText="Nombre"
-              fullWidth
-              value={this.state.first_name}
-            />
-          </div>
-          <div className="form__field">
-            <TextField
-              onChange={(e, val) => this.setState({ last_name: val })}
-              floatingLabelText="Apellido"
-              fullWidth
-              value={this.state.last_name}
-            />
-          </div>
+        <div className="form__field">
+          <TextField
+            onChange={(e, val) => this.setState({ first_name: val })}
+            floatingLabelText="Nombre"
+            fullWidth
+            value={this.state.first_name}
+          />
+        </div>
+        <div className="form__field">
+          <TextField
+            onChange={(e, val) => this.setState({ last_name: val })}
+            floatingLabelText="Apellido"
+            fullWidth
+            value={this.state.last_name}
+          />
         </div>
         <div className="row">
           <div className="form__field">

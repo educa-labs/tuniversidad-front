@@ -1,12 +1,22 @@
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes, Component, cloneElement } from 'react';
+import MediaQuery from 'react-responsive';
 import { connect } from 'react-redux';
 import SideMenu from './SideMenu';
 import { getGoals } from '../actions/goals';
 import { fetch } from '../actions/fetch';
 import '../styles/Site.css';
+import '../styles/GeneralCard.css';
 
 
 class Site extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      showMenu: false,
+    };
+  }
+
   componentDidMount() {
     this.props.getGoals(this.props.token);
     this.props.fetch('regions', null, this.props.token);
@@ -14,9 +24,27 @@ class Site extends Component {
 
   render() {
     return (
-      <div className="site">
-        <SideMenu />
-        {this.props.children}
+      <div>
+        <MediaQuery maxDeviceWidth={550}>
+          <div className="site">
+            <SideMenu
+              mobile
+              open={this.state.showMenu}
+              onRequestChange={open => this.setState({ showMenu: open })}
+            />
+            {cloneElement(this.props.children, {
+              mobile: true,
+              toggleMenu: () => this.setState({ showMenu: !this.state.showMenu }),
+            }) }
+          </div>
+        </MediaQuery>
+        <MediaQuery minDeviceWidth={721}>
+          <div className="site">
+            <SideMenu open />
+            <div className="empty" />
+            {this.props.children}
+          </div>
+        </MediaQuery>
       </div>
     );
   }

@@ -1,6 +1,6 @@
 import React from 'react';
 import is from 'is_js';
-import { LineChart, XAxis, YAxis, Tooltip, Line, ReferenceLine, Legend, CartesianGrid } from 'recharts';
+import { LineChart, XAxis, YAxis, Tooltip, Line, CartesianGrid } from 'recharts';
 
 function CustomizedLabel(props) {
   const { x, y, stroke, value } = props;
@@ -23,6 +23,8 @@ function UserEssayChart(props) {
   ));
 
   const data = props.essays[props.active];
+  const width = props.mobile ? 300 : 700;
+  const height = props.mobile ? 220 : 400;
 
   const noContent = (
     <div className="general-card__no-content">
@@ -34,25 +36,24 @@ function UserEssayChart(props) {
   );
 
   const chart = (
-    <LineChart width={600} height={300} data={data.essays} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-      <XAxis dataKey="date" type="category" padding={{ left: 30, right: 30 }} />
-      <YAxis domain={['dataMin - 100', 850]} padding={{ top: 30, bottom: 30 }} />
+    <LineChart width={width} height={height} data={data.essays} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+      <XAxis dataKey="date" type="category" padding={{ left: 30, right: 30 }} width={320} />
+      <YAxis domain={['dataMin - 100', 850]} padding={{ top: 30, bottom: 30 }} tick={!props.mobile} tickSize={props.mobile? 0 : 6} />
       <Tooltip />
-      <CartesianGrid strokeDasharray="3 3" />
-      <ReferenceLine
-        y={data.stats.expectation}
-        stroke="#424242"
-        strokeDasharray="3 3"
-      />
+      <CartesianGrid strokeDasharray="4 4" />
       <Line name="Puntaje" type="basis" dataKey="score" stroke="#0091EA" label={<CustomizedLabel />} dot={{ strokeWidth: 2 }} />
     </LineChart>
   );
+  
+  const header = props.mobile ? null : (
+    <div className="general-card__header">
+      <div className="general-card__title">Mi progreso en {subjects[props.active]}</div>
+    </div>
+  );
 
   return (
-    <div className="general-card">
-      <div className="general-card__header">
-        <div className="general-card__title">Mi progreso en {subjects[props.active]}</div>
-      </div>
+    <div className={`general-card ${props.mobile ? '' : 'general-card_desk'}`}>
+      {header}
       <div className="general-card__chart">
         {is.empty(data.essays) ? noContent : chart}
       </div>
