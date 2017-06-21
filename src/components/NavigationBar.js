@@ -25,10 +25,24 @@ function NavigationBar(props, context) {
     </div>
   ) : null;
 
+  const rightContent = (
+    <FlatButton
+      onTouchTap={handleClick}
+      label="Inicia sesión"
+      labelStyle={{
+        color: '#FFFFFF',
+      }}
+      style={{
+        margin: 'auto 1rem auto auto',
+      }}
+    />
+  );
+
   return (
     <div className={`navigation-bar ${props.location === 'site' ? 'navigation-bar_site' : ''}`}>
       <div className={`navigation-bar__title ${props.location === 'site' ? 'navigation-bar__title_site' : ''}`} />
       {props.location === 'site' ? leftContent : null}
+      {props.location === 'site' ? null : rightContent}
     </div>
   );
 }
