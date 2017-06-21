@@ -1,15 +1,15 @@
 import { SET_ACTIVE_FILTER, CHANGE_FILTER_VALUE } from '../actions/types';
 
 const initialState = {
-  active: 'university',
+  active: 'carreer',
   university_type: null,
   freeness: null,
   cities: null,
   region_id: null,
   area: null,
-  duration: [null, null],
-  price: [null, null],
-  cut: [null, null],
+  duration: { min: 1, max: 14 },
+  price: { min: 0, max: 7000000 },
+  cut: { min: 450, max: 850 },
   schedule: null,
 };
 

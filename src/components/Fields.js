@@ -5,6 +5,7 @@ import capitalize from '../helpers/capitalize';
 import SelectInput from './inputs/SelectInput';
 import RangeInput from './inputs/RangeInput';
 import { getCities } from '../helpers/api';
+import { numeral } from '../helpers/numeral';
 import '../styles/Fields.css';
 
 const yesNo = [
@@ -129,7 +130,7 @@ class Fields extends Component {
           minValue={1}
           maxValue={14}
           onChange={duration => props.changeFilterValue('duration', duration)}
-          hide={props.hide}
+          value={props.values.duration}
         />
         <RangeInput
           title="Arancel"
@@ -137,8 +138,7 @@ class Fields extends Component {
           maxValue={7000000}
           step={100000}
           onChange={price => props.changeFilterValue('price', price)}
-          hide={props.hide}
-          custom
+          value={props.values.price}
         />
         <RangeInput
           title="Puntaje de corte"
@@ -146,7 +146,7 @@ class Fields extends Component {
           maxValue={850}
           step={10}
           onChange={cut => props.changeFilterValue('cut', cut)}
-          hide={props.hide}
+          value={props.values.cut}
         />
       </div>
     );
