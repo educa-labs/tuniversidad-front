@@ -60,28 +60,28 @@ class SideMenu extends Component {
           onClick={() => this.handleSelectItem('search')}
         >
           <div className="icon" ><Search color="#FFFFFF" /></div>
-          <div className="label">Buscador</div>
+          <div className="side-menu__item-label">Buscador</div>
         </div>
         <div
           className={`side-menu__item ${selected === 'compare' ? 'side-menu__item_selected' : ''}`}
           onClick={() => this.handleSelectItem('compare')}
         >
           <div className="icon" ><CompareIcon color="#FFFFFF" /></div>
-          <div className="label">Comparador</div>
+          <div className="side-menu__item-label">Comparador</div>
         </div>
         <div
           className={`side-menu__item ${selected === 'recommend' ? 'side-menu__item_selected' : ''}`}
           onClick={() => this.handleSelectItem('recommend')}
         >
           <div className="icon" ><LightbulbIcon color="#FFFFFF" /></div>
-          <div className="label">Recomendaciones</div>
+          <div className="side-menu__item-label">Recomendaciones</div>
         </div>
         <div
           className={`side-menu__item ${selected === 'news' ? 'side-menu__item_selected' : ''}`}
           onClick={() => this.handleSelectItem('news')}
         >
           <div className="icon" ><NewsIcon color="#FFFFFF" /></div>
-          <div className="label">Noticias</div>
+          <div className="side-menu__item-label">Noticias</div>
         </div>
         <div className="side-menu__button-container">
           <RaisedButton
