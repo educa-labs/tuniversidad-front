@@ -117,7 +117,69 @@ function CareerCard(props, context) {
         </div>
       </div>
     </div>
-  ) : null;
+  ) : (
+    <div className="row">
+      <div className="col col-1">
+        <div className="row">
+          <div className="general-card__item">
+            <div className="value">{career.weighing ? career.weighing.language : null}%</div>
+            <div className="label">Lenguaje</div>
+          </div>
+          <div className="general-card__item">
+            <div className="value">{career.weighing ? career.weighing.math : null}%</div>
+            <div className="label">Matematica</div>
+          </div>
+          <div className="general-card__item">
+            <div className="value">{career.weighing ? career.weighing.science || career.weighing.history : null}%</div>
+            <div className="label">{science ? 'Ciencias' : 'Historia'}</div>
+          </div>
+          <div className="general-card__item">
+            <div className="value">{career.weighing ? career.weighing.NEM : null}%</div>
+            <div className="label">NEM</div>
+          </div>
+          <div className="general-card__item">
+            <div className="value">{career.weighing ? career.weighing.ranking : null}%</div>
+            <div className="label">Ranking</div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="general-card__item">
+            <div className="value">{career.area_title}</div>
+            <div className="label">Área</div>
+          </div>
+          <div className="general-card__item" />
+          <div className="general-card__item">
+            <div className="value">{career.openings}</div>
+            <div className="label">Vacantes</div>
+          </div>
+          <div className="general-card__item" />
+          <div className="general-card__item" />
+        </div>
+      </div>
+      <div className="col col-1">
+        <div className="row">
+          <div className="general-card__item">
+            <div className="value">{career.semesters} Semestres</div>
+            <div className="label">Duración</div>
+          </div>
+          <div className="general-card__item">
+            <div className="value">{numeral(career.price)}</div>
+            <div className="label">Arancel</div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="general-card__item">
+            <div className="value">${career.income ? numeral(career.income) : null}</div>
+            <div className="label">Sueldo promedio (3er año)</div>
+          </div>
+          <div className="general-card__item">
+            <div className="value">%{career.employability}</div>
+            <div className="label">Empleabilidad</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 
   const description = props.detail ? (
     <div className="general-card-item">{career.description}</div>
@@ -158,6 +220,7 @@ CareerCard.propTypes = {
   requesting: PropTypes.bool.isRequired,
   addGoal: PropTypes.func.isRequired,
   token: PropTypes.string.isRequired,
+  mobile: PropTypes.bool.isRequired,
 };
 
 CareerCard.defaultProps = {

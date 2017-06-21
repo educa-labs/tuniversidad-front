@@ -22,6 +22,7 @@ body {
 
 .row {
   display: flex;
+  margin: 5px;
 }
 
 .col {
