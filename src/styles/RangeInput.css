@@ -1,0 +1,24 @@
+.range-input {
+  height: 72px;
+  margin: 5px 0;
+}
+
+.range-input__title {
+  font-weight: 100;
+  color: #B2B2B2;
+}
+
+.range {
+  margin: 0 10px;
+  position: relative;
+  top: 20px;
+}
+
+.input-range__track--active {
+  background: #0091EA;
+}
+
+.input-range__slider {
+  border: 1px solid #0091EA;
+  background: #0091EA;
+}
