@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import is from 'is_js';
 import { getCareers } from '../helpers/api';
-import Banner from '../components/Banner';
+import NavigationBar from '../components/NavigationBar';
 import UniversityCard from '../components/UniversityCard';
 import CareerCard from '../components/CareerCard';
 // import Questions from './Questions';
@@ -43,7 +43,7 @@ class University extends Component {
     }
     return (
       <div className="site__children">
-        <Banner location="site" title={university.title} />
+        <NavigationBar location="site" title={university.title} />
         <div className="university-cover">
           <div className="university-cover__title">{university.title}</div>
           <div className="university-cover__subtitle">{university.motto}</div>

@@ -7,10 +7,10 @@ import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
 import { toggleShowLogin } from '../actions/compress';
 import { clearState, logoutUser } from '../actions/user';
 import { clearUser } from '../helpers/storage';
-import '../styles/Banner.css';
+import '../styles/NavigationBar.css';
 
 
-function Banner(props, context) {
+function NavigationBar(props, context) {
   function handleClick() {
     if (is.not.empty(props.error)) props.clearState();
     props.toggleShowLogin();
@@ -44,15 +44,15 @@ function Banner(props, context) {
   ) : null;
 
   return (
-    <div className={`banner ${props.location === 'site' ? 'banner_site' : ''}`}>
-      <div className={`banner__title ${props.location === 'site' ? 'banner__title_site' : ''}`} />
+    <div className={`navigation-bar ${props.location === 'site' ? 'navigation-bar_site' : ''}`}>
+      <div className={`navigation-bar__title ${props.location === 'site' ? 'navigation-bar__title_site' : ''}`} />
       {props.location === 'site' ? leftContent : null}
       {rightContent}
     </div>
   );
 }
 
-Banner.propTypes = {
+NavigationBar.propTypes = {
   toggleShowLogin: PropTypes.func.isRequired,
   clearState: PropTypes.func.isRequired,
   location: PropTypes.string.isRequired,
@@ -60,12 +60,12 @@ Banner.propTypes = {
   title: PropTypes.string,
 };
 
-Banner.defaultProps = {
+NavigationBar.defaultProps = {
   user: null,
   title: null,
 };
 
-Banner.contextTypes = {
+NavigationBar.contextTypes = {
   router: PropTypes.object,
 };
 
@@ -80,4 +80,4 @@ export default connect(mapStateToProps, {
   toggleShowLogin,
   clearState,
   logoutUser,
-})(Banner);
+})(NavigationBar);

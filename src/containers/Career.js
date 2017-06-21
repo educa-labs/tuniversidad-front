@@ -2,7 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import is from 'is_js';
-import Banner from '../components/Banner';
+import NavigationBar from '../components/NavigationBar';
 import CareerCard from '../components/CareerCard';
 import { fetch } from '../actions/fetch';
 
@@ -38,7 +38,7 @@ class Career extends Component {
     }
     return (
       <div className="university">
-        <Banner location="site" title={career.title} />
+        <NavigationBar location="site" title={career.title} />
         <div className="university-cover">
           <div className="university-cover__title">{career.title}</div>
           <div

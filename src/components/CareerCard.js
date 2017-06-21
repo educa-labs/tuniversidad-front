@@ -45,13 +45,13 @@ function CareerCard(props, context) {
   const header = props.mobile ? (
     <div className={`general-card__header bg-blue ${props.detail ? 'card__header_hide' : ''}`}>
       <div className="col">
-        <div className="general-card__title title_no-margin color-white" onClick={handleInfoClick} >{career.title}</div>
+        <div className="general-card__title title_no-margin color-white">{career.title}</div>
         <div className="general-card__subtitle color-white" onClick={handleSubTitleClick}>{career.university_name}</div>
       </div>
     </div>
   ) : (
     <div className={`general-card__header bg-blue ${props.detail ? 'card__header_hide' : ''}`}>
-      <div className="general-card__title color-white" onClick={handleInfoClick} >{career.title}</div>
+      <div className="general-card__title color-white">{career.title}</div>
       <div className="color-white cursor" onClick={handleSubTitleClick}>{career.university_name}</div>
     </div>
   );
