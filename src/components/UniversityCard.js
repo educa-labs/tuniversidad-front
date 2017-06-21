@@ -17,7 +17,7 @@ function UniversityCard(props, context) {
 
   return (
     <div className={`general-card ${mobile ? '' : 'general-card_desk'}`}>
-      <div className={`general-card__header bg-blue cursor${detail ? 'general-card__header_hide' : ''}`} >
+      <div className={`general-card__header bg-blue cursor${detail ? ' general-card__header_hide' : ''}`} >
         <div className="general-card__title color-white" onClick={onTitleClick}>{university.title}</div>
       </div>
       <div className="row">
@@ -62,20 +62,12 @@ function UniversityCard(props, context) {
           <div className="label">Doctorados</div>
         </div>
       </div>
+      <Divider />
       <div className={`card__description ${detail ? '' : 'card__description_hide'}`} >
         <div className="row">
           <div className="col">{university.description}</div>
         </div>
       </div>
-      {/*<Divider />
-      <div className={`card__footer ${detail ? 'card__footer_hide' : ''}`}>
-        <div className="start">
-          <FlatButton label="Comparar" secondary labelStyle={labelStyle} />
-        </div>
-        <div className="end">
-          <FlatButton label="Más información" secondary labelStyle={labelStyle} onTouchTap={onTitleClick} />
-        </div>
-      </div>*/}
     </div>
   );
 }

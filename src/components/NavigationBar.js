@@ -16,24 +16,6 @@ function NavigationBar(props, context) {
     props.toggleShowLogin();
   }
 
-  function handleLogout() {
-    props.clearState();
-    clearUser();
-    context.router.replace('/');
-  }
-  const rightContent = (
-    <FlatButton
-      onTouchTap={is.null(props.user) ? handleClick : handleLogout}
-      label={is.null(props.user) ? 'Inicia sesión' : 'Cerrar sesión'}
-      labelStyle={{
-        color: '#FFFFFF',
-      }}
-      style={{
-        margin: 'auto 1rem auto auto',
-      }}
-    />
-    );
-
   const leftContent = is.not.null(props.title) ? (
     <div className="left-content">
       <IconButton onTouchTap={() => context.router.goBack()}>
@@ -47,7 +29,6 @@ function NavigationBar(props, context) {
     <div className={`navigation-bar ${props.location === 'site' ? 'navigation-bar_site' : ''}`}>
       <div className={`navigation-bar__title ${props.location === 'site' ? 'navigation-bar__title_site' : ''}`} />
       {props.location === 'site' ? leftContent : null}
-      {rightContent}
     </div>
   );
 }
@@ -56,7 +37,6 @@ NavigationBar.propTypes = {
   toggleShowLogin: PropTypes.func.isRequired,
   clearState: PropTypes.func.isRequired,
   location: PropTypes.string.isRequired,
-  user: PropTypes.object,
   title: PropTypes.string,
 };
 

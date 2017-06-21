@@ -40,6 +40,18 @@ function CareerCard(props, context) {
     context.router.push(`site/university/${career.university_id}`);
   }
 
+  // if (props.compress) {
+  //   return (
+  //     <div className={`general-card ${props.mobile ? '' : 'general-card_desk'}`}>
+  //       <div className={`general-card__header bg-blue ${props.detail ? 'card__header_hide' : ''}`}>
+  //         <div className="general-card__title color-white" onTouchTap={handleInfoClick}>
+  //           {career.title}
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  // }
+
   const science = career.weighing ? is.existy(career.weighing.science) : null;
 
   const header = props.mobile ? (
@@ -51,7 +63,7 @@ function CareerCard(props, context) {
     </div>
   ) : (
     <div className={`general-card__header bg-blue ${props.detail ? 'card__header_hide' : ''}`}>
-      <div className="general-card__title color-white">{career.title}</div>
+      <div className="general-card__header bg-blue">{career.title}</div>
       <div className="color-white cursor" onClick={handleSubTitleClick}>{career.university_name}</div>
     </div>
   );

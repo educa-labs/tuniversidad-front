@@ -26,6 +26,10 @@
   padding: 0 1rem;
 }
 
+.general-card__header_hide {
+  display: none;
+}
+
 .general-card__title {
   flex: 1;
   font-size: large;
