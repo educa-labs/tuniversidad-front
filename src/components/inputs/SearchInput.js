@@ -8,17 +8,20 @@ import RaisedButton from 'material-ui/RaisedButton';
 function SearchInput({ value, handleOnChange, handleSubmit, active, mobile, toggleFilters }) {
   return (
     <div className={`search-input ${mobile ? 'search-input-mobile' : ''}`}>
-      <form onSubmit={handleSubmit} className="search-input-form">
+      <form onSubmit={handleSubmit} className={`search-input-form ${mobile ? 'search-input-form-mobile' : ''}`}>
         <IconButton type="submit"><Search color="#C9C9C9" /></IconButton>
         <input
+          className={mobile ? 'mobile' : ''}
           type="text"
           value={value}
           onChange={e => handleOnChange(e.target.value)}
           placeholder={active === 'university' ? 'Busca una universidad' : 'Busca una carrera'}
         />
-        <IconButton type="button" onTouchTap={toggleFilters}>
-          <FilterButton color="#C9C9C9" />
-        </IconButton>
+        {mobile ? (
+          <IconButton type="button" onTouchTap={toggleFilters}>
+            <FilterButton color="#C9C9C9" />
+          </IconButton>
+        ) : null}
       </form>
       {mobile ? null : (
         <RaisedButton
