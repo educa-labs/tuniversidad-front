@@ -25,7 +25,7 @@ class Site extends Component {
   render() {
     return (
       <div>
-        <MediaQuery maxDeviceWidth={550}>
+        <MediaQuery maxDeviceWidth={720}>
           <div className="site">
             <SideMenu
               mobile

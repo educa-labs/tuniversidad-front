@@ -13,7 +13,6 @@
   left: 230px;
 }
 
-.tabs-container {
-  width: 100%;
-  position: relative;
+.tabs-search {
+  z-index: 100;
 }

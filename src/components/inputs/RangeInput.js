@@ -1,45 +1,18 @@
 import React, { PropTypes } from 'react';
-import { Range } from 'rc-slider';
-import 'rc-slider/assets/index.css';
-import 'rc-tooltip/assets/bootstrap.css';
-import Handler from './Handler';
+import InputRange from 'react-input-range';
+import 'react-input-range/lib/css/index.css';
 import '../../styles/RangeInput.css';
 
-
 function RangeInput(props) {
-  const CustomHandler = restprops => (
-    <Handler
-      custom={props.custom}
-      key={restprops.index}
-      {...restprops}
-    />
-  );
   return (
-    <div className="range-input-container">
-      <span>{props.title}</span>
+    <div className="range-input">
+      <span className="range-input__title">{props.title}</span>
       <div className="range">
-        <Range
-          step={props.step}
-          min={props.minValue}
-          max={props.maxValue}
-          defaultValue={[props.minValue, props.maxValue]}
-          allowCross={false}
-          handle={CustomHandler}
-          onChange={props.onChange}
-        />
+        <InputRange {...props} />
       </div>
     </div>
   );
 }
-
-RangeInput.propTypes = {
-  step: PropTypes.number,
-  custom: PropTypes.bool,
-  onChange: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired,
-  minValue: PropTypes.number.isRequired,
-  maxValue: PropTypes.number.isRequired,
-};
 
 RangeInput.defaultProps = {
   custom: false,

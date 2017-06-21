@@ -54,7 +54,7 @@
   justify-content: center;
 }
 
-.side-menu__item .label {
+.side-menu__item-label {
   flex: 2;
 }
 

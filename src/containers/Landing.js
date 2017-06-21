@@ -4,7 +4,7 @@ import is from 'is_js';
 import Cover from '../components/Cover';
 import Register from '../components/Register';
 import Login from '../components/Login';
-import Banner from '../components/Banner';
+import NavigationBar from '../components/NavigationBar';
 import '../styles/Landing.css';
 
 class Landing extends Component {
@@ -15,7 +15,7 @@ class Landing extends Component {
   render() {
     return (
       <div className="landing">
-        <Banner location="landing" />
+        <NavigationBar location="landing" />
         <Cover />
         <div className="row">
           <div className="col">

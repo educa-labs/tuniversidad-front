@@ -7,32 +7,14 @@ import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
 import { toggleShowLogin } from '../actions/compress';
 import { clearState, logoutUser } from '../actions/user';
 import { clearUser } from '../helpers/storage';
-import '../styles/Banner.css';
+import '../styles/NavigationBar.css';
 
 
-function Banner(props, context) {
+function NavigationBar(props, context) {
   function handleClick() {
     if (is.not.empty(props.error)) props.clearState();
     props.toggleShowLogin();
   }
-
-  function handleLogout() {
-    props.clearState();
-    clearUser();
-    context.router.replace('/');
-  }
-  const rightContent = (
-    <FlatButton
-      onTouchTap={is.null(props.user) ? handleClick : handleLogout}
-      label={is.null(props.user) ? 'Inicia sesión' : 'Cerrar sesión'}
-      labelStyle={{
-        color: '#FFFFFF',
-      }}
-      style={{
-        margin: 'auto 1rem auto auto',
-      }}
-    />
-    );
 
   const leftContent = is.not.null(props.title) ? (
     <div className="left-content">
@@ -43,29 +25,41 @@ function Banner(props, context) {
     </div>
   ) : null;
 
+  const rightContent = (
+    <FlatButton
+      onTouchTap={handleClick}
+      label="Inicia sesión"
+      labelStyle={{
+        color: '#FFFFFF',
+      }}
+      style={{
+        margin: 'auto 1rem auto auto',
+      }}
+    />
+  );
+
   return (
-    <div className={`banner ${props.location === 'site' ? 'banner_site' : ''}`}>
-      <div className={`banner__title ${props.location === 'site' ? 'banner__title_site' : ''}`} />
+    <div className={`navigation-bar ${props.location === 'site' ? 'navigation-bar_site' : ''}`}>
+      <div className={`navigation-bar__title ${props.location === 'site' ? 'navigation-bar__title_site' : ''}`} />
       {props.location === 'site' ? leftContent : null}
-      {rightContent}
+      {props.location === 'site' ? null : rightContent}
     </div>
   );
 }
 
-Banner.propTypes = {
+NavigationBar.propTypes = {
   toggleShowLogin: PropTypes.func.isRequired,
   clearState: PropTypes.func.isRequired,
   location: PropTypes.string.isRequired,
-  user: PropTypes.object,
   title: PropTypes.string,
 };
 
-Banner.defaultProps = {
+NavigationBar.defaultProps = {
   user: null,
   title: null,
 };
 
-Banner.contextTypes = {
+NavigationBar.contextTypes = {
   router: PropTypes.object,
 };
 
@@ -80,4 +74,4 @@ export default connect(mapStateToProps, {
   toggleShowLogin,
   clearState,
   logoutUser,
-})(Banner);
+})(NavigationBar);

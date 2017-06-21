@@ -1,15 +1,15 @@
-.banner {
+.navigation-bar {
   background-color: #0091EA;
   display: flex;
-  height: 60px;
+  height: 48px;
   position: fixed;
   top: 0;
   width: 100%;
 }
-.banner_site {
+.navigation-bar_site {
   background-color: transparent;
 }
-.banner__title {
+.navigation-bar__title {
   height: 1.5rem;
   width: 20rem;
   margin: auto 0;
@@ -18,7 +18,7 @@
   background-repeat: no-repeat;
   background-size: contain;
 }
-.banner__title_site {
+.navigation-bar__title_site {
   display: none;
 }
 
