@@ -24,7 +24,7 @@ function UserEssayChart(props) {
 
   const data = props.essays[props.active];
   const width = props.mobile ? 300 : 700;
-  const height = props.mobile ? 220 : 400;
+  const height = props.mobile ? 220 : 350;
 
   const noContent = (
     <div className="general-card__no-content">

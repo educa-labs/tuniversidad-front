@@ -53,7 +53,7 @@ class DatePicker extends Component {
   render() {
     return (
       <div className="date-picker">
-        <div className="col col-1">
+        <div className="col">
           <SelectInput
             items={getDays()}
             handleChange={val => this.onChange('day', val)}
@@ -79,7 +79,7 @@ class DatePicker extends Component {
           />
         </div>
         {this.props.mobile ? null : (
-          <div className="col col-1">
+          <div className="col">
             <SelectInput
               fullWidth
               items={getYears()}

@@ -63,7 +63,7 @@ function CareerCard(props, context) {
     </div>
   ) : (
     <div className={`general-card__header bg-blue ${props.detail ? 'card__header_hide' : ''}`}>
-      <div className="general-card__header bg-blue">{career.title}</div>
+      <div className="general-card__title color-white">{career.title}</div>
       <div className="color-white cursor" onClick={handleSubTitleClick}>{career.university_name}</div>
     </div>
   );
@@ -131,7 +131,7 @@ function CareerCard(props, context) {
     </div>
   ) : (
     <div className="row">
-      <div className="col col-1">
+      <div className="col">
         <div className="row">
           <div className="general-card__item">
             <div className="value">{career.weighing ? career.weighing.language : null}%</div>
@@ -168,7 +168,7 @@ function CareerCard(props, context) {
           <div className="general-card__item" />
         </div>
       </div>
-      <div className="col col-1">
+      <div className="col">
         <div className="row">
           <div className="general-card__item">
             <div className="value">{career.semesters} Semestres</div>

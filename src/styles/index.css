@@ -25,11 +25,17 @@ body {
   margin: 5px 0;
 }
 
+.no-margin {
+  margin: 0;
+}
+
+.padding-2 {
+  padding: 0 2rem;
+}
+
 .col {
   display: flex;
   flex-direction: column;
-}
-.col-1 {
   flex: 1;
 }
 

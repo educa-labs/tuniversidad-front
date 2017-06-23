@@ -19,11 +19,11 @@ class Essay extends Component {
   renderEssay(ess) {
     return (
       <div className="essay__score" key={ess.id}>
-        <div className="col col-1">
+        <div className="col">
           <div>{ess.title}</div>
           <div className="label">{ess.date}</div>
         </div>
-        <div className="col col-1">
+        <div className="col">
           <div className="score">{ess.score}</div>
           <div className="label">Puntaje</div>
         </div>

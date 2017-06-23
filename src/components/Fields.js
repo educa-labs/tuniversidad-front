@@ -125,6 +125,7 @@ class Fields extends Component {
           handleChange={schedule => props.changeFilterValue('schedule', schedule)}
           fullWidth
         />
+        <br />
         <RangeInput
           title="Duración (semestres)"
           minValue={1}

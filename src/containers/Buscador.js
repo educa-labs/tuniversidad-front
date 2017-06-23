@@ -57,7 +57,7 @@ class Buscador extends Component {
 
   render() {
     return (
-      <div className="col col-1">
+      <div className="col">
         {this.props.mobile ? <MobileBanner onClick={this.props.toggleMenu} /> : null}
         <SearchInput
           value={this.state.input}
@@ -73,7 +73,7 @@ class Buscador extends Component {
           toggleFilters={this.toggleFilters}
           onRequestChange={open => this.setState({ showFilters: open })}
         />
-        <div className="row">
+        <div className="row no-margin">
           <SearchResult
             data={this.props.data}
             active={this.props.active}

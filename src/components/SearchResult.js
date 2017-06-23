@@ -10,7 +10,7 @@ function SearchResult(props) {
   );
   if (props.data === null) {
     return (
-      <div className={`col col-1 col-grey${props.mobile ? '' : '-desk'}`}>
+      <div className={`col padding-2 col-grey${props.mobile ? '' : '-desk'}`}>
         {beforeSearch}
       </div>
     );
@@ -36,7 +36,7 @@ function SearchResult(props) {
   }
 
   return (
-    <div className={`col col-1 col-grey${props.mobile ? '' : '-desk'}`}>
+    <div className={`col padding-2 col-grey${props.mobile ? '' : '-desk'}`}>
       {afterSearch || beforeSearch}
     </div>
   );

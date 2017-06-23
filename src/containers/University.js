@@ -41,7 +41,7 @@ class University extends Component {
       );
     }
     return (
-      <div className="col col-1">
+      <div className="col">
         <NavigationBar location="site" title={university.title} />
         <div className="university-cover">
           {mobile ? null : (

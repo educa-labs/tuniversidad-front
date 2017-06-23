@@ -7,7 +7,7 @@ import UserObjectives from './UserObjectives';
 function ProfileGeneral(props) {
   if (props.mobile) {
     return (
-      <div className="col col-1 col-grey">
+      <div className="col col-grey">
         <UserGoals
           removeGoal={id => props.removeGoal(id, props.token)}
           goals={props.goals}
@@ -29,7 +29,7 @@ function ProfileGeneral(props) {
     );
   }
   return (
-    <div className="col col-1 col-row col-grey-desk">
+    <div className="col col-row col-grey-desk">
       <div className="col col-3">
         <UserGoals
           removeGoal={id => props.removeGoal(id, props.token)}
