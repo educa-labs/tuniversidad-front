@@ -1,6 +1,5 @@
 .site {
   display: flex;
-  min-width: 900px;
   min-height: 500px;
 }
 

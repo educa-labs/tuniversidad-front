@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import SideMenu from './SideMenu';
 import { getGoals } from '../actions/goals';
 import { fetch } from '../actions/fetch';
+import { getMostPopular } from '../actions/search';
 import '../styles/Site.css';
 import '../styles/GeneralCard.css';
 
@@ -19,6 +20,7 @@ class Site extends Component {
 
   componentDidMount() {
     this.props.getGoals(this.props.token);
+    this.props.getMostPopular(this.props.active, this.props.token);
     this.props.fetch('regions', null, this.props.token);
   }
 
@@ -59,15 +61,19 @@ Site.propTypes = {
   getGoals: PropTypes.func.isRequired,
   token: PropTypes.string.isRequired,
   fetch: PropTypes.func.isRequired,
+  getMostPopular: PropTypes.func.isRequired,
+  active: PropTypes.bool.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
     token: state.user.currentUser.auth_token,
+    active: state.filter.active,
   };
 }
 
 export default connect(mapStateToProps, {
   fetch,
   getGoals,
+  getMostPopular,
 })(Site);

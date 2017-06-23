@@ -21,9 +21,6 @@ class Buscador extends Component {
   componentWillMount() {
     this.toggleFilters = this.toggleFilters.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.props.fetch('areas', null, null);
-    this.props.fetch('types', null, null);
-    this.props.fetch('schedules', null, null);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -76,6 +73,7 @@ class Buscador extends Component {
         <div className="row no-margin">
           <SearchResult
             data={this.props.data}
+            popular={this.props.popular}
             active={this.props.active}
             dataTypeHasChanged={this.state.dataTypeHasChanged}
             requesting={this.props.requesting}
@@ -100,6 +98,7 @@ Buscador.propTypes = {
   fetch: PropTypes.func.isRequired,
   mobile: PropTypes.bool,
   data: PropTypes.array,
+  popular: PropTypes.array,
 };
 
 function mapStateToProps(state) {
@@ -107,6 +106,7 @@ function mapStateToProps(state) {
     token: state.user.currentUser.auth_token,
     active: state.filter.active,
     data: state.search.result,
+    popular: state.search.popular,
     result: state.fetch.result,
     requesting: state.search.requesting || state.fetch.requesting,
     university_filters: {

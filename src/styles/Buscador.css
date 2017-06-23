@@ -63,3 +63,8 @@
 .before-search {
   flex: 1;
 }
+
+.popular-msg {
+  padding: 1rem;
+  color: #C9C9C9;
+}

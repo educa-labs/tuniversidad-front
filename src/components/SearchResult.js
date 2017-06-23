@@ -3,14 +3,21 @@ import UniversityCard from './UniversityCard';
 import CareerCard from './CareerCard';
 
 function SearchResult(props) {
-  const beforeSearch = (
+  const beforeSearch = props.popular ? (
+    <div className="before-search">
+      <div className="popular-msg">Carreras populares</div>
+      {props.popular.map(res => (
+        <CareerCard career={res} key={res.id} mobile={props.mobile} />
+      ))}
+    </div>
+  ) : (
     <div className="before-search">
       Recuerda que puedes aplicar filtros a tu búsqueda
     </div>
   );
   if (props.data === null) {
     return (
-      <div className={`col padding-2 col-grey${props.mobile ? '' : '-desk'}`}>
+      <div className={`col col-grey${props.mobile ? '' : '-desk padding-2'}`}>
         {beforeSearch}
       </div>
     );
@@ -36,7 +43,7 @@ function SearchResult(props) {
   }
 
   return (
-    <div className={`col padding-2 col-grey${props.mobile ? '' : '-desk'}`}>
+    <div className={`col col-grey${props.mobile ? '' : '-desk padding-2'}`}>
       {afterSearch || beforeSearch}
     </div>
   );

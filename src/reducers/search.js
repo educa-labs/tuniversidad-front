@@ -2,6 +2,7 @@ import {
   SEARCH_FAILURE,
   SEARCH_REQUEST,
   SEARCH_SUCCESS,
+  POPULAR_SUCCESS,
 } from '../actions/types';
 
 const initalState = {
@@ -24,6 +25,12 @@ function search(state = initalState, action) {
     case SEARCH_SUCCESS:
       return Object.assign({}, state, {
         result: action.payload,
+        requesting: false,
+        error: {},
+      });
+    case POPULAR_SUCCESS:
+      return Object.assign({}, state, {
+        popular: action.payload,
         requesting: false,
         error: {},
       });
