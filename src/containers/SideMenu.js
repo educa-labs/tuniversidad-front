@@ -87,7 +87,7 @@ class SideMenu extends Component {
           <RaisedButton
             onTouchTap={this.handleLogout}
             label="Cerrar sesión"
-            backgroundColor="#0091EA"
+            backgroundColor="#616161"
             labelColor="#FFFFFF"
           />
         </div>
