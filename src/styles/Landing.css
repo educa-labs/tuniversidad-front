@@ -3,32 +3,75 @@
   background-color: #F5F5F5;
 }
 
-.landing .row {
-  margin: 1rem 0;
+.landing-cover {
   display: flex;
-  align-items: center;
-  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  height: 30rem;
+  widows: 100%;
+  background-color: gray;
+  padding: 2rem;
+  color: white;
+  background-image: url(../assets/fondotuni2.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.5);
+  background-blend-mode: multiply;
+  background-attachment: fixed;
 }
-.landing .col {
-  flex: 1;
+
+.landing-cover-title {
+  font-size: 2.5rem;
+  margin: 0.1rem 0;
+}
+
+.landing-cover-subtitle {
+  font-size: medium;
+  width: 50%;
+  margin: 0.5rem 0;
+}
+
+.landing-cover-subtitle-mobile {
+  width: 100%;
+}
+
+.landing-body {
+  height: 40rem;
+}
+
+.landing-body-title {
+  font-size: 2.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  height: 10rem;
 }
 
-
-
-.landing__title {
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-  max-width: 25rem;
+.section {
+  width: 75%;
 }
 
-.landing__body {
-  text-align: center;
-  font-size: 18px;
-  font-weight: lighter;
-  max-width: 25rem;
+.section-top {
+  margin: 4rem 0;
+}
+
+.section-header {
+  font-size: xx-large;
+  color: #0091EA;
+  margin: 1rem 0;
+}
+
+.section-text {
+  font-size: medium;
+  font-weight: 100;
+}
+
+.landing-body-phone {
+  height: 30rem;
+  width: 300px;
+  background-image: url(../assets/white-phone.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }

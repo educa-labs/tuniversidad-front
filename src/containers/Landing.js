@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react';
+import MediaQuery from 'react-responsive';
 import { connect } from 'react-redux';
 import is from 'is_js';
-import Cover from '../components/Cover';
+import Cover from '../components/landing/Cover';
+import Body from '../components/landing/Body';
 import Register from '../components/Register';
 import Login from '../components/Login';
 import NavigationBar from '../components/NavigationBar';
@@ -14,23 +16,34 @@ class Landing extends Component {
   
   render() {
     return (
-      <div className="landing">
-        <NavigationBar location="landing" />
-        <Cover />
-        <div className="row">
-          <div className="col">
-            <div className="landing__title">Prepara la PSU como nunca antes.</div>
-            <br />
-            <div className="landing__body">
-              En Tuniversidad podrás encontrar información detallada de universidades y carreras, compararlas y llevar el registro de tu progreso
+      <div>
+        <MediaQuery maxDeviceWidth={720}>
+          <div className="landing">
+            <NavigationBar location="landing" />
+            <Cover mobile />
+            <Body mobile />
+            <div className="row">
+              <div className="col">
+                <div className="landing__title">Prepara la PSU como nunca antes.</div>
+                <br />
+                <div className="landing__body">
+                  En Tuniversidad podrás encontrar información detallada de universidades y carreras, compararlas y llevar el registro de tu progreso
+                </div>
+              </div>
+              <div className="col">
+                <Register />
+              </div>
             </div>
+            <Login />
           </div>
-          <div className="col">
-            <Register />
-          </div>
-        </div>
-        <Login />
+        </MediaQuery>
+        <MediaQuery minDeviceWidth={721}>
+          <NavigationBar location="landing" />
+          <Cover />
+          <Body />
+        </MediaQuery>
       </div>
+      
     );
   }
 }
