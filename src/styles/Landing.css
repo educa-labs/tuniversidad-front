@@ -9,7 +9,6 @@
   justify-content: center;
   height: 30rem;
   widows: 100%;
-  background-color: gray;
   padding: 2rem;
   color: white;
   background-image: url(../assets/fondotuni2.png);
@@ -38,6 +37,7 @@
 
 .landing-body {
   height: 40rem;
+  margin-bottom: 4rem;
 }
 
 .landing-body-title {
@@ -107,4 +107,66 @@
   width: 80%;
   min-width: 310px;
   margin: 0 1rem;
+}
+
+.landing-cover-bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 30rem;
+  width: 100%;
+  padding: 2rem;
+  color: white;
+  background-image: url(../assets/fondotuni.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.5);
+  background-blend-mode: multiply;
+  background-attachment: fixed;
+}
+
+.app-store {
+  height: 3rem;
+  width: 10rem;
+  background-image: url(../assets/app-store.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.google-play {
+  height: 3rem;
+  width: 10rem;
+  background-image: url(../assets/google-play.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.landing-footer {
+  height: 25rem;
+  background-color: #0091EA;
+  display: flex;
+  color: white;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tuni-logo-footer {
+  background-image: url(../assets/logo-tuni.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 9rem;
+  height: 3rem;
+}
+
+.landing-footer-icons {
+  display: flex;
+  justify-content: space-between;
+  width: 10rem;
+  font-size: x-large;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+  color: white;
 }

@@ -10,10 +10,9 @@
   background-color: transparent;
 }
 .navigation-bar__title {
-  height: 1.5rem;
-  width: 20rem;
-  margin: auto 0;
-  background-image: url(../assets/tuniversidad-logotipo-blanco.svg);
+  width: 9rem;
+  margin-left: 1rem;
+  background-image: url(../assets/logo-tuni.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;

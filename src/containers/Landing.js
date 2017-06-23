@@ -5,6 +5,8 @@ import is from 'is_js';
 import Cover from '../components/landing/Cover';
 import Body from '../components/landing/Body';
 import NewtonSection from '../components/landing/NewtonSection';
+import CoverBottom from '../components/landing/CoverBottom';
+import Footer from '../components/landing/Footer';
 import Register from '../components/Register';
 import Login from '../components/Login';
 import NavigationBar from '../components/NavigationBar';
@@ -23,12 +25,16 @@ class Landing extends Component {
           <Cover mobile />
           <Body mobile />
           <NewtonSection mobile />
+          <CoverBottom mobile />
+          <Footer mobile />
         </MediaQuery>
         <MediaQuery minDeviceWidth={721}>
           <NavigationBar location="landing" />
           <Cover />
           <Body />
           <NewtonSection />
+          <CoverBottom />
+          <Footer />
         </MediaQuery>
       </div>
       
