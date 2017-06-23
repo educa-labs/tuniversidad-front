@@ -50,6 +50,7 @@
 
 .section {
   width: 75%;
+  min-width: 280px;
 }
 
 .section-top {
@@ -70,8 +71,40 @@
 .landing-body-phone {
   height: 30rem;
   width: 300px;
+  min-width: 255px;
   background-image: url(../assets/white-phone.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
+}
+
+.newton-section {
+  background-color: #0091EA;
+  height: 30rem;
+  padding: 0 7rem;
+  display: flex;
+  width: 100%;
+}
+
+.newton-landing {
+  width: 210px;
+  height: 20rem;
+  background-image: url('../assets/newton.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.newton-section-title  {
+  font-size: xx-large;
+  margin: 1rem 0;
+}
+
+.newton-section-text {
+  color: white;
+  font-size: medium;
+  font-weight: 100;
+  width: 80%;
+  min-width: 310px;
+  margin: 0 1rem;
 }

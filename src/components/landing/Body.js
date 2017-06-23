@@ -6,7 +6,7 @@ function Body(props) {
       <div className="landing-body-title">
         Prepara la PSU. En la palma de tu mano.
       </div>
-      <div className="row">
+      <div className="row no-margin">
         <div className="col justify-end">
           <div className="section section-top">
             <div className="section-header">Metas y objetivos</div>
