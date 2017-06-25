@@ -4,6 +4,7 @@ import is from 'is_js';
 import { getUser } from '../helpers/storage';
 import { setupUser } from '../actions/user';
 import { fetch } from '../actions/fetch';
+import '../styles/Tuni.css';
 
 class App extends Component {
   componentWillMount() {

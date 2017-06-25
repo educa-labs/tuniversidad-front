@@ -1,48 +1,69 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import is from 'is_js';
-import FlatButton from 'material-ui/FlatButton';
+import Scroll, { scroller, Link, Element } from 'react-scroll';
 import IconButton from 'material-ui/IconButton';
 import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
 import { toggleShowLogin } from '../actions/compress';
 import { clearState, logoutUser } from '../actions/user';
-import { clearUser } from '../helpers/storage';
 import '../styles/NavigationBar.css';
 
 
 function NavigationBar(props, context) {
-  function handleClick() {
-    if (is.not.empty(props.error)) props.clearState();
-    props.toggleShowLogin();
-  }
-
-  const leftContent = is.not.null(props.title) ? (
-    <div className="left-content">
-      <IconButton onTouchTap={() => context.router.goBack()}>
-        <ArrowBack color="#FFFFFF" />
-      </IconButton>
-      <div className="letf-content__title">{props.title}</div>
-    </div>
-  ) : null;
-
-  const rightContent = (
-    <FlatButton
-      onTouchTap={handleClick}
-      label="Inicia sesión"
-      labelStyle={{
-        color: '#FFFFFF',
-      }}
-      style={{
-        margin: 'auto 1rem auto auto',
-      }}
-    />
+  const backArrow = (
+    <IconButton onTouchTap={() => context.router.goBack()}>
+      <ArrowBack color="#FFFFFF" />
+    </IconButton>
   );
 
+  const params = {
+    duration: 500,
+    smooth: true,
+  };
+
+  let className = 'navigation-bar';
+
+  if (props.location === 'landing') {
+    className = `${className} navigation-bar_landing${props.dirty ? '-dirty' : ''}`;
+    if (props.solid && props.dirty) className = `${className} navigation-bar_landing-solid`;
+
+    return (
+      <div className={className}>
+        <div className="navigation-bar-logo">
+          <div className={`logo-tuni ${props.solid ? 'logo-tuni-black' : ''}`} />
+        </div>
+        <div className="navigation-bar-actions">
+          <div
+            className={`action ${props.active === 0 ? 'action-active' : ''}`}
+            onClick={() => scroller.scrollTo('login', params)}
+          >
+            Comenzar
+          </div>
+          <div
+            className={`action ${props.active === 1 ? 'action-active' : ''}`}
+            onClick={() => scroller.scrollTo('body', params)}
+          >
+            ¿Qué hace?
+          </div>
+          <div
+            className={`action ${props.active === 2 ? 'action-active' : ''}`}
+            onClick={() => scroller.scrollTo('newton', params)}
+          >
+            Newton
+          </div>
+          <div
+            className={`action ${props.active === 3 ? 'action-active' : ''}`}
+            onClick={() => scroller.scrollTo('cover-bottom', params)}
+          >
+            Descargar
+          </div>
+        </div>
+      </div>
+    );
+  }
+  if (props.location === 'site') className = `${className} navigation-bar_site`;
+
   return (
-    <div className={`navigation-bar ${props.location === 'site' ? 'navigation-bar_site' : ''}`}>
-      <div className={`navigation-bar__title ${props.location === 'site' ? 'navigation-bar__title_site' : ''}`} />
-      {props.location === 'site' ? leftContent : null}
-      {props.location === 'site' ? null : rightContent}
+    <div className={className}>
     </div>
   );
 }
@@ -52,11 +73,17 @@ NavigationBar.propTypes = {
   clearState: PropTypes.func.isRequired,
   location: PropTypes.string.isRequired,
   title: PropTypes.string,
+  solid: PropTypes.bool,
+  dirty: PropTypes.bool,
+  active: PropTypes.number,
 };
 
 NavigationBar.defaultProps = {
   user: null,
   title: null,
+  solid: false,
+  dirty: false,
+  active: null,
 };
 
 NavigationBar.contextTypes = {

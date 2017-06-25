@@ -48,6 +48,10 @@ body {
   justify-content: center;
 }
 
+.justify-start {
+  justify-content: flex-start;
+}
+
 .align-center {
   align-items: center;
 }

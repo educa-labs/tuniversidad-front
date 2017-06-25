@@ -1,0 +1,12 @@
+.logo-tuni {
+  width: 9rem;
+  height: 2rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url(../assets/logo-tuni.svg);
+}
+
+.logo-tuni-black {
+  background-image: url(../assets/logo-tuni-black.svg);
+}
