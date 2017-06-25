@@ -15,9 +15,13 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
   background-blend-mode: multiply;
   background-attachment: fixed;
+}
+
+.landing-cover-mobile {
+  height: 25rem;
 }
 
 .landing-cover-title {
@@ -25,14 +29,20 @@
   margin: 0.1rem 0;
 }
 
+.landing-cover-title-mobile {
+  font-size: xx-large;
+}
+
 .landing-cover-subtitle {
   font-size: medium;
+  font-weight: 100;
   width: 50%;
   margin: 0.5rem 0;
 }
 
 .landing-cover-subtitle-mobile {
   width: 100%;
+  font-size: small;
 }
 
 .landing-body {
@@ -41,16 +51,31 @@
 }
 
 .landing-body-title {
-  font-size: 2.5rem;
+  font-size: xx-large;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 10rem;
 }
 
+.landing-body-title-mobile {
+  font-size: xx-large;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.landing-body-mobile {
+  padding: 2rem 2rem;
+}
+
 .section {
   width: 75%;
   min-width: 280px;
+}
+
+.section-mobile {
+  width: 100%;
+  margin-top: 0.5rem;
 }
 
 .section-top {
@@ -61,6 +86,12 @@
   font-size: xx-large;
   color: #0091EA;
   margin: 1rem 0;
+}
+
+.section-header-mobile {
+  color: #0091EA;
+  font-size: x-large;
+  margin: 0.5rem 0;
 }
 
 .section-text {
@@ -86,6 +117,10 @@
   width: 100%;
 }
 
+.newton-section-mobile {
+  background-color: #0091EA;
+  padding: 2rem;
+}
 .newton-landing {
   width: 210px;
   height: 20rem;
@@ -100,6 +135,11 @@
   margin: 1rem 0;
 }
 
+.newton-section-title-mobile {
+  font-size: xx-large;
+  margin: 0;
+}
+
 .newton-section-text {
   color: white;
   font-size: medium;
@@ -109,12 +149,19 @@
   margin: 0 1rem;
 }
 
+.newton-section-text-mobile {
+  margin-top: 0.5rem;
+  color: white;
+  font-size: medium;
+  font-weight: 100;
+}
+
 .landing-cover-bottom {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 30rem;
+  height: 25rem;
   width: 100%;
   padding: 2rem;
   color: white;
@@ -169,4 +216,8 @@
   margin-top: 1rem;
   margin-bottom: 3rem;
   color: white;
+}
+
+.slogan {
+  text-align: center;
 }

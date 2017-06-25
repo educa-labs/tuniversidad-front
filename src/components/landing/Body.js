@@ -1,6 +1,41 @@
 import React from 'react';
 
 function Body(props) {
+  if (props.mobile) {
+    return (
+      <div className="landing-body-mobile">
+        <div className="landing-body-title-mobile">
+          Prepara la PSU.
+          <br />
+          En la palma de tu mano.
+        </div>
+        <div className="section-mobile">
+          <div className="section-header-mobile">Metas y objetivos</div>
+          <div className="section-text">
+            Con tuniversidad podrás fijarte metas y ver cómo te acercas a ella en tiempo real. A medida que progresas en tus ensayos, se actualizará la distancia con tus objetivos.
+          </div>
+        </div>
+        <div className="section-mobile">
+          <div className="section-header-mobile">Recomendaciones</div>
+          <div className="section-text">
+            Con tuniversidad podrás fijarte metas y ver cómo te acercas a ella en tiempo real. A medida que progresas en tus ensayos, se actualizará la distancia con tus objetivos.
+          </div>
+        </div>
+        <div className="section-mobile">
+          <div className="section-header-mobile">Progreso</div>
+          <div className="section-text">
+            Con tuniversidad podrás fijarte metas y ver cómo te acercas a ella en tiempo real. A medida que progresas en tus ensayos, se actualizará la distancia con tus objetivos.
+          </div>
+        </div>
+        <div className="section-mobile">
+          <div className="section-header-mobile">Búsquedas</div>
+          <div className="section-text">
+            Con tuniversidad podrás fijarte metas y ver cómo te acercas a ella en tiempo real. A medida que progresas en tus ensayos, se actualizará la distancia con tus objetivos.
+          </div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="landing-body">
       <div className="landing-body-title">

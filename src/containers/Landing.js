@@ -55,13 +55,13 @@ class Landing extends Component {
   }
 
   handleScroll() {
-    const pos = document.body.scrollTop;
+    const pos = document.body.scrollTop + 48;
     const newActive = this.getActive(pos);
     if (newActive !== this.state.active) {
       this.setState({ active: newActive });
     }
 
-    if (pos > 420 && !this.state.solid) {
+    if (pos > this.state.offsets[1] - 1 && !this.state.solid) {
       if (!this.state.dirty) {
         this.setState({
           solid: true,
@@ -73,7 +73,7 @@ class Landing extends Component {
         });
       }
     }
-    if (pos < 420 && this.state.solid) {
+    if (pos <= this.state.offsets[1] - 1 && this.state.solid) {
       this.setState({ solid: false });
     }
   }
@@ -88,12 +88,18 @@ class Landing extends Component {
         }}
       >
         <MediaQuery maxDeviceWidth={720}>
-          <NavigationBar location="landing" />
-          <Cover mobile />
-          <Body mobile />
-          <NewtonSection mobile />
-          <CoverBottom mobile />
-          <Footer mobile />
+          <NavigationBar
+            location="landing"
+            solid={this.state.solid}
+            dirty={this.state.dirty}
+            active={this.state.active}
+            mobile
+          />
+          <Element name="login" ref={e => this.login = e}><Cover mobile /></Element>
+          <Element name="body" ref={e => this.body = e} ><Body mobile /></Element>
+          <Element name="newton" ref={e => this.newton = e} ><NewtonSection mobile /></Element>
+          <Element name="cover-bottom" ref={e => this.coverBottom = e}><CoverBottom mobile /></Element>
+          <Element name="footer" ref={e => this.footer = e}><Footer mobile /></Element>
         </MediaQuery>
         <MediaQuery minDeviceWidth={721}>
           <NavigationBar

@@ -18,6 +18,7 @@ function NavigationBar(props, context) {
   const params = {
     duration: 500,
     smooth: true,
+    offset: -48,
   };
 
   let className = 'navigation-bar';
@@ -25,33 +26,36 @@ function NavigationBar(props, context) {
   if (props.location === 'landing') {
     className = `${className} navigation-bar_landing${props.dirty ? '-dirty' : ''}`;
     if (props.solid && props.dirty) className = `${className} navigation-bar_landing-solid`;
+    const tuniLogo = props.mobile ? null : (
+      <div className="navigation-bar-logo">
+        <div className={`logo-tuni ${props.solid ? 'logo-tuni-black' : ''}`} />
+      </div>
+    );
 
     return (
       <div className={className}>
-        <div className="navigation-bar-logo">
-          <div className={`logo-tuni ${props.solid ? 'logo-tuni-black' : ''}`} />
-        </div>
-        <div className="navigation-bar-actions">
+        {tuniLogo}
+        <div className={`navigation-bar-actions ${props.mobile ? 'navigation-bar-actions-mobile' : ''}`}>
           <div
-            className={`action ${props.active === 0 ? 'action-active' : ''}`}
+            className={`action ${props.mobile ? 'action-mobile' : ''}  ${props.active === 0 ? 'action-active' : ''}`}
             onClick={() => scroller.scrollTo('login', params)}
           >
             Comenzar
           </div>
           <div
-            className={`action ${props.active === 1 ? 'action-active' : ''}`}
+            className={`action ${props.mobile ? 'action-mobile' : ''} ${props.active === 1 ? 'action-active' : ''}`}
             onClick={() => scroller.scrollTo('body', params)}
           >
             ¿Qué hace?
           </div>
           <div
-            className={`action ${props.active === 2 ? 'action-active' : ''}`}
+            className={`action ${props.mobile ? 'action-mobile' : ''} ${props.active === 2 ? 'action-active' : ''}`}
             onClick={() => scroller.scrollTo('newton', params)}
           >
             Newton
           </div>
           <div
-            className={`action ${props.active === 3 ? 'action-active' : ''}`}
+            className={`action ${props.mobile ? 'action-mobile' : ''} ${props.active === 3 ? 'action-active' : ''}`}
             onClick={() => scroller.scrollTo('cover-bottom', params)}
           >
             Descargar

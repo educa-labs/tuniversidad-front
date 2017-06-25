@@ -3,9 +3,9 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 function Cover(props) {
   return (
-    <div className="landing-cover">
-      <div className="landing-cover-title">Toda la infromación que buscas.</div>
-      <div className="landing-cover-title">En un solo lugar.</div>
+    <div className={`landing-cover ${props.mobile ? 'landing-cover-mobile' : ''}`}>
+      <div className={`landing-cover-title ${props.mobile ? 'landing-cover-title-mobile' : ''}`}>Toda la infromación que buscas.</div>
+      <div className={`landing-cover-title ${props.mobile ? 'landing-cover-title-mobile' : ''}`}>En un solo lugar.</div>
       <div className={`landing-cover-subtitle ${props.mobile ? 'landing-cover-subtitle-mobile' : ''}`}>
         En tuniversidad podrás encontrar información completa de universidades y sus carreras. Además ofrecemos una serie de herramientas que te ayudarán a escoger qué y dónde estudiar.
       </div>
