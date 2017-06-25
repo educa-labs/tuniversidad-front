@@ -2,15 +2,13 @@ import React, { Component, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import MediaQuery from 'react-responsive';
 import { connect } from 'react-redux';
-import Scroll, { Events, Element, scrollSpy, animateScroll, Link } from 'react-scroll';
+import { Element } from 'react-scroll';
 import is from 'is_js';
 import Cover from '../components/landing/Cover';
 import Body from '../components/landing/Body';
 import NewtonSection from '../components/landing/NewtonSection';
 import CoverBottom from '../components/landing/CoverBottom';
 import Footer from '../components/landing/Footer';
-import Register from '../components/Register';
-import Login from '../components/Login';
 import NavigationBar from '../components/NavigationBar';
 import '../styles/Landing.css';
 
@@ -27,10 +25,12 @@ class Landing extends Component {
   }
 
   componentWillMount() {
+    console.log('Will');
     if (is.not.null(this.props.user)) this.context.router.replace('/site/profile');
   }
 
   componentDidMount() {
+    console.log('Did');
     window.addEventListener('scroll', this.handleScroll);
     const offsets = [
       findDOMNode(this.login).offsetTop,
@@ -80,13 +80,7 @@ class Landing extends Component {
   
   render() {
     return (
-      <div
-        id="landing"
-        style={{
-          position: 'relative',
-          overflow: 'scroll',
-        }}
-      >
+      <div>
         <MediaQuery maxDeviceWidth={720}>
           <NavigationBar
             location="landing"
@@ -116,7 +110,6 @@ class Landing extends Component {
 
         </MediaQuery>
       </div>
-      
     );
   }
 }

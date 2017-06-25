@@ -1,5 +1,6 @@
 import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
+import { Link } from 'react-router';
 
 function Cover(props) {
   return (
@@ -10,26 +11,28 @@ function Cover(props) {
         En tuniversidad podrás encontrar información completa de universidades y sus carreras. Además ofrecemos una serie de herramientas que te ayudarán a escoger qué y dónde estudiar.
       </div>
       <div className="row">
-        <RaisedButton
-          onTouchTap={() => console.log('hola')}
-          label="Inicia Sesión"
-          backgroundColor="#0091EA"
-          labelColor="#FFFFFF"
-          style={{
-            marginRight: '5px',
-            borderRadius: '6px',
-          }}
-        />
-        <RaisedButton
-          onTouchTap={() => console.log('hola')}
-          label="Regístrate"
-          backgroundColor="#424242"
-          labelColor="#FFFFFF"
-          style={{ 
-            marginLeft: '5px',
-            borderRadius: '6px',
-          }}
-        />
+        <Link to="/login">
+          <RaisedButton
+            label="Inicia Sesión"
+            backgroundColor="#0091EA"
+            labelColor="#FFFFFF"
+            style={{
+              marginRight: '5px',
+              borderRadius: '6px',
+            }}
+          />
+        </Link>
+        <Link to="/signup">
+          <RaisedButton
+            label="Regístrate"
+            backgroundColor="#424242"
+            labelColor="#FFFFFF"
+            style={{ 
+              marginLeft: '5px',
+              borderRadius: '6px',
+            }}
+          />
+        </Link>
       </div>
     </div>
   );

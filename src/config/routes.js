@@ -16,6 +16,8 @@ import Profile from '../containers/Profile';
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={Landing} />
+    <Route path="login" component={() => <div>Login</div>} />
+    <Route path="signup" component={() => <div>Sign up</div>} />
     <Route path="site" component={Site}>
       <IndexRoute component={Profile} />
       <Route path="search" component={Buscador} />
