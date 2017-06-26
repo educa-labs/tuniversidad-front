@@ -7,13 +7,24 @@
 .university-cover {
   height: 230px;
   flex-direction: column;
-  background-image: url(../assets/univ-cover.jpg);
+  background-image: url(../assets/puc-cover.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   color: white;
   display: flex;
   justify-content: flex-end;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  background-blend-mode: multiply;
+}
+
+.career-cover {
+  background-image: url(../assets/loconta.jpg);
+}
+
+.university-cover-puc {
+  background-image: url(../assets/puc-cover.jpg);
 }
 
 .university-cover__title {

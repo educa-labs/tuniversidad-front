@@ -42,7 +42,7 @@ class Login extends Component {
   }
 
   render() {
-    const { error, requesting, open } = this.props;
+    const { error, requesting } = this.props;
     const { password, email } = this.state;
     return (
       <div className="login-container">
@@ -93,11 +93,15 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-  open: PropTypes.bool.isRequired,
   user: PropTypes.object,
   error: PropTypes.object.isRequired,
+  mobile: PropTypes.bool,
   requesting: PropTypes.bool.isRequired,
   logUser: PropTypes.func.isRequired,
+};
+
+Login.defaultProps = {
+  mobile: false,
 };
 
 Login.contextTypes = {

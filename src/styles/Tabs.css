@@ -15,4 +15,5 @@
 
 .tabs-search {
   z-index: 100;
+  box-shadow: 6px 0px 18px -4px rgba(0,0,0,0.75);
 }

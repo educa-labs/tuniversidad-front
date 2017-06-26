@@ -1,20 +1,11 @@
 import React, { PropTypes } from 'react';
-import { connect } from 'react-redux';
-import Scroll, { scroller, Link, Element } from 'react-scroll';
+import { scroller } from 'react-scroll';
 import IconButton from 'material-ui/IconButton';
 import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
-import { toggleShowLogin } from '../actions/compress';
-import { clearState, logoutUser } from '../actions/user';
 import '../styles/NavigationBar.css';
 
 
 function NavigationBar(props, context) {
-  const backArrow = (
-    <IconButton onTouchTap={() => context.router.goBack()}>
-      <ArrowBack color="#FFFFFF" />
-    </IconButton>
-  );
-
   const params = {
     duration: 500,
     smooth: true,
@@ -64,10 +55,15 @@ function NavigationBar(props, context) {
       </div>
     );
   }
+
   if (props.location === 'site') className = `${className} navigation-bar_site`;
 
   return (
     <div className={className}>
+      <IconButton onTouchTap={() => context.router.goBack()}>
+        <ArrowBack color="#FFFFFF" />
+      </IconButton>
+      {/*<div className="navigation-bar-title">{props.title}</div>*/}
     </div>
   );
 }
@@ -94,15 +90,4 @@ NavigationBar.contextTypes = {
   router: PropTypes.object,
 };
 
-function mapStateToProps(state) {
-  return {
-    user: state.user.currentUser,
-    error: state.user.error,
-  };
-}
-
-export default connect(mapStateToProps, {
-  toggleShowLogin,
-  clearState,
-  logoutUser,
-})(NavigationBar);
+export default NavigationBar;

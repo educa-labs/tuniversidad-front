@@ -55,7 +55,7 @@ function CareerCard(props, context) {
   const science = career.weighing ? is.existy(career.weighing.science) : null;
 
   const header = props.mobile ? (
-    <div className={`general-card__header bg-blue ${props.detail ? 'card__header_hide' : ''}`}>
+    <div className={`general-card__header bg-blue ${props.detail ? 'general-card__header_hide' : ''}`}>
       <div className="col">
         <div className="general-card__title title_no-margin color-white">{career.title}</div>
         <div className="general-card__subtitle color-white" onClick={handleSubTitleClick}>{career.university_name}</div>

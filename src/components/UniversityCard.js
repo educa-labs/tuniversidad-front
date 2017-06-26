@@ -1,12 +1,5 @@
 import React, { PropTypes } from 'react';
-import Paper from 'material-ui/Paper';
-import FlatButton from 'material-ui/FlatButton';
 import Divider from 'material-ui/Divider';
-
-const labelStyle = {
-  color: '#0091EA',
-  fontSize: '12px',
-};
 
 function UniversityCard(props, context) {
   const { university, detail, mobile } = props;

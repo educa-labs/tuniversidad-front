@@ -37,16 +37,16 @@ class Career extends Component {
       );
     }
     return (
-      <div className="university">
+      <div className="site__children">
         <NavigationBar location="site" title={`${career.title} en ${career.university_name}`} />
-        <div className="university-cover">
-          {/*<div className="university-cover__title">{career.title}</div>
+        <div className="university-cover career-cover">
+          <div className="university-cover__title">{career.title}</div>
           <div
             className="university-cover__subtitle"
             onClick={this.handleSubtitleClick}
           >
             {career.university_name}
-          </div>*/}
+          </div>
         </div>
         <Tabs
           onChange={this.handleSlideChange}
@@ -56,8 +56,10 @@ class Career extends Component {
           <Tab label="Información general" value={0} />
           <Tab label="Malla" value={1} />
         </Tabs >
-        {slideIndex === 0 ? <CareerCard career={career} detail mobile={mobile} /> : null }
-        {slideIndex === 1 ? <div>Malla</div> : null}
+        <div className="col justify-center bg-grey">
+          {slideIndex === 0 ? <CareerCard career={career} detail mobile={mobile} /> : null }
+          {slideIndex === 1 ? <div>Malla</div> : null}
+        </div>
       </div>
     );
   }
