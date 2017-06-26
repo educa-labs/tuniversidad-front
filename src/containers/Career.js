@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import is from 'is_js';
+import RaisedButton from 'material-ui/RaisedButton';
 import NavigationBar from '../components/NavigationBar';
 import CareerCard from '../components/CareerCard';
 import { fetch } from '../actions/fetch';
@@ -36,6 +37,21 @@ class Career extends Component {
         </div>
       );
     }
+    const first = (
+      <div>
+        <CareerCard career={career} detail mobile={mobile} />
+        <div className="row justify-end">
+          <RaisedButton
+            label="Añadir a mis metas"
+            secondary
+            style={{
+              margin: '20px',
+            }}
+          />
+        </div> 
+      </div>
+    );
+
     return (
       <div className="site__children">
         <NavigationBar location="site" title={`${career.title} en ${career.university_name}`} />
@@ -57,7 +73,7 @@ class Career extends Component {
           <Tab label="Malla" value={1} />
         </Tabs >
         <div className="col justify-center bg-grey">
-          {slideIndex === 0 ? <CareerCard career={career} detail mobile={mobile} /> : null }
+          {slideIndex === 0 ? first : null }
           {slideIndex === 1 ? <div>Malla</div> : null}
         </div>
       </div>

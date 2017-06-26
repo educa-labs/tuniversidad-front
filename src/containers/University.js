@@ -41,15 +41,13 @@ class University extends Component {
       );
     }
     return (
-      <div className="col">
+      <div className="site__children">
         <NavigationBar location="site" title={university.title} />
         <div className="university-cover">
-          {mobile ? null : (
-            <div>
-              <div className="university-cover__title">{university.title}</div>
-              <div className="university-cover__subtitle">{university.motto}</div>
-            </div>
-          )}
+          <div>
+            <div className="university-cover__title">{university.title}</div>
+            <div className="university-cover__subtitle">{university.motto}</div>
+          </div>
         </div>
         <Tabs
           onChange={this.handleSlideChange}
@@ -59,6 +57,7 @@ class University extends Component {
           <Tab label="Información general" value={0} />
           <Tab label="Carreras" value={1} />
         </Tabs >
+        <div className="col justify-center bg-grey">
           {slideIndex === 0 ? (
             <UniversityCard university={university} detail mobile={mobile} />
             ) : null }
@@ -67,6 +66,7 @@ class University extends Component {
               return <CareerCard career={car} key={car.id} mobile={mobile} compress />
             })
           ) : null}
+          </div>
       </div>
     );
   }

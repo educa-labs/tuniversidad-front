@@ -40,8 +40,7 @@ body {
 }
 
 .justify-end {
-  align-items: flex-end;
-  text-align: end;
+  justify-content: flex-end;
 }
 
 .justify-center {
@@ -54,6 +53,10 @@ body {
 
 .align-center {
   align-items: center;
+}
+
+.align-end {
+  align-items: flex-end;
 }
 
 .col-2 {

@@ -42,7 +42,7 @@ function Body(props) {
         Prepara la PSU. En la palma de tu mano.
       </div>
       <div className="row no-margin">
-        <div className="col justify-end">
+        <div className="col align-end">
           <div className="section section-top">
             <div className="section-header">Metas y objetivos</div>
             <div className="section-text">
