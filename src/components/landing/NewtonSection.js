@@ -8,7 +8,7 @@ function NewtonSection(props) {
           Newton. Recomineda.
         </div>
         <div className="newton-section-text-mobile">
-          Hola, soy Newton, una computadora por el equipo de Educalabs para ayudarte a encontrar tu carrera ideal. Estoy hecho a base de conocimientos previos entregados por cientos de estudiantes de diversas carreras y universidades.
+          Hola, soy Newton, una computadora diseñada por el equipo de Educalabs para ayudarte a encontrar tu carrera ideal. Estoy hecho a base de conocimientos previos entregados por cientos de estudiantes de diversas carreras y universidades.
           <br />
           <br />
           Si lo deseas, te haré unas cuantas preguntas. Compararé tus respuestas y tu comportamiento dentro de la plataforma, con lo que ya he aprendido de otros estudiantes para entregarte ayuda vocacional de calidad.
@@ -26,7 +26,7 @@ function NewtonSection(props) {
           Newton. Recomienda.
         </div>
         <div className="newton-section-text">
-          Hola, soy Newton, una computadora por el equipo de Educalabs para ayudarte a encontrar tu carrera ideal. Estoy hecho a base de conocimientos previos entregados por cientos de estudiantes de diversas carreras y universidades.
+          Hola, soy Newton, una computadora diseñada por el equipo de Educalabs para ayudarte a encontrar tu carrera ideal. Estoy hecho a base de conocimientos previos entregados por cientos de estudiantes de diversas carreras y universidades.
           <br />
           <br />
           Si lo deseas, te haré unas cuantas preguntas. Compararé tus respuestas y tu comportamiento dentro de la plataforma, con lo que ya he aprendido de otros estudiantes para entregarte ayuda vocacional de calidad.

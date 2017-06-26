@@ -12,11 +12,12 @@ import Site from '../containers/Site';
 import University from '../containers/University';
 import Career from '../containers/Career';
 import Profile from '../containers/Profile';
+import Login from '../containers/Login';
 
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={Landing} />
-    <Route path="login" component={() => <div>Login</div>} />
+    <Route path="login" component={Login} />
     <Route path="signup" component={() => <div>Sign up</div>} />
     <Route path="site" component={Site}>
       <IndexRoute component={Profile} />

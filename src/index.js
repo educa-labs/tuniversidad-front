@@ -25,6 +25,10 @@ const muiTheme = getMuiTheme({
   stepper: {
     iconColor: '#0091EA',
   },
+  checkbox: {
+    checkedColor: '#0091EA',
+    requiredColor: '#0091EA',
+  },
 });
 
 ReactDOM.render(

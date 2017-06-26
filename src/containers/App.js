@@ -1,5 +1,6 @@
-import { Component, PropTypes } from 'react';
+import React, { Component, PropTypes, cloneElement } from 'react';
 import { connect } from 'react-redux';
+import MediaQuery from 'react-responsive';
 import is from 'is_js';
 import { getUser } from '../helpers/storage';
 import { setupUser } from '../actions/user';
@@ -14,14 +15,23 @@ class App extends Component {
     if (is.null(this.props.schedules)) this.props.fetch('schedules', null, null);
     if (is.null(this.props.subjects)) this.props.fetch('subjects', null, null);
     if (is.not.existy(user)) {
-      this.context.router.replace('/');
+      // this.context.router.replace('/');
     } else {
       this.props.setupUser(user);
     }
   }
 
   render() {
-    return this.props.children;
+    return (
+      <div>
+        <MediaQuery maxDeviceWidth={720}>
+          {cloneElement(this.props.children, { mobile: true })}
+        </MediaQuery>
+        <MediaQuery minDeviceWidth={721}>
+          {this.props.children}
+        </MediaQuery>
+      </div>
+    );
   }
 }
 

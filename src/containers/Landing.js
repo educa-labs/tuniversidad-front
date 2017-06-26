@@ -26,7 +26,7 @@ class Landing extends Component {
 
   componentWillMount() {
     console.log('Will');
-    if (is.not.null(this.props.user)) this.context.router.replace('/site/profile');
+    // if (is.not.null(this.props.user)) this.context.router.replace('/site/profile');
   }
 
   componentDidMount() {
@@ -107,7 +107,6 @@ class Landing extends Component {
           <Element name="newton" ref={e => this.newton = e} ><NewtonSection /></Element>
           <Element name="cover-bottom" ref={e => this.coverBottom = e}><CoverBottom /></Element>
           <Element name="footer" ref={e => this.footer = e}><Footer /></Element>
-
         </MediaQuery>
       </div>
     );

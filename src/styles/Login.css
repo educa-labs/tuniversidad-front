@@ -1,14 +1,35 @@
-.login-modal {
-  width: 5rem;
+.login-container {
+  height: 100vh;
+  width: 100vw;
+  background-color: #F5F5F5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form {
+  width: 23rem;
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form-mobile {
+  width: auto;
+}
+
+.login-form-title {
+  font-size: x-large;
+  color: #424242;
+  margin: 10px 0;
+}
+
+.logo-tuni-scale {
+  height: 1.5rem;
+  width: 7rem;
 }
 
 .forgot {
+  font-size: small;
   color: #0091EA;
-  font-size: 12px;
-  cursor: pointer;
-}
-
-.login-modal > div >.login-title {
-  color: white !important;
-  background-color: #0091EA;
 }
