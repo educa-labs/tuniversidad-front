@@ -23,7 +23,7 @@ function NewtonSection(props) {
       </div>
       <div className="col col-3 justify-center align-center">
         <div className="newton-section-title color-white">
-          Newton. Recomineda.
+          Newton. Recomienda.
         </div>
         <div className="newton-section-text">
           Hola, soy Newton, una computadora por el equipo de Educalabs para ayudarte a encontrar tu carrera ideal. Estoy hecho a base de conocimientos previos entregados por cientos de estudiantes de diversas carreras y universidades.
