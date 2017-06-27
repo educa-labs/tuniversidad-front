@@ -11,9 +11,14 @@
   top: 0;
   right: 0;
   left: 230px;
+  min-width: 634px;
 }
 
 .tabs-search {
   z-index: 100;
   box-shadow: 6px 0px 18px -4px rgba(0,0,0,0.75);
+}
+
+.tabs-search-desktop {
+  min-width: 440px;
 }

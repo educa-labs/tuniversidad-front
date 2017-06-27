@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
 import is from 'is_js';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import UserEssays from './UserEssays';
 import UserEssayChart from './UserEssayChart';

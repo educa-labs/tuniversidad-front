@@ -41,7 +41,7 @@ class University extends Component {
       );
     }
     return (
-      <div className="site__children">
+      <div className="university">
         <NavigationBar location="site" title={university.title} />
         <div className="university-cover">
           <div>
@@ -52,7 +52,7 @@ class University extends Component {
         <Tabs
           onChange={this.handleSlideChange}
           value={slideIndex}
-          className="tabs-search"
+          className={`tabs-search ${mobile ? '' : 'tabs-search-dektop'}`}
         >
           <Tab label="Información general" value={0} />
           <Tab label="Carreras" value={1} />

@@ -58,7 +58,7 @@ class Profile extends Component {
     const { slideIndex } = this.state;
     const { mobile } = this.props;
     return (
-      <div className="col">
+      <div className={`col ${mobile ? '' : 'min-widt'}`}>
         <FirstSteps
           open={!this.props.user.tutorial}
           token={this.props.token}

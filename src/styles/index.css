@@ -12,11 +12,13 @@ body {
 }
 
 .empty {
+  min-width: 230px;
   width: 230px;
   height: 100vh;
 }
 
 .empty-left {
+  min-width: 256px;
   width: 256px;
 }
 
@@ -37,6 +39,10 @@ body {
   display: flex;
   flex-direction: column;
   flex: 1;
+}
+
+.min-width {
+  min-width: 630px;
 }
 
 .justify-end {

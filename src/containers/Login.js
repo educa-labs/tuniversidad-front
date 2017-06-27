@@ -27,9 +27,7 @@ class Login extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.user !== this.props.user) {
       if (is.not.null(nextProps.user)) {
-        if (this.state.save) {
-          saveUser(nextProps.user);
-        }
+        saveUser(nextProps.user);
         this.context.router.replace('/site/profile');
       }
     }

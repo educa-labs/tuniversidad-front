@@ -15,7 +15,7 @@ class App extends Component {
     if (is.null(this.props.schedules)) this.props.fetch('schedules', null, null);
     if (is.null(this.props.subjects)) this.props.fetch('subjects', null, null);
     if (is.not.existy(user)) {
-      // this.context.router.replace('/');
+      this.context.router.replace('/');
     } else {
       this.props.setupUser(user);
     }
