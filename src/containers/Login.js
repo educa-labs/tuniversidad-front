@@ -70,7 +70,7 @@ class Login extends Component {
                   onCheck={(e, val) => this.setState({ save: val })}
                 />
               </div>
-              <div className={`col col-${this.props.mobile ? '3' : '2'}`}>
+              <div className={`col col-${this.props.mobile ? '2' : '3'}`}>
                 <RaisedButton
                   type="submit"
                   label="Inicia Sesión"

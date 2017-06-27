@@ -14,6 +14,7 @@
 .general-card-full-size {
   height: 100%;
   width: 100%;
+  margin: 0;
 }
 
 .general-card_no-hover:hover {

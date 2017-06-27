@@ -13,12 +13,13 @@ import University from '../containers/University';
 import Career from '../containers/Career';
 import Profile from '../containers/Profile';
 import Login from '../containers/Login';
+import Signup from '../components/Signup';
 
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={Landing} />
     <Route path="login" component={Login} />
-    <Route path="signup" component={() => <div>Sign up</div>} />
+    <Route path="signup" component={Signup} />
     <Route path="site" component={Site}>
       <IndexRoute component={Profile} />
       <Route path="search" component={Buscador} />

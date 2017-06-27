@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import IconButton from 'material-ui/IconButton';
+import Checkbox from 'material-ui/Checkbox';
 import Eye from 'material-ui/svg-icons/action/visibility';
 import NoEye from 'material-ui/svg-icons/action/visibility-off';
 import TextField from 'material-ui/TextField';
@@ -9,8 +10,9 @@ import is from 'is_js';
 import '../styles/Register.css';
 import { signUser } from '../actions/user';
 
-const styles = {
-  margin: '0 10px',
+const buttonStyle = {
+  margin: '1rem 0',
+  fontSize: '14px',
 };
 
 class Register extends Component {
@@ -21,15 +23,8 @@ class Register extends Component {
       password: '',
       email: '',
       accept: false,
-      showTerms: false,
-      showPass: false,
     });
-    this.toggleAccept = this.toggleAccept.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  toggleAccept() {
-    this.setState({ accept: !this.state.accept });
   }
 
   handleSubmit() {
@@ -38,72 +33,67 @@ class Register extends Component {
   }
 
   render() {
+    const label = <span>Acepto lo términos y condiciones de uso</span>;
     const { firstName, lastName, password, email, accept, showPass } = this.state;
     const { error, requesting } = this.props;
     const disabled = is.any.empty(firstName, lastName, password, email) || !accept || requesting;
     return (
-      <div className="register-form" >
-        <div className="row">
-          <div className="item">
+      <div className="login-container" >
+        <div className={`general-card general-card_no-hover ${this.props.mobile ? 'general-card-full-size' : ''}`}>
+          <form className={`login-form ${this.props.mobile ? 'login-form-mobile' : ''}`} onSubmit={this.handleSumbit}>
+            <div className="logo-tuni logo-tuni-blue logo-tuni-scale" />
+            <div className="login-form-title">Registro</div>
             <TextField
-              hintText="Emilio"
-              floatingLabelFixed
               floatingLabelText="Nombre"
               fullWidth
               onChange={(e, val) => this.setState({ firstName: val })}
-              style={styles}
             />
-          </div>
-          <div className="item">
             <TextField
-              hintText="Villagran"
-              floatingLabelFixed
               floatingLabelText="Apellido"
               onChange={(e, val) => this.setState({ lastName: val })}
-              style={styles}
+              fullWidth
             />
-          </div>
-        </div>
-        <div className="row">
-          <div className="item ">
             <TextField
-              hintText="emilio@educalabs.cl"
-              floatingLabelFixed
               floatingLabelText="Correo electrónico"
               onChange={(e, val) => this.setState({ email: val })}
               errorText={error.email ? `Email ${error.email[0]}` : ''}
-              style={styles}
+              fullWidth
             />
-          </div>
-          <div className="item password">
             <TextField
-              type={`${showPass ? '' : 'password'}`}
-              hintText="* * * * * *"
-              floatingLabelFixed
+              type="password"
               fullWidth
               floatingLabelText="Constraseña"
               onChange={(e, val) => this.setState({ password: val })}
               errorText={error.password ? `Password ${error.password[0]}` : ''}
-              style={styles}
             />
-            <IconButton onTouchTap={() => this.setState({ showPass: !showPass })} >
-              {showPass ? <NoEye color="#E5E5E5" /> : <Eye color="#E5E5E5" />}
-            </IconButton >
-          </div>
+            <TextField
+              type="password"
+              fullWidth
+              floatingLabelText="Confirmar constraseña"
+              onChange={(e, val) => this.setState({ confirm_password: val })}
+              errorText={error.password ? `Password ${error.password[0]}` : ''}
+            />
+            <div className="row align-center">
+              <Checkbox
+                label={label}
+                style={{ transform: 'scale(0.80)' }}
+                onCheck={(e, val) => this.setState({ accept: val })}
+              />
+            </div>
+            <div className="row justify-end">
+              <RaisedButton
+                type="submit"
+                label="Registrate"
+                backgroundColor="#0091EA"
+                labelColor="#FFFFFF"
+                fullWidth
+                style={buttonStyle}
+                labelStyle={{ fontSize: '14px' }}
+                disabled={disabled}
+              />
+            </div>
+          </form>
         </div>
-        <div className="terms">
-          <input id="terms" type="checkbox" checked={accept} onClick={this.toggleAccept} />
-          <label htmlFor="terms">Acepto los</label>
-          <span onClick={() => this.setState({ showTerms: true })}> términos y condiciones de uso</span>
-        </div>
-        <RaisedButton
-          label="Registrate"
-          backgroundColor="#0091EA"
-          labelColor="#FFFFFF"
-          fullWidth
-          disabled={disabled}
-          onTouchTap={this.handleSubmit}
-        />
       </div>
     );
   }
