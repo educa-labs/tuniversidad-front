@@ -41,7 +41,7 @@ class Profile extends Component {
     if (this.props.objectives.shouldFetch !== nextProps.objectives.shouldFetch) {
       if (nextProps.objectives.shouldFetch) this.props.getUserObjectives(this.props.token);
     }
-    if (nextProps.objectives.objectives !== {}) {
+    if (nextProps.objectives.objectives !== null && this.props.objectives.objectives !== null) {
       if (this.props.objectives.objectives !== nextProps.objectives.objectives) {
         this.props.getGoals(this.props.token);
       }
@@ -97,6 +97,7 @@ Profile.propTypes = {
   getEssays: PropTypes.func.isRequired,
   updateUserInfo: PropTypes.func.isRequired,
   toggleMenu: PropTypes.func,
+  objectives: PropTypes.object,
 };
 
 
