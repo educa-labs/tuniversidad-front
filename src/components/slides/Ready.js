@@ -7,15 +7,14 @@ function Ready(props) {
       <div className="slide-header">
         ¡Estamos listos!
       </div>
-      <div className="slide-body slide-body-ready">
-        <div className="slide-button">
-          <RaisedButton
-            label="Comenzar"
-            backgroundColor="#0091EA"
-            labelColor="#FFFFFF"
-            onTouchTap={props.onSubmit}
-          />
-        </div>
+      <div className="col padding-2 align-center">
+        <RaisedButton
+          label="Comenzar"
+          backgroundColor="#0091EA"
+          labelColor="#FFFFFF"
+          onTouchTap={props.onSubmit}
+          style={{ marginTop: '6.5rem' }}
+        />
       </div>
     </div>
   );

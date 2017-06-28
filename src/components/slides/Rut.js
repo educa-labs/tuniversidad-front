@@ -20,17 +20,16 @@ class Rut extends Component {
         <div className="slide-header">
           ¿Cuál es tu rut?
         </div>
-        <div className="slide-body">
+        <div className="col padding-2">
           Con guión y sin puntos
-          <div className="slide-field">
-            <TextField
-              onChange={(e, val) => this.handleRutChange(val)}
-              floatingLabelText="Rut"
-              hintText="18918496-4"
-              value={this.state.rut}
-              errorText={this.props.error}
-            />
-          </div>
+          <TextField
+            onChange={(e, val) => this.handleRutChange(val)}
+            floatingLabelText="Rut"
+            hintText="18918496-4"
+            value={this.state.rut}
+            errorText={this.props.error}
+            fullWidth
+          />
         </div>
       </div>
     );

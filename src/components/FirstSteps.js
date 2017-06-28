@@ -27,6 +27,16 @@ function getStepIndex(slideIndex) {
   return -1;
 }
 
+const styles = {
+  stepper: {
+    transform: 'scale(0.8)',
+    width: '100%',
+    position: 'fixed',
+    bottom: 0,
+    left: -25,
+  },
+};
+
 class FirstSteps extends Component {
   constructor(props) {
     super(props);
@@ -160,61 +170,72 @@ class FirstSteps extends Component {
 
   render() {
     const { slideIndex } = this.state;
+    const { mobile, open } = this.props;
     return (
       <Dialog
-        open={this.props.open}
+        open={open}
         modal
-        contentStyle={{ width: '34rem' }}
-        bodyStyle={{ padding: '0' }}
-        overlayStyle={{ opacity: '0.95', backgroundColor: 'black' }}
+        autoScrollBodyContent
+        autoDetectWindowHeight={false}
+        contentStyle={{
+          width: mobile ? '20rem' : '75%',
+        }}
+        bodyStyle={{
+          padding: '0',
+          display: 'flex',
+          overflow: 'hidden',
+        }}
+        overlayStyle={{
+          opacity: '0.90',
+          backgroundColor: 'black',
+        }}
       >
-        <div className="step">
-          <div className="step__button" onClick={this.handleBack}>
-            <IconButton>
-              <LeftArrow color={is.inArray(slideIndex, [0]) ? '#FFFFFF' : '#9E9E9E'} />
-            </IconButton>
-          </div>
-          <div className="slide">
-            <SwipeableViews index={slideIndex}>
-              <Welcome />
-              <City token={this.props.token} regions={this.props.regions} logChange={id => this.logChange('city_id', id)} />
-              <BirthDate logChange={date => this.logChange('birth_date', date)} error={this.getError(2)} />
-              <Phone logChange={phone => this.logChange('phone', phone)} error={this.getError(3)} />
-              <Rut logChange={rut => this.logChange('rut', rut)} error={this.getError(4)} />
-              <Preu logChange={preuniversity => this.logChange('preuniversity', preuniversity)} />
-              <Nem
-                logNemChange={val => this.logChange('nem', val)}
-                logRankingChange={val => this.logChange('ranking', val)}
-                error={this.getError(6)}
-              />
-              <Objectives
-                logLangChange={val => this.logChange('language', val)}
-                logMathChange={val => this.logChange('math', val)}
-                logHistoryChange={val => this.logChange('history', val)}
-                logScienceChange={val => this.logChange('science', val)}
-                error={this.getError(7)}
-              />
-              <Ready onSubmit={this.handleSubmit} />
-            </SwipeableViews>
-            {slideIndex > 0 ? (
-              <Stepper activeStep={getStepIndex(slideIndex)}>
-                <Step>
-                  <StepLabel>Información</StepLabel>
-                </Step>
-                <Step>
-                  <StepLabel>Mi objetivo</StepLabel>
-                </Step>
-                <Step>
-                  <StepLabel>Comenzar</StepLabel>
-                </Step>
-              </Stepper>
-            ) : null }
-          </div>
-          <div className="step__button" onClick={this.handleNext}>
-            <IconButton disabled={this.disabled()}>
-              <RigthArrow color={is.inArray(slideIndex, [8]) ? '#FFFFFF' : 'black'} />
-            </IconButton>
-          </div>
+        <div className="step__button" onClick={this.handleBack}>
+          <IconButton><LeftArrow color={is.inArray(slideIndex, [0]) ? '#FFFFFF' : '#9E9E9E'} /></IconButton>
+        </div>
+        <div className="slide">
+          <SwipeableViews index={slideIndex}>
+            <Welcome mobile={mobile} />
+            <City
+              token={this.props.token}
+              regions={this.props.regions}
+              logChange={id => this.logChange('city_id', id)}
+              mobile={mobile}
+            />
+            <BirthDate logChange={date => this.logChange('birth_date', date)} error={this.getError(2)} />
+            <Phone logChange={phone => this.logChange('phone', phone)} error={this.getError(3)} />
+            <Rut logChange={rut => this.logChange('rut', rut)} error={this.getError(4)} />
+            <Preu logChange={preuniversity => this.logChange('preuniversity', preuniversity)} />
+            <Nem
+              logNemChange={val => this.logChange('nem', val)}
+              logRankingChange={val => this.logChange('ranking', val)}
+              error={this.getError(6)}
+            />
+            <Objectives
+              logLangChange={val => this.logChange('language', val)}
+              logMathChange={val => this.logChange('math', val)}
+              logHistoryChange={val => this.logChange('history', val)}
+              logScienceChange={val => this.logChange('science', val)}
+              error={this.getError(7)}
+            />
+            <Ready onSubmit={this.handleSubmit} />
+          </SwipeableViews>
+          {slideIndex > 0 ? (
+            <Stepper activeStep={getStepIndex(slideIndex)} style={styles.stepper}>
+              <Step>
+                <StepLabel>Información</StepLabel>
+              </Step>
+              <Step>
+                <StepLabel>Mi objetivo</StepLabel>
+              </Step>
+              <Step>
+                <StepLabel>Comenzar</StepLabel>
+              </Step>
+            </Stepper>
+          ) : null }
+        </div>
+        <div className="step__button" onClick={this.handleNext}>
+          <IconButton disabled={this.disabled()}><RigthArrow color={is.inArray(slideIndex, [8]) ? '#FFFFFF' : 'black'} /></IconButton>
         </div>
       </Dialog>
     );

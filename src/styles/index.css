@@ -35,6 +35,18 @@ body {
   padding: 0 2rem;
 }
 
+.padding-1 {
+  padding: 0 1rem;
+}
+
+.margin-left {
+  margin-left: 0.5rem;
+}
+
+.margin-right {
+  margin-right: 0.5rem;
+}
+
 .col {
   display: flex;
   flex-direction: column;

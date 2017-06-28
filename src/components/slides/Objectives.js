@@ -37,40 +37,38 @@ class Objectives extends Component {
         <div className="slide-header">
           ¿Cuánto quieres sacar en la PSU?
         </div>
-        <div className="slide-body">
+        <div className="col padding-1">
           Ingresa los puntajes que quieres obtener en cada prueba
           <div className="row">
-            <div className="slide-field slide-field__row">
+            <div className="col margin-right">
               <TextField
                 onChange={(e, val) => this.handleLanguageChange(val)}
                 floatingLabelText="Lenguaje"
                 value={this.state.language}
                 type="number"
                 errorText={this.props.error.language}
+                fullWidth
               />
-            </div>
-            <div className="slide-field slide-field__row">
-              <TextField
-                onChange={(e, val) => this.handleMathChange(val)}
-                floatingLabelText="Matemáticas"
-                value={this.state.math}
-                type="number"
-                errorText={this.props.error.math}
-              />
-            </div>
-          </div>
-          <div className="row">
-            <div className="slide-field slide-field__row">
               <TextField
                 onChange={(e, val) => this.handleHistoryChange(val)}
                 floatingLabelText="Historia"
                 value={this.state.history}
                 type="number"
                 errorText={this.props.error.history}
+                fullWidth
               />
             </div>
-            <div className="slide-field slide-field__row">
+            <div className="col margin-left">
               <TextField
+                onChange={(e, val) => this.handleMathChange(val)}
+                floatingLabelText="Matemáticas"
+                value={this.state.math}
+                type="number"
+                errorText={this.props.error.math}
+                fullWidth
+              />
+              <TextField
+                fullWidth
                 onChange={(e, val) => this.handleScienceChange(val)}
                 floatingLabelText="Ciencias"
                 value={this.state.science}

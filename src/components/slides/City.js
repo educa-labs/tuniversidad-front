@@ -36,26 +36,22 @@ class City extends Component {
         <div className="slide-header">
           ¿De dónde eres?
         </div>
-        <div className="slide-body">
-          <div className="slide-field">
-            <SelectInput
-              title="Región"
-              items={regions}
-              value={this.state.region}
-              fullWidth
-              handleChange={region => this.handleRegionChange(region)}
-              maxHeight={150}
-            />
-          </div>
-          <div className="slide-field">
-            <SelectInput
-              title="Ciudad"
-              items={this.state.cities}
-              value={this.state.city}
-              handleChange={id => this.handleCityChange(id)}
-              fullWidth
-            />
-          </div>
+        <div className="col padding-2">
+          <SelectInput
+            title="Región"
+            items={regions}
+            value={this.state.region}
+            fullWidth
+            handleChange={region => this.handleRegionChange(region)}
+            maxHeight={150}
+          />
+          <SelectInput
+            title="Ciudad"
+            items={this.state.cities}
+            value={this.state.city}
+            handleChange={id => this.handleCityChange(id)}
+            fullWidth
+          />
         </div>
       </div>
     );

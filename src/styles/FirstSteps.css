@@ -2,12 +2,19 @@
   display: flex;
 }
 
+.slide {
+  display: flex;
+  flex-direction: column;
+  width: 16rem;
+  height: 22rem;
+  overflow: hidden;
+}
 .step__button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 3rem;
-  cursor: pointer;  
+  cursor: pointer;
+  width: 1.75rem;
 }
 
 .step__swipeable {
@@ -17,34 +24,17 @@
 
 .step__slide {
   padding: 15;
-  min-width: 200px;
-  width: 100%;
   display: flex;
   align-items: center;
 }
 
-.slide {
-  display: flex;
-  flex-direction: column;
-  width: 28rem;
-}
 
-.slide .row {
-  display: flex;
-}
 
 .slide-header {
   font-size: large;
-  height: 5rem;
-  display: flex;
-  align-items: center;
+  font-weight: 600;
   color: black;
-}
-
-.slide-body {
-  height: 14rem;
-  display: flex;
-  flex-direction: column;
+  margin: 1rem 0;
 }
 
 .slide-body-ready {
@@ -56,15 +46,16 @@
   flex-direction: row;
 }
 
-.text {
-  margin: 2.5rem 0rem;
-  padding-left: 2rem;
+.welcome-text {
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.welcome-text-mobile {
+  margin: 0 1rem;
+  font-size: 14px;
 }
 
-.slide-button {
-  width: 6rem;
-}
 
 .slide-field {
   flex: 1;
@@ -74,7 +65,6 @@
 }
 
 .slide-field__row {
-  width: 4rem;
   margin: 0 1rem;
 }
 
@@ -83,12 +73,12 @@
 }
 
 .newton {
-  width: 210px;
+  width: 16rem;
+  height: 10rem;
   background-image: url('../assets/newton.png');
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
-  margin-left: 1rem;
+  background-size: contain;
 }
 
 .newton-pensando {

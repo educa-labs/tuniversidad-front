@@ -25,26 +25,24 @@ class Nem extends Component {
         <div className="slide-header">
           ¿Cuáles son tus puntajes de enseñanza media?
         </div>
-        <div className="slide-body">
+        <div className="col padding-2">
           Si aún estás en el colegio puedes estimar cúanto obtendrás
-          <div className="slide-field">
-            <TextField
-              onChange={(e, val) => this.handleNemChange(val)}
-              floatingLabelText="Nem"
-              value={this.state.nem}
-              type="number"
-              errorText={this.props.error.nem}
-            />
-          </div>
-          <div className="slide-field">
-            <TextField
-              onChange={(e, val) => this.handleRankingChange(val)}
-              floatingLabelText="Ranking"
-              value={this.state.ranking}
-              type="number"
-              errorText={this.props.error.ranking}
-            />
-          </div>
+          <TextField
+            onChange={(e, val) => this.handleNemChange(val)}
+            floatingLabelText="Nem"
+            value={this.state.nem}
+            type="number"
+            errorText={this.props.error.nem}
+            fullWidth
+          />
+          <TextField
+            onChange={(e, val) => this.handleRankingChange(val)}
+            floatingLabelText="Ranking"
+            value={this.state.ranking}
+            type="number"
+            errorText={this.props.error.ranking}
+            fullWidth
+          />
         </div>
       </div>
     );
