@@ -5,8 +5,8 @@ class Nem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      nem: null,
-      ranking: null,
+      nem: '',
+      ranking: '',
     };
   }
   handleNemChange(val) {

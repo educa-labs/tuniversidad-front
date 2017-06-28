@@ -5,10 +5,10 @@ class Objectives extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      language: null,
-      math: null,
-      science: null,
-      history: null,
+      language: '',
+      math: '',
+      science: '',
+      history: '',
     };
   }
   handleLanguageChange(val) {

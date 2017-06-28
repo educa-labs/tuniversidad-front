@@ -139,6 +139,7 @@ class Fields extends Component {
           maxValue={7000000}
           step={100000}
           onChange={price => props.changeFilterValue('price', price)}
+          formatLabel={value => numeral(value)}
           value={props.values.price}
         />
         <RangeInput

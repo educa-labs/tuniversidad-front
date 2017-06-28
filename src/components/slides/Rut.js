@@ -5,7 +5,7 @@ class Rut extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      rut: null,
+      rut: '',
     };
   }
 

@@ -5,7 +5,7 @@ class Phone extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      phone: null,
+      phone: '',
     };
   }
   handlePhoneChange(val) {

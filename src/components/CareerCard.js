@@ -16,7 +16,7 @@ const labelStyle = {
 function CareerCard(props, context) {
   const { career } = props;
   const isFavorite = _.findIndex(props.goals, goal => goal.carreer.id === career.id) > -1;
-  const isCompare = is.inArray(career.id, props.compare);
+  // const isCompare = is.inArray(career.id, props.compare);
 
   function handleFavButton() {
     if (isFavorite) {
@@ -25,13 +25,13 @@ function CareerCard(props, context) {
       props.addGoal(career.id, props.token);
     }
   }
-  function handleCompareButton() {
-    if (isCompare) {
-      props.removeFromCompare(career.id);
-    } else {
-      props.addToCompare(career.id);
-    }
-  }
+  // function handleCompareButton() {
+  //   if (isCompare) {
+  //     props.removeFromCompare(career.id);
+  //   } else {
+  //     props.addToCompare(career.id);
+  //   }
+  // }
   function handleInfoClick() {
     context.router.push(`site/career/${career.id}`);
   }

@@ -16,15 +16,16 @@ function SelectInput(props) {
   function onChange(event, index, value) {
     props.handleChange(value);
   }
+  const { value, handleChange, title, items, ...other } = props;
   return (
     <SelectField
-      value={props.value}
+      value={value}
       onChange={onChange}
       fullWidth
-      floatingLabelText={props.title}
-      {...props}
+      floatingLabelText={title}
+      {...other}
     >
-      {props.items.map((item, index) => renderItems(item, index))}
+      {items.map((item, index) => renderItems(item, index))}
     </SelectField>
   );
 }

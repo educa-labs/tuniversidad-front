@@ -19,9 +19,14 @@ class Site extends Component {
   }
 
   componentDidMount() {
-    this.props.getGoals(this.props.token);
-    this.props.getMostPopular(this.props.active, this.props.token);
-    this.props.fetch('regions', null, this.props.token);
+    const { user } = this.props;
+    const token = user.auth_token;
+    if (user.nem !== null && user.ranking !== null) {
+      console.log('Entramos');
+      this.props.getGoals(token);
+    }
+    this.props.getMostPopular(this.props.active, token);
+    this.props.fetch('regions', null, token);
   }
 
   render() {
@@ -59,15 +64,14 @@ Site.defaultProps = {
 Site.propTypes = {
   children: PropTypes.node,
   getGoals: PropTypes.func.isRequired,
-  token: PropTypes.string.isRequired,
   fetch: PropTypes.func.isRequired,
   getMostPopular: PropTypes.func.isRequired,
-  active: PropTypes.bool.isRequired,
+  active: PropTypes.string.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
-    token: state.user.currentUser.auth_token,
+    user: state.user.currentUser,
     active: state.filter.active,
   };
 }

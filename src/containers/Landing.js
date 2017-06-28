@@ -3,7 +3,6 @@ import { findDOMNode } from 'react-dom';
 import MediaQuery from 'react-responsive';
 import { connect } from 'react-redux';
 import { Element } from 'react-scroll';
-import is from 'is_js';
 import Cover from '../components/landing/Cover';
 import Body from '../components/landing/Body';
 import NewtonSection from '../components/landing/NewtonSection';

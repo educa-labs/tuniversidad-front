@@ -5,7 +5,6 @@ import Checkbox from 'material-ui/Checkbox';
 import TextField from 'material-ui/TextField';
 import is from 'is_js';
 import { signUser } from '../actions/user';
-import { saveUser } from '../helpers/storage';
 
 const buttonStyle = {
   margin: '1rem 0',
@@ -121,7 +120,7 @@ class Signup extends Component {
                 fullWidth
                 style={buttonStyle}
                 labelStyle={{ fontSize: '14px' }}
-
+                disabled={disabled}
               />
             </div>
           </form>

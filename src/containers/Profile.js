@@ -41,8 +41,10 @@ class Profile extends Component {
     if (this.props.objectives.shouldFetch !== nextProps.objectives.shouldFetch) {
       if (nextProps.objectives.shouldFetch) this.props.getUserObjectives(this.props.token);
     }
-    if (this.props.objectives.objectives !== nextProps.objectives.objectives) {
-      this.props.getGoals(this.props.token);
+    if (nextProps.objectives.objectives !== {}) {
+      if (this.props.objectives.objectives !== nextProps.objectives.objectives) {
+        this.props.getGoals(this.props.token);
+      }
     }
   }
 

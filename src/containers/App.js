@@ -17,7 +17,7 @@ class App extends Component {
     if (is.not.existy(user)) {
       this.context.router.replace('/');
     } else {
-      // this.props.setupUser(user);
+      this.props.setupUser(user);
     }
   }
 
