@@ -1,46 +1,72 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
-import IconButton from 'material-ui/IconButton';
 import Checkbox from 'material-ui/Checkbox';
-import Eye from 'material-ui/svg-icons/action/visibility';
-import NoEye from 'material-ui/svg-icons/action/visibility-off';
 import TextField from 'material-ui/TextField';
 import is from 'is_js';
-import '../styles/Register.css';
 import { signUser } from '../actions/user';
+import { saveUser } from '../helpers/storage';
 
 const buttonStyle = {
   margin: '1rem 0',
   fontSize: '14px',
 };
 
-class Register extends Component {
-  componentWillMount() {
-    this.setState({
+class Signup extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       firstName: '',
       lastName: '',
       password: '',
+      confirm_password: '',
       email: '',
       accept: false,
-    });
+      validPassword: true,
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.getError = this.getError.bind(this);
   }
 
-  handleSubmit() {
-    const { firstName, lastName, password, email } = this.state;
-    this.props.signUser(firstName, lastName, email, password);
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.user !== this.props.user) {
+      if (is.not.null(nextProps.user)) {
+        this.context.router.push('/');
+      }
+    }
+  }
+
+  getError(type) {
+    if (type === 'password') {
+      if (!this.state.validPassword) return 'Las contraseñas no coinciden';
+      if (is.empty(this.props.error)) return '';
+      if (this.props.error.errors.password) return 'Prueba con una contraseña más larga';
+    }
+    if (type === 'email') {
+      if (is.empty(this.props.error)) return '';
+      if (this.props.error.errors.email) return 'Alguien ya tomó este correo';
+    }
+    return '';
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    const { firstName, lastName, password, confirm_password, email } = this.state;
+    if (password !== confirm_password) {
+      this.setState({ validPassword: false });
+    } else {
+      this.props.signUser(firstName, lastName, email, password);
+    }
   }
 
   render() {
     const label = <span>Acepto lo términos y condiciones de uso</span>;
-    const { firstName, lastName, password, email, accept, showPass } = this.state;
-    const { error, requesting } = this.props;
-    const disabled = is.any.empty(firstName, lastName, password, email) || !accept || requesting;
+    const { firstName, lastName, password, email, accept, confirm_password } = this.state;
+    const disabled = is.any.empty(firstName, lastName, password, email, confirm_password) || !accept || this.props.requesting;
     return (
       <div className="login-container" >
         <div className={`general-card general-card_no-hover ${this.props.mobile ? 'general-card-full-size' : ''}`}>
-          <form className={`login-form ${this.props.mobile ? 'login-form-mobile' : ''}`} onSubmit={this.handleSumbit}>
+          <form className={`login-form ${this.props.mobile ? 'login-form-mobile' : ''}`} onSubmit={this.handleSubmit}>
             <div className="logo-tuni logo-tuni-blue logo-tuni-scale" />
             <div className="login-form-title">Registro</div>
             <TextField
@@ -56,22 +82,28 @@ class Register extends Component {
             <TextField
               floatingLabelText="Correo electrónico"
               onChange={(e, val) => this.setState({ email: val })}
-              errorText={error.email ? `Email ${error.email[0]}` : ''}
+              errorText={this.getError('email')}
               fullWidth
             />
             <TextField
               type="password"
               fullWidth
               floatingLabelText="Constraseña"
-              onChange={(e, val) => this.setState({ password: val })}
-              errorText={error.password ? `Password ${error.password[0]}` : ''}
+              onChange={(e, val) => this.setState({
+                password: val,
+                validPassword: true,
+              })}
+              errorText={this.getError('password')}
             />
             <TextField
               type="password"
               fullWidth
               floatingLabelText="Confirmar constraseña"
-              onChange={(e, val) => this.setState({ confirm_password: val })}
-              errorText={error.password ? `Password ${error.password[0]}` : ''}
+              onChange={(e, val) => this.setState({
+                confirm_password: val,
+                validPassword: true,
+              })}
+              errorText={this.getError('password')}
             />
             <div className="row align-center">
               <Checkbox
@@ -89,7 +121,7 @@ class Register extends Component {
                 fullWidth
                 style={buttonStyle}
                 labelStyle={{ fontSize: '14px' }}
-                disabled={disabled}
+
               />
             </div>
           </form>
@@ -99,7 +131,9 @@ class Register extends Component {
   }
 }
 
-Register.propTypes = {
+Signup.propTypes = {
+  mobile: PropTypes.bool,
+  user: PropTypes.object,
   requesting: PropTypes.bool,
   signUser: PropTypes.func.isRequired,
   error: PropTypes.shape({
@@ -108,18 +142,24 @@ Register.propTypes = {
   }).isRequired,
 };
 
-Register.defaultProps = {
+Signup.defaultProps = {
   requesting: false,
+  mobile: false,
+};
+
+Signup.contextTypes = {
+  router: PropTypes.object,
 };
 
 function mapStateToProps(state) {
   return {
     error: state.user.error,
     requesting: state.user.requesting,
+    user: state.user.currentUser,
   };
 }
 
 export default connect(mapStateToProps, {
   signUser,
-})(Register);
+})(Signup);
 

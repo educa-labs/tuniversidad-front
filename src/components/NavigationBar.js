@@ -69,8 +69,6 @@ function NavigationBar(props, context) {
 }
 
 NavigationBar.propTypes = {
-  toggleShowLogin: PropTypes.func.isRequired,
-  clearState: PropTypes.func.isRequired,
   location: PropTypes.string.isRequired,
   title: PropTypes.string,
   solid: PropTypes.bool,

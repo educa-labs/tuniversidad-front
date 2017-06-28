@@ -110,17 +110,19 @@ export function signUser(firstname, lastname, email, password) {
     });
     return request
       .then((res) => {
-        if (res.ok) {
-          dispatch({
-            type: SIGN_USER_SUCCESS,
-            user: res.body,
-          });
-        }
+        console.log('Exito');
+        dispatch({
+          type: SIGN_USER_SUCCESS,
+          user: res.body,
+        });
       })
-      .catch((err) => {
+      .catch((err, res) => {
+        console.log(res);
+        console.log(err);
+        console.log('Entramos al error');
         dispatch({
           type: SIGN_USER_FAILURE,
-          error: err.response.body.errors,
+          error: err.response.body,
         });
       });
   };

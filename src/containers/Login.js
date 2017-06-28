@@ -21,7 +21,7 @@ class Login extends Component {
       password: '',
       save: false,
     };
-    this.handleSumbit = this.handleSumbit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -33,7 +33,7 @@ class Login extends Component {
     }
   }
 
-  handleSumbit(event) {
+  handleSubmit(event) {
     event.preventDefault();
     const { email, password } = this.state;
     this.props.logUser(email, password);
@@ -45,7 +45,7 @@ class Login extends Component {
     return (
       <div className="login-container">
         <div className={`general-card general-card_no-hover ${this.props.mobile ? 'general-card-full-size' : ''}`}>
-          <form className={`login-form ${this.props.mobile ? 'login-form-mobile' : ''}`} onSubmit={this.handleSumbit}>
+          <form className={`login-form ${this.props.mobile ? 'login-form-mobile' : ''}`} onSubmit={this.handleSubmit}>
             <div className="logo-tuni logo-tuni-blue logo-tuni-scale" />
             <div className="login-form-title">Acceder</div>
             <TextField
