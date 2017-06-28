@@ -4,7 +4,7 @@
   background-color: #0091EA;
   position: fixed;
   top: 0;
-  z-index: 1000;
+  z-index: 400;
   display: flex;
 }
 

@@ -24,12 +24,10 @@ class Landing extends Component {
   }
 
   componentWillMount() {
-    console.log('Will');
     // if (is.not.null(this.props.user)) this.context.router.replace('/site/profile');
   }
 
   componentDidMount() {
-    console.log('Did');
     window.addEventListener('scroll', this.handleScroll);
     const offsets = [
       findDOMNode(this.login).offsetTop,

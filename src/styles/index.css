@@ -47,6 +47,10 @@ body {
   margin-right: 0.5rem;
 }
 
+.position-relative {
+  position: relative;
+}
+
 .col {
   display: flex;
   flex-direction: column;
