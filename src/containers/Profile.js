@@ -28,6 +28,7 @@ class Profile extends Component {
     };
     this.handleSlideChange = this.handleSlideChange.bind(this);
     this.updateUser = this.updateUser.bind(this);
+    this.getContent = this.getContent.bind(this);
   }
 
   componentDidMount() {
@@ -56,20 +57,41 @@ class Profile extends Component {
     this.props.updateUserInfo(this.props.user.id, this.props.token, fields);
   }
 
+  getContent(slideIndex) {
+    if (!this.props.user.tutorial) return null;
+    switch (slideIndex) {
+      case 0:
+        return (
+          <ProfileGeneral
+            {...this.props}
+            missingInfo={this.state.missingInfo}
+            updateUser={this.updateUser}
+          />
+        );
+      case 1:
+        return <ProfileProgress {...this.props} />;
+      case 2:
+        return <div>Recomnedaciones</div>;
+      default: return null;
+    }
+  }
+
   render() {
     const { slideIndex } = this.state;
     const { mobile } = this.props;
     return (
       <div className={`col ${mobile ? '' : 'min-width'}`}>
-        <FirstSteps
-          mobile={mobile}
-          open={!this.props.user.tutorial}
-          token={this.props.token}
-          regions={this.props.regions}
-          updateUserInfo={this.props.updateUserInfo}
-          updateUserObjectives={this.props.updateUserObjectives}
-          user={this.props.user}
-        />
+        {this.props.user.tutorial ? null : (
+          <FirstSteps
+            mobile={mobile}
+            open={!this.props.user.tutorial}
+            token={this.props.token}
+            regions={this.props.regions}
+            updateUserInfo={this.props.updateUserInfo}
+            updateUserObjectives={this.props.updateUserObjectives}
+            user={this.props.user}
+          />
+        )}
         {mobile ? <MobileBanner onClick={this.props.toggleMenu} /> : null}
           <Tabs
             onChange={this.handleSlideChange}
@@ -80,15 +102,7 @@ class Profile extends Component {
             <Tab label="Progreso" value={1} style={tabStyle} />
             <Tab label="Sugerencias" value={2} style={tabStyle} />
           </Tabs >
-        {slideIndex === 0 ? (
-          <ProfileGeneral
-            {...this.props}
-            missingInfo={this.state.missingInfo}
-            updateUser={this.updateUser}
-          />
-          ) : null }
-        {slideIndex === 1 ? <ProfileProgress {...this.props} /> : null }
-        {slideIndex === 2 ? <div>Recomnedaciones</div> : null }
+        {this.getContent(slideIndex)}
       </div>
     );
   }

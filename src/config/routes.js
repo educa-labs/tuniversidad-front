@@ -14,7 +14,6 @@ import Career from '../containers/Career';
 import Profile from '../containers/Profile';
 import Login from '../containers/Login';
 import Signup from '../components/Signup';
-import FirstSteps from '../components/FirstSteps';
 
 export default (
   <Route path="/" component={App}>
@@ -23,7 +22,6 @@ export default (
     <Route path="signup" component={Signup} />
     <Route path="site" component={Site}>
       <IndexRoute component={Profile} />
-      <Route path="steps"component={FirstSteps} />
       <Route path="search" component={Buscador} />
       <Route path="compare" component={Compare} />
       <Route path="recommend" component={Recommend} />
