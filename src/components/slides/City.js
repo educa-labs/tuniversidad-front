@@ -36,7 +36,7 @@ class City extends Component {
         <div className="slide-header">
           ¿De dónde eres?
         </div>
-        <div className="col padding-2">
+        <div className={`col padding-${this.props.mobile ? '2' : '8'}`}>
           <SelectInput
             title="Región"
             items={regions}

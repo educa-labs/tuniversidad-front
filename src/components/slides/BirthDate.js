@@ -14,7 +14,7 @@ class BirthDate extends Component {
         <div className="slide-header">
           ¿Cuándo naciste?
         </div>
-        <div className="col padding-2">
+        <div className={`col padding-${this.props.mobile ? '2' : '7'}`}>
           <DatePicker
             handleChange={val => this.props.logChange(val)}
             date={this.state.birth_date}
@@ -29,6 +29,7 @@ class BirthDate extends Component {
 BirthDate.propTypes = {
   logChange: PropTypes.func.isRequired,
   error: PropTypes.string.isRequired,
+  mobile: PropTypes.bool,
 };
 
 export default BirthDate;

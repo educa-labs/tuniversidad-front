@@ -2,17 +2,22 @@ import React, { PropTypes } from 'react';
 import { Step, Stepper, StepLabel } from 'material-ui/Stepper';
 
 const styles = {
-  stepper: {
+  mobile: {
     transform: 'scale(0.8)',
     position: 'absolute',
     bottom: 0,
     left: -32,
   },
+  desktop: {
+    position: 'absolute',
+    bottom: 0,
+    left: 76,
+  },
 };
 
 function Steps(props) {
   return (
-    <Stepper activeStep={props.activeStep} style={styles.stepper}>
+    <Stepper activeStep={props.activeStep} style={props.mobile ? styles.mobile : styles.desktop}>
       <Step>
         <StepLabel>Información</StepLabel>
       </Step>

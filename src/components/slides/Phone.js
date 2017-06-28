@@ -19,7 +19,7 @@ class Phone extends Component {
         <div className="slide-header">
           ¿Cuál es tu número de teléfono?
         </div>
-        <div className="col padding-2">
+        <div className={`col padding-${this.props.mobile ? '2' : '8'}`}>
           <TextField
             onChange={(e, val) => this.handlePhoneChange(val)}
             floatingLabelText="Teléfono"

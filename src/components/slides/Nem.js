@@ -25,7 +25,7 @@ class Nem extends Component {
         <div className="slide-header">
           ¿Cuáles son tus puntajes de enseñanza media?
         </div>
-        <div className="col padding-2">
+        <div className={`col padding-${this.props.mobile ? '2' : '8'}`}>
           Si aún estás en el colegio puedes estimar cúanto obtendrás
           <TextField
             onChange={(e, val) => this.handleNemChange(val)}

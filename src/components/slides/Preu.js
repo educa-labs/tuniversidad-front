@@ -26,7 +26,7 @@ class Preu extends Component {
         <div className="slide-header">
           ¿Asistes actualmente a un preuniversitario?
         </div>
-        <div className="col padding-2">
+        <div className={`col padding-${this.props.mobile ? '2' : '8'}`}>
           <SelectInput
             title="Preuniversitario"
             items={items}

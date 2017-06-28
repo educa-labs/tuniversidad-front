@@ -20,10 +20,15 @@
 .slide {
   display: flex;
   flex-direction: column;
-  width: 16rem;
+  width: 30rem;
   height: 22rem;
   overflow: hidden;
 }
+
+.slide-mobile {
+  width: 16rem;
+}
+
 .step__button {
   display: flex;
   align-items: center;

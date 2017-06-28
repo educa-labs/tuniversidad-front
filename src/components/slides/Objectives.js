@@ -37,7 +37,7 @@ class Objectives extends Component {
         <div className="slide-header">
           ¿Cuánto quieres sacar en la PSU?
         </div>
-        <div className="col padding-1">
+        <div className={`col padding-${this.props.mobile ? '1' : '7'}`}>
           Ingresa los puntajes que quieres obtener en cada prueba
           <div className="row">
             <div className="col margin-right">

@@ -20,7 +20,7 @@ class Rut extends Component {
         <div className="slide-header">
           ¿Cuál es tu rut?
         </div>
-        <div className="col padding-2">
+        <div className={`col padding-${this.props.mobile ? '2' : '8'}`}>
           Con guión y sin puntos
           <TextField
             onChange={(e, val) => this.handleRutChange(val)}

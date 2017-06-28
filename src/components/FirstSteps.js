@@ -167,7 +167,7 @@ class FirstSteps extends Component {
           <div className="step__button" onClick={this.handleBack}>
             <IconButton><LeftArrow color={is.inArray(slideIndex, [0]) ? '#FFFFFF' : '#9E9E9E'} /></IconButton>
           </div>
-          <div className="slide">
+          <div className={`slide ${mobile ? 'slide-mobile' : ''}`}>
             <SwipeableViews
               index={slideIndex}
               disabled={this.disabled()}
@@ -199,7 +199,7 @@ class FirstSteps extends Component {
               <Ready onSubmit={this.handleSubmit} />
             </SwipeableViews>
           </div>
-          {slideIndex > 0 ? <Steps activeStep={getStepIndex(slideIndex)} /> : null }
+          {slideIndex > 0 ? <Steps activeStep={getStepIndex(slideIndex)} mobile={mobile}/> : null }
           <div className="step__button" onClick={this.handleNext}>
             <IconButton disabled={this.disabled()}><RigthArrow color={is.inArray(slideIndex, [8]) ? '#FFFFFF' : 'black'} /></IconButton>
           </div>
