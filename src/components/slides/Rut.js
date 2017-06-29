@@ -16,7 +16,7 @@ class Rut extends Component {
 
   render() {
     return (
-      <div className="slide">
+      <div className={`slide ${this.props.mobile ? 'slide-mobile' : ''}`}>
         <div className="slide-header">
           ¿Cuál es tu rut?
         </div>

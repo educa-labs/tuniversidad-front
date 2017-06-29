@@ -2,7 +2,7 @@ import React from 'react';
 
 function Welcome({ mobile }) {
   return (
-    <div className="slide">
+    <div className={`slide ${mobile ? 'slide-mobile' : ''}`}>
       <div className="slide-header">¡Hola, soy Newton!</div>
       <div className="row">
         <div className="newton" />

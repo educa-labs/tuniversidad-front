@@ -3,7 +3,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 function Ready(props) {
   return (
-    <div className="slide">
+    <div className={`slide ${props.mobile ? 'slide-mobile' : ''}`}>
       <div className="slide-header">
         ¡Estamos listos!
       </div>

@@ -21,7 +21,7 @@ class Nem extends Component {
 
   render() {
     return (
-      <div className="slide">
+      <div className={`slide ${this.props.mobile ? 'slide-mobile' : ''}`}>
         <div className="slide-header">
           ¿Cuáles son tus puntajes de enseñanza media?
         </div>

@@ -32,7 +32,7 @@ class City extends Component {
       return { value: reg.id, label: reg.title };
     });
     return (
-      <div className="slide">
+      <div className={`slide ${this.props.mobile ? 'slide-mobile' : ''}`}>
         <div className="slide-header">
           ¿De dónde eres?
         </div>

@@ -179,14 +179,30 @@ class FirstSteps extends Component {
                 logChange={id => this.logChange('city_id', id)}
                 mobile={mobile}
               />
-              <BirthDate logChange={date => this.logChange('birth_date', date)} error={this.getError(2)} />
-              <Phone logChange={phone => this.logChange('phone', phone)} error={this.getError(3)} />
-              <Rut logChange={rut => this.logChange('rut', rut)} error={this.getError(4)} />
-              <Preu logChange={preuniversity => this.logChange('preuniversity', preuniversity)} />
+              <BirthDate
+                logChange={date => this.logChange('birth_date', date)}
+                error={this.getError(2)}
+                mobile={mobile}
+              />
+              <Phone
+                logChange={phone => this.logChange('phone', phone)}
+                error={this.getError(3)}
+                mobile={mobile}
+              />
+              <Rut
+                logChange={rut => this.logChange('rut', rut)}
+                error={this.getError(4)}
+                mobile={mobile}
+              />
+              <Preu
+                logChange={preuniversity => this.logChange('preuniversity', preuniversity)}
+                mobile={mobile}
+              />
               <Nem
                 logNemChange={val => this.logChange('nem', val)}
                 logRankingChange={val => this.logChange('ranking', val)}
                 error={this.getError(6)}
+                mobile={mobile}
               />
               <Objectives
                 logLangChange={val => this.logChange('language', val)}
@@ -194,6 +210,7 @@ class FirstSteps extends Component {
                 logHistoryChange={val => this.logChange('history', val)}
                 logScienceChange={val => this.logChange('science', val)}
                 error={this.getError(7)}
+                mobile={mobile}
               />
               <Ready onSubmit={this.handleSubmit} />
             </SwipeableViews>

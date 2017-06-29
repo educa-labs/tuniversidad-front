@@ -10,7 +10,7 @@ class BirthDate extends Component {
   }
   render() {
     return (
-      <div className="slide">
+      <div className={`slide ${this.props.mobile ? 'slide-mobile' : ''}`}>
         <div className="slide-header">
           ¿Cuándo naciste?
         </div>
