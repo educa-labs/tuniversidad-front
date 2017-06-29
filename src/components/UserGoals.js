@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import is from 'is_js';
 import EditIcon from 'material-ui/svg-icons/image/edit';
 import ClearIcon from 'material-ui/svg-icons/content/clear';
@@ -16,6 +16,8 @@ class UserGoals extends Component {
     this.renderGoal = this.renderGoal.bind(this);
   }
 
+  
+
   renderGoal(goal) {
     let source = null;
     if (goal.scores.science === null) {
@@ -30,11 +32,13 @@ class UserGoals extends Component {
       obj: both ? Math.max(goal.scores.science.obj, goal.scores.history.obj) : source.obj,
     });
 
+    const onClick = () => this.context.router.push(`site/career/${goal.carreer.id}`);
+
     return (
       <div key={goal.carreer.id}>
         <div className="goal">
           <div className="goal__header">
-            <div className="goal__title">{`${goal.carreer.title} en ${goal.carreer.university_name}`}</div>
+            <div className="goal__title" onClick={onClick}>{`${goal.carreer.title} en ${goal.carreer.university_name}`}</div>
             {this.state.editMode ? (
               <div className="goal__delete-button">
                 <IconButton
@@ -80,5 +84,9 @@ class UserGoals extends Component {
     );
   }
 }
+
+UserGoals.contextTypes = {
+  router: PropTypes.object,
+};
 
 export default UserGoals;

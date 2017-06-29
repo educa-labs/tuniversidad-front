@@ -27,33 +27,33 @@ function NavigationBar(props, context) {
       <div className={className}>
         {tuniLogo}
         <div className={`navigation-bar-actions ${props.mobile ? 'navigation-bar-actions-mobile' : ''}`}>
-          <div
+          <button
             className={`action ${props.mobile ? 'action-mobile' : ''}  ${props.active === 0 ? 'action-active' : ''}`}
             onClick={() => scroller.scrollTo('login', params)}
           >
             Comenzar
-          </div>
-          <div
+          </button>
+          <button
             className={`action ${props.mobile ? 'action-mobile' : ''} ${props.active === 1 ? 'action-active' : ''}`}
             onClick={() => scroller.scrollTo('body', params)}
           >
             ¿Qué hace?
-          </div>
-          <div
+          </button>
+          <button
             className={`action ${props.mobile ? 'action-mobile' : ''} ${props.active === 2 ? 'action-active' : ''}`}
             onClick={() => scroller.scrollTo('newton', params)}
           >
             Newton
-          </div>
-          <div
+          </button>
+          <button
             className={`action ${props.mobile ? 'action-mobile' : ''} ${props.active === 3 ? 'action-active' : ''}`}
             onClick={() => scroller.scrollTo('cover-bottom', params)}
           >
             Descargar
-          </div>
+          </button>
         </div>
       </div>
-    );
+    )
   }
 
   if (props.location === 'site') className = `${className} navigation-bar_site`;

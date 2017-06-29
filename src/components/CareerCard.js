@@ -58,7 +58,7 @@ function CareerCard(props, context) {
     <div className={`general-card__header bg-blue ${props.detail ? 'general-card__header_hide' : ''}`}>
       <div className="col">
         <div className="general-card__title title_no-margin color-white">{career.title}</div>
-        <div className="general-card__subtitle color-white" onClick={handleSubTitleClick}>{career.university_name}</div>
+        <button className="general-card__subtitle color-white" onClick={handleSubTitleClick}>{career.university_name}</button>
       </div>
     </div>
   ) : (
