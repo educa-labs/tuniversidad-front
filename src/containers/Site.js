@@ -22,7 +22,6 @@ class Site extends Component {
     const { user } = this.props;
     const token = user.auth_token;
     if (user.nem !== null && user.ranking !== null) {
-      console.log('Entramos');
       this.props.getGoals(token);
     }
     this.props.getMostPopular(this.props.active, token);

@@ -75,7 +75,6 @@ class FirstSteps extends Component {
 
   handleNext() {
     const { slideIndex } = this.state;
-    console.log(slideIndex);
     const scoreError = 'Debes ingresar un puntaje válido';
     if (slideIndex < 8 && !this.disabled()) {
       if (slideIndex === 2) {
