@@ -70,7 +70,7 @@ class Buscador extends Component {
           toggleFilters={this.toggleFilters}
           onRequestChange={open => this.setState({ showFilters: open })}
         />
-        <div className="row no-margin">
+        <div className="row no-margin full-height">
           <SearchResult
             data={this.props.data}
             popular={this.props.popular}
@@ -117,12 +117,12 @@ function mapStateToProps(state) {
     career_filters: {
       cities: state.filter.cities,
       area: state.filter.area,
-      min_cut: state.filter.cut ? state.filter.cut[0] : null,
-      max_cut: state.filter.cut ? state.filter.cut[1] : null,
-      min_price: state.filter.price ? state.filter.price[0] : null,
-      max_price: state.filter.price ? state.filter.price[1] : null,
-      min_semesters: state.filter.duration ? state.filter.duration[0] : null,
-      max_semesters: state.filter.duration ? state.filter.duration[1] : null,
+      min_cut: state.filter.cut ? state.filter.cut.min : null,
+      max_cut: state.filter.cut ? state.filter.cut.max : null,
+      min_price: state.filter.price ? state.filter.price.min : null,
+      max_price: state.filter.price ? state.filter.price.max : null,
+      min_semesters: state.filter.duration ? state.filter.duration.min : null,
+      max_semesters: state.filter.duration ? state.filter.duration.max : null,
     },
   };
 }

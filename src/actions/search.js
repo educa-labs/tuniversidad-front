@@ -9,6 +9,7 @@ import {
 import url from '../constants/url';
 
 export function search(active, text, token, filters) {
+  console.log(filters);
   const request = Request.post(`${url}/search/`)
     .set('Content-Type', 'application/json')
     .set('Authorization', token)

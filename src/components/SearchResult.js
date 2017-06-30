@@ -3,6 +3,12 @@ import UniversityCard from './UniversityCard';
 import CareerCard from './CareerCard';
 
 function SearchResult(props) {
+  console.log('results', props.requesting);
+  if (props.requesting) {
+    return (
+      <div className={`col col-grey${props.mobile ? '' : '-desk'}`} />
+    );
+  }
   const beforeSearch = props.popular ? (
     <div className="before-search">
       <div className={`popular-msg${props.mobile ? '-mobile' : ''}`}>Carreras populares</div>
@@ -24,10 +30,7 @@ function SearchResult(props) {
   }
 
   let afterSearch = null;
-
-  if (props.requesting) {
-    afterSearch = <div>Cargando ...</div>;
-  }
+ 
   if (props.data === []) {
     afterSearch = <div>No hay resultados</div>;
   }
