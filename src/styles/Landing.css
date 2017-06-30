@@ -52,6 +52,7 @@
 
 .landing-body-title {
   font-size: xx-large;
+  font-weight: 400;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,7 +76,7 @@
 
 .section-mobile {
   width: 100%;
-  margin-top: 0.5rem;
+  margin: 1rem 0;
 }
 
 .section-top {
@@ -85,6 +86,7 @@
 .section-header {
   font-size: xx-large;
   color: #0091EA;
+  font-weight: 300;
   margin: 1rem 0;
 }
 
@@ -101,7 +103,7 @@
 
 .landing-body-phone {
   height: 30rem;
-  width: 300px;
+  width: 260px;
   min-width: 255px;
   background-image: url(../assets/white-phone.png);
   background-position: center;
@@ -132,7 +134,8 @@
 
 .newton-section-title  {
   font-size: xx-large;
-  margin: 1rem 0;
+  font-weight: 400;
+  margin: 1rem;
 }
 
 .newton-section-title-mobile {

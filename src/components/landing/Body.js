@@ -21,6 +21,7 @@ function Body(props) {
             A medida que alimentas la plataforma con datos y acciones, nos das más para trabajar. Tomando en cuenta una serie de variables y con la ayuda de Newton, te recomendaremos las mejores opciones de estudio para ti.
           </div>
         </div>
+        <div className="landing-body-phone" />
         <div className="section-mobile">
           <div className="section-header-mobile">Progreso</div>
           <div className="section-text">

@@ -23,6 +23,7 @@ button {
 }
 .navigation-bar_landing-dirty {
   animation: unfade 1s forwards;
+  color: white;
 }
 .navigation-bar_landing-solid {
   animation: fade 1s forwards;
@@ -30,15 +31,16 @@ button {
 }
 
 .navigation-bar-logo {
+  margin-left: 10px;
   flex: 2;
 }
 
-.navigation-bar_landing-solid .navigation-bar-actions {
+.navigation-bar_landing-solid .action {
   color: black;
 }
 
-.navigation-bar_landing .navigation-bar-actions {
-  color: white;
+.navigation-bar_landing-solid .action-active {
+  color: #0091EA;
 }
 
 .navigation-bar-actions {
@@ -58,11 +60,15 @@ button {
   justify-content: center;
   flex: 1;
   font-size: medium;
+  font-weight: 200;
+  color: white;
 }
 
 .action-active {
   color: #0091EA;
 }
+
+
 
 .action-mobile {
   font-size: 14px;

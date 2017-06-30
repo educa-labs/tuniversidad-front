@@ -21,7 +21,7 @@ function NewtonSection(props) {
       <div className="col col-1 justify-center align-center">
         <div className="newton-landing" />
       </div>
-      <div className="col col-3 justify-center align-center">
+      <div className="col col-3 justify-center">
         <div className="newton-section-title color-white">
           Newton. Recomienda.
         </div>
