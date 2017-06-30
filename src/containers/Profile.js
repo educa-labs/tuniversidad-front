@@ -18,6 +18,7 @@ import '../styles/Tabs.css';
 
 const tabStyle = {
   fontSize: '14px',
+  fontWeight: 400,
   width: '33%',
 };
 

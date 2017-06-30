@@ -64,12 +64,15 @@ class UserGoals extends Component {
 
   render() {
     if (this.props.goals === null) return <div>Cargando ... </div>;
+    const onSearchClick = () => this.context.router.push('/site/search');
 
     const noContent = (
       <div className="general-card__no-content">
         <div className="newton-pensando" />
         <div className="general-card__empty-msg">
-          <div>¿Tienes pensado estudiar alguna carrera? Te recomiendo usar el <span>buscador</span> para añadirla a tus metas.</div>
+          <div>
+            ¿Tienes pensado estudiar alguna carrera? Te recomiendo usar el <span onClick={onSearchClick}>buscador </span> para añadirla a tus metas.
+          </div>
         </div>
       </div>
     );
@@ -78,11 +81,6 @@ class UserGoals extends Component {
       <div className={`general-card ${this.props.mobile ? '' : 'general-card_desk'}`}>
         <div className="general-card__header">
           <div className="general-card__title">Mis Metas</div>
-          <div className="general-card__edit-button">
-            <IconButton onTouchTap={() => this.setState({ editMode: !this.state.editMode })}>
-              <EditIcon color="#969696" />
-            </IconButton>
-          </div>
         </div>
         {is.empty(this.props.goals) ? noContent : this.props.goals.map(goal => this.renderGoal(goal))}
       </div>
