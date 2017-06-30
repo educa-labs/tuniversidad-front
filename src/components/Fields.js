@@ -11,7 +11,12 @@ import '../styles/Fields.css';
 const yesNo = [
   { value: false, label: 'No' },
   { value: true, label: 'Sí' },
+  { value: -1, label: 'Todas' },
 ];
+
+const all = { value: -1, label: 'Todas' };
+const allM = { value: -1, label: 'Todos' };
+
 
 class Fields extends Component {
   componentWillMount() {
@@ -39,18 +44,23 @@ class Fields extends Component {
     const regions = props.fields.regions.map((reg) => {
       return { value: reg.id, label: reg.title };
     });
+    regions.push(all);
     const cities = this.state.cities.map((city) => {
       return { label: city.title, value: city.id };
     });
+    cities.push(all);
     const types = props.fields.types.map((type) => {
       return { value: type.id, label: capitalize(type.title) };
     });
+    types.push(all);
     const areas = props.fields.areas.map((area) => {
       return { value: area.id, label: capitalize(area.title) };
     });
+    areas.push(all);
     const schedules = props.fields.schedules.map((sch) => {
       return { value: sch, label: capitalize(sch) };
     });
+    schedules.push(allM);
     if (props.type === 0) {
       return (
         <div className="filters__body">

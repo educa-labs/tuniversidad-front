@@ -112,13 +112,13 @@ function mapStateToProps(state) {
     result: state.fetch.result,
     requesting: state.search.requesting || state.fetch.requesting,
     university_filters: {
-      cities: state.filter.cities,
-      university_type_id: state.filter.university_type,
-      freeness: state.filter.freeness,
+      cities: state.filter.cities !== -1 ? state.filter.cities : null,
+      university_type_id: state.filter.university_type !== -1 ? state.filter.university_type : null,
+      freeness: state.filter.freeness !== -1 ? state.filter.freeness : null,
     },
     career_filters: {
-      cities: state.filter.cities,
-      area: state.filter.area,
+      cities: state.filter.cities !== -1 ? state.filter.cities : null,
+      area: state.filter.area !== -1 ? state.filter.area : null,
       min_cut: state.filter.cut ? state.filter.cut.min : null,
       max_cut: state.filter.cut ? state.filter.cut.max : null,
       min_price: state.filter.price ? state.filter.price.min : null,
