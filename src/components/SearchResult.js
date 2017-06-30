@@ -3,51 +3,53 @@ import UniversityCard from './UniversityCard';
 import CareerCard from './CareerCard';
 
 function SearchResult(props) {
-  console.log('results', props.requesting);
+
   if (props.requesting) {
     return (
       <div className={`col col-grey${props.mobile ? '' : '-desk'}`} />
     );
   }
-  const beforeSearch = props.popular ? (
-    <div className="before-search">
-      <div className={`popular-msg${props.mobile ? '-mobile' : ''}`}>Carreras populares</div>
-      {props.popular.map(res => (
-        <CareerCard career={res} key={res.id} mobile={props.mobile} />
-      ))}
-    </div>
-  ) : (
-    <div className="before-search">
-      Recuerda que puedes aplicar filtros a tu búsqueda
-    </div>
-  );
+
+  let beforeSearch = null;
+  if (props.active === 'carreer') {
+    beforeSearch = props.popularCareers.map(res => (
+      <CareerCard career={res} key={res.id} mobile={props.mobile} />
+    ));
+  }
+  if (props.active === 'university') {
+    beforeSearch = props.popularUniv.map(res => (
+      <UniversityCard university={res} key={res.id} mobile={props.mobile} />
+    ));
+  }
   if (props.data === null) {
     return (
       <div className={`col col-grey${props.mobile ? '' : '-desk padding-2'}`}>
-        {beforeSearch}
+        <div className="before-search">
+          <div className={`popular-msg${props.mobile ? '-mobile' : ''}`}>{props.active === 'university' ? 'Universidades' : 'Carreras'} más buscadas</div>
+          {beforeSearch}
+          </div>
       </div>
     );
   }
 
   let afterSearch = null;
- 
   if (props.data === []) {
     afterSearch = <div>No hay resultados</div>;
   }
   if (props.active === 'university') {
-    afterSearch = props.dataTypeHasChanged ? null : props.data.map((res) => {
-      return <UniversityCard university={res} key={res.id} mobile={props.mobile} />;
-    });
+    afterSearch = props.dataTypeHasChanged ? beforeSearch : props.data.map(res => (
+      <UniversityCard university={res} key={res.id} mobile={props.mobile} />
+    ));
   }
   if (props.active === 'carreer') {
-    afterSearch = props.dataTypeHasChanged ? null : props.data.map((res) => {
-      return <CareerCard career={res} key={res.id} mobile={props.mobile} />;
-    });
+    afterSearch = props.dataTypeHasChanged ? beforeSearch : props.data.map(res => (
+      <CareerCard career={res} key={res.id} mobile={props.mobile} />
+    ));
   }
 
   return (
     <div className={`col col-grey${props.mobile ? '' : '-desk padding-2'}`}>
-      {afterSearch || beforeSearch}
+      {afterSearch}
     </div>
   );
 }

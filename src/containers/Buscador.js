@@ -73,7 +73,8 @@ class Buscador extends Component {
         <div className="row no-margin full-height">
           <SearchResult
             data={this.props.data}
-            popular={this.props.popular}
+            popularCareers={this.props.careers}
+            popularUniv={this.props.universities}
             active={this.props.active}
             dataTypeHasChanged={this.state.dataTypeHasChanged}
             requesting={this.props.requesting}
@@ -106,7 +107,8 @@ function mapStateToProps(state) {
     token: state.user.currentUser.auth_token,
     active: state.filter.active,
     data: state.search.result,
-    popular: state.search.popular,
+    careers: state.search.popular_careers,
+    universities: state.search.popular_univ,
     result: state.fetch.result,
     requesting: state.search.requesting || state.fetch.requesting,
     university_filters: {

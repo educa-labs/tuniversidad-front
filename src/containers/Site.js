@@ -24,7 +24,8 @@ class Site extends Component {
     if (user.nem !== null && user.ranking !== null) {
       this.props.getGoals(token);
     }
-    this.props.getMostPopular(this.props.active, token);
+    this.props.getMostPopular('carreers', token);
+    this.props.getMostPopular('universities', token);
     this.props.fetch('regions', null, token);
   }
 

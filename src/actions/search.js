@@ -44,8 +44,7 @@ export function search(active, text, token, filters) {
 }
 
 export function getMostPopular(active, token) {
-  const val = active === 'carreer' ? 'carreers' : 'universities';
-  const request = Request.get(`${url}/popular/${val}`)
+  const request = Request.get(`${url}/popular/${active}`)
     .set('Content-Type', 'application/json')
       .set('Authorization', token)
       .accept('application/tuniversidad.v1')
@@ -61,6 +60,7 @@ export function getMostPopular(active, token) {
           dispath({
             type: POPULAR_SUCCESS,
             payload: res.body,
+            active,
           });
         }
       })

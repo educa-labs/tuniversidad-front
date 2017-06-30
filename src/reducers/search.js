@@ -7,6 +7,8 @@ import {
 
 const initalState = {
   result: null,
+  popular_careers: [],
+  popular_univ: [],
   requesting: false,
   error: {},
 };
@@ -29,8 +31,15 @@ function search(state = initalState, action) {
         error: {},
       });
     case POPULAR_SUCCESS:
+      if (action.active === 'carreers') {
+        return Object.assign({}, state, {
+          popular_careers: action.payload,
+          requesting: false,
+          error: {},
+        });
+      }
       return Object.assign({}, state, {
-        popular: action.payload,
+        popular_univ: action.payload,
         requesting: false,
         error: {},
       });
