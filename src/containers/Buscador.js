@@ -69,6 +69,7 @@ class Buscador extends Component {
           open={this.state.showFilters}
           toggleFilters={this.toggleFilters}
           onRequestChange={open => this.setState({ showFilters: open })}
+          handleSubmit={this.handleSubmit}
         />
         <div className="row no-margin full-height">
           <SearchResult

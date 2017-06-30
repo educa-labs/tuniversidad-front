@@ -1,8 +1,3 @@
-.filters {
-  display: flex;
-  flex-direction: column;
-}
-
 .filters__header {
   color: #424242;
   display: flex;
@@ -14,12 +9,8 @@
 
 .filters__body {
   display: flex;
-  margin: 0rem 2.5rem;
+  margin: 0rem 2rem;
   flex-direction: column;
 }
 
-
-.fields-container.hide {
-  display: none;
-}
 

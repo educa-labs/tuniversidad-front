@@ -44,23 +44,23 @@ class Fields extends Component {
     const regions = props.fields.regions.map((reg) => {
       return { value: reg.id, label: reg.title };
     });
-    regions.push(all);
+    regions.unshift(all);
     const cities = this.state.cities.map((city) => {
       return { label: city.title, value: city.id };
     });
-    cities.push(all);
+    cities.unshift(all);
     const types = props.fields.types.map((type) => {
       return { value: type.id, label: capitalize(type.title) };
     });
-    types.push(all);
+    types.unshift(all);
     const areas = props.fields.areas.map((area) => {
       return { value: area.id, label: capitalize(area.title) };
     });
-    areas.push(all);
+    areas.unshift(all);
     const schedules = props.fields.schedules.map((sch) => {
       return { value: sch, label: capitalize(sch) };
     });
-    schedules.push(allM);
+    schedules.unshift(allM);
     if (props.type === 0) {
       return (
         <div className="filters__body">
@@ -73,7 +73,8 @@ class Fields extends Component {
               this.handleRegionChange(region);
             }}
             fullWidth
-            maxHeight={150}
+            maxHeight={180}
+            style={{ transform: 'scale(0.9)' }}
           />
           <SelectInput
             title="Ciudad"
@@ -81,6 +82,7 @@ class Fields extends Component {
             value={props.values.cities}
             handleChange={id => props.changeFilterValue('cities', id)}
             fullWidth
+            style={{ transform: 'scale(0.9)' }}
           />
           <SelectInput
             title="Tipo de Universidad"
@@ -88,6 +90,7 @@ class Fields extends Component {
             value={props.values.university_type}
             handleChange={type => props.changeFilterValue('university_type', type)}
             fullWidth
+            style={{ transform: 'scale(0.9)' }}
           />
           <SelectInput
             title="Gratuidad"
@@ -95,6 +98,7 @@ class Fields extends Component {
             value={props.values.freeness}
             handleChange={freeness => props.changeFilterValue('freeness', freeness)}
             fullWidth
+            style={{ transform: 'scale(0.9)' }}
           />
         </div>
       );
@@ -112,6 +116,7 @@ class Fields extends Component {
             this.handleRegionChange(region);
           }}
           maxHeight={150}
+          style={{ transform: 'scale(0.9)' }}
         />
         <SelectInput
           title="Ciudad"
@@ -120,6 +125,7 @@ class Fields extends Component {
           value={props.values.cities}
           handleChange={city => props.changeFilterValue('cities', city)}
           fullWidth
+          style={{ transform: 'scale(0.9)' }}
         />
         <SelectInput
           title="Area"
@@ -127,6 +133,7 @@ class Fields extends Component {
           value={props.values.area}
           handleChange={area => props.changeFilterValue('area', area)}
           fullWidth
+          style={{ transform: 'scale(0.9)' }}
         />
         <SelectInput
           title="Horario"
@@ -134,6 +141,7 @@ class Fields extends Component {
           value={props.values.schedule}
           handleChange={schedule => props.changeFilterValue('schedule', schedule)}
           fullWidth
+          style={{ transform: 'scale(0.9)' }}
         />
         <br />
         <RangeInput

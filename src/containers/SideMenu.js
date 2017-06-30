@@ -89,6 +89,8 @@ class SideMenu extends Component {
             label="Cerrar sesión"
             backgroundColor="#616161"
             labelColor="#FFFFFF"
+            style={{ borderRadius: '5px' }}
+            labelStyle={{ fontSize: '11px' }}
           />
         </div>
       </Drawer >
