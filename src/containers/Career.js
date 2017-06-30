@@ -2,11 +2,15 @@ import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import is from 'is_js';
-import RaisedButton from 'material-ui/RaisedButton';
 import NavigationBar from '../components/NavigationBar';
 import CareerCard from '../components/CareerCard';
 import Loading from '../components/Loading';
 import { fetch } from '../actions/fetch';
+
+const tabStyle = {
+  fontSize: '12px',
+  fontWeight: 400,
+};
 
 class Career extends Component {
   componentWillMount() {
@@ -33,25 +37,12 @@ class Career extends Component {
     const { career, mobile } = this.props;
     if (is.any.null(career)) {
       return (
-        <div>
+        <div className="fullscreen">
           <Loading />
         </div>
       );
     }
-    const first = (
-      <div>
-        <CareerCard career={career} detail mobile={mobile} />
-        <div className="row justify-end">
-          <RaisedButton
-            label="Añadir a mis metas"
-            secondary
-            style={{
-              margin: '20px',
-            }}
-          />
-        </div> 
-      </div>
-    );
+    const first = <CareerCard career={career} detail mobile={mobile} />;
 
     return (
       <div className="site__children">
@@ -70,12 +61,12 @@ class Career extends Component {
           value={slideIndex}
           className="tabs-search"
         >
-          <Tab label="Información general" value={0} />
-          <Tab label="Malla" value={1} />
+          <Tab label="Información general" value={0} style={tabStyle} />
+          <Tab label="Preguntas y respuestas" value={1} style={tabStyle} />
         </Tabs >
         <div className="col justify-center bg-grey">
           {slideIndex === 0 ? first : null }
-          {slideIndex === 1 ? <div>Malla</div> : null}
+          {slideIndex === 1 ? <div>Preguntas</div> : null}
         </div>
       </div>
     );

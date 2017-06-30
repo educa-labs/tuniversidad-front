@@ -6,9 +6,15 @@ import { getCareers } from '../helpers/api';
 import NavigationBar from '../components/NavigationBar';
 import UniversityCard from '../components/UniversityCard';
 import CareerCard from '../components/CareerCard';
+import Loading from '../components/Loading';
 import { fetch } from '../actions/fetch';
 import '../styles/University.css';
 
+
+const tabStyle = {
+  fontSize: '12px',
+  fontWeight: 400,
+};
 
 class University extends Component {
 
@@ -33,15 +39,16 @@ class University extends Component {
   render() {
     const { careers, slideIndex } = this.state;
     const { university, mobile } = this.props;
+
     if (is.any.null(university, careers)) {
       return (
-        <div>
-          Cargando ...
+        <div className="fullscreen">
+          <Loading />
         </div>
       );
     }
     return (
-      <div className="university">
+      <div className="site__children">
         <NavigationBar location="site" title={university.title} />
         <div className="university-cover">
           <div>
@@ -54,8 +61,8 @@ class University extends Component {
           value={slideIndex}
           className={`tabs-search ${mobile ? '' : 'tabs-search-dektop'}`}
         >
-          <Tab label="Información general" value={0} />
-          <Tab label="Carreras" value={1} />
+          <Tab label="Información general" value={0} style={tabStyle} />
+          <Tab label="Carreras" value={1} style={tabStyle} />
         </Tabs >
         <div className="col justify-center bg-grey">
           {slideIndex === 0 ? (
