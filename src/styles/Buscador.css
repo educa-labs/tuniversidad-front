@@ -65,6 +65,11 @@
 }
 
 .popular-msg {
+  color: #C9C9C9;
+  padding: 1rem 1rem 0 1rem;
+}
+
+.popular-msg-mobile {
   padding: 1rem;
   color: #C9C9C9;
 }

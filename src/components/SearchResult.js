@@ -5,7 +5,7 @@ import CareerCard from './CareerCard';
 function SearchResult(props) {
   const beforeSearch = props.popular ? (
     <div className="before-search">
-      <div className="popular-msg">Carreras populares</div>
+      <div className={`popular-msg${props.mobile ? '-mobile' : ''}`}>Carreras populares</div>
       {props.popular.map(res => (
         <CareerCard career={res} key={res.id} mobile={props.mobile} />
       ))}

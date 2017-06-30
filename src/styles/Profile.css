@@ -55,10 +55,3 @@
   flex-direction: column;
   height: 100%;
 }
-
-.progress .action-button {
-  float: right;
-  position: fixed;
-  top: 87%;
-  left: 92%;
-}
