@@ -5,6 +5,7 @@ import is from 'is_js';
 import RaisedButton from 'material-ui/RaisedButton';
 import NavigationBar from '../components/NavigationBar';
 import CareerCard from '../components/CareerCard';
+import Loading from '../components/Loading';
 import { fetch } from '../actions/fetch';
 
 class Career extends Component {
@@ -33,7 +34,7 @@ class Career extends Component {
     if (is.any.null(career)) {
       return (
         <div>
-          Cargando ...
+          <Loading />
         </div>
       );
     }
