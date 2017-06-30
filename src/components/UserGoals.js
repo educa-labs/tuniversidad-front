@@ -16,15 +16,20 @@ class UserGoals extends Component {
     this.renderGoal = this.renderGoal.bind(this);
   }
 
-  
-
   renderGoal(goal) {
+    const missing = [];
+    if (is.empty(this.props.essays[1].essays)) missing.push('Lenguaje');
+    if (is.empty(this.props.essays[2].essays)) missing.push('Matemáticas');
+
     let source = null;
     if (goal.scores.science === null) {
       source = goal.scores.history;
+      if (is.empty(this.props.essays[3].essays)) missing.push('Historia');
     } else {
       source = goal.scores.science;
+      if (is.empty(this.props.essays[4].essays)) missing.push('Ciencias');
     }
+
     const both = goal.scores.science !== null && goal.scores.history !== null;
     const scores = Object.assign({}, {
       last_cut: goal.scores.last_cut,
@@ -50,7 +55,7 @@ class UserGoals extends Component {
               </div>
             ) : null}
           </div>
-          <BarChart max={850} scores={scores} />
+          <BarChart max={850} scores={scores} missing={missing} linkToProgress={this.props.linkToProgress} />
         </div>
         <Divider />
       </div>

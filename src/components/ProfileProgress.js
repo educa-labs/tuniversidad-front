@@ -14,12 +14,6 @@ class PropfileProgress extends Component {
       active: 1,
       openModal: false,
     };
-  }
-
-  componentDidMount() {
-    for (let i = 1; i < 5; i += 1) {
-      if (is.null(this.props.essays[i])) this.props.getEssays(this.props.token, i);
-    }
     this.closeModal = this.closeModal.bind(this);
   }
 

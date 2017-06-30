@@ -12,6 +12,8 @@ function ProfileGeneral(props) {
           removeGoal={id => props.removeGoal(id, props.token)}
           goals={props.goals}
           mobile={props.mobile}
+          essays={props.essays}
+          linkToProgress={() => props.handleSlideChange(1)}
         />
         <UserInfo
           user={props.user}
@@ -34,6 +36,8 @@ function ProfileGeneral(props) {
         <UserGoals
           removeGoal={id => props.removeGoal(id, props.token)}
           goals={props.goals}
+          essays={props.essays}
+          linkToProgress={() => props.handleSlideChange(1)}
         />
       </div>
       <div className="col col-2">

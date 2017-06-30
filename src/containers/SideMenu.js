@@ -74,7 +74,7 @@ class SideMenu extends Component {
           onClick={() => this.handleSelectItem('recommend')}
         >
           <div className="icon" ><LightbulbIcon color="#FFFFFF" /></div>
-          <div className="side-menu__item-label">Recomendaciones</div>
+          <div className="side-menu__item-label">Newton</div>
         </div>
         <div
           className={`side-menu__item ${selected === 'news' ? 'side-menu__item_selected' : ''}`}

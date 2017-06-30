@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import is from 'is_js';
 import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import { updateUserInfo } from '../actions/user';
@@ -33,6 +34,9 @@ class Profile extends Component {
 
   componentDidMount() {
     this.props.getUserObjectives(this.props.token);
+    for (let i = 1; i < 5; i += 1) {
+      if (is.null(this.props.essays[i])) this.props.getEssays(this.props.token, i);
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -49,10 +53,6 @@ class Profile extends Component {
     }
   }
 
-  handleSlideChange(value) {
-    this.setState({ slideIndex: value });
-  }
-
   updateUser(fields) {
     this.props.updateUserInfo(this.props.user.id, this.props.token, fields);
   }
@@ -64,8 +64,8 @@ class Profile extends Component {
         return (
           <ProfileGeneral
             {...this.props}
-            missingInfo={this.state.missingInfo}
             updateUser={this.updateUser}
+            handleSlideChange={this.handleSlideChange}
           />
         );
       case 1:
@@ -74,6 +74,10 @@ class Profile extends Component {
         return <div>Recomnedaciones</div>;
       default: return null;
     }
+  }
+
+  handleSlideChange(value) {
+    this.setState({ slideIndex: value });
   }
 
   render() {
@@ -100,7 +104,7 @@ class Profile extends Component {
           >
             <Tab label="General" value={0} style={tabStyle} />
             <Tab label="Progreso" value={1} style={tabStyle} />
-            <Tab label="Sugerencias" value={2} style={tabStyle} />
+            <Tab label="Newton" value={2} style={tabStyle} />
           </Tabs >
         {this.getContent(slideIndex)}
       </div>

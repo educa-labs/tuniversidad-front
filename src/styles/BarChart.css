@@ -51,3 +51,18 @@
 .bar .rectangle-3 {
   background-color: #616161;
 }
+
+.bar-chart-missing {
+  height: 2rem;
+  color: #0091EA;
+  display: flex;
+  align-items: center;
+  border: 1px solid #0091EA;
+  padding: 0 10px;
+  margin: 2px 0;
+}
+
+.bar-chart-missing:hover {
+  background-color: #0091EA;
+  color: white;
+}
