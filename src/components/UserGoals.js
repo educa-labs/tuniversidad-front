@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import is from 'is_js';
-import EditIcon from 'material-ui/svg-icons/image/edit';
 import ClearIcon from 'material-ui/svg-icons/content/clear';
 import IconButton from 'material-ui/IconButton';
 import Divider from 'material-ui/Divider';
+import Loading from '../components/Loading';
 import BarChart from './BarChart';
 
 
@@ -63,7 +63,9 @@ class UserGoals extends Component {
   }
 
   render() {
-    if (this.props.goals === null) return <div>Cargando ... </div>;
+    if (this.props.goals === null) {
+      return <Loading />;
+    }
     const onSearchClick = () => this.context.router.push('/site/search');
 
     const noContent = (

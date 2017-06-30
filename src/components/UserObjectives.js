@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import IconButton from 'material-ui/IconButton';
 import EditIcon from 'material-ui/svg-icons/image/edit';
 import UserObjectivesForm from './UserObjectivesForm';
+import Loading from './Loading';
 
 class UserObjectives extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class UserObjectives extends Component {
 
   render() {
     const { objectives, user } = this.props;
-    if (objectives === null) return <div>Cargando ...</div>;
+    if (objectives === null) return <Loading />;
     return (
       <div className={`general-card ${this.props.mobile ? '' : 'general-card_desk'}`}>
         <UserObjectivesForm
