@@ -8,8 +8,7 @@ import {
 
 import url from '../constants/url';
 
-export function search(active, text, token, filters) {
-  console.log(filters);
+export function search(active, text, token, filters, page) {
   const request = Request.post(`${url}/search/`)
     .set('Content-Type', 'application/json')
     .set('Authorization', token)
@@ -19,6 +18,7 @@ export function search(active, text, token, filters) {
       [active]: {
         text,
         ...filters,
+        page,
       },
     });
   return (dispath) => {

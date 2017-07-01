@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
+import Infinite from 'react-infinite';
 import UniversityCard from './UniversityCard';
 import CareerCard from './CareerCard';
+import Loading from './Loading';
 
 function SearchResult(props) {
 
@@ -49,7 +51,16 @@ function SearchResult(props) {
 
   return (
     <div className={`col col-grey${props.mobile ? '' : '-desk padding-2'}`}>
-      {afterSearch}
+      <Infinite
+        elementHeight={props.mobile ? 320 : 230}
+        useWindowAsScrollContainer
+        loadingSpinnerDelegate={<Loading />}
+        infiniteLoadBeginEdgeOffset={200}
+        onInfiniteLoad={() => console.log('load')}
+        isInfiniteLoading={false}
+      >
+        {afterSearch}
+      </Infinite>
     </div>
   );
 }

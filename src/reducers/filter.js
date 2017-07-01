@@ -1,6 +1,7 @@
 import { SET_ACTIVE_FILTER, CHANGE_FILTER_VALUE } from '../actions/types';
 
 const initialState = {
+  page: 0,
   active: 'carreer',
   university_type: null,
   freeness: null,

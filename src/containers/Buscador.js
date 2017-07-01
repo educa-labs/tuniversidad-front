@@ -48,8 +48,8 @@ class Buscador extends Component {
     const { active, token } = this.props;
     const { input } = this.state;
     const filters = active === 'university' ? this.props.university_filters : this.props.career_filters;
-    this.props.search(active, input, token, filters);
-    this.toggleFilters();
+    this.props.search(active, input, token, filters, 20);
+    if (this.state.showFilters) this.setState({ showFilters: false });
   }
 
 

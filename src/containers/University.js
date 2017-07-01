@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
+import Infinite from 'react-infinite';
 import is from 'is_js';
 import { getCareers } from '../helpers/api';
 import NavigationBar from '../components/NavigationBar';
@@ -27,16 +28,42 @@ class University extends Component {
       careers: null,
     });
     this.handleSlideChange = this.handleSlideChange.bind(this);
+    this.getContent = this.getContent.bind(this);
     getCareers(this.props.params.id, this.props.token)
       .then(res => this.setState({ careers: res.body }))
       .catch(err => this.setState({ careers: err.body }));
   }
 
+  getContent(slideIndex) {
+    switch (slideIndex) {
+      case 0:
+        return (
+          <UniversityCard
+            university={this.props.university}
+            detail
+            mobile={this.props.mobile}
+          />
+        );
+      case 1:
+        return (
+          <Infinite
+            elementHeight={this.props.mobile ? 320 : 230}
+            containerHeight={this.props.mobile ? 320 : 640}
+          >
+            {this.state.careers.map((car) => {
+              return <CareerCard career={car} key={car.id} mobile={this.props.mobile} compress />;
+            })}
+          </Infinite>
+        );
+      default: return null;
+    }
+  }
   handleSlideChange(value) {
     this.setState({ slideIndex: value });
   }
 
   render() {
+    console.log('Render');
     const { careers, slideIndex } = this.state;
     const { university, mobile } = this.props;
 
@@ -64,16 +91,9 @@ class University extends Component {
           <Tab label="Información general" value={0} style={tabStyle} />
           <Tab label="Carreras" value={1} style={tabStyle} />
         </Tabs >
-        <div className="col justify-center bg-grey">
-          {slideIndex === 0 ? (
-            <UniversityCard university={university} detail mobile={mobile} />
-            ) : null }
-          {slideIndex === 1 ? (
-            this.state.careers.map((car) => {
-              return <CareerCard career={car} key={car.id} mobile={mobile} compress />
-            })
-          ) : null}
-          </div>
+        <div className="col justify-center bg-grey" ref={e => this.login = e}>
+          {this.getContent(slideIndex)}
+        </div>
       </div>
     );
   }
@@ -86,11 +106,16 @@ function mapStateToProps(state) {
   };
 }
 
+University.defaultProps = {
+  mobile: false,
+};
+
 University.propTypes = {
   fetch: PropTypes.func.isRequired,
   token: PropTypes.string.isRequired,
   params: PropTypes.object,
   university: PropTypes.object,
+  mobile: PropTypes.bool,
 };
 
 export default connect(mapStateToProps, {
