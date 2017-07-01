@@ -58,7 +58,7 @@ function SearchResult(props) {
   return (
     <div className={`col col-grey${props.mobile ? '' : '-desk padding-2'}`}>
       <Infinite
-        elementHeight={props.mobile ? 320 : 230}
+        elementHeight={props.mobile ? 320 : 250}
         useWindowAsScrollContainer
         loadingSpinnerDelegate={<Loading />}
         infiniteLoadBeginEdgeOffset={20}
@@ -77,6 +77,7 @@ SearchResult.propTypes = {
   dataTypeHasChanged: PropTypes.bool.isRequired,
   requesting: PropTypes.bool.isRequired,
   infiniteLoading: PropTypes.bool.isRequired,
+  handleInfinite: PropTypes.func.isRequired,
   data: PropTypes.array,
 };
 
