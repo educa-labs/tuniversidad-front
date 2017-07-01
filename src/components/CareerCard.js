@@ -54,6 +54,7 @@ function CareerCard(props, context) {
 
   const science = career.weighing ? is.existy(career.weighing.science) : null;
 
+
   const header = props.mobile ? (
     <div className={`general-card__header bg-blue ${props.detail ? 'general-card__header_hide' : ''}`}>
       <div className="col">

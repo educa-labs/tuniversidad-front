@@ -109,7 +109,6 @@ Buscador.propTypes = {
   mobile: PropTypes.bool,
   data: PropTypes.array,
   popular: PropTypes.array,
-  moveToNextPage: PropTypes.func.isRequired,
   infiniteLoading: PropTypes.bool.isRequired,
   currentPage: PropTypes.number.isRequired,
   getNextPage: PropTypes.func.isRequired,
@@ -125,7 +124,7 @@ function mapStateToProps(state) {
     result: state.fetch.result,
     requesting: state.search.requesting || state.fetch.requesting,
     infiniteLoading: state.search.infiniteLoading,
-    currentPage: state.filter.currentPage,
+    currentPage: state.search.current_page,
     university_filters: {
       cities: state.filter.cities !== -1 ? state.filter.cities : null,
       university_type_id: state.filter.university_type !== -1 ? state.filter.university_type : null,

@@ -1,5 +1,6 @@
 .label {
   font-size: small;
+  font-weight: 300;
   color: #C9C9C9;
 }
 
@@ -99,4 +100,13 @@
   bottom: 12px;
   right: 12px;
   z-index: 10;
+}
+
+.expandible-card {
+  background-color: white;
+  padding: 0.5rem 0;
+}
+
+.expandible-card-body {
+  height: 240px;
 }

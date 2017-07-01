@@ -4,6 +4,7 @@ import Infinite from 'react-infinite';
 import UniversityCard from './UniversityCard';
 import CareerCard from './CareerCard';
 import Loading from './Loading';
+import ExpandibleCard from './ExpandibleCard';
 
 function SearchResult(props) {
   if (props.requesting) {
@@ -33,10 +34,8 @@ function SearchResult(props) {
       </div>
     );
   }
-  console.log('Estamos', props.data);
   let afterSearch = null;
   if (is.empty(props.data)) {
-    console.log('Hola');
     afterSearch = <div>No hay resultados</div>;
   } else {
     if (props.active === 'university') {
@@ -45,9 +44,12 @@ function SearchResult(props) {
       ));
     }
     if (props.active === 'carreer') {
-      afterSearch = props.dataTypeHasChanged ? beforeSearch : props.data.map(res => (
-        <CareerCard career={res} key={res.id} mobile={props.mobile} />
-      ));
+      afterSearch = props.dataTypeHasChanged ? beforeSearch : props.data.map(res => {
+        if (props.mobile) {
+          return <ExpandibleCard career={res} key={res.id} mobile={props.mobile} compress />;
+        }
+        return <CareerCard career={res} key={res.id} mobile={props.mobile} />
+      });
     }
   }
 
