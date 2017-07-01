@@ -3,18 +3,26 @@ import {
   SEARCH_REQUEST,
   SEARCH_SUCCESS,
   POPULAR_SUCCESS,
+  INFINITE_REQUEST,
+  INFINITE_SUCCESS,
 } from '../actions/types';
 
 const initalState = {
   result: null,
+  current_page: 1,
   popular_careers: [],
   popular_univ: [],
   requesting: false,
+  infiniteLoading: false,
   error: {},
 };
 
 function search(state = initalState, action) {
   switch (action.type) {
+    case INFINITE_REQUEST:
+      return Object.assign({}, state, {
+        infiniteLoading: true,
+      });
     case SEARCH_REQUEST:
       return Object.assign({}, state, {
         requesting: true,
@@ -28,6 +36,14 @@ function search(state = initalState, action) {
       return Object.assign({}, state, {
         result: action.payload,
         requesting: false,
+        current_page: 2,
+        error: {},
+      });
+    case INFINITE_SUCCESS:
+      return Object.assign({}, state, {
+        result: [...state.result, ...action.payload],
+        current_page: state.current_page + 1,
+        infiniteLoading: false,
         error: {},
       });
     case POPULAR_SUCCESS:

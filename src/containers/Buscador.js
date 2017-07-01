@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import FiltersDrawer from './FiltersDrawer';
 import SearchInput from '../components/inputs/SearchInput';
-import { search } from '../actions/search';
+import { search, getNextPage } from '../actions/search';
 import { fetch } from '../actions/fetch';
 import SearchResult from '../components/SearchResult';
 import MobileBanner from './MobileBanner';
@@ -16,11 +16,9 @@ class Buscador extends Component {
       showFilters: false,
       dataTypeHasChanged: false,
     };
-  }
-
-  componentWillMount() {
     this.toggleFilters = this.toggleFilters.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleInfinite = this.handleInfinite.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -43,12 +41,19 @@ class Buscador extends Component {
     }
   }
 
+  handleInfinite() {
+    const { active, token, currentPage } = this.props;
+    const { input } = this.state;
+    const filters = active === 'university' ? this.props.university_filters : this.props.career_filters;
+    this.props.getNextPage(active, input, token, filters, currentPage);
+  }
+
   handleSubmit(event) {
     event.preventDefault();
     const { active, token } = this.props;
     const { input } = this.state;
     const filters = active === 'university' ? this.props.university_filters : this.props.career_filters;
-    this.props.search(active, input, token, filters, 20);
+    this.props.search(active, input, token, filters);
     if (this.state.showFilters) this.setState({ showFilters: false });
   }
 
@@ -80,6 +85,8 @@ class Buscador extends Component {
             active={this.props.active}
             dataTypeHasChanged={this.state.dataTypeHasChanged}
             requesting={this.props.requesting}
+            handleInfinite={this.handleInfinite}
+            infiniteLoading={this.props.infiniteLoading}
             mobile={this.props.mobile}
           />
           {this.props.mobile ? null : <div className="empty-left" />}
@@ -102,6 +109,10 @@ Buscador.propTypes = {
   mobile: PropTypes.bool,
   data: PropTypes.array,
   popular: PropTypes.array,
+  moveToNextPage: PropTypes.func.isRequired,
+  infiniteLoading: PropTypes.bool.isRequired,
+  currentPage: PropTypes.number.isRequired,
+  getNextPage: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -113,6 +124,8 @@ function mapStateToProps(state) {
     universities: state.search.popular_univ,
     result: state.fetch.result,
     requesting: state.search.requesting || state.fetch.requesting,
+    infiniteLoading: state.search.infiniteLoading,
+    currentPage: state.filter.currentPage,
     university_filters: {
       cities: state.filter.cities !== -1 ? state.filter.cities : null,
       university_type_id: state.filter.university_type !== -1 ? state.filter.university_type : null,
@@ -134,5 +147,6 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, {
   search,
   fetch,
+  getNextPage,
 })(Buscador);
 

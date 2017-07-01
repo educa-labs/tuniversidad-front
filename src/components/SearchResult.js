@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
+import is from 'is_js';
 import Infinite from 'react-infinite';
 import UniversityCard from './UniversityCard';
 import CareerCard from './CareerCard';
 import Loading from './Loading';
 
 function SearchResult(props) {
-
   if (props.requesting) {
     return (
       <div className={`col col-grey${props.mobile ? '' : '-desk'}`} />
@@ -33,20 +33,26 @@ function SearchResult(props) {
       </div>
     );
   }
-
+  console.log('Estamos', props.data);
   let afterSearch = null;
-  if (props.data === []) {
+  if (is.empty(props.data)) {
+    console.log('Hola');
     afterSearch = <div>No hay resultados</div>;
+  } else {
+    if (props.active === 'university') {
+      afterSearch = props.dataTypeHasChanged ? beforeSearch : props.data.map(res => (
+        <UniversityCard university={res} key={res.id} mobile={props.mobile} />
+      ));
+    }
+    if (props.active === 'carreer') {
+      afterSearch = props.dataTypeHasChanged ? beforeSearch : props.data.map(res => (
+        <CareerCard career={res} key={res.id} mobile={props.mobile} />
+      ));
+    }
   }
-  if (props.active === 'university') {
-    afterSearch = props.dataTypeHasChanged ? beforeSearch : props.data.map(res => (
-      <UniversityCard university={res} key={res.id} mobile={props.mobile} />
-    ));
-  }
-  if (props.active === 'carreer') {
-    afterSearch = props.dataTypeHasChanged ? beforeSearch : props.data.map(res => (
-      <CareerCard career={res} key={res.id} mobile={props.mobile} />
-    ));
+
+  function handleInfinite() {
+    if (!props.infiniteLoading) props.handleInfinite();
   }
 
   return (
@@ -55,9 +61,9 @@ function SearchResult(props) {
         elementHeight={props.mobile ? 320 : 230}
         useWindowAsScrollContainer
         loadingSpinnerDelegate={<Loading />}
-        infiniteLoadBeginEdgeOffset={200}
-        onInfiniteLoad={() => console.log('load')}
-        isInfiniteLoading={false}
+        infiniteLoadBeginEdgeOffset={20}
+        onInfiniteLoad={handleInfinite}
+        isInfiniteLoading={props.infiniteLoading}
       >
         {afterSearch}
       </Infinite>
@@ -70,6 +76,7 @@ SearchResult.propTypes = {
   mobile: PropTypes.bool.isRequired,
   dataTypeHasChanged: PropTypes.bool.isRequired,
   requesting: PropTypes.bool.isRequired,
+  infiniteLoading: PropTypes.bool.isRequired,
   data: PropTypes.array,
 };
 

@@ -4,11 +4,14 @@ import {
   SEARCH_REQUEST,
   SEARCH_SUCCESS,
   POPULAR_SUCCESS,
+  INFINITE_REQUEST,
+  INFINITE_SUCCESS,
 } from './types';
 
 import url from '../constants/url';
 
-export function search(active, text, token, filters, page) {
+
+export function search(active, text, token, filters) {
   const request = Request.post(`${url}/search/`)
     .set('Content-Type', 'application/json')
     .set('Authorization', token)
@@ -18,7 +21,6 @@ export function search(active, text, token, filters, page) {
       [active]: {
         text,
         ...filters,
-        page,
       },
     });
   return (dispath) => {
@@ -43,6 +45,40 @@ export function search(active, text, token, filters, page) {
   };
 }
 
+export function getNextPage(active, text, token, filters, page) {
+  const request = Request.post(`${url}/search/`)
+    .set('Content-Type', 'application/json')
+    .set('Authorization', token)
+    .accept('application/tuniversidad.v1')
+    .withCredentials()
+    .send({
+      [active]: {
+        text,
+        ...filters,
+      },
+      page,
+    });
+  return (dispath) => {
+    dispath({
+      type: INFINITE_REQUEST,
+    });
+    return request
+      .then((res) => {
+        if (res.ok) {
+          dispath({
+            type: INFINITE_SUCCESS,
+            payload: res.body,
+          });
+        }
+      })
+      .catch((err) => {
+        dispath({
+          type: SEARCH_FAILURE,
+          error: err.response.body,
+        });
+      });
+  };
+}
 export function getMostPopular(active, token) {
   const request = Request.get(`${url}/popular/${active}`)
     .set('Content-Type', 'application/json')
