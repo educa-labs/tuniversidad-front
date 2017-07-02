@@ -123,6 +123,7 @@ function mapStateToProps(state) {
     requesting: state.search.requesting || state.fetch.requesting,
     infiniteLoading: state.search.infiniteLoading,
     hasMore: state.search.hasMore,
+    currentPage: state.search.current_page,
     university_filters: {
       cities: state.filter.cities !== -1 ? state.filter.cities : null,
       university_type_id: state.filter.university_type !== -1 ? state.filter.university_type : null,
