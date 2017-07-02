@@ -15,6 +15,7 @@ import { addToCompare, removeFromCompare } from '../actions/compare';
 const labelStyle = {
   color: '#0091EA',
   fontSize: '12px',
+  fontWeight: 300,
 };
 
 
@@ -26,6 +27,7 @@ class ExpandibleCard extends Component {
     };
     this.linkTo = this.linkTo.bind(this);
     this.handleInfoClick = this.handleInfoClick.bind(this);
+    this.handleFavButton = this.handleFavButton.bind(this);
   }
 
   handleInfoClick() {
@@ -35,20 +37,22 @@ class ExpandibleCard extends Component {
     this.context.router.push(`site/university/${this.props.career.university_id}`);
   }
 
-  render() {
-    const { career } = this.props;
-    const { expanded } = this.state;
-
-    const science = career.weighing ? is.existy(career.weighing.science) : null;
-    const isFavorite = _.findIndex(this.props.goals, goal => goal.carreer.id === career.id) > -1;
-
-    function handleFavButton() {
-      if (isFavorite) {
-        this.props.removeGoal(career.id, this.props.token);
-      } else {
-        this.props.addGoal(career.id, this.props.token);
-      }
+  handleFavButton() {
+    const { career, token, goals } = this.props;
+    const isFavorite = _.findIndex(goals, goal => goal.carreer.id === career.id) > -1;
+    if (isFavorite) {
+      this.props.removeGoal(career.id, token);
+    } else {
+      this.props.addGoal(career.id, token);
     }
+  }
+
+  render() {
+    const { career, goals } = this.props;
+    const { expanded } = this.state;
+    const science = career.weighing ? is.existy(career.weighing.science) : null;
+    const isFavorite = _.findIndex(goals, goal => goal.carreer.id === career.id) > -1;
+    
     return (
       <div>
         <div className="expandible-card">
@@ -62,7 +66,7 @@ class ExpandibleCard extends Component {
             <IconButton
               onTouchTap={() => this.setState({ expanded: !expanded })}
             >
-              {this.state.expanded ? (
+              {expanded ? (
                 <ArrowUp color="#424242" />
               ) : (
                 <ArrowDown color="#424242" />
@@ -70,7 +74,7 @@ class ExpandibleCard extends Component {
             </IconButton>
           </div>
           <Collapse isOpened={expanded}>
-            <div className={`expandible-card-body`}>
+            <div className="expandible-card-body">
               <div className="row">
                 <div className="general-card__item">
                   <div className="value">{career.weighing ? career.weighing.language : null}%</div>
@@ -130,13 +134,13 @@ class ExpandibleCard extends Component {
                 </div>
               </div>
             </div>
-            <div className="row">
+            <div className="row no-margin">
               <div className="start">
                 <FlatButton
                   label={isFavorite ? 'Remover de mis metas' : 'Añadir a mis metas'}
                   secondary
                   labelStyle={labelStyle}
-                  onTouchTap={handleFavButton}
+                  onTouchTap={this.handleFavButton}
                   disabled={this.props.requesting}
                 />
               </div>

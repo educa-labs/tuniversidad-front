@@ -63,7 +63,8 @@ class UserGoals extends Component {
   }
 
   render() {
-    if (this.props.goals === null) {
+    const { goals, essays } = this.props;
+    if (is.any.null(goals, essays[1], essays[2], essays[3], essays[4])) {
       return <Loading />;
     }
     const onSearchClick = () => this.context.router.push('/site/search');
