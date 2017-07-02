@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import is from 'is_js';
-import Infinite from 'react-infinite';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import UniversityCard from './UniversityCard';
 import CareerCard from './CareerCard';
 import Loading from './Loading';
@@ -53,22 +53,16 @@ function SearchResult(props) {
     }
   }
 
-  function handleInfinite() {
-    if (!props.infiniteLoading) props.handleInfinite();
-  }
-
   return (
     <div className={`col col-grey${props.mobile ? '' : '-desk padding-2'}`}>
-      <Infinite
-        elementHeight={props.mobile ? 320 : 250}
-        useWindowAsScrollContainer
-        loadingSpinnerDelegate={<Loading />}
-        infiniteLoadBeginEdgeOffset={20}
-        onInfiniteLoad={handleInfinite}
-        isInfiniteLoading={props.infiniteLoading}
+      <InfiniteScroll
+        pageStart={0}
+        loader={<Loading />}
+        next={() => props.handleInfinite()}
+        hasMore={props.hasMore}
       >
         {afterSearch}
-      </Infinite>
+      </InfiniteScroll>
     </div>
   );
 }
@@ -78,7 +72,7 @@ SearchResult.propTypes = {
   mobile: PropTypes.bool.isRequired,
   dataTypeHasChanged: PropTypes.bool.isRequired,
   requesting: PropTypes.bool.isRequired,
-  infiniteLoading: PropTypes.bool.isRequired,
+  hasMore: PropTypes.bool.isRequired,
   handleInfinite: PropTypes.func.isRequired,
   data: PropTypes.array,
 };

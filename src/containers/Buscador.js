@@ -86,7 +86,7 @@ class Buscador extends Component {
             dataTypeHasChanged={this.state.dataTypeHasChanged}
             requesting={this.props.requesting}
             handleInfinite={this.handleInfinite}
-            infiniteLoading={this.props.infiniteLoading}
+            hasMore={this.props.hasMore}
             mobile={this.props.mobile}
           />
           {this.props.mobile ? null : <div className="empty-left" />}
@@ -109,8 +109,6 @@ Buscador.propTypes = {
   mobile: PropTypes.bool,
   data: PropTypes.array,
   popular: PropTypes.array,
-  infiniteLoading: PropTypes.bool.isRequired,
-  currentPage: PropTypes.number.isRequired,
   getNextPage: PropTypes.func.isRequired,
 };
 
@@ -124,7 +122,7 @@ function mapStateToProps(state) {
     result: state.fetch.result,
     requesting: state.search.requesting || state.fetch.requesting,
     infiniteLoading: state.search.infiniteLoading,
-    currentPage: state.search.current_page,
+    hasMore: state.search.hasMore,
     university_filters: {
       cities: state.filter.cities !== -1 ? state.filter.cities : null,
       university_type_id: state.filter.university_type !== -1 ? state.filter.university_type : null,

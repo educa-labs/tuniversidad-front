@@ -9,7 +9,7 @@ import {
 
 const initalState = {
   result: null,
-  current_page: 1,
+  hasMore: true,
   popular_careers: [],
   popular_univ: [],
   requesting: false,
@@ -36,14 +36,15 @@ function search(state = initalState, action) {
       return Object.assign({}, state, {
         result: action.payload,
         requesting: false,
-        current_page: 2,
+        hasMore: true,
         error: {},
       });
     case INFINITE_SUCCESS:
+      const result = state.result.concat(action.payload);
+      const hasMore = action.payload === [];
       return Object.assign({}, state, {
-        result: [...state.result, ...action.payload],
-        current_page: state.current_page + 1,
-        infiniteLoading: false,
+        result,
+        hasMore,
         error: {},
       });
     case POPULAR_SUCCESS:

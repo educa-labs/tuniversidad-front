@@ -72,6 +72,7 @@ export function getNextPage(active, text, token, filters, page) {
         }
       })
       .catch((err) => {
+        console.log(err)
         dispath({
           type: SEARCH_FAILURE,
           error: err.response.body,
