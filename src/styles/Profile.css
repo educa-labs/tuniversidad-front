@@ -29,8 +29,10 @@
 }
 
 .goal {
-  margin-bottom: 20px;
   padding: 0 1rem;
+}
+.goal:hover {
+  background-color: #EEEEEE;
 }
 
 .goal__header {
@@ -44,10 +46,15 @@
   margin: 5px 0;
 }
 
-.goal__delete-button {
+.goal .goal__delete-button {
   display: flex;
   flex: 1;
   justify-content: flex-end;
+  display: none;
+}
+
+.goal:hover .goal__delete-button {
+  display: inherit;
 }
 
 .progress {

@@ -1,3 +1,4 @@
+import is from 'is_js';
 import {
   SEARCH_FAILURE,
   SEARCH_REQUEST,
@@ -13,7 +14,6 @@ const initalState = {
   popular_careers: [],
   popular_univ: [],
   requesting: false,
-  infiniteLoading: false,
   error: {},
 };
 
@@ -37,14 +37,14 @@ function search(state = initalState, action) {
         result: action.payload,
         requesting: false,
         hasMore: true,
+        current_page: 2,
         error: {},
       });
     case INFINITE_SUCCESS:
-      const result = state.result.concat(action.payload);
-      const hasMore = action.payload === [];
       return Object.assign({}, state, {
-        result,
-        hasMore,
+        result: [...state.result, ...action.payload],
+        hasMore: action.payload !== [],
+        current_page: state.current_page + 1,
         error: {},
       });
     case POPULAR_SUCCESS:

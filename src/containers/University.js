@@ -1,12 +1,14 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
-import Infinite from 'react-infinite';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import is from 'is_js';
 import { getCareers } from '../helpers/api';
 import NavigationBar from '../components/NavigationBar';
 import UniversityCard from '../components/UniversityCard';
 import CareerCard from '../components/CareerCard';
+import ExpandibleCard from '../components/ExpandibleCard';
+import CareerHeading from '../components/CareerHeading';
 import Loading from '../components/Loading';
 import { fetch } from '../actions/fetch';
 import '../styles/University.css';
@@ -46,14 +48,24 @@ class University extends Component {
         );
       case 1:
         return (
-          <Infinite
-            elementHeight={this.props.mobile ? 320 : 230}
-            containerHeight={this.props.mobile ? 320 : 640}
+          <InfiniteScroll
+            pageStart={0}
+            height={this.props.mobile ? 280 : 420}
           >
-            {this.state.careers.map((car) => {
-              return <CareerCard career={car} key={car.id} mobile={this.props.mobile} compress />;
+            {this.state.careers.map((res) => {
+              // if (this.props.mobile) {
+              return (
+                <CareerHeading
+                  key={res.id}
+                  title={res.title}
+                  subtitle={res.university_name}
+                  onClick={() => this.context.router.push(`site/career/${res.id}`)}
+                />
+              );
+              // }
+              // return <CareerCard career={res} key={res.id} />;
             })}
-          </Infinite>
+          </InfiniteScroll>
         );
       default: return null;
     }
@@ -63,7 +75,6 @@ class University extends Component {
   }
 
   render() {
-    console.log('Render');
     const { careers, slideIndex } = this.state;
     const { university, mobile } = this.props;
 
@@ -91,7 +102,7 @@ class University extends Component {
           <Tab label="Información general" value={0} style={tabStyle} />
           <Tab label="Carreras" value={1} style={tabStyle} />
         </Tabs >
-        <div className="col justify-center bg-grey" ref={e => this.login = e}>
+        <div className={`col justify-center bg-grey ${mobile ? '' : 'padding-7'}`}>
           {this.getContent(slideIndex)}
         </div>
       </div>
@@ -117,6 +128,12 @@ University.propTypes = {
   university: PropTypes.object,
   mobile: PropTypes.bool,
 };
+
+University.contextTypes = {
+  router: PropTypes.object,
+};
+
+
 
 export default connect(mapStateToProps, {
   fetch,

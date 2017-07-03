@@ -15,10 +15,14 @@ function SearchResult(props) {
 
   let beforeSearch = null;
   if (props.active === 'carreer') {
-    beforeSearch = props.popularCareers.map(res => (
-      <CareerCard career={res} key={res.id} mobile={props.mobile} />
-    ));
+    beforeSearch = props.popularCareers.map(res => {
+      if (props.mobile) {
+        return <ExpandibleCard career={res} key={res.id} />;
+      }
+      return <CareerCard career={res} key={res.id} />;
+    });
   }
+  
   if (props.active === 'university') {
     beforeSearch = props.popularUniv.map(res => (
       <UniversityCard university={res} key={res.id} mobile={props.mobile} />
@@ -48,7 +52,7 @@ function SearchResult(props) {
         if (props.mobile) {
           return <ExpandibleCard career={res} key={res.id} mobile={props.mobile} compress />;
         }
-        return <CareerCard career={res} key={res.id} mobile={props.mobile} />
+        return <CareerCard career={res} key={res.id} mobile={props.mobile} />;
       });
     }
   }
@@ -59,7 +63,7 @@ function SearchResult(props) {
         pageStart={0}
         loader={<Loading />}
         next={() => props.handleInfinite()}
-        hasMore={props.hasMore}
+        hasMore
       >
         {afterSearch}
       </InfiniteScroll>

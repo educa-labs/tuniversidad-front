@@ -4,12 +4,25 @@ body {
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   font-weight: 400;
+  color: #424242;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+button {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    text-align: inherit;
+    font-size: 14px;
+    font-weight: 300;
 }
 
 .empty {

@@ -104,9 +104,9 @@
 
 .expandible-card {
   background-color: white;
-  padding: 0.5rem 0;
 }
 
-.expandible-card-body {
-  height: 240px;
+.expandible-card:hover {
+  background-color: #EEEEEE;
 }
+

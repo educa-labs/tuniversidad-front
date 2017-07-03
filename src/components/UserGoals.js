@@ -1,6 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import is from 'is_js';
 import ClearIcon from 'material-ui/svg-icons/content/clear';
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import IconButton from 'material-ui/IconButton';
 import Divider from 'material-ui/Divider';
 import Loading from '../components/Loading';
@@ -44,16 +47,16 @@ class UserGoals extends Component {
         <div className="goal">
           <div className="goal__header">
             <div className="goal__title" onClick={onClick}>{`${goal.carreer.title} en ${goal.carreer.university_name}`}</div>
-            {this.state.editMode ? (
-              <div className="goal__delete-button">
-                <IconButton
+            <div className="goal__delete-button">
+              <IconMenu
+                iconButtonElement={<IconButton><MoreVertIcon color="#424242" /></IconButton>}
+              >
+                <MenuItem
+                  secondaryText="Borrar"
                   onTouchTap={() => this.props.removeGoal(goal.carreer.id)}
-                  tooltip="Remover"
-                >
-                  <ClearIcon color="#F44336" />
-                </IconButton>
-              </div>
-            ) : null}
+                />
+              </IconMenu>
+            </div>
           </div>
           <BarChart max={850} scores={scores} missing={missing} linkToProgress={this.props.linkToProgress} />
         </div>
@@ -63,7 +66,8 @@ class UserGoals extends Component {
   }
 
   render() {
-    if (this.props.goals === null) {
+    const { goals, essays } = this.props;
+    if (is.any.null(goals, essays[1], essays[2], essays[3], essays[4])) {
       return <Loading />;
     }
     const onSearchClick = () => this.context.router.push('/site/search');

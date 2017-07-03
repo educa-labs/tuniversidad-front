@@ -1,14 +1,21 @@
 import React, { PropTypes, Component } from 'react';
+import { connect } from 'react-redux';
+import _ from 'lodash';
+import is from 'is_js';
 import IconButton from 'material-ui/IconButton';
 import Divider from 'material-ui/Divider';
+import FlatButton from 'material-ui/FlatButton';
 import ArrowDown from 'material-ui/svg-icons/hardware/keyboard-arrow-down';
 import ArrowUp from 'material-ui/svg-icons/hardware/keyboard-arrow-up';
 import { Collapse } from 'react-collapse';
 import { numeral } from '../helpers/numeral';
+import { addGoal, removeGoal } from '../actions/goals';
+import { addToCompare, removeFromCompare } from '../actions/compare';
 
 const labelStyle = {
   color: '#0091EA',
   fontSize: '12px',
+  fontWeight: 300,
 };
 
 
@@ -19,15 +26,33 @@ class ExpandibleCard extends Component {
       expanded: false,
     };
     this.linkTo = this.linkTo.bind(this);
+    this.handleInfoClick = this.handleInfoClick.bind(this);
+    this.handleFavButton = this.handleFavButton.bind(this);
   }
 
+  handleInfoClick() {
+    this.context.router.push(`site/career/${this.props.career.id}`);
+  }
   linkTo() {
     this.context.router.push(`site/university/${this.props.career.university_id}`);
   }
 
+  handleFavButton() {
+    const { career, token, goals } = this.props;
+    const isFavorite = _.findIndex(goals, goal => goal.carreer.id === career.id) > -1;
+    if (isFavorite) {
+      this.props.removeGoal(career.id, token);
+    } else {
+      this.props.addGoal(career.id, token);
+    }
+  }
+
   render() {
-    const { career, science } = this.props;
+    const { career, goals } = this.props;
     const { expanded } = this.state;
+    const science = career.weighing ? is.existy(career.weighing.science) : null;
+    const isFavorite = _.findIndex(goals, goal => goal.carreer.id === career.id) > -1;
+    
     return (
       <div>
         <div className="expandible-card">
@@ -41,7 +66,7 @@ class ExpandibleCard extends Component {
             <IconButton
               onTouchTap={() => this.setState({ expanded: !expanded })}
             >
-              {this.state.expanded ? (
+              {expanded ? (
                 <ArrowUp color="#424242" />
               ) : (
                 <ArrowDown color="#424242" />
@@ -49,7 +74,7 @@ class ExpandibleCard extends Component {
             </IconButton>
           </div>
           <Collapse isOpened={expanded}>
-            <div className={`expandible-card-body`}>
+            <div className="expandible-card-body">
               <div className="row">
                 <div className="general-card__item">
                   <div className="value">{career.weighing ? career.weighing.language : null}%</div>
@@ -109,6 +134,20 @@ class ExpandibleCard extends Component {
                 </div>
               </div>
             </div>
+            <div className="row no-margin">
+              <div className="start">
+                <FlatButton
+                  label={isFavorite ? 'Remover de mis metas' : 'Añadir a mis metas'}
+                  secondary
+                  labelStyle={labelStyle}
+                  onTouchTap={this.handleFavButton}
+                  disabled={this.props.requesting}
+                />
+              </div>
+              <div className="end">
+                <FlatButton label="Más información" secondary labelStyle={labelStyle} onTouchTap={this.handleInfoClick} />
+              </div>
+            </div>
           </Collapse>
         </div>
         <Divider />
@@ -129,4 +168,20 @@ ExpandibleCard.contextTypes = {
   router: PropTypes.object,
 };
 
-export default ExpandibleCard;
+function mapStateToProps(state) {
+  return {
+    goals: state.goals.goals,
+    requesting: state.goals.requesting,
+    token: state.user.currentUser.auth_token,
+    compare: state.compare,
+  };
+}
+
+
+export default connect(mapStateToProps, {
+  addGoal,
+  removeGoal,
+  addToCompare,
+  removeFromCompare,
+})(ExpandibleCard);
+

@@ -64,7 +64,7 @@ class Career extends Component {
           <Tab label="Información general" value={0} style={tabStyle} />
           <Tab label="Preguntas y respuestas" value={1} style={tabStyle} />
         </Tabs >
-        <div className="col justify-center bg-grey">
+        <div className={`col justify-center bg-grey ${mobile ? '' : 'padding-7'}`}>
           {slideIndex === 0 ? first : null }
           {slideIndex === 1 ? <div>Preguntas</div> : null}
         </div>

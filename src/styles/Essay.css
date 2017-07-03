@@ -30,24 +30,6 @@
   justify-content: flex-end;
   flex: 1;
 }
-.essay__body {
-  max-height: 0;
-  transition: all 1s ease;
-}
-
-.essay__body_active {
-  overflow: scroll;
-  max-height: 15rem;
-}
-
-@keyframes expand {
-  from {
-    height: 0%
-  }
-  to {
-    height: 100%
-  }
-}
 
 .essay__score {
   display: flex;
