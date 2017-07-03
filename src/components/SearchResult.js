@@ -17,9 +17,9 @@ function SearchResult(props) {
   if (props.active === 'carreer') {
     beforeSearch = props.popularCareers.map(res => {
       if (props.mobile) {
-        return <ExpandibleCard career={res} key={res.id} mobile={props.mobile} compress />;
+        return <ExpandibleCard career={res} key={res.id} />;
       }
-      return <CareerCard career={res} key={res.id} mobile={props.mobile} />;
+      return <CareerCard career={res} key={res.id} />;
     });
   }
   
