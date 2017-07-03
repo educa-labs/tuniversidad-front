@@ -55,34 +55,34 @@ class SideMenu extends Component {
           onClick={() => this.handleSelectItem('profile')}
           selected={selected === 'profile'}
         />
-        <div
+        <button
           className={`side-menu__item ${selected === 'search' ? 'side-menu__item_selected' : ''}`}
           onClick={() => this.handleSelectItem('search')}
         >
           <div className="icon" ><Search color="#FFFFFF" /></div>
           <div className="side-menu__item-label">Buscador</div>
-        </div>
-        <div
+        </button>
+        <button
           className={`side-menu__item ${selected === 'compare' ? 'side-menu__item_selected' : ''}`}
-          onClick={() => this.handleSelectItem('compare')}
+          // onClick={() => this.handleSelectItem('compare')}
         >
           <div className="icon" ><CompareIcon color="#FFFFFF" /></div>
-          <div className="side-menu__item-label">Comparador</div>
-        </div>
-        <div
+          <div className="side-menu__item-label">Comparador (Pronto)</div>
+        </button>
+        <button
           className={`side-menu__item ${selected === 'recommend' ? 'side-menu__item_selected' : ''}`}
-          onClick={() => this.handleSelectItem('recommend')}
+          // onClick={() => this.handleSelectItem('recommend')}
         >
           <div className="icon" ><LightbulbIcon color="#FFFFFF" /></div>
-          <div className="side-menu__item-label">Newton</div>
-        </div>
-        <div
+          <div className="side-menu__item-label">Newton (Pronto)</div>
+        </button>
+        <button
           className={`side-menu__item ${selected === 'news' ? 'side-menu__item_selected' : ''}`}
           onClick={() => this.handleSelectItem('news')}
         >
           <div className="icon" ><NewsIcon color="#FFFFFF" /></div>
           <div className="side-menu__item-label">Noticias</div>
-        </div>
+        </button>
         <div className="side-menu__button-container">
           <RaisedButton
             onTouchTap={this.handleLogout}

@@ -53,17 +53,17 @@ class University extends Component {
             height={this.props.mobile ? 280 : 420}
           >
             {this.state.careers.map((res) => {
-              if (this.props.mobile) {
-                return (
-                  <CareerHeading
-                    key={res.id}
-                    title={res.title}
-                    subtitle={res.university_name}
-                    onClick={() => this.context.router.push(`site/career/${res.id}`)}
-                  />
-                );
-              }
-              return <CareerCard career={res} key={res.id} />;
+              // if (this.props.mobile) {
+              return (
+                <CareerHeading
+                  key={res.id}
+                  title={res.title}
+                  subtitle={res.university_name}
+                  onClick={() => this.context.router.push(`site/career/${res.id}`)}
+                />
+              );
+              // }
+              // return <CareerCard career={res} key={res.id} />;
             })}
           </InfiniteScroll>
         );

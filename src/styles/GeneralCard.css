@@ -106,3 +106,7 @@
   background-color: white;
 }
 
+.expandible-card:hover {
+  background-color: #EEEEEE;
+}
+
