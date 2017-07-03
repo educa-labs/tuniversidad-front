@@ -1,15 +1,11 @@
 import React, { PropTypes } from 'react';
 import Essay from './Essay';
+import Loading from './Loading';
 
 
 function UserEssays(props) {
-  const loading = (
-    <div>
-      Cargando ...
-    </div>
-  );
-  if (props.essays === null) return loading;
-  if (!props.essays[1] || !props.essays[2] || !props.essays[3] || !props.essays[4]) return loading;
+  if (props.essays === null) return <Loading />;
+  if (!props.essays[1] || !props.essays[2] || !props.essays[3] || !props.essays[4]) return <Loading />;
 
   return (
     <div className={`general-card ${props.mobile ? '' : 'general-card_desk'}`}>

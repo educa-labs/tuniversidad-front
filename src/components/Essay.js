@@ -5,6 +5,8 @@ import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import IconButton from 'material-ui/IconButton';
 import is from 'is_js';
+import { Collapse } from 'react-collapse';
+import Loading from './Loading';
 
 
 class Essay extends Component {
@@ -15,7 +17,7 @@ class Essay extends Component {
     };
     this.renderEssay = this.renderEssay.bind(this);
   }
-  // 
+
   renderEssay(ess) {
     return (
       <div className="essay__score" key={ess.id}>
@@ -48,11 +50,7 @@ class Essay extends Component {
 
   render() {
     if (is.null(this.props.essays)) {
-      return (
-        <div>
-          Cargando ...
-        </div>
-      );
+      return <Loading />;
     }
     const essays = this.props.essays.map(essay => this.renderEssay(essay));
 
@@ -62,9 +60,11 @@ class Essay extends Component {
           <div className={`essay__header ${this.props.active ? 'essay__header_active' : ''}`} onClick={this.props.handleClick}>
             <div className="essay__title">{this.props.title}</div>
           </div>
-          <div className={`essay__body ${this.props.active ? 'essay__body_active' : ''}`}>
-             {essays}
-          </div>
+          <Collapse isOpened={this.props.active}>
+            <div className={`essay__body ${this.props.active ? 'essay__body_active' : ''}`}>
+              {essays}
+            </div>
+          </Collapse>
         </div>
         <Divider />
       </div>
