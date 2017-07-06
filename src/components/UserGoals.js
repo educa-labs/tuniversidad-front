@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import is from 'is_js';
-import ClearIcon from 'material-ui/svg-icons/content/clear';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';

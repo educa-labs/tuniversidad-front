@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Drawer from 'material-ui/Drawer';
 import Search from 'material-ui/svg-icons/action/search';
 import RaisedButton from 'material-ui/RaisedButton';
-import CompareIcon from 'material-ui/svg-icons/image/compare';
+// import CompareIcon from 'material-ui/svg-icons/image/compare';
 import LightbulbIcon from 'material-ui/svg-icons/action/lightbulb-outline';
 import NewsIcon from 'material-ui/svg-icons/av/fiber-new';
 import ProfileBanner from '../components/ProfileBanner';

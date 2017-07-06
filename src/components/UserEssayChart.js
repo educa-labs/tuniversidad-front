@@ -41,7 +41,7 @@ function UserEssayChart(props) {
       <YAxis domain={['dataMin - 100', 850]} padding={{ top: 30, bottom: 30 }} tick={!props.mobile} tickSize={props.mobile? 0 : 6} />
       <Tooltip />
       <CartesianGrid strokeDasharray="4 4" />
-      <Line name="Puntaje" type="basis" dataKey="score" stroke="#0091EA" label={<CustomizedLabel />} dot={{ strokeWidth: 2 }} />
+      <Line name="Puntaje" type="natural" dataKey="score" stroke="#0091EA" label={<CustomizedLabel />} dot={{ strokeWidth: 2 }} />
     </LineChart>
   );
   

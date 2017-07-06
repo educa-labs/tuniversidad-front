@@ -20,8 +20,8 @@ class UserEssayForm extends Component {
       title: '',
       score: '',
       subject_id: this.props.active,
-      error: {},
       date: '',
+      error: {},
     };
     this.onSubmit = this.onSubmit.bind(this);
     this.disabled = this.disabled.bind(this);

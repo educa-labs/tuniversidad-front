@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react';
+import React from 'react';
 import Divider from 'material-ui/Divider';
 
 function CareerHeading({ title, subtitle, onClick }) {

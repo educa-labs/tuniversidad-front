@@ -1,4 +1,3 @@
-import is from 'is_js';
 import {
   SEARCH_FAILURE,
   SEARCH_REQUEST,

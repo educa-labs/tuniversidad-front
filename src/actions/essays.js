@@ -39,7 +39,7 @@ export function getEssays(token, id) {
 }
 
 
-export function addEssay(token, title, subjectId, score) {
+export function addEssay(token, title, subjectId, score, date) {
   const request = Request.post(`${url}/essays`)
     .set('Content-Type', 'application/json')
     .set('Authorization', token)
@@ -50,6 +50,7 @@ export function addEssay(token, title, subjectId, score) {
         subject_id: subjectId,
         score,
         title,
+        date,
       },
     });
   return (dispatch) => {
