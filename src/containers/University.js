@@ -6,7 +6,7 @@ import is from 'is_js';
 import { getCareers } from '../helpers/api';
 import NavigationBar from '../components/NavigationBar';
 import UniversityCard from '../components/UniversityCard';
-// import CareerCard from '../components/CareerCard';
+import CareerCard from '../components/CareerCard';
 // import ExpandibleCard from '../components/ExpandibleCard';
 import CareerHeading from '../components/CareerHeading';
 import Loading from '../components/Loading';
@@ -50,20 +50,21 @@ class University extends Component {
         return (
           <InfiniteScroll
             pageStart={0}
-            height={this.props.mobile ? 280 : 420}
+            height={this.props.mobile ? 280 : 440}
           >
             {this.state.careers.map((res) => {
-              // if (this.props.mobile) {
-              return (
-                <CareerHeading
-                  key={res.id}
-                  title={res.title}
-                  subtitle={res.university_name}
-                  onClick={() => this.context.router.push(`site/career/${res.id}`)}
-                />
-              );
-              // }
-              // return <CareerCard career={res} key={res.id} />;
+              if (this.props.mobile) {
+                return (
+                  <CareerHeading
+                    key={res.id}
+                    mobile={this.props.mobile}
+                    title={res.title}
+                    subtitle={res.university_name}
+                    onClick={() => this.context.router.push(`site/career/${res.id}`)}
+                  />
+                );
+              }
+              return <CareerCard career={res} key={res.id} />;
             })}
           </InfiniteScroll>
         );
