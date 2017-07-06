@@ -19,7 +19,7 @@ function Dialog(props) {
       className={`dialog-container ${props.open ? '' : 'dialog-container-hide'}`}
       onClick={props.onRequestClose}
     >
-      <div className="dialog-content" onClick={event => event.stopPropagation()}>
+      <div className={`dialog-content ${props.containerClassName ? props.containerClassName : ''}` } onClick={event => event.stopPropagation()}>
         {title}
         {props.children}
         {actions}

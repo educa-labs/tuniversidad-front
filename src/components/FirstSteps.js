@@ -162,7 +162,7 @@ class FirstSteps extends Component {
     const { slideIndex } = this.state;
     const { mobile } = this.props;
     return (
-      <Dialog open={!this.props.user.tutorial}>
+      <Dialog open={!this.props.user.tutorial} containerClassName="row position-relative">
           <div className="step__button" onClick={this.handleBack}>
             <IconButton><LeftArrow color={is.inArray(slideIndex, [0]) ? '#FFFFFF' : '#9E9E9E'} /></IconButton>
           </div>
