@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
+import is from 'is_js';
 import TextField from 'material-ui/TextField';
 import { checkScore } from '../helpers/numeral';
+import Dialog from './Dialog';
 
 class UserObjectivesForm extends Component {
 
@@ -13,24 +14,61 @@ class UserObjectivesForm extends Component {
       math: this.props.objectives.math,
       science: this.props.objectives.science,
       history: this.props.objectives.history,
-      error: '',
+      nem: this.props.user.nem,
+      ranking: this.props.user.ranking,
+      error: {},
     };
     this.disabled = this.disabled.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.getError = this.getError.bind(this);
+    this.logChage = this.logChage.bind(this);
+  }
+
+  getError(field) {
+    return this.state.error[field] ? this.state.error[field] : '';
+  }
+
+  logChage(field, val) {
+    this.setState({
+      [field]: val ? Number(val) : '',
+      error: Object.assign({}, this.state.error, {
+        [field]: '',
+      }),
+    });
   }
 
   onSubmit() {
-    const { language, math, science, history } = this.state;
-    if (!checkScore(language) || !checkScore(math) || (!checkScore(science) && science) || (!checkScore(history) && history)) {
-      this.setState({ error: 'Puntaje Inválido' });
-    } else {
+    console.log('Click')
+    const { language, math, science, history, nem, ranking } = this.state;
+    const fields = [
+      'language',
+      'math',
+      'science',
+      'history',
+      'nem',
+      'ranking',
+    ];
+    const error = {};
+    const errMsg = 'Puntaje Inválido';
+    fields.forEach((fld) => {
+      if (!checkScore(this.state[fld] && this.state[fld])) {
+        error[fld] = errMsg;
+      }
+    });
+    if (is.not.empty(error)) this.setState({ error });
+    else {
       this.props.handleSubmit(language, math, history, science);
+      console.log('Hola');
+      this.props.updateUser({
+        nem,
+        ranking,
+      });
     }
   }
 
   disabled() {
-    const { language, math } = this.state;
-    return language === '' || math === '';
+    const { language, math, nem, ranking } = this.state;
+    return language === '' || math === '' || nem === '' || ranking === '';
   }
 
   render() {
@@ -38,7 +76,6 @@ class UserObjectivesForm extends Component {
       <FlatButton
         label="Cancelar"
         onTouchTap={this.props.handleClose}
-        labelColor="#0091EA"
         secondary
       />,
       <FlatButton
@@ -60,12 +97,12 @@ class UserObjectivesForm extends Component {
         <div className="row">
           <div className="form__field">
             <TextField
-              onChange={(e, val) => this.setState({ language: Number(val), error: '' })}
+              onChange={(e, val) => this.logChage('language', val)}
               value={this.state.language}
               floatingLabelText="Lenguaje"
               fullWidth
               type="number"
-              errorText={this.state.language ? this.state.error : ''}
+              errorText={this.getError('language')}
             />
           </div>
           <div className="form__field">
@@ -75,29 +112,51 @@ class UserObjectivesForm extends Component {
               floatingLabelText="Matemáticas"
               fullWidth
               type="number"
-              errorText={this.state.math ? this.state.error : ''}
+              errorText={this.getError('math')}
             />
           </div>
         </div>
         <div className="row">
           <div className="form__field">
             <TextField
-              onChange={(e, val) => this.setState({ history: Number(val), error: '' })}
+              onChange={(e, val) => this.logChage('history', val)}
               value={this.state.history}
               floatingLabelText="Historia"
               fullWidth
               type="number"
-              errorText={this.state.history ? this.state.error : ''}
+              errorText={this.getError('history')}
             />
           </div>
           <div className="form__field">
             <TextField
-              onChange={(e, val) => this.setState({ science: Number(val), error: '' })}
+              onChange={(e, val) => this.logChage('science', val)}
               value={this.state.science}
               floatingLabelText="Ciencias"
               fullWidth
               type="number"
-              errorText={this.state.science ? this.state.error : ''}
+              errorText={this.getError('science')}
+            />
+          </div>
+        </div>
+        <div className="row">
+          <div className="form__field">
+            <TextField
+              onChange={(e, val) => this.logChage('nem', val)}
+              floatingLabelText="Nem"
+              fullWidth
+              type="number"
+              value={this.state.nem}
+              errorText={this.getError('nem')}
+            />
+          </div>
+          <div className="form__field">
+            <TextField
+              onChange={(e, val) => this.logChage('ranking', val)}
+              floatingLabelText="Ranking"
+              fullWidth
+              type="number"
+              value={this.state.ranking}
+              errorText={this.getError('ranking')}
             />
           </div>
         </div>

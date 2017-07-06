@@ -25,6 +25,8 @@ class UserObjectives extends Component {
           open={this.state.editMode}
           handleClose={() => this.setState({ editMode: false })}
           objectives={objectives}
+          user={user}
+          updateUser={this.props.updateUser}
           handleSubmit={this.props.handleSubmit}
         />
         <div className="general-card__header">

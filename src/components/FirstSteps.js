@@ -14,6 +14,7 @@ import Nem from './slides/Nem';
 import Objectives from './slides/Objectives';
 import Ready from './slides/Ready';
 import Steps from './slides/Steps';
+import Dialog from './Dialog';
 
 import { validateRut, validateDate, checkScore, validatePhone } from '../helpers/numeral';
 
@@ -161,8 +162,7 @@ class FirstSteps extends Component {
     const { slideIndex } = this.state;
     const { mobile } = this.props;
     return (
-      <div className="first-steps-container">
-        <div className="general-card row no-hover position-relative">
+      <Dialog open={!this.props.user.tutorial}>
           <div className="step__button" onClick={this.handleBack}>
             <IconButton><LeftArrow color={is.inArray(slideIndex, [0]) ? '#FFFFFF' : '#9E9E9E'} /></IconButton>
           </div>
@@ -219,8 +219,7 @@ class FirstSteps extends Component {
           <div className="step__button" onClick={this.handleNext}>
             <IconButton disabled={this.disabled()}><RigthArrow color={is.inArray(slideIndex, [8]) ? '#FFFFFF' : 'black'} /></IconButton>
           </div>
-        </div>
-      </div>
+        </Dialog>
     );
   }
 }

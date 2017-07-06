@@ -1,10 +1,10 @@
 import React, { PropTypes, Component } from 'react';
 import is from 'is_js';
-import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import SelectInput from './inputs/SelectInput';
 import DatePicker from './inputs/DatePicker';
+import Dialog from './Dialog';
 import { checkScore, validateDate } from '../helpers/numeral';
 
 const styles = {

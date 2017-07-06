@@ -17,11 +17,11 @@ function ProfileGeneral(props) {
         />
         <UserInfo
           user={props.user}
-          updateUser={props.updateUser}
           token={props.token}
           mobile={props.mobile}
         />
         <UserObjectives
+          updateUser={props.updateUser}
           objectives={props.objectives.objectives}
           user={props.user}
           handleSubmit={(l, m, h, s) => props.updateUserObjectives(props.token, l, m, h, s)}
@@ -43,10 +43,10 @@ function ProfileGeneral(props) {
       <div className="col col-2">
         <UserInfo
           user={props.user}
-          updateUser={props.updateUser}
           token={props.token}
         />
         <UserObjectives
+          updateUser={props.updateUser}
           objectives={props.objectives.objectives}
           user={props.user}
           handleSubmit={(l, m, h, s) => props.updateUserObjectives(props.token, l, m, h, s)}
