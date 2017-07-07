@@ -5,7 +5,7 @@ import IconButton from 'material-ui/IconButton';
 import RaisedButton from 'material-ui/RaisedButton';
 
 
-function SearchInput({ value, handleOnChange, handleSubmit, active, mobile, toggleFilters }) {
+function SearchInput({ value, handleOnChange, handleSubmit, active, mobile, openFilters }) {
   return (
     <div className={`search-input ${mobile ? 'search-input-mobile' : ''}`}>
       <form onSubmit={handleSubmit} className={`search-input-form ${mobile ? 'search-input-form-mobile' : ''}`}>
@@ -18,7 +18,7 @@ function SearchInput({ value, handleOnChange, handleSubmit, active, mobile, togg
           placeholder={active === 'university' ? 'Busca una universidad' : 'Busca una carrera'}
         />
         {mobile ? (
-          <IconButton type="button" onTouchTap={toggleFilters}>
+          <IconButton type="button" onTouchTap={openFilters}>
             <FilterButton color="#C9C9C9" />
           </IconButton>
         ) : null}
@@ -45,7 +45,7 @@ SearchInput.propTypes = {
   value: PropTypes.string.isRequired,
   handleOnChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  toggleFilters: PropTypes.func.isRequired,
+  openFilters: PropTypes.func.isRequired,
   active: PropTypes.string.isRequired,
   mobile: PropTypes.bool,
 };

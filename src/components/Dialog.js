@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import '../styles/Dialog.css';
 
 function Dialog(props) {
-  console.log(props.open);
   const title = props.title ? (
     <div className="dialog-title">
       {props.title}
@@ -16,16 +15,8 @@ function Dialog(props) {
       ))}
     </div>
   ) : null;
-  const handleClick = () => {
-    console.log('click');
-    //props.onRequestClose();
-  };
-
   return (
-    <div
-      className={`dialog-container ${props.open ? '' : 'dialog-container-hide'}`}
-      onClick={handleClick}
-    >
+    <div className={`dialog-container ${props.open ? '' : 'dialog-container-hide'}`}>
       <div className={`dialog-content ${props.containerClassName ? props.containerClassName : ''}`} onClick={event => event.stopPropagation()}>
         {title}
         {props.children}

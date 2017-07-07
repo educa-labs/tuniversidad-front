@@ -14,12 +14,14 @@ import Career from '../containers/Career';
 import Profile from '../containers/Profile';
 import Login from '../containers/Login';
 import Signup from '../components/Signup';
+import FiltersMobile from '../containers/FiltersMobile';
 
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={Landing} />
     <Route path="login" component={Login} />
     <Route path="signup" component={Signup} />
+    <Route path="filters" component={FiltersMobile} />
     <Route path="site" component={Site}>
       <IndexRoute component={Profile} />
       <Route path="search" component={Buscador} />

@@ -57,11 +57,11 @@ function NavigationBar(props, context) {
   }
 
   if (props.location === 'site') className = `${className} navigation-bar_site`;
-
+  const arrowColor = props.location === 'filters' ? '#000000' : '#FFFFFF';
   return (
     <div className={className}>
       <IconButton onTouchTap={() => context.router.goBack()}>
-        <ArrowBack color="#FFFFFF" />
+        <ArrowBack color={arrowColor} />
       </IconButton>
       {/*<div className="navigation-bar-title">{props.title}</div>*/}
     </div>

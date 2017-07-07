@@ -5,6 +5,7 @@ import {
   POPULAR_SUCCESS,
   INFINITE_REQUEST,
   INFINITE_SUCCESS,
+  MAKE_SUBMIT,
 } from '../actions/types';
 
 const initalState = {
@@ -13,11 +14,16 @@ const initalState = {
   popular_careers: [],
   popular_univ: [],
   requesting: false,
+  makeSubmit: false,
   error: {},
 };
 
 function search(state = initalState, action) {
   switch (action.type) {
+    case MAKE_SUBMIT:
+      return Object.assign({}, state, {
+        makeSubmit: true,
+      });
     case INFINITE_REQUEST:
       return Object.assign({}, state, {
         infiniteLoading: true,
@@ -37,6 +43,7 @@ function search(state = initalState, action) {
         requesting: false,
         hasMore: true,
         current_page: 2,
+        makeSubmit: false,
         error: {},
       });
     case INFINITE_SUCCESS:

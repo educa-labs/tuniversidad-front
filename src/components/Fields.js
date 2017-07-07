@@ -4,6 +4,7 @@ import is from 'is_js';
 import capitalize from '../helpers/capitalize';
 import SelectInput from './inputs/SelectInput';
 import RangeInput from './inputs/RangeInput';
+import Loading from '../components/Loading';
 import { getCities } from '../helpers/api';
 import { numeral } from '../helpers/numeral';
 import '../styles/Fields.css';
@@ -35,11 +36,7 @@ class Fields extends Component {
   render() {
     const { props } = this;
     if (!is.all.existy(props.fields.regions, props.fields.types, props.fields.schedules, props.fields.areas)) {
-      return (
-        <div>
-          Cargando ...
-        </div>
-      );
+      return <Loading />;
     }
     const regions = props.fields.regions.map((reg) => {
       return { value: reg.id, label: reg.title };
@@ -147,7 +144,7 @@ class Fields extends Component {
         <RangeInput
           title="Duración (semestres)"
           minValue={1}
-          maxValue={14}
+          maxValue={16}
           onChange={duration => props.changeFilterValue('duration', duration)}
           value={props.values.duration}
         />

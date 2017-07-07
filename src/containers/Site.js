@@ -1,5 +1,6 @@
 import React, { PropTypes, Component, cloneElement } from 'react';
 import MediaQuery from 'react-responsive';
+import is from 'is_js';
 import { connect } from 'react-redux';
 import SideMenu from './SideMenu';
 import { getGoals } from '../actions/goals';
@@ -22,11 +23,11 @@ class Site extends Component {
     const { user } = this.props;
     const token = user.auth_token;
     if (user.nem !== null && user.ranking !== null) {
-      this.props.getGoals(token);
+      if (is.null(this.props.goals)) this.props.getGoals(token);
     }
-    this.props.getMostPopular('carreers', token);
-    this.props.getMostPopular('universities', token);
-    this.props.fetch('regions', null, token);
+    if (is.empty(this.props.popularCareers)) this.props.getMostPopular('carreers', token);
+    if (is.empty(this.props.popularUniv)) this.props.getMostPopular('universities', token);
+    if (is.null(this.props.regions)) this.props.fetch('regions', null, token);
   }
 
   render() {
@@ -73,6 +74,10 @@ function mapStateToProps(state) {
   return {
     user: state.user.currentUser,
     active: state.filter.active,
+    popularCareers: state.search.popular_careers,
+    popularUniv: state.search.popular_univ,
+    regions: state.fetch.regions,
+    goals: state.goals.goals,
   };
 }
 

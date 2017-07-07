@@ -16,9 +16,14 @@ class Buscador extends Component {
       showFilters: false,
       dataTypeHasChanged: false,
     };
-    this.toggleFilters = this.toggleFilters.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInfinite = this.handleInfinite.bind(this);
+  }
+
+  componentDidMount() {
+    if (this.props.mobile) {
+      if (this.props.makeSubmit) this.handleSubmit();
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -35,12 +40,6 @@ class Buscador extends Component {
     }
   }
 
-  toggleFilters() {
-    if (!this.props.requesting) {
-      this.setState({ showFilters: !this.state.showFilters });
-    }
-  }
-
   handleInfinite() {
     const { active, token, currentPage } = this.props;
     const { input } = this.state;
@@ -48,8 +47,7 @@ class Buscador extends Component {
     this.props.getNextPage(active, input, token, filters, currentPage);
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
+  handleSubmit() {
     const { active, token } = this.props;
     const { input } = this.state;
     const filters = active === 'university' ? this.props.university_filters : this.props.career_filters;
@@ -59,24 +57,25 @@ class Buscador extends Component {
 
 
   render() {
+    const openFilters = () => this.context.router.push('/filters');
     return (
       <div className="col">
         {this.props.mobile ? <MobileBanner onClick={this.props.toggleMenu} /> : null}
         <SearchInput
           value={this.state.input}
           handleOnChange={value => this.setState({ input: value })}
-          toggleFilters={this.toggleFilters}
+          openFilters={openFilters}
+          requesting={this.props.requesting}
           handleSubmit={this.handleSubmit}
           active={this.props.active}
           mobile={this.props.mobile}
         />
-        <FiltersDrawer
-          mobile={this.props.mobile}
-          open={this.state.showFilters}
-          toggleFilters={this.toggleFilters}
-          onRequestChange={open => this.setState({ showFilters: open })}
-          handleSubmit={this.handleSubmit}
-        />
+        {this.props.mobile ? null : (
+          <FiltersDrawer
+            open
+            handleSubmit={this.handleSubmit}
+          />
+        )}
         <div className="row no-margin full-height">
           <SearchResult
             data={this.props.data}
@@ -112,6 +111,10 @@ Buscador.propTypes = {
   getNextPage: PropTypes.func.isRequired,
 };
 
+Buscador.contextTypes = {
+  router: PropTypes.object,
+};
+
 function mapStateToProps(state) {
   return {
     token: state.user.currentUser.auth_token,
@@ -119,11 +122,12 @@ function mapStateToProps(state) {
     data: state.search.result,
     careers: state.search.popular_careers,
     universities: state.search.popular_univ,
-    result: state.fetch.result,
+    makeSubmit: state.search.makeSubmit,
     requesting: state.search.requesting || state.fetch.requesting,
     infiniteLoading: state.search.infiniteLoading,
     hasMore: state.search.hasMore,
     currentPage: state.search.current_page,
+    result: state.fetch.result,
     university_filters: {
       cities: state.filter.cities !== -1 ? state.filter.cities : null,
       university_type_id: state.filter.university_type !== -1 ? state.filter.university_type : null,

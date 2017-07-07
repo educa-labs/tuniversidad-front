@@ -8,7 +8,7 @@ const initialState = {
   cities: null,
   region_id: null,
   area: null,
-  duration: { min: 1, max: 14 },
+  duration: { min: 1, max: 16 },
   price: { min: 0, max: 7000000 },
   cut: { min: 450, max: 850 },
   schedule: null,

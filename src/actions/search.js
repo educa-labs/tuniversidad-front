@@ -6,10 +6,16 @@ import {
   POPULAR_SUCCESS,
   INFINITE_REQUEST,
   INFINITE_SUCCESS,
+  MAKE_SUBMIT,
 } from './types';
 
 import url from '../constants/url';
 
+export function makeSubmit() {
+  return {
+    type: MAKE_SUBMIT,
+  };
+}
 
 export function search(active, text, token, filters) {
   const request = Request.post(`${url}/search/`)
