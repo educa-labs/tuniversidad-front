@@ -134,7 +134,7 @@ class ExpandibleCard extends Component {
                 </div>
               </div>
             </div>
-            <div className="row no-margin">
+            <div className="row">
               <div className="start">
                 <FlatButton
                   label={isFavorite ? 'Remover de mis metas' : 'Añadir a mis metas'}

@@ -6,10 +6,24 @@
 }
 
 .news-photo {
-  height: 15rem;
+  height: 12rem;
   background-position: center;
   background-size: cover;
  
+}
+
+.news-header {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+
+.news-date {
+  font-size: 11px;
+}
+
+.news-body {
+  margin: 0 1rem;
 }
 
 .news-photo-1 {
