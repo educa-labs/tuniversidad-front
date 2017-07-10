@@ -14,6 +14,7 @@ function SelectInput(props) {
     );
   }
   function onChange(event, index, value) {
+    console.log(value);
     props.handleChange(value);
   }
   const { value, handleChange, title, items, ...other } = props;

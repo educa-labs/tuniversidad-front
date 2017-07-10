@@ -70,8 +70,6 @@ UniversityCard.contextTypes = {
 };
 
 UniversityCard.propTypes = {
-  detail: PropTypes.bool.isRequired,
-  mobil: PropTypes.bool.isRequired,
   university: PropTypes.shape({
     id: PropTypes.number.isRequired,
     foundation: PropTypes.string.isRequired,
@@ -80,7 +78,7 @@ UniversityCard.propTypes = {
     motto: PropTypes.string,
     nick: PropTypes.string,
     description: PropTypes.string.isRequired,
-    finance_type: PropTypes.string.isRequired,
+    finance_type: PropTypes.string,
     initials: PropTypes.string.isRequired,
     students: PropTypes.number.isRequired,
     teachers: PropTypes.number.isRequired,
@@ -88,7 +86,7 @@ UniversityCard.propTypes = {
     postgraduates: PropTypes.number.isRequired,
     doctorates: PropTypes.number.isRequired,
     institution_id: PropTypes.number,
-  }).isRequired,
+  }),
 };
 
 

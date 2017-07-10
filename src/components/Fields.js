@@ -10,8 +10,8 @@ import { numeral } from '../helpers/numeral';
 import '../styles/Fields.css';
 
 const yesNo = [
-  { value: false, label: 'No' },
-  { value: true, label: 'Sí' },
+  { value: 1, label: 'No' },
+  { value: 2, label: 'Sí' },
   { value: -1, label: 'Todas' },
 ];
 

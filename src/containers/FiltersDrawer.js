@@ -78,7 +78,6 @@ class FiltersDrawer extends Component {
 FiltersDrawer.propTypes = {
   open: PropTypes.bool.isRequired,
   active: PropTypes.string.isRequired,
-  toggleFilters: PropTypes.func.isRequired,
   setActiveFilter: PropTypes.func.isRequired,
   changeFilterValue: PropTypes.func.isRequired,
 };

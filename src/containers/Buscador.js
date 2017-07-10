@@ -8,6 +8,12 @@ import SearchResult from '../components/SearchResult';
 import MobileBanner from './MobileBanner';
 import '../styles/Buscador.css';
 
+const mapFreeness = (value) => {
+  if (value === 1) return false;
+  if (value === 2) return true;
+  return -1;
+};
+
 class Buscador extends Component {
   constructor(props) {
     super(props);
@@ -44,6 +50,7 @@ class Buscador extends Component {
     const { active, token, currentPage } = this.props;
     const { input } = this.state;
     const filters = active === 'university' ? this.props.university_filters : this.props.career_filters;
+    if (filters.freeness) filters.freeness = mapFreeness(filters.freeness);
     this.props.getNextPage(active, input, token, filters, currentPage);
   }
 
@@ -51,6 +58,7 @@ class Buscador extends Component {
     const { active, token } = this.props;
     const { input } = this.state;
     const filters = active === 'university' ? this.props.university_filters : this.props.career_filters;
+    if (filters.freeness) filters.freeness = mapFreeness(filters.freeness);
     this.props.search(active, input, token, filters);
     if (this.state.showFilters) this.setState({ showFilters: false });
   }
@@ -114,6 +122,7 @@ Buscador.propTypes = {
 Buscador.contextTypes = {
   router: PropTypes.object,
 };
+
 
 function mapStateToProps(state) {
   return {
