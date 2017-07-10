@@ -156,17 +156,18 @@ function CareerCard(props, context) {
           </div>
         </div>
         <div className="row">
-          <div className="general-card__item">
+          <div className="general-card__item col-2">
             <div className="value">{career.area_title}</div>
             <div className="label">Área</div>
           </div>
-          <div className="general-card__item" />
           <div className="general-card__item">
+            <div className="value">{career.last_cut}</div>
+            <div className="label">Corte 2016</div>
+          </div>
+          <div className="general-card__item col-2">
             <div className="value">{career.openings}</div>
             <div className="label">Vacantes</div>
           </div>
-          <div className="general-card__item" />
-          <div className="general-card__item" />
         </div>
       </div>
       <div className="col">

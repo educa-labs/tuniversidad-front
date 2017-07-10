@@ -20,7 +20,7 @@ class NewsCard extends Component {
   render() {
     const { news } = this.props;
     return (
-      <Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange} style={{ margin: '2rem' }}>
+      <Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange} style={{ margin: '1rem 0' }}>
         <CardHeader
           title={news.author}
           subtitle={news.date}
