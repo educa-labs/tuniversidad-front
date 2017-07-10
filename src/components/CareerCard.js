@@ -234,7 +234,6 @@ CareerCard.propTypes = {
   requesting: PropTypes.bool.isRequired,
   addGoal: PropTypes.func.isRequired,
   token: PropTypes.string.isRequired,
-  mobile: PropTypes.bool.isRequired,
 };
 
 CareerCard.defaultProps = {

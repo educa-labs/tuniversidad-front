@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import MediaQuery from 'react-responsive';
+import is from 'is_js';
 import { connect } from 'react-redux';
 import { Element } from 'react-scroll';
 import Cover from '../components/landing/Cover';
@@ -24,7 +25,7 @@ class Landing extends Component {
   }
 
   componentWillMount() {
-    // if (is.not.null(this.props.user)) this.context.router.replace('/site/profile');
+    if (is.not.null(this.props.user)) this.context.router.replace('/site/profile');
   }
 
   componentDidMount() {
