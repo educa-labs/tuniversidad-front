@@ -1,5 +1,4 @@
 import React from 'react';
-// import NewsCard from '../components/NewsCard';
 import NewsCard from '../components/NewsCard2';
 import MobileBanner from './MobileBanner';
 import '../styles/News.css';
@@ -28,7 +27,7 @@ function News(props) {
   return (
     <div>
       {props.mobile ? <MobileBanner onClick={props.toggleMenu} location="news" /> : null}
-      <div className="col col-grey-desk">
+      <div className={`col col-grey-desk ${props.mobile ? '' : 'padding-7'}`}>
         <NewsCard news={news[0]} n={2} />
         <NewsCard news={news[1]} n={1} />
       </div>
