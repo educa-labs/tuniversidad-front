@@ -9,6 +9,14 @@ function UniversityCard(props, context) {
   function onTitleClick() {
     context.router.push(`site/university/${university.id}`);
   }
+  const description = props.detail ? (
+    <div>
+      <Divider />
+      <div className="general-card-description">
+        {university.description}
+      </div>
+    </div>
+  ) : null;
 
   return (
     <div className={`general-card ${mobile ? '' : 'general-card_desk'}`}>
@@ -57,12 +65,7 @@ function UniversityCard(props, context) {
           <div className="label">Doctorados</div>
         </div>
       </div>
-      <Divider />
-      <div className={`card__description ${detail ? '' : 'card__description_hide'}`} >
-        <div className="row">
-          <div className="col">{university.description}</div>
-        </div>
-      </div>
+      {description}
     </div>
   );
 }

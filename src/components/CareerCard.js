@@ -16,7 +16,6 @@ const labelStyle = {
 function CareerCard(props, context) {
   const { career } = props;
   const isFavorite = _.findIndex(props.goals, goal => goal.carreer.id === career.id) > -1;
-  // const isCompare = is.inArray(career.id, props.compare);
 
   function handleFavButton() {
     if (isFavorite) {
@@ -25,13 +24,6 @@ function CareerCard(props, context) {
       props.addGoal(career.id, props.token);
     }
   }
-  // function handleCompareButton() {
-  //   if (isCompare) {
-  //     props.removeFromCompare(career.id);
-  //   } else {
-  //     props.addToCompare(career.id);
-  //   }
-  // }
   function handleInfoClick() {
     context.router.push(`site/career/${career.id}`);
   }
@@ -40,98 +32,17 @@ function CareerCard(props, context) {
     context.router.push(`site/university/${career.university_id}`);
   }
 
-  // if (props.compress) {
-  //   return (
-  //     <div className={`general-card ${props.mobile ? '' : 'general-card_desk'}`}>
-  //       <div className={`general-card__header bg-blue ${props.detail ? 'card__header_hide' : ''}`}>
-  //         <div className="general-card__title color-white" onTouchTap={handleInfoClick}>
-  //           {career.title}
-  //         </div>
-  //       </div>
-  //     </div>
-  //   );
-  // }
-
   const science = career.weighing ? is.existy(career.weighing.science) : null;
 
 
-  const header = props.mobile ? (
-    <div className={`general-card__header bg-blue ${props.detail ? 'general-card__header_hide' : ''}`}>
-      <div className="col">
-        <div className="general-card__title title_no-margin color-white">{career.title}</div>
-        <button className="general-card__subtitle color-white" onClick={handleSubTitleClick}>{career.university_name}</button>
-      </div>
-    </div>
-  ) : (
+  const header = (
     <div className={`general-card__header bg-blue ${props.detail ? 'card__header_hide' : ''}`}>
       <div className="general-card__title color-white">{career.title}</div>
       <div className="color-white cursor" onClick={handleSubTitleClick}>{career.university_name}</div>
     </div>
   );
 
-  const body = props.mobile ? (
-    <div>
-      <div className="row">
-        <div className="general-card__item">
-          <div className="value">{career.weighing ? career.weighing.language : null}%</div>
-          <div className="label">Lenguaje</div>
-        </div>
-        <div className="general-card__item">
-          <div className="value">{career.weighing ? career.weighing.math : null}%</div>
-          <div className="label">Matematica</div>
-        </div>
-        <div className="general-card__item">
-          <div className="value">{career.weighing ? career.weighing.science || career.weighing.history : null}%</div>
-          <div className="label">{science ? 'Ciencias' : 'Historia'}</div>
-        </div>
-      </div>
-      <div className="row">
-        <div className="general-card__item">
-          <div className="value">{career.weighing ? career.weighing.NEM : null}%</div>
-          <div className="label">NEM</div>
-        </div>
-        <div className="general-card__item">
-          <div className="value">{career.weighing ? career.weighing.ranking : null}%</div>
-          <div className="label">Ranking</div>
-        </div>
-        <div className="general-card__item">
-          <div className="value">{career.last_cut}</div>
-          <div className="label">Corte 2016</div>
-        </div>
-      </div>
-      <div className="row">
-        <div className="general-card__item">
-          <div className="value">{career.area_title}</div>
-          <div className="label">Área</div>
-        </div>
-        <div className="general-card__item">
-          <div className="value">{career.openings}</div>
-          <div className="label">Vacantes</div>
-        </div>
-      </div>
-      <div className="row">
-        <div className="general-card__item">
-          <div className="value">{career.semesters} Semestres</div>
-          <div className="label">Duración</div>
-        </div>
-        <div className="general-card__item">
-          {/*<div className="value">{numeral(career.price)}</div>*/}
-          <div className="value">{numeral(0)}</div>
-          <div className="label">Arancel</div>
-        </div>
-      </div>
-      <div className="row">
-        <div className="general-card__item">
-          <div className="value">${career.income ? numeral(career.income) : null}</div>
-          <div className="label">Sueldo promedio (3er año)</div>
-        </div>
-        <div className="general-card__item">
-          <div className="value">%{career.employability}</div>
-          <div className="label">Empleabilidad</div>
-        </div>
-      </div>
-    </div>
-  ) : (
+  const body = (
     <div className="row">
       <div className="col">
         <div className="row">
@@ -178,17 +89,17 @@ function CareerCard(props, context) {
             <div className="label">Duración</div>
           </div>
           <div className="general-card__item">
-            <div className="value">{numeral(0)}</div>
+            <div className="value">{career.price ? career.price : 'Sin información'}</div>
             <div className="label">Arancel</div>
           </div>
         </div>
         <div className="row">
           <div className="general-card__item">
-            <div className="value">${career.income ? numeral(career.income) : null}</div>
+            <div className="value">{career.income ? `$${numeral(career.income)}` : 'Sin Infromación'}</div>
             <div className="label">Sueldo promedio (3er año)</div>
           </div>
           <div className="general-card__item">
-            <div className="value">%{career.employability}</div>
+            <div className="value">{career.employability ? `%${career.employability}` : 'Sin información'}</div>
             <div className="label">Empleabilidad</div>
           </div>
         </div>
@@ -197,7 +108,12 @@ function CareerCard(props, context) {
   );
 
   const description = props.detail ? (
-    <div className="general-card-item">{career.description}</div>
+    <div>
+      <Divider />
+      <div className="general-card-description">
+        {career.description}
+      </div>
+    </div>
   ) : null;
 
   const footer = !props.detail ? (

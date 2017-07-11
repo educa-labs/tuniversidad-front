@@ -26,6 +26,9 @@ function search(state = initalState, action) {
         makeSubmit: true,
       });
     case INFINITE_REQUEST:
+      return Object.assign({}, state, {
+        infiniteLoading: true,
+      });
     case SEARCH_REQUEST:
       return Object.assign({}, state, {
         requesting: true,
@@ -39,16 +42,15 @@ function search(state = initalState, action) {
       return Object.assign({}, state, {
         result: action.payload,
         requesting: false,
-        hasMore: is.not.empty(action.payload),
         current_page: 2,
         makeSubmit: false,
+        hasMore: is.not.empty(action.payload),
         error: {},
       });
     case INFINITE_SUCCESS:
       return Object.assign({}, state, {
-        result: state.result.concat(action.payload),
+        result: [...state.result, ...action.payload],
         hasMore: is.not.empty(action.payload),
-        requesting: false,
         current_page: state.current_page + 1,
         error: {},
       });
