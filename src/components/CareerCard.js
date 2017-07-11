@@ -115,7 +115,8 @@ function CareerCard(props, context) {
           <div className="label">Duración</div>
         </div>
         <div className="general-card__item">
-          <div className="value">{numeral(career.price)}</div>
+          {/*<div className="value">{numeral(career.price)}</div>*/}
+          <div className="value">{numeral(0)}</div>
           <div className="label">Arancel</div>
         </div>
       </div>
@@ -177,7 +178,7 @@ function CareerCard(props, context) {
             <div className="label">Duración</div>
           </div>
           <div className="general-card__item">
-            <div className="value">{numeral(career.price)}</div>
+            <div className="value">{numeral(0)}</div>
             <div className="label">Arancel</div>
           </div>
         </div>

@@ -16,3 +16,25 @@ export function makeList(list) {
   return rep;
 }
 
+const months = [
+  'Enero',
+  'Febrero',
+  'Marzo',
+  'Abril',
+  'Mayo',
+  'Junio',
+  'Julio',
+  'Agosto',
+  'Septiembre',
+  'Octubre',
+  'Noviembre',
+  'Diciembre',
+];
+
+export function getDate(dateInString) {
+  const date = new Date(dateInString);
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const day = date.getDate();
+  return `${day} de ${months[month]} de ${year}`;
+}

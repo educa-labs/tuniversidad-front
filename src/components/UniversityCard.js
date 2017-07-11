@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 import Divider from 'material-ui/Divider';
+import { numeral } from '../helpers/numeral';
+import { getDate } from '../helpers/strings';
 
 function UniversityCard(props, context) {
   const { university, detail, mobile } = props;
@@ -33,25 +35,25 @@ function UniversityCard(props, context) {
           <div className="label">Gratuidad</div>
         </div>
         <div className="general-card__item">
-          <div className="value">{university.students}</div>
+          <div className="value">{numeral(university.students)}</div>
           <div className="label">Alumnos</div>
         </div>
         <div className="general-card__item">
-          <div className="value">{university.postgraduates}</div>
+          <div className="value">{numeral(university.postgraduates)}</div>
           <div className="label">Postgrados</div>
         </div>
       </div>
       <div className="row">
         <div className="general-card__item">
-          <div className="value">{university.foundation}</div>
+          <div className="value">{getDate(university.foundation)}</div>
           <div className="label">Fundación</div>
         </div>
         <div className="general-card__item">
-          <div className="value">{university.teachers}</div>
+          <div className="value">{numeral(university.teachers)}</div>
           <div className="label">Profesores</div>
         </div>
         <div className="general-card__item">
-          <div className="value">{university.doctorates}</div>
+          <div className="value">{numeral(university.doctorates)}</div>
           <div className="label">Doctorados</div>
         </div>
       </div>
