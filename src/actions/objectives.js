@@ -9,6 +9,7 @@ import {
 import url from '../constants/url';
 
 export function getUserObjectives(token) {
+  console.log('Hola');
   const request = Request.get(`${url}/objectives`)
     .set('Content-Type', 'application/json')
     .set('Authorization', token)
@@ -20,6 +21,7 @@ export function getUserObjectives(token) {
     });
     return request
       .then((res) => {
+        console.log('body', res.body);
         const objectives = Object.assign({
           language: res.body[1],
           math: res.body[2],
@@ -27,6 +29,7 @@ export function getUserObjectives(token) {
           science: res.body[4],
         });
         if (res.ok) {
+          console.log('estamos dispacheando', objectives);
           dispatch({
             type: GET_OBJECTIVES,
             objectives,

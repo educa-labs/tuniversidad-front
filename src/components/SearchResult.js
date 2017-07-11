@@ -63,7 +63,7 @@ function SearchResult(props) {
         pageStart={0}
         loader={<Loading />}
         next={() => props.handleInfinite()}
-        hasMore
+        hasMore={props.hasMore}
       >
         {afterSearch}
       </InfiniteScroll>

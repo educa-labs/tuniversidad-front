@@ -13,8 +13,10 @@ const initalState = {
 };
 
 function objectives(state = initalState, action) {
+  
   switch (action.type) {
     case OBJECTIVES_REQUEST:
+      console.log(action);
       return Object.assign({}, state, {
         requesting: true,
       });
@@ -23,6 +25,7 @@ function objectives(state = initalState, action) {
         requesting: false,
       });
     case GET_OBJECTIVES:
+      console.log(action);
       return Object.assign({}, state, {
         objectives: action.objectives,
         requesting: false,

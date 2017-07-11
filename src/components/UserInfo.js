@@ -1,4 +1,5 @@
 import React from 'react';
+import { getDate } from '../helpers/strings';
 
 function UserInfo({ user, mobile }) {
   return (
