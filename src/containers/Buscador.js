@@ -138,11 +138,13 @@ function mapStateToProps(state) {
     currentPage: state.search.current_page,
     result: state.fetch.result,
     university_filters: {
+      region_id: state.filter.region_id !== -1 ? state.filter.region_id : null,
       cities: state.filter.cities !== -1 ? state.filter.cities : null,
       university_type_id: state.filter.university_type !== -1 ? state.filter.university_type : null,
       freeness: state.filter.freeness !== -1 ? state.filter.freeness : null,
     },
     career_filters: {
+      region_id: state.filter.region_id !== -1 ? state.filter.region_id : null,
       cities: state.filter.cities !== -1 ? state.filter.cities : null,
       area: state.filter.area !== -1 ? state.filter.area : null,
       min_cut: state.filter.cut ? state.filter.cut.min : null,
