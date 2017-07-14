@@ -40,17 +40,19 @@ class University extends Component {
     switch (slideIndex) {
       case 0:
         return (
-          <UniversityCard
-            university={this.props.university}
-            detail
-            mobile={this.props.mobile}
-          />
+          <div className="university-card">
+            <UniversityCard
+              university={this.props.university}
+              detail
+              mobile={this.props.mobile}
+            />
+          </div>
         );
       case 1:
         return (
           <InfiniteScroll
             pageStart={0}
-            height={this.props.mobile ? 280 : 440}
+            // height={this.props.mobile ? 280 : 460}
           >
             {this.state.careers.map((res) => {
               if (this.props.mobile) {
@@ -87,9 +89,9 @@ class University extends Component {
       );
     }
     return (
-      <div className="site__children">
+      <div className="university">
         <NavigationBar location="site" title={university.title} />
-        <div className="university-cover">
+        <div className={`university-cover ${mobile ? 'university-cover-mobile' : 'university-cover-desk'}`}>
           <div>
             <div className="university-cover__title">{university.title}</div>
             <div className="university-cover__subtitle">{university.motto}</div>
@@ -98,12 +100,12 @@ class University extends Component {
         <Tabs
           onChange={this.handleSlideChange}
           value={slideIndex}
-          className={`tabs-search ${mobile ? '' : 'tabs-search-dektop'}`}
+          className={`tabs-search ${mobile ? 'tabs-search-mobile' : 'tabs-search-desktop'}`}
         >
           <Tab label="Información general" value={0} style={tabStyle} />
           <Tab label="Carreras" value={1} style={tabStyle} />
         </Tabs >
-        <div className={`col justify-center bg-grey ${mobile ? '' : 'padding-7'}`}>
+        <div className={`university-content ${mobile ? 'university-content-mobile' : ''}`}>
           {this.getContent(slideIndex)}
         </div>
       </div>
