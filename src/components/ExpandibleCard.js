@@ -19,6 +19,7 @@ const labelStyle = {
 };
 
 
+
 class ExpandibleCard extends Component {
   constructor(props) {
     super(props);
@@ -28,6 +29,7 @@ class ExpandibleCard extends Component {
     this.linkTo = this.linkTo.bind(this);
     this.handleInfoClick = this.handleInfoClick.bind(this);
     this.handleFavButton = this.handleFavButton.bind(this);
+    this.getType = this.getType.bind(this);
   }
 
   handleInfoClick() {
@@ -47,19 +49,27 @@ class ExpandibleCard extends Component {
     }
   }
 
+  getType() {
+    const { career } = this.props;
+    if (career.weighing.science !== 0 && career.weighing.history) return 'Ciencias o Historia';
+    return career.weighing.science !== 0 ? 'Ciencias' : 'Historia';
+  }
+
   render() {
     const { career, goals } = this.props;
     const { expanded } = this.state;
-    const science = career.weighing ? is.existy(career.weighing.science) : null;
+    const science = career.weighing ? career.weighing.science !== 0 : null;
+    const both = career.weighing ? career.weighing.science !== 0 && career.weighing.history : null;
+
     const isFavorite = _.findIndex(goals, goal => goal.carreer.id === career.id) > -1;
     
     return (
       <div>
         <div className="expandible-card">
-          <div className="general-card__header">
+          <div className="general-card__header" onClick={() => this.setState({ expanded: !expanded })}>
             <div className="col">
               <div className="general-card__title title_no-margin">{career.title}</div>
-              <button className="general-card__subtitle color-blue" onClick={this.linkTo}>
+              <button className="general-card__subtitle color-blue">
                 {career.university_name}
               </button>
             </div>
@@ -82,11 +92,11 @@ class ExpandibleCard extends Component {
                 </div>
                 <div className="general-card__item">
                   <div className="value">{career.weighing ? career.weighing.math : null}%</div>
-                  <div className="label">Matematica</div>
+                  <div className="label">Matemáticas</div>
                 </div>
                 <div className="general-card__item">
                   <div className="value">{career.weighing ? career.weighing.science || career.weighing.history : null}%</div>
-                  <div className="label">{science ? 'Ciencias' : 'Historia'}</div>
+                  <div className="label">{this.getType()}</div>
                 </div>
               </div>
               <div className="row">
@@ -119,17 +129,17 @@ class ExpandibleCard extends Component {
                   <div className="label">Duración</div>
                 </div>
                 <div className="general-card__item">
-                  <div className="value">{numeral(career.price)}</div>
+                  <div className="value">{career.price ? `$ ${numeral(career.price)}` : 'No disponible'}</div>
                   <div className="label">Arancel</div>
                 </div>
               </div>
               <div className="row">
                 <div className="general-card__item">
-                  <div className="value">${career.income ? numeral(career.income) : null}</div>
+                  <div className="value">{career.income ? `$ ${numeral(career.income)}` : 'No disponible'}</div>
                   <div className="label">Sueldo promedio (3er año)</div>
                 </div>
                 <div className="general-card__item">
-                  <div className="value">%{career.employability}</div>
+                  <div className="value">{career.employability ? `${career.employability}%` : 'No disponible'}</div>
                   <div className="label">Empleabilidad</div>
                 </div>
               </div>

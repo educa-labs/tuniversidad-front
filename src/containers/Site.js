@@ -38,26 +38,22 @@ class Site extends Component {
 
   render() {
     return (
-      <div>
-        <MediaQuery maxDeviceWidth={720}>
-          <div className="site">
-            <SideMenu
-              mobile
-              open={this.state.showMenu}
-              onRequestChange={open => this.setState({ showMenu: open })}
-            />
-            {cloneElement(this.props.children, {
-              mobile: true,
-              toggleMenu: () => this.setState({ showMenu: !this.state.showMenu }),
-            }) }
-          </div>
+      <div className="queries">
+        <MediaQuery maxDeviceWidth={720} className="site">
+          <SideMenu
+            mobile
+            open={this.state.showMenu}
+            onRequestChange={open => this.setState({ showMenu: open })}
+          />
+          {cloneElement(this.props.children, {
+            mobile: true,
+            toggleMenu: () => this.setState({ showMenu: !this.state.showMenu }),
+          }) }
         </MediaQuery>
-        <MediaQuery minDeviceWidth={721}>
-          <div className="site">
-            <SideMenu open />
-            <div className="empty" />
-            {this.props.children}
-          </div>
+        <MediaQuery minDeviceWidth={721} className="site">
+          <SideMenu open />
+          <div className="empty" />
+          {this.props.children}
         </MediaQuery>
       </div>
     );

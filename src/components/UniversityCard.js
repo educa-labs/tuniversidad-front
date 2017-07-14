@@ -13,7 +13,7 @@ function UniversityCard(props, context) {
     <div>
       <Divider />
       <div className="general-card-description">
-        {university.description}
+        {/* university.description*/}
       </div>
     </div>
   ) : null;

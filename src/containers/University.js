@@ -137,7 +137,6 @@ University.contextTypes = {
 };
 
 
-
 export default connect(mapStateToProps, {
   fetch,
 })(University);
