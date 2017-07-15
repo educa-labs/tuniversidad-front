@@ -70,11 +70,10 @@ class ExpandibleCard extends Component {
             <div className="col">
               <div className="general-card__title title_no-margin">{career.title}</div>
               <button className="general-card__subtitle color-blue">
-                {career.university_name}
+                {career.university_name} en {career.campu_name}
               </button>
             </div>
             <IconButton
-              onTouchTap={() => this.setState({ expanded: !expanded })}
             >
               {expanded ? (
                 <ArrowUp color="#424242" />

@@ -6,7 +6,6 @@
 
 .general-card {
   background-color: white;
-  margin-bottom: 1rem;
   box-shadow: 0px 0px 4px 0.5px rgba(0,0,0,0.10);
   border-radius: 2px;
 }
@@ -110,4 +109,6 @@
 }
 
 .general-card-description {
+  padding: 1rem;
+  text-align: justify;
 }

@@ -3,6 +3,13 @@ import Essay from './Essay';
 import Loading from './Loading';
 
 
+const subjects = [
+  'Lenguaje',
+  'Matemáticas',
+  'Ciencias Naturales',
+  'Historia',
+];
+
 function UserEssays(props) {
   if (props.essays === null) return <Loading />;
   if (!props.essays[1] || !props.essays[2] || !props.essays[3] || !props.essays[4]) return <Loading />;
@@ -12,34 +19,17 @@ function UserEssays(props) {
       <div className="general-card__header">
         <div className="general-card__title">Mis Ensayos</div>
       </div>
-      <Essay
-        title="Lenguaje"
-        active={props.active === 1}
-        handleClick={() => props.handleSubjectClick(1)}
-        essays={props.essays[props.active].essays}
-        removeEssay={props.removeEssay}
-      />
-      <Essay
-        title="Matemáticas"
-        active={props.active === 2}
-        handleClick={() => props.handleSubjectClick(2)}
-        essays={props.essays[props.active].essays}
-        removeEssay={props.removeEssay}
-      />
-      <Essay
-        title="Ciencias Naturales"
-        active={props.active === 4}
-        handleClick={() => props.handleSubjectClick(4)}
-        essays={props.essays[props.active].essays}
-        removeEssay={props.removeEssay}
-      />
-      <Essay
-        title="Historia"
-        active={props.active === 3}
-        handleClick={() => props.handleSubjectClick(3)}
-        essays={props.essays[props.active].essays}
-        removeEssay={props.removeEssay}
-      />
+      {subjects.map((sub, index) => (
+        <Essay
+          key={index}
+          title={subjects[index]}
+          active={props.active === index + 1}
+          handleClick={() => props.handleSubjectClick(index + 1)}
+          removeEssay={props.removeEssay}
+          selectEssay={props.selectEssay}
+          essays={props.essays[props.active].essays}
+        />
+      ))}
     </div>
   );
 }

@@ -18,7 +18,11 @@ class Essay extends Component {
     this.renderEssay = this.renderEssay.bind(this);
   }
 
+
   renderEssay(ess) {
+    const handleEditEssay = () => {
+      this.props.selectEssay(ess);
+    };
     return (
       <div className="essay__score" key={ess.id}>
         <div className="col">
@@ -36,7 +40,10 @@ class Essay extends Component {
               anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
               targetOrigin={{ horizontal: 'right', vertical: 'top' }}
             >
-              <MenuItem secondaryText="Editar" />
+              {/* <MenuItem
+                secondaryText="Editar"
+                onTouchTap={handleEditEssay}
+              /> */}
               <MenuItem
                 secondaryText="Borrar"
                 onTouchTap={() => this.props.removeEssay(ess.id, ess.subject.id)}

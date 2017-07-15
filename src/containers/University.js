@@ -61,7 +61,7 @@ class University extends Component {
                     key={res.id}
                     mobile={this.props.mobile}
                     title={res.title}
-                    subtitle={res.university_name}
+                    subtitle={`${res.university_name} en ${res.campu_name}`}
                     onClick={() => this.context.router.push(`site/career/${res.id}`)}
                   />
                 );

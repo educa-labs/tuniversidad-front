@@ -13,8 +13,11 @@ class PropfileProgress extends Component {
     this.state = {
       active: 1,
       openModal: false,
+      openEdit: false,
+      selected: null,
     };
     this.closeModal = this.closeModal.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -36,6 +39,13 @@ class PropfileProgress extends Component {
     this.setState({ openModal: false });
   }
 
+  handleEdit(selected) {
+    console.log('Hola');
+    this.setState({
+      selected,
+    });
+  }
+
   render() {
     for (let i = 1; i < 5; i += 1) {
       if (is.null(this.props.essays[i])) return <div>Cargando ... </div>;
@@ -48,7 +58,6 @@ class PropfileProgress extends Component {
             open={this.state.openModal}
             handleClose={this.closeModal}
             subjects={this.props.subjects}
-            token={this.props.token}
             addEssay={(title, subjectId, score, date) => this.props.addEssay(this.props.token, title, subjectId, score, date)}
             mobile
           />
@@ -80,7 +89,6 @@ class PropfileProgress extends Component {
           open={this.state.openModal}
           handleClose={this.closeModal}
           subjects={this.props.subjects}
-          token={this.props.token}
           addEssay={(title, subjectId, score, date) => this.props.addEssay(this.props.token, title, subjectId, score, date)}
         />
         <div className="col col-3">
@@ -95,6 +103,7 @@ class PropfileProgress extends Component {
             active={this.state.active}
             handleSubjectClick={active => this.setState({ active })}
             essays={this.props.essays}
+            selectEssay={selected => this.handleEdit(selected)}
             removeEssay={(essayId, subjectId) => this.props.removeEssay(this.props.token, essayId, subjectId)}
           />
         </div>
