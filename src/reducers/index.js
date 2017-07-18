@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 import user from './user';
-import showLogin from './show';
 import filter from './filter';
 import goals from './goals';
 import compare from './compare';
@@ -11,7 +10,6 @@ import objectives from './objectives';
 
 export default combineReducers({
   user,
-  showLogin,
   filter,
   goals,
   compare,

@@ -4,7 +4,7 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Checkbox from 'material-ui/Checkbox';
 import is from 'is_js';
-import { logUser } from '../actions/user';
+import { logUser, clearState } from '../actions/user';
 import { saveUser } from '../helpers/storage';
 import '../styles/Login.css';
 
@@ -31,6 +31,10 @@ class Login extends Component {
         this.context.router.replace('/site/profile');
       }
     }
+  }
+
+  componentWillUnmount() {
+    this.props.clearState();
   }
 
   handleSubmit(event) {
@@ -117,4 +121,5 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
   logUser,
+  clearState,
 })(Login);

@@ -1,5 +1,3 @@
-export const SHOW_LOGIN = 'SHOW_LOGIN';
-
 export const SET_ACTIVE_FILTER = 'SET_ACTIVE_FILTER';
 export const CHANGE_FILTER_VALUE = 'CHANGE_FILTER_VALUE';
 export const MAKE_SUBMIT = 'MAKE_SUBMIT';
