@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import Search from 'material-ui/svg-icons/action/search';
-import FilterButton from 'material-ui/svg-icons/content/filter-list';
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -14,11 +13,6 @@ const labelStyle = {
 
 
 function SearchInput({ value, handleOnChange, handleSubmit, active, mobile, openFilters }) {
-  const button = (
-    <IconButton type="button" onTouchTap={openFilters}>
-            <FilterButton color="#C9C9C9" />
-          </IconButton>
-  );
   return (
     <div className={`search-input ${mobile ? 'search-input-mobile' : ''}`}>
       <form onSubmit={handleSubmit} className={`search-input-form ${mobile ? 'search-input-form-mobile' : ''}`}>

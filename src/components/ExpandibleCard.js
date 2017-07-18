@@ -1,7 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import is from 'is_js';
 import IconButton from 'material-ui/IconButton';
 import Divider from 'material-ui/Divider';
 import FlatButton from 'material-ui/FlatButton';
@@ -17,7 +16,6 @@ const labelStyle = {
   fontSize: '12px',
   fontWeight: 300,
 };
-
 
 
 class ExpandibleCard extends Component {
@@ -58,9 +56,6 @@ class ExpandibleCard extends Component {
   render() {
     const { career, goals } = this.props;
     const { expanded } = this.state;
-    const science = career.weighing ? career.weighing.science !== 0 : null;
-    const both = career.weighing ? career.weighing.science !== 0 && career.weighing.history : null;
-
     const isFavorite = _.findIndex(goals, goal => goal.carreer.id === career.id) > -1;
     
     return (

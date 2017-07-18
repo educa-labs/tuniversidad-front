@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import Divider from 'material-ui/Divider';
 import { numeral } from '../helpers/numeral';
 import { getDate } from '../helpers/strings';
 

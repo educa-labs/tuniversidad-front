@@ -20,9 +20,6 @@ class Essay extends Component {
 
 
   renderEssay(ess) {
-    const handleEditEssay = () => {
-      this.props.selectEssay(ess);
-    };
     return (
       <div className="essay__score" key={ess.id}>
         <div className="col">
