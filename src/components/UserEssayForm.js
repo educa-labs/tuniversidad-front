@@ -42,8 +42,9 @@ class UserEssayForm extends Component {
       this.setState({ error });
       return;
     }
-
-    this.props.addEssay(title, subject_id, score, date);
+    if (!this.props.requesting) {
+      this.props.addEssay(title, subject_id, score, date);
+    }
   }
 
   disabled() {

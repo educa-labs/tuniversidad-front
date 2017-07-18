@@ -58,6 +58,7 @@ class PropfileProgress extends Component {
             open={this.state.openModal}
             handleClose={this.closeModal}
             subjects={this.props.subjects}
+            requesting={this.props.essays.requesting}
             addEssay={(title, subjectId, score, date) => this.props.addEssay(this.props.token, title, subjectId, score, date)}
             mobile
           />
@@ -90,6 +91,7 @@ class PropfileProgress extends Component {
           handleClose={this.closeModal}
           subjects={this.props.subjects}
           addEssay={(title, subjectId, score, date) => this.props.addEssay(this.props.token, title, subjectId, score, date)}
+          requesting={this.props.essays.requesting}
         />
         <div className="col col-3">
           <UserEssayChart
