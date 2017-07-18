@@ -30,6 +30,6 @@
 }
 
 .forgot {
-  font-size: small;
   color: #0091EA;
+  cursor: pointer;
 }

@@ -2,7 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import Checkbox from 'material-ui/Checkbox';
+import { Link } from 'react-router';
 import is from 'is_js';
 import { logUser, clearState } from '../actions/user';
 import { saveUser } from '../helpers/storage';
@@ -67,26 +67,18 @@ class Login extends Component {
             />
             
             <div className="row">
-              <div className="col col-3 justify-center">
-                <Checkbox
-                  label="Recordar ususario"
-                  style={{ transform: 'scale(0.80)' }}
-                  onCheck={(e, val) => this.setState({ save: val })}
-                />
-              </div>
-              <div className={`col col-${this.props.mobile ? '2' : '3'}`}>
-                <RaisedButton
-                  type="submit"
-                  label="Inicia Sesión"
-                  backgroundColor="#0091EA"
-                  labelColor="#FFFFFF"
-                  style={buttonStyle}
-                  labelStyle={{ fontSize: '14px' }}
-                  disabled={password === '' || email === '' || requesting}
-                />
-              </div>
+              <RaisedButton
+                type="submit"
+                label="Inicia Sesión"
+                backgroundColor="#0091EA"
+                labelColor="#FFFFFF"
+                style={buttonStyle}
+                labelStyle={{ fontSize: '14px' }}
+                disabled={password === '' || email === '' || requesting}
+                fullWidth
+              />
             </div>
-            <div className="forgot">¿Olvidaste tu contraseña?</div>
+            <div>¿Nuevo en Tuniversidad? <Link to="/signup" className="forgot">Crea una cuenta.</Link></div>
           </form>
         </div>
       </div>

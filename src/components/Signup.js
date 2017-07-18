@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 import Checkbox from 'material-ui/Checkbox';
 import TextField from 'material-ui/TextField';
@@ -123,6 +124,7 @@ class Signup extends Component {
                 disabled={disabled}
               />
             </div>
+            <div>¿Ya tienes una cuenta? <Link to="/login" className="forgot">Inicia sesión.</Link></div>
           </form>
         </div>
       </div>
