@@ -40,7 +40,6 @@ class PropfileProgress extends Component {
   }
 
   handleEdit(selected) {
-    console.log('Hola');
     this.setState({
       selected,
     });

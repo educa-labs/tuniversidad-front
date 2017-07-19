@@ -29,7 +29,6 @@ class Landing extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll);
     const offsets = [
       findDOMNode(this.login).offsetTop,
       findDOMNode(this.body).offsetTop,
@@ -39,9 +38,6 @@ class Landing extends Component {
     this.setState({ offsets });
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('scroll', () => console.log('Nos fuimos'));
-  }
 
   getActive(pos) {
     const { offsets } = this.state;

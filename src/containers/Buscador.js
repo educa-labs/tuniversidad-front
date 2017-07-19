@@ -48,7 +48,6 @@ class Buscador extends Component {
 
   handleInfinite() {
     const { active, token, currentPage } = this.props;
-    console.log('Hola');
     const { input } = this.state;
     const filters = active === 'university' ? this.props.university_filters : this.props.career_filters;
     if (filters.freeness) filters.freeness = mapFreeness(filters.freeness);

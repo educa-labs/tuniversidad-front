@@ -38,7 +38,6 @@ class UserObjectivesForm extends Component {
   }
 
   onSubmit() {
-    console.log('Click')
     const { language, math, science, history, nem, ranking } = this.state;
     const fields = [
       'language',
@@ -58,7 +57,6 @@ class UserObjectivesForm extends Component {
     if (is.not.empty(error)) this.setState({ error });
     else {
       this.props.handleSubmit(language, math, history, science);
-      console.log('Hola');
       this.props.updateUser({
         nem,
         ranking,
