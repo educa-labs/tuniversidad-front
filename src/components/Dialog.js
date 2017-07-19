@@ -31,8 +31,6 @@ Dialog.propTypes = {
   actions: PropTypes.arrayOf(PropTypes.node),
   open: PropTypes.bool.isRequired,
   containerClassName: PropTypes.string,
-  onRequestClose: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired,
 };
 
 export default Dialog;

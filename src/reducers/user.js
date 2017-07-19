@@ -6,6 +6,7 @@ import {
   SIGN_USER_SUCCESS,
   SIGN_USER_FAILURE,
   CLEAR_STATE,
+  CLEAR_ERROR,
   SETUP_USER,
   LOGOUT_USER_FAILURE,
   LOGOUT_USER_REQUEST,
@@ -62,6 +63,10 @@ function user(state = initialState, action) {
         currentUser: action.user,
       });
     case CLEAR_STATE: return initialState;
+    case CLEAR_ERROR:
+      return Object.assign({}, state, {
+        error: {},
+      });
     default: return state;
   }
 }

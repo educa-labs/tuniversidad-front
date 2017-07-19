@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Checkbox from 'material-ui/Checkbox';
 import TextField from 'material-ui/TextField';
 import is from 'is_js';
-import { signUser } from '../actions/user';
+import { signUser, clearState } from '../actions/user';
 
 const buttonStyle = {
   margin: '1rem 0',
@@ -27,6 +27,7 @@ class Signup extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.getError = this.getError.bind(this);
   }
+
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.user !== this.props.user) {
@@ -162,5 +163,6 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
   signUser,
+  clearState,
 })(Signup);
 

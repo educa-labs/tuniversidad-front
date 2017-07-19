@@ -17,7 +17,6 @@ function MobileBanner({ onClick, location }) {
 }
 
 MobileBanner.propTypes = {
-  location: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 

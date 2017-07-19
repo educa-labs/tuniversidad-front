@@ -14,6 +14,7 @@ import {
   UPDATE_USER_REQUEST,
   UPDATE_USER_SUCCESS,
   CLEAR_STATE,
+  CLEAR_ERROR,
 } from './types';
 
 import url from '../constants/url';
@@ -21,6 +22,12 @@ import url from '../constants/url';
 export function clearState() {
   return {
     type: CLEAR_STATE,
+  };
+}
+
+export function clearError() {
+  return {
+    type: CLEAR_ERROR,
   };
 }
 

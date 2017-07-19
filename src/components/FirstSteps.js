@@ -212,7 +212,7 @@ class FirstSteps extends Component {
                 error={this.getError(7)}
                 mobile={mobile}
               />
-              <Ready onSubmit={this.handleSubmit} />
+              <Ready onSubmit={this.handleSubmit} mobile={mobile} />
             </SwipeableViews>
           </div>
           {slideIndex > 0 ? <Steps activeStep={getStepIndex(slideIndex)} mobile={mobile}/> : null }

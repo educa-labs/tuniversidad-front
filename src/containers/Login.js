@@ -4,7 +4,7 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Link } from 'react-router';
 import is from 'is_js';
-import { logUser, clearState } from '../actions/user';
+import { logUser, clearError } from '../actions/user';
 import { saveUser } from '../helpers/storage';
 import '../styles/Login.css';
 
@@ -34,7 +34,7 @@ class Login extends Component {
   }
 
   componentWillUnmount() {
-    this.props.clearState();
+    this.props.clearError();
   }
 
   handleSubmit(event) {
@@ -113,5 +113,5 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
   logUser,
-  clearState,
+  clearError,
 })(Login);
