@@ -10,11 +10,11 @@ import '../styles/Tuni.css';
 class App extends Component {
   componentWillMount() {
     const user = getUser();
+    if (is.existy(user)) this.props.setupUser(user);
     if (is.null(this.props.areas)) this.props.fetch('areas', null, null);
     if (is.null(this.props.types)) this.props.fetch('types', null, null);
     if (is.null(this.props.schedules)) this.props.fetch('schedules', null, null);
     if (is.null(this.props.subjects)) this.props.fetch('subjects', null, null);
-    if (is.existy(user)) this.props.setupUser(user);
   }
 
   render() {

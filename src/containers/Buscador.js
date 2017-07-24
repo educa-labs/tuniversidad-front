@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import FiltersDrawer from './FiltersDrawer';
 import SearchInput from '../components/inputs/SearchInput';
-import { search, getNextPage } from '../actions/search';
+import { search, getNextPage, clearSearch } from '../actions/search';
 import { fetch } from '../actions/fetch';
 import SearchResult from '../components/SearchResult';
 import MobileBanner from './MobileBanner';
@@ -26,6 +26,7 @@ class Buscador extends Component {
     this.handleInfinite = this.handleInfinite.bind(this);
   }
 
+
   componentDidMount() {
     if (this.props.mobile) {
       if (this.props.makeSubmit) this.handleSubmit();
@@ -43,9 +44,14 @@ class Buscador extends Component {
       if (nextProps.active === this.props.active) {
         this.setState({ dataTypeHasChanged: false });
       }
+      if (nextProps.data === null) this.setState({ input: '' });
     }
   }
 
+  componentWillUnmount() {
+    this.props.clearSearch();
+  }
+  
   handleInfinite() {
     const { active, token, currentPage } = this.props;
     const { input } = this.state;
@@ -78,6 +84,8 @@ class Buscador extends Component {
           handleSubmit={this.handleSubmit}
           active={this.props.active}
           mobile={this.props.mobile}
+          clearSearch={this.props.clearSearch}
+          afterSearch={this.props.data !== null}
         />
         {this.props.mobile ? null : (
           <FiltersDrawer
@@ -161,5 +169,6 @@ export default connect(mapStateToProps, {
   search,
   fetch,
   getNextPage,
+  clearSearch,
 })(Buscador);
 

@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import Search from 'material-ui/svg-icons/action/search';
+import CloseIcon from 'material-ui/svg-icons/navigation/close';
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -12,7 +13,7 @@ const labelStyle = {
 };
 
 
-function SearchInput({ value, handleOnChange, handleSubmit, active, mobile, openFilters }) {
+function SearchInput({ value, handleOnChange, handleSubmit, active, mobile, openFilters, clearSearch, afterSearch }) {
   return (
     <div className={`search-input ${mobile ? 'search-input-mobile' : ''}`}>
       <form onSubmit={handleSubmit} className={`search-input-form ${mobile ? 'search-input-form-mobile' : ''}`}>
@@ -24,7 +25,10 @@ function SearchInput({ value, handleOnChange, handleSubmit, active, mobile, open
           onChange={e => handleOnChange(e.target.value)}
           placeholder={active === 'university' ? 'Busca una universidad' : 'Busca una carrera'}
         />
-        {mobile ? (
+        {afterSearch ? (
+          <IconButton type="button" onClick={clearSearch}><CloseIcon color="#C9C9C9" /></IconButton>)
+          : null}
+        {mobile && !afterSearch ? (
           <FlatButton
             type="button"
             onTouchTap={openFilters}
@@ -49,7 +53,7 @@ function SearchInput({ value, handleOnChange, handleSubmit, active, mobile, open
 
 SearchInput.defaultProps = {
   mobile: false,
-}
+};
 
 SearchInput.propTypes = {
   value: PropTypes.string.isRequired,

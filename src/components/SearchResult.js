@@ -34,7 +34,7 @@ function SearchResult(props) {
         <div className="before-search">
           <div className={`popular-msg${props.mobile ? '-mobile' : ''}`}>{props.active === 'university' ? 'Universidades' : 'Carreras'} más buscadas</div>
           {beforeSearch}
-          </div>
+        </div>
       </div>
     );
   }
@@ -65,6 +65,7 @@ function SearchResult(props) {
         next={() => props.handleInfinite()}
         hasMore={props.hasMore}
       >
+        <div className={`popular-msg${props.mobile ? '-mobile' : ''}`}>Resultados de la búsqueda</div>
         {afterSearch}
       </InfiniteScroll>
     </div>

@@ -35,6 +35,7 @@ export const GET_ESSAYS = 'GET_ESSAYS';
 
 export const CLEAR_STATE = 'CLEAR_STATE';
 export const CLEAR_ERROR = 'CLEAR_ERROR';
+export const CLEAR_SEARCH = 'CLEAR_SEARCH';
 
 export const FETCH_REQUEST = 'FETCH_REQUEST';
 export const FETCH_SUCCESS = 'FETCH_SUCCESS';

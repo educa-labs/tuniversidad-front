@@ -7,6 +7,7 @@ import {
   INFINITE_REQUEST,
   INFINITE_SUCCESS,
   MAKE_SUBMIT,
+  CLEAR_SEARCH,
 } from './types';
 
 import url from '../constants/url';
@@ -14,6 +15,12 @@ import url from '../constants/url';
 export function makeSubmit() {
   return {
     type: MAKE_SUBMIT,
+  };
+}
+
+export function clearSearch() {
+  return {
+    type: CLEAR_SEARCH,
   };
 }
 

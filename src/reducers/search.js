@@ -7,6 +7,7 @@ import {
   INFINITE_REQUEST,
   INFINITE_SUCCESS,
   MAKE_SUBMIT,
+  CLEAR_SEARCH,
 } from '../actions/types';
 
 const initalState = {
@@ -21,6 +22,11 @@ const initalState = {
 
 function search(state = initalState, action) {
   switch (action.type) {
+    case CLEAR_SEARCH:
+      return Object.assign({}, state, {
+        result: null,
+        hasMore: true,
+      });
     case MAKE_SUBMIT:
       return Object.assign({}, state, {
         makeSubmit: true,
