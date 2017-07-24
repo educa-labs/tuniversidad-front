@@ -25,6 +25,7 @@ class Site extends Component {
     if (user.nem !== null && user.ranking !== null) {
       if (is.null(this.props.goals)) this.props.getGoals(token);
     }
+    if (is.not.existy(user)) this.context.router.replace('/');
     if (is.empty(this.props.popularCareers)) this.props.getMostPopular('carreers', token);
     if (is.empty(this.props.popularUniv)) this.props.getMostPopular('universities', token);
     if (is.null(this.props.regions)) this.props.fetch('regions', null, token);
@@ -62,6 +63,10 @@ class Site extends Component {
 
 Site.defaultProps = {
   children: null,
+};
+
+Site.contextTypes = {
+  router: PropTypes.object,
 };
 
 Site.propTypes = {
