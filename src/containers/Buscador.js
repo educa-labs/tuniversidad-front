@@ -54,7 +54,8 @@ class Buscador extends Component {
     this.props.getNextPage(active, input, token, filters, currentPage);
   }
 
-  handleSubmit() {
+  handleSubmit(event) {
+    event.preventDefault();
     const { active, token } = this.props;
     const { input } = this.state;
     const filters = active === 'university' ? this.props.university_filters : this.props.career_filters;

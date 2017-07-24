@@ -62,6 +62,7 @@ class FiltersDrawer extends Component {
         ) : null}
         <div className="row justify-center">
           <RaisedButton
+            type="submit"
             onTouchTap={props.handleSubmit}
             label="Filtrar"
             backgroundColor="#616161"
