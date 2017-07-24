@@ -29,6 +29,7 @@ class Landing extends Component {
   }
 
   componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
     const offsets = [
       findDOMNode(this.login).offsetTop,
       findDOMNode(this.body).offsetTop,
@@ -38,6 +39,9 @@ class Landing extends Component {
     this.setState({ offsets });
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
 
   getActive(pos) {
     const { offsets } = this.state;
@@ -49,13 +53,14 @@ class Landing extends Component {
   }
 
   handleScroll() {
-    const pos = document.body.scrollTop + 48;
-    const newActive = this.getActive(pos);
+    const pos = document.body.scrollTop;
+    const solidPos = 20;
+    const newActive = this.getActive(pos + 48);
     if (newActive !== this.state.active) {
       this.setState({ active: newActive });
     }
 
-    if (pos > this.state.offsets[1] - 1 && !this.state.solid) {
+    if (pos > solidPos && !this.state.solid) {
       if (!this.state.dirty) {
         this.setState({
           solid: true,
@@ -67,7 +72,7 @@ class Landing extends Component {
         });
       }
     }
-    if (pos <= this.state.offsets[1] - 1 && this.state.solid) {
+    if (pos <= solidPos && this.state.solid) {
       this.setState({ solid: false });
     }
   }
