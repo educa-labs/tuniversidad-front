@@ -62,3 +62,11 @@
   flex-direction: column;
   height: 100%;
 }
+
+.newton-empty {
+  height: 100%;
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
