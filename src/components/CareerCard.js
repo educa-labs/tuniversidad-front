@@ -25,13 +25,7 @@ function CareerCard(props, context) {
       props.addGoal(career.id, props.token);
     }
   }
-  // function handleCompareButton() {
-  //   if (isCompare) {
-  //     props.removeFromCompare(career.id);
-  //   } else {
-  //     props.addToCompare(career.id);
-  //   }
-  // }
+
   function handleInfoClick() {
     context.router.push(`site/career/${career.id}`);
   }
@@ -39,18 +33,6 @@ function CareerCard(props, context) {
   function handleSubTitleClick() {
     context.router.push(`site/university/${career.university_id}`);
   }
-
-  // if (props.compress) {
-  //   return (
-  //     <div className={`general-card ${props.mobile ? '' : 'general-card_desk'}`}>
-  //       <div className={`general-card__header bg-blue ${props.detail ? 'card__header_hide' : ''}`}>
-  //         <div className="general-card__title color-white" onTouchTap={handleInfoClick}>
-  //           {career.title}
-  //         </div>
-  //       </div>
-  //     </div>
-  //   );
-  // }
 
   const science = career.weighing ? is.existy(career.weighing.science) : null;
 
@@ -64,7 +46,7 @@ function CareerCard(props, context) {
     </div>
   ) : (
     <div className={`general-card__header bg-blue ${props.detail ? 'card__header_hide' : ''}`}>
-      <div className="general-card__title color-white">{career.title}</div>
+      <div className="general-card__title color-white cursor" onClick={handleInfoClick}>{career.title}</div>
       <div className="color-white cursor" onClick={handleSubTitleClick}>{career.university_name} en {career.campu_name}</div>
     </div>
   );
@@ -135,37 +117,37 @@ function CareerCard(props, context) {
       <div className="col">
         <div className="row">
           <div className="general-card__item">
-            <div className="value">{career.weighing ? career.weighing.language : null}%</div>
+            <div className="value">{career.weighing ? career.weighing.language : 'No disponible'}%</div>
             <div className="label">Lenguaje</div>
           </div>
           <div className="general-card__item">
-            <div className="value">{career.weighing ? career.weighing.math : null}%</div>
+            <div className="value">{career.weighing ? career.weighing.math : 'No disponible'}%</div>
             <div className="label">Matematica</div>
           </div>
           <div className="general-card__item">
-            <div className="value">{career.weighing ? career.weighing.science || career.weighing.history : null}%</div>
+            <div className="value">{career.weighing ? career.weighing.science || career.weighing.history : 'No disponible'}%</div>
             <div className="label">{science ? 'Ciencias' : 'Historia'}</div>
           </div>
           <div className="general-card__item">
-            <div className="value">{career.weighing ? career.weighing.NEM : null}%</div>
+            <div className="value">{career.weighing ? career.weighing.NEM : 'No disponible'}%</div>
             <div className="label">NEM</div>
           </div>
           <div className="general-card__item">
-            <div className="value">{career.weighing ? career.weighing.ranking : null}%</div>
+            <div className="value">{career.weighing ? career.weighing.ranking : 'No disponible'}%</div>
             <div className="label">Ranking</div>
           </div>
         </div>
         <div className="row">
           <div className="general-card__item col-2">
-            <div className="value">{career.area_title}</div>
+            <div className="value">{career.area_title || 'No disponible'}</div>
             <div className="label">Área</div>
           </div>
           <div className="general-card__item">
-            <div className="value">{career.last_cut}</div>
+            <div className="value">{career.last_cut || 'No disponible'}</div>
             <div className="label">Corte 2016</div>
           </div>
           <div className="general-card__item col-2">
-            <div className="value">{career.openings}</div>
+            <div className="value">{career.openings || 'No disponible'}</div>
             <div className="label">Vacantes</div>
           </div>
         </div>
@@ -173,21 +155,21 @@ function CareerCard(props, context) {
       <div className="col">
         <div className="row">
           <div className="general-card__item">
-            <div className="value">{career.semesters} Semestres</div>
+            <div className="value">{career.semesters || 'No disponible'} Semestres</div>
             <div className="label">Duración</div>
           </div>
           <div className="general-card__item">
-            <div className="value">{numeral(career.price)}</div>
+            <div className="value">{`$${numeral(career.price)}` || 'No disponible'}</div>
             <div className="label">Arancel</div>
           </div>
         </div>
         <div className="row">
           <div className="general-card__item">
-            <div className="value">${career.income ? numeral(career.income) : null}</div>
+            <div className="value">{career.income ? `$${numeral(career.income)}` : 'No disponible'}</div>
             <div className="label">Sueldo promedio (3er año)</div>
           </div>
           <div className="general-card__item">
-            <div className="value">%{career.employability}</div>
+            <div className="value">{career.employability ? `${career.employability}%` : 'No disponible'}</div>
             <div className="label">Empleabilidad</div>
           </div>
         </div>
