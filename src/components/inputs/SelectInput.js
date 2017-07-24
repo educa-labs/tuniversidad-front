@@ -8,7 +8,8 @@ function SelectInput(props) {
     return (
       <MenuItem
         value={item.value || item.id}
-        primaryText={item.label || item.title}
+        label={item.label || item.title}
+        primaryText={item.text || item.label || item.title}
         key={index}
       />
     );

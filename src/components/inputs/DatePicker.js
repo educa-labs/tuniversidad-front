@@ -11,10 +11,10 @@ const months = [
   { label: 'Junio', value: 6 },
   { label: 'Julio', value: 7 },
   { label: 'Agosto', value: 8 },
-  { label: 'Septiembre', value: 9 },
-  { label: 'Octubre', value: 10 },
-  { label: 'Noviembre', value: 11 },
-  { label: 'Diciembre', value: 12 },
+  { label: 'Septiembre', text: 'Sept', value: 9 },
+  { text: 'Octubre', value: 10, label: 'Oct' },
+  { text: 'Noviembre', value: 11, label: 'Nov' },
+  { text: 'Diciembre', value: 12, label: 'Dic' },
 ];
 
 const getDays = () => {
