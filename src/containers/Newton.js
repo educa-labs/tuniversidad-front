@@ -7,7 +7,7 @@ function Newton() {
         Muy pronto te ayudaré a encontrar tu carrera ideal.
       </div>
       <div className="newton-empty">
-        <div className="newton-pensando" />
+        <div className="newton-ulala" />
       </div>
     </div>
   );

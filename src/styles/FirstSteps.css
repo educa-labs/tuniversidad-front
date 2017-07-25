@@ -77,10 +77,6 @@
   flex: 1;
 }
 
-.newton-empty .newton-pensando {
-  height: 30rem;
-  width: 15rem;
-}
 
 .newton-msg {
   display: flex;

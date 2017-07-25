@@ -64,9 +64,18 @@
 }
 
 .newton-empty {
-  height: 100%;
   flex: 1;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
 }
+
+.newton-ulala {
+  background-image: url('../assets/ulala.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 30rem;
+  width: 20rem;
+}
+
