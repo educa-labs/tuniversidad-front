@@ -45,7 +45,7 @@ class Career extends Component {
     const first = <CareerCard career={career} detail mobile={mobile} />;
 
     return (
-      <div className="university">
+      <div className={`page page-university ${mobile ? 'page-university-mobile' : ''}`}>
         <NavigationBar location="site" title={`${career.title} en ${career.university_name}`} />
         <div className={`university-cover ${mobile ? 'university-cover-mobile' : 'university-cover-desk'} career-cover`}>
           <div className="university-cover__title">{career.title}</div>
@@ -64,10 +64,8 @@ class Career extends Component {
           <Tab label="Información general" value={0} style={tabStyle} />
           <Tab label="Preguntas y respuestas" value={1} style={tabStyle} />
         </Tabs >
-        <div className={`university-content ${mobile ? 'university-content-mobile' : ''}`}>
-          {slideIndex === 0 ? first : null }
-          {slideIndex === 1 ? <div>Preguntas</div> : null}
-        </div>
+        {slideIndex === 0 ? first : null }
+        {slideIndex === 1 ? <div>Preguntas</div> : null}
       </div>
     );
   }

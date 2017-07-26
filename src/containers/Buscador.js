@@ -93,7 +93,7 @@ class Buscador extends Component {
             handleSubmit={this.handleSubmit}
           />
         )}
-        <div className="row no-margin full-height">
+        <div className={`page page-filters ${this.props.mobile ? 'page-mobile' : ''}`}>
           <SearchResult
             data={this.props.data}
             popularCareers={this.props.careers}
@@ -105,7 +105,6 @@ class Buscador extends Component {
             hasMore={this.props.hasMore}
             mobile={this.props.mobile}
           />
-          {this.props.mobile ? null : <div className="empty-left" />}
         </div>
       </div>
     );

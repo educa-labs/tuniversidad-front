@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import Divider from 'material-ui/Divider';
 import { numeral } from '../helpers/numeral';
 import { getDate } from '../helpers/strings';
 
@@ -8,14 +9,14 @@ function UniversityCard(props, context) {
   function onTitleClick() {
     context.router.push(`site/university/${university.id}`);
   }
-  // const description = props.detail ? (
-  //   <div>
-  //     <Divider />
-  //     <div className="general-card-description">
-  //       {/* university.description*/}
-  //     </div>
-  //   </div>
-  // ) : null;
+  const description = props.detail ? (
+    <div>
+      <Divider />
+      <div className="general-card-description">
+        {university.description}
+      </div>
+    </div>
+  ) : null;
 
   return (
     <div className={`general-card ${mobile ? '' : 'general-card_desk'}`}>
@@ -64,6 +65,7 @@ function UniversityCard(props, context) {
           <div className="label">Doctorados</div>
         </div>
       </div>
+      {description}
     </div>
   );
 }

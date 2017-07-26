@@ -40,20 +40,15 @@ class University extends Component {
     switch (slideIndex) {
       case 0:
         return (
-          <div className="university-card">
-            <UniversityCard
-              university={this.props.university}
-              detail
-              mobile={this.props.mobile}
-            />
-          </div>
+          <UniversityCard
+            university={this.props.university}
+            detail
+            mobile={this.props.mobile}
+          />
         );
       case 1:
         return (
-          <InfiniteScroll
-            pageStart={0}
-            // height={this.props.mobile ? 280 : 460}
-          >
+          <InfiniteScroll pageStart={0}>
             {this.state.careers.map((res) => {
               if (this.props.mobile) {
                 return (
@@ -89,7 +84,7 @@ class University extends Component {
       );
     }
     return (
-      <div className="university">
+      <div className={`page page-university ${mobile ? 'page-university-mobile' : ''}`}>
         <NavigationBar location="site" title={university.title} />
         <div className={`university-cover ${mobile ? 'university-cover-mobile' : 'university-cover-desk'}`}>
           <div>
@@ -105,9 +100,7 @@ class University extends Component {
           <Tab label="Información general" value={0} style={tabStyle} />
           <Tab label="Carreras" value={1} style={tabStyle} />
         </Tabs >
-        <div className={`university-content ${mobile ? 'university-content-mobile' : ''}`}>
-          {this.getContent(slideIndex)}
-        </div>
+        {this.getContent(slideIndex)}
       </div>
     );
   }

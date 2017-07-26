@@ -61,20 +61,55 @@ button {
   padding: 0 7rem;
 }
 
-.padding-2 {
-  padding: 0 2rem;
-}
-
 .padding-1 {
   padding: 0 1rem;
 }
 
 .full-height {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .margin-left {
   margin-left: 0.5rem;
+}
+
+.page {
+  flex: 1;
+  margin-left: 230px;
+  padding-top: 48px;
+  min-height: 100vh;
+  background-color: #F5F5F5;  
+}
+
+.page-filters {
+  margin-right: 256px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.page-university {
+  padding: 286px 2rem 0 2rem;
+}
+
+.page-university-mobile {
+  padding-top: 248px;
+  margin-left: 0;
+  margin-right: 0;
+   padding-left: 0;
+  padding-right: 0;
+}
+
+.page-mobile {
+  padding-top: 96px;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.is-48x48 {
+  height: 48px;
+  width: 48px;
 }
 
 .margin-right {

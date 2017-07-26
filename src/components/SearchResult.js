@@ -30,11 +30,9 @@ function SearchResult(props) {
   }
   if (props.data === null) {
     return (
-      <div className={`col col-grey${props.mobile ? '' : '-desk padding-2'}`}>
-        <div className="before-search">
-          <div className={`popular-msg${props.mobile ? '-mobile' : ''}`}>{props.active === 'university' ? 'Universidades' : 'Carreras'} más buscadas</div>
-          {beforeSearch}
-        </div>
+      <div className="before-search">
+        <div className={`popular-msg${props.mobile ? '-mobile' : ''}`}>{props.active === 'university' ? 'Universidades' : 'Carreras'} más buscadas</div>
+        {beforeSearch}
       </div>
     );
   }
@@ -58,17 +56,15 @@ function SearchResult(props) {
   }
 
   return (
-    <div className={`col col-grey${props.mobile ? '' : '-desk padding-2'}`}>
-      <InfiniteScroll
-        pageStart={0}
-        loader={<Loading />}
-        next={() => props.handleInfinite()}
-        hasMore={props.hasMore}
-      >
-        <div className={`popular-msg${props.mobile ? '-mobile' : ''}`}>Resultados de la búsqueda</div>
-        {afterSearch}
-      </InfiniteScroll>
-    </div>
+    <InfiniteScroll
+      pageStart={0}
+      loader={<Loading />}
+      next={() => props.handleInfinite()}
+      hasMore={props.hasMore}
+    >
+      <div className={`popular-msg${props.mobile ? '-mobile' : ''}`}>Resultados de la búsqueda</div>
+      {afterSearch}
+    </InfiniteScroll>
   );
 }
 

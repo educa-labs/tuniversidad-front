@@ -97,17 +97,17 @@ function CareerCard(props, context) {
           <div className="label">Duración</div>
         </div>
         <div className="general-card__item">
-          <div className="value">{numeral(career.price)}</div>
+          <div className="value">{career.price ? `$${numeral(career.price)}` : 'No disponible'}</div>
           <div className="label">Arancel</div>
         </div>
       </div>
       <div className="row">
         <div className="general-card__item">
-          <div className="value">${career.income ? numeral(career.income) : null}</div>
+          <div className="value">{career.income ? `$${numeral(career.income)}` : 'No disponible'}</div>
           <div className="label">Sueldo promedio (3er año)</div>
         </div>
         <div className="general-card__item">
-          <div className="value">%{career.employability}</div>
+          <div className="value">{career.employability ? `${career.employability}%` : 'No disponible'}</div>
           <div className="label">Empleabilidad</div>
         </div>
       </div>
@@ -159,7 +159,7 @@ function CareerCard(props, context) {
             <div className="label">Duración</div>
           </div>
           <div className="general-card__item">
-            <div className="value">{`$${numeral(career.price)}` || 'No disponible'}</div>
+            <div className="value">{career.price ? `$${numeral(career.price)}` : 'No disponible'}</div>
             <div className="label">Arancel</div>
           </div>
         </div>

@@ -27,7 +27,7 @@ function SearchInput({ value, handleOnChange, handleSubmit, active, mobile, open
         />
         {afterSearch ? (
           <IconButton type="button" onClick={clearSearch}><CloseIcon color="#C9C9C9" /></IconButton>)
-          : null}
+          : <div className="is-48x48" />}
         {mobile && !afterSearch ? (
           <FlatButton
             type="button"

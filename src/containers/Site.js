@@ -53,7 +53,6 @@ class Site extends Component {
         </MediaQuery>
         <MediaQuery minDeviceWidth={721} className="site">
           <SideMenu open />
-          <div className="empty" />
           {this.props.children}
         </MediaQuery>
       </div>

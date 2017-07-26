@@ -51,7 +51,7 @@ class PropfileProgress extends Component {
     }
     if (this.props.mobile) {
       return (
-        <div className="col col-grey">
+        <div className="col">
           <UserEssayForm
             active={this.state.active}
             open={this.state.openModal}
@@ -83,7 +83,7 @@ class PropfileProgress extends Component {
       );
     }
     return (
-      <div className="col col-row col-grey-desk">
+      <div className="row">
         <UserEssayForm
           active={this.state.active}
           open={this.state.openModal}
