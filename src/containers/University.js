@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import is from 'is_js';
-import { getCareers } from '../helpers/api';
+import { getCareers, getCampus } from '../helpers/api';
 import NavigationBar from '../components/NavigationBar';
 import UniversityCard from '../components/UniversityCard';
 import CareerCard from '../components/CareerCard';
-// import ExpandibleCard from '../components/ExpandibleCard';
+import MapCard from '../components/MapCard';
 import CareerHeading from '../components/CareerHeading';
 import Loading from '../components/Loading';
 import { fetch } from '../actions/fetch';
@@ -28,23 +28,33 @@ class University extends Component {
       src: '',
       slideIndex: 0,
       careers: null,
+      campus: null,
     });
     this.handleSlideChange = this.handleSlideChange.bind(this);
     this.getContent = this.getContent.bind(this);
     getCareers(this.props.params.id, this.props.token)
       .then(res => this.setState({ careers: res.body }))
       .catch(err => this.setState({ careers: err.body }));
+
+    getCampus(this.props.params.id, this.props.token)
+      .then(res => this.setState({ campus: res.body }))
+      .catch(err => this.setState({ campus: err.body }));
   }
 
   getContent(slideIndex) {
     switch (slideIndex) {
       case 0:
         return (
-          <UniversityCard
-            university={this.props.university}
-            detail
-            mobile={this.props.mobile}
-          />
+          <div>
+            <UniversityCard
+              university={this.props.university}
+              detail
+              mobile={this.props.mobile}
+            />
+            {this.state.campus.map(campus => (
+              <MapCard campus={campus} mobile={this.props.mobile} key={campus.id} />
+            ))}
+          </div>
         );
       case 1:
         return (
@@ -73,10 +83,10 @@ class University extends Component {
   }
 
   render() {
-    const { careers, slideIndex } = this.state;
+    const { careers, slideIndex, campus } = this.state;
     const { university, mobile } = this.props;
 
-    if (is.any.null(university, careers)) {
+    if (is.any.null(university, careers, campus)) {
       return (
         <div className="fullscreen">
           <Loading />

@@ -1,12 +1,30 @@
 import React from 'react';
-// import {GoogleApiWrapper} from 'google-maps-react';
+import { GoogleMap, Marker, withGoogleMap } from 'react-google-maps';
 
-function MapView() {
+
+const SimpleMapExampleGoogleMap = withGoogleMap(props => {
+  console.log(props);
   return (
-    <div className="general-card">
-      Hola
-    </div>
+    <GoogleMap
+      defaultZoom={8}
+      defaultCenter={{ lat: 33, lng: 33 }}
+    />
+  );
+});
+
+function MapView(props) {
+  return (
+    <SimpleMapExampleGoogleMap
+      {...props}
+      containerElement={
+        <div style={{ height: '100%' }} />
+      }
+      mapElement={
+        <div style={{ height: '100%' }} />
+      }
+    />
   );
 }
 
 export default MapView;
+
