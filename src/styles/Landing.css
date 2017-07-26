@@ -35,14 +35,13 @@
 
 .landing-cover-subtitle {
   font-size: medium;
-  font-weight: 100;
+  font-weight: 300;
   width: 50%;
   margin: 0.5rem 0;
 }
 
 .landing-cover-subtitle-mobile {
   width: 100%;
-  font-size: small;
 }
 
 .landing-body {
