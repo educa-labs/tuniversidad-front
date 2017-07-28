@@ -17,6 +17,7 @@ import Steps from './slides/Steps';
 import Dialog from './Dialog';
 
 import { validateRut, validateDate, checkScore, validatePhone } from '../helpers/numeral';
+import { rutIsAviable } from '../helpers/api';
 
 import '../styles/FirstSteps.css';
 
@@ -77,6 +78,7 @@ class FirstSteps extends Component {
   handleNext() {
     const { slideIndex } = this.state;
     const scoreError = 'Debes ingresar un puntaje válido';
+    let requesting = false;
     if (slideIndex < 8 && !this.disabled()) {
       if (slideIndex === 2) {
         if (!validateDate(this.state.birth_date)) {
@@ -95,6 +97,14 @@ class FirstSteps extends Component {
           this.setState({ error: 'Debes ingresar un rut válido' });
           return;
         }
+        requesting = true;
+        rutIsAviable(this.state.rut).then((res) => {
+          if (!res.body.valid) {
+            this.setState({ error: res.body.error });
+          } else {
+            this.setState({ slideIndex: slideIndex + 1, error: '' });
+          }
+        });
       }
       if (slideIndex === 6) {
         const error = {};
@@ -116,7 +126,7 @@ class FirstSteps extends Component {
           return;
         }
       }
-      this.setState({ slideIndex: slideIndex + 1, error: '' });
+      if (!requesting) this.setState({ slideIndex: slideIndex + 1, error: '' });
     }
   }
 

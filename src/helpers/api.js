@@ -26,7 +26,7 @@ export function getCampus(id, token) {
 }
 
 export function rutIsAviable(rut) {
-  return Request.get(`/validate_rut?rut=${rut}`)
+  return Request.get(`${url}/validate_rut?rut=${rut}`)
       .set('Content-Type', 'application/json')
       .accept('application/tuniversidad.v1')
       .withCredentials();
