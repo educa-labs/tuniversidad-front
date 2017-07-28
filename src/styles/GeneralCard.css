@@ -50,6 +50,13 @@
   margin: 5px 0;
 }
 
+.title-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 250px;
+}
+
 .general-card__subtitle {
   font-size: small;
   margin-bottom: 5px;

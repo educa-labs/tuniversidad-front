@@ -63,8 +63,8 @@ class ExpandibleCard extends Component {
         <div className="expandible-card">
           <div className="general-card__header" onClick={() => this.setState({ expanded: !expanded })}>
             <div className="col">
-              <div className="general-card__title title_no-margin">{career.title}</div>
-              <button className="general-card__subtitle color-blue">
+              <div className="general-card__title title_no-margin title-truncate">{career.title}</div>
+              <button className="general-card__subtitle color-blue title-truncate">
                 {career.university_name} en {career.campu_name}
               </button>
             </div>
