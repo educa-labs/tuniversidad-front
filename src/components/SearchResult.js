@@ -9,7 +9,7 @@ import ExpandibleCard from './ExpandibleCard';
 function SearchResult(props) {
   if (props.requesting) {
     return (
-      <div className={`col col-grey${props.mobile ? '' : '-desk'}`} />
+      <div className={`col col-grey${props.mobile ? '' : '-desk'}`}><Loading /></div>
     );
   }
 
