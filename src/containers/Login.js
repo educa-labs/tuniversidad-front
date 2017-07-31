@@ -24,6 +24,12 @@ class Login extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentWillMount() {
+    if (is.not.null(this.props.user)) {
+      this.context.router.replace('/site/profile');
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.user !== this.props.user) {
       if (is.not.null(nextProps.user)) {
