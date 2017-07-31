@@ -29,6 +29,9 @@ const muiTheme = getMuiTheme({
     checkedColor: '#0091EA',
     requiredColor: '#0091EA',
   },
+  radioButton: {
+    checkedColor: '#0091EA',
+  },
 });
 
 ReactDOM.render(

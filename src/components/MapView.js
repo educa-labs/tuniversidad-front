@@ -3,15 +3,24 @@ import { GoogleMap, Marker, withGoogleMap } from 'react-google-maps';
 
 
 const SimpleMapExampleGoogleMap = withGoogleMap(props => {
-  console.log(props);
+  const marker = {
+    position: {
+      lat: parseFloat(props.lat),
+      lng: parseFloat(props.lng),
+    },
+  };
   return (
     <GoogleMap
-      defaultZoom={8}
-      defaultCenter={{ lat: 33, lng: 33 }}
+      defaultZoom={14}
+      defaultCenter={{ lat: parseFloat(props.lat), lng: parseFloat(props.lng) }}
       defaultOptions={{
         scrollwheel: false,
       }}
-    />
+    >
+      <Marker
+        {...marker}
+      />
+    </GoogleMap >
   );
 });
 

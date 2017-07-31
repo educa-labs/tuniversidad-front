@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import FiltersDrawer from './FiltersDrawer';
 import SearchInput from '../components/inputs/SearchInput';
 import { search, getNextPage, clearSearch } from '../actions/search';
+import { setActiveFilter } from '../actions/filter';
 import { fetch } from '../actions/fetch';
 import SearchResult from '../components/SearchResult';
 import MobileBanner from './MobileBanner';
@@ -94,6 +96,34 @@ class Buscador extends Component {
           />
         )}
         <div className={`page page-filters ${this.props.mobile ? 'page-mobile' : ''}`}>
+          {this.props.mobile ? (
+            <RadioButtonGroup
+              name="filter options"
+              defaultSelected={this.props.active}
+              onChange={(event, value) => this.props.setActiveFilter(value)}
+              style={{
+                display: 'flex',
+                margin: '0 2rem',
+              }}
+            >
+              <RadioButton
+                style={{
+                  marginTop: '10px',
+                  width: '50%',
+                }}
+                value="carreer"
+                label="Carreras"
+              />
+              <RadioButton
+                style={{
+                  marginTop: '10px',
+                  width: '50%',
+                }}
+                value="university"
+                label="Universidades"
+              />
+            </RadioButtonGroup>
+          ) : null}
           <SearchResult
             data={this.props.data}
             popularCareers={this.props.careers}
@@ -169,5 +199,6 @@ export default connect(mapStateToProps, {
   fetch,
   getNextPage,
   clearSearch,
+  setActiveFilter,
 })(Buscador);
 

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Divider from 'material-ui/Divider';
 import RaisedButton from 'material-ui/RaisedButton';
-import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import { setActiveFilter, changeFilterValue } from '../actions/filter';
 import { makeSubmit } from '../actions/search';
 import Fields from '../components/Fields';
@@ -41,25 +40,6 @@ class FiltersMobile extends Component {
       <div>
         <NavigationBar location="filters" />
         <div className="filters__header">FILTROS</div>
-        <Divider />
-        <div className="row justify-center align-center">
-          <RadioButtonGroup
-            name="filter options"
-            defaultSelected={props.active}
-            onChange={(event, value) => props.setActiveFilter(value)}
-          >
-            <RadioButton
-              style={{ margin: '10px 0' }}
-              value="university"
-              label="Universidades"
-            />
-            <RadioButton
-              style={{ margin: '10px 0' }}
-              value="carreer"
-              label="Carreras"
-            />
-          </RadioButtonGroup>
-        </div>
         <Divider />
         {props.active === 'university' ? (
           <Fields
