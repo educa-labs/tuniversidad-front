@@ -28,6 +28,7 @@ class UserObjectives extends Component {
           user={user}
           updateUser={this.props.updateUser}
           handleSubmit={this.props.handleSubmit}
+          mobile={this.props.mobile}
         />
         <div className="general-card__header">
           <div className="general-card__title">Mi Objetivo</div>

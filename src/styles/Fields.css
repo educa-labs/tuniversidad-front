@@ -5,12 +5,25 @@
   align-items: center;
   height: 48px;
   width: 100%;
+  text-transform: uppercase;
 }
 
 .filters__body {
   display: flex;
   margin: 0rem 2rem;
   flex-direction: column;
+}
+
+.edit-form-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.fields {
+  padding: 1rem;
+  flex: 1;
+  justify-content: center;
 }
 
 

@@ -92,6 +92,8 @@ class UserObjectivesForm extends Component {
         open={this.props.open}
         contentContainerClassName="form-container"
         onRequestClose={this.props.handleClose}
+        mobile={this.props.mobile}
+        form="edit/objectives"
       >
         <div className="row">
           <div className="form__field">

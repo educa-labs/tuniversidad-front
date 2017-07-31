@@ -132,6 +132,8 @@ class UserEssayForm extends Component {
         open={this.props.open}
         contentClassName={this.props.mobile ? 'form-container-mobile' : 'form-container'}
         onRequestClose={this.props.handleClose}
+        form="add/essay"
+        mobile={this.props.mobile}
       >
         {this.props.mobile ? (
           <div className="col">

@@ -32,7 +32,6 @@ class Site extends Component {
   }
 
   render() {
-    console.log(this.state.showMenu);
     return (
       <div className="queries">
         <MediaQuery maxDeviceWidth={720} className="site">
