@@ -113,7 +113,6 @@ class Fields extends Component {
             this.handleRegionChange(region);
           }}
           maxHeight={150}
-          style={{ transform: 'scale(0.9)' }}
         />
         <SelectInput
           title="Ciudad"
@@ -122,7 +121,6 @@ class Fields extends Component {
           value={props.values.cities}
           handleChange={city => props.changeFilterValue('cities', city)}
           fullWidth
-          style={{ transform: 'scale(0.9)' }}
         />
         <SelectInput
           title="Area"
@@ -130,7 +128,6 @@ class Fields extends Component {
           value={props.values.area}
           handleChange={area => props.changeFilterValue('area', area)}
           fullWidth
-          style={{ transform: 'scale(0.9)' }}
         />
         <SelectInput
           title="Horario"
@@ -138,7 +135,7 @@ class Fields extends Component {
           value={props.values.schedule}
           handleChange={schedule => props.changeFilterValue('schedule', schedule)}
           fullWidth
-          style={{ transform: 'scale(0.9)' }}
+          style={{ transform: 'scaleY(0.9)' }}
         />
         <br />
         <RangeInput
