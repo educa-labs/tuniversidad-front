@@ -20,6 +20,7 @@ class SideMenu extends Component {
     }
     this.handleSelectItem = this.handleSelectItem.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
+    this.onRequest = this.onRequest.bind(this);
   }
 
   handleLogout() {
@@ -29,9 +30,15 @@ class SideMenu extends Component {
   }
 
   handleSelectItem(selected) {
+    console.log('handle select', selected);
     if (this.props.mobile) this.props.onRequestChange(false);
     this.setState({ selected });
     this.context.router.push(`site/${selected}`);
+  }
+
+  onRequest(open, reason) {
+    console.log(open, reason);
+    this.props.onRequestChange(open);
   }
 
   render() {
@@ -42,7 +49,7 @@ class SideMenu extends Component {
         docked={!mobile}
         width={230}
         open={this.props.open}
-        onRequestChange={this.props.onRequestChange}
+        onRequestChange={this.onRequest}
         containerClassName="side-menu"
         containerStyle={{
           backgroundColor: '#424242',
@@ -52,7 +59,10 @@ class SideMenu extends Component {
         {mobile ? null : <div className="side-menu__banner" />}
         <ProfileBanner
           user={this.props.user}
-          onClick={() => this.handleSelectItem('profile')}
+          onClick={() => {
+            console.log('Click');
+            this.handleSelectItem('profile');
+          }}
           selected={selected === 'profile'}
         />
         <button

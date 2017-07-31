@@ -31,13 +31,8 @@ class Site extends Component {
     if (is.null(this.props.regions)) this.props.fetch('regions', null, token);
   }
 
-  componentWillUnmount() {
-    this.setState({
-      showMenu: false,
-    });
-  }
-
   render() {
+    console.log(this.state.showMenu);
     return (
       <div className="queries">
         <MediaQuery maxDeviceWidth={720} className="site">

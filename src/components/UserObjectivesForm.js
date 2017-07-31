@@ -29,6 +29,7 @@ class UserObjectivesForm extends Component {
   }
 
   logChage(field, val) {
+    console.log(val);
     this.setState({
       [field]: val ? Number(val) : '',
       error: Object.assign({}, this.state.error, {
@@ -105,7 +106,7 @@ class UserObjectivesForm extends Component {
           </div>
           <div className="form__field">
             <TextField
-              onChange={(e, val) => this.setState({ math: Number(val), error: '' })}
+              onChange={(e, val) => this.logChage('math', val)}
               value={this.state.math}
               floatingLabelText="Matemáticas"
               fullWidth

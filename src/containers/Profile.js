@@ -35,7 +35,7 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    this.props.getUserObjectives(this.props.token);
+    if (is.null(this.props.objectives.objectives)) this.props.getUserObjectives(this.props.token);
     for (let i = 1; i < 5; i += 1) {
       if (is.null(this.props.essays[i])) this.props.getEssays(this.props.token, i);
     }
