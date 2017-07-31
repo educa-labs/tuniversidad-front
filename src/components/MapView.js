@@ -8,6 +8,9 @@ const SimpleMapExampleGoogleMap = withGoogleMap(props => {
     <GoogleMap
       defaultZoom={8}
       defaultCenter={{ lat: 33, lng: 33 }}
+      defaultOptions={{
+        scrollwheel: false,
+      }}
     />
   );
 });
