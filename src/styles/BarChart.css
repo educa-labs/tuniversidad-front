@@ -55,7 +55,6 @@
 }
 
 .bar-chart-missing {
-  height: 2rem;
   color: #0091EA;
   display: flex;
   align-items: center;

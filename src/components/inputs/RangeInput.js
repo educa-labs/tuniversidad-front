@@ -1,17 +1,8 @@
 import React, { Component } from 'react';
-import InputRange from 'react-input-range';
 import TextField from 'material-ui/TextField';
-import 'react-input-range/lib/css/index.css';
 import '../../styles/RangeInput.css';
 
 
-/*
-title="Duración (semestres)"
-          minValue={1}
-          maxValue={16}
-          onChange={duration => props.changeFilterValue('duration', duration)}
-          value={props.values.duration}
-          */
 class RangeInput extends Component {
   constructor(props) {
     super(props);
