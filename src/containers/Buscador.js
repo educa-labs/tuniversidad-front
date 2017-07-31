@@ -109,7 +109,7 @@ class Buscador extends Component {
               <RadioButton
                 style={{
                   marginTop: '10px',
-                  width: '50%',
+                  width: '49%',
                 }}
                 value="carreer"
                 label="Carreras"
@@ -117,7 +117,7 @@ class Buscador extends Component {
               <RadioButton
                 style={{
                   marginTop: '10px',
-                  width: '50%',
+                  width: '49%',
                 }}
                 value="university"
                 label="Universidades"

@@ -14,6 +14,7 @@ const labelStyle = {
 
 
 function SearchInput({ value, handleOnChange, handleSubmit, active, mobile, openFilters, clearSearch, afterSearch }) {
+  const empty = mobile ? null : <div className="is-48x48" />;
   return (
     <div className={`search-input ${mobile ? 'search-input-mobile' : ''}`}>
       <form onSubmit={handleSubmit} className={`search-input-form ${mobile ? 'search-input-form-mobile' : ''}`}>
@@ -27,7 +28,7 @@ function SearchInput({ value, handleOnChange, handleSubmit, active, mobile, open
         />
         {afterSearch ? (
           <IconButton type="button" onClick={clearSearch}><CloseIcon color="#C9C9C9" /></IconButton>)
-          : <div className="is-48x48" />}
+          : empty}
         {mobile && !afterSearch ? (
           <FlatButton
             type="button"
