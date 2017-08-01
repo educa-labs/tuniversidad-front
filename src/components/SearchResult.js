@@ -5,6 +5,7 @@ import UniversityCard from './UniversityCard';
 import CareerCard from './CareerCard';
 import Loading from './Loading';
 import ExpandibleCard from './ExpandibleCard';
+import ExpandibleUnivCard from './ExpandibleUnivCard';
 
 function SearchResult(props) {
   if (props.requesting) {
@@ -15,7 +16,7 @@ function SearchResult(props) {
 
   let beforeSearch = null;
   if (props.active === 'carreer') {
-    beforeSearch = props.popularCareers.map(res => {
+    beforeSearch = props.popularCareers.map((res) => {
       if (props.mobile) {
         return <ExpandibleCard career={res} key={res.id} />;
       }
@@ -24,9 +25,12 @@ function SearchResult(props) {
   }
   
   if (props.active === 'university') {
-    beforeSearch = props.popularUniv.map(res => (
-      <UniversityCard university={res} key={res.id} mobile={props.mobile} />
-    ));
+    beforeSearch = props.popularUniv.map((res) => {
+      if (props.mobile) {
+        return <ExpandibleUnivCard university={res} key={res.id} />;
+      }
+      return <UniversityCard university={res} key={res.id} mobile={props.mobile} />;
+    });
   }
   if (props.data === null) {
     return (
@@ -41,12 +45,15 @@ function SearchResult(props) {
     afterSearch = <div>No hay resultados</div>;
   } else {
     if (props.active === 'university') {
-      afterSearch = props.dataTypeHasChanged ? beforeSearch : props.data.map(res => (
-        <UniversityCard university={res} key={res.id} mobile={props.mobile} />
-      ));
+      afterSearch = props.dataTypeHasChanged ? beforeSearch : props.data.map((res) => {
+        if (props.mobile) {
+          return <ExpandibleUnivCard university={res} key={res.id} />;
+        }
+        return <UniversityCard university={res} key={res.id} mobile={props.mobile} />;
+      });
     }
     if (props.active === 'carreer') {
-      afterSearch = props.dataTypeHasChanged ? beforeSearch : props.data.map(res => {
+      afterSearch = props.dataTypeHasChanged ? beforeSearch : props.data.map((res) => {
         if (props.mobile) {
           return <ExpandibleCard career={res} key={res.id} mobile={props.mobile} compress />;
         }

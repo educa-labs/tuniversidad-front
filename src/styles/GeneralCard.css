@@ -123,3 +123,22 @@
 .map-card-body {
   height: 17rem;
 }
+
+.expandible-body {
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.expandible-label {
+  display: flex;
+  flex: 2;
+  font-weight: 200;
+}
+
+.expandible-value {
+  display: flex;
+  flex: 3;
+  color: #747474;
+  font-weight: 300;
+}

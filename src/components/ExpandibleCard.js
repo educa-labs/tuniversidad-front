@@ -68,8 +68,7 @@ class ExpandibleCard extends Component {
                 {career.university_name} en {career.campu_name}
               </button>
             </div>
-            <IconButton
-            >
+            <IconButton>
               {expanded ? (
                 <ArrowUp color="#424242" />
               ) : (
@@ -138,7 +137,7 @@ class ExpandibleCard extends Component {
                 </div>
               </div>
             </div>
-            <div className="row">
+            <div className="row no-margin">
               <div className="start">
                 <FlatButton
                   label={isFavorite ? 'Remover de mis metas' : 'Añadir a mis metas'}
