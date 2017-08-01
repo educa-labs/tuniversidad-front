@@ -30,14 +30,12 @@ class SideMenu extends Component {
   }
 
   handleSelectItem(selected) {
-    console.log('handle select', selected);
     if (this.props.mobile) this.props.onRequestChange(false);
     this.setState({ selected });
     this.context.router.push(`site/${selected}`);
   }
 
   onRequest(open, reason) {
-    console.log(open, reason);
     this.props.onRequestChange(open);
   }
 
@@ -60,7 +58,6 @@ class SideMenu extends Component {
         <ProfileBanner
           user={this.props.user}
           onClick={() => {
-            console.log('Click');
             this.handleSelectItem('profile');
           }}
           selected={selected === 'profile'}

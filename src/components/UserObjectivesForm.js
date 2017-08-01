@@ -29,7 +29,6 @@ class UserObjectivesForm extends Component {
   }
 
   logChage(field, val) {
-    console.log(val);
     this.setState({
       [field]: val ? Number(val) : '',
       error: Object.assign({}, this.state.error, {

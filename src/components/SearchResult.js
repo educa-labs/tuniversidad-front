@@ -7,7 +7,6 @@ import Loading from './Loading';
 import ExpandibleCard from './ExpandibleCard';
 
 function SearchResult(props) {
-  console.log(props.data);
   if (props.requesting) {
     return (
       <div className={`col col-grey${props.mobile ? '' : '-desk'}`}><Loading /></div>
