@@ -63,7 +63,7 @@ class Buscador extends Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault();
+    if (event) event.preventDefault();
     const { active, token } = this.props;
     const { input } = this.state;
     const filters = active === 'university' ? this.props.university_filters : this.props.career_filters;
