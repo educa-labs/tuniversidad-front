@@ -16,7 +16,7 @@ class Form extends Component {
     this.state = {
       title: '',
       score: '',
-      subject_id: null,
+      subject_id: this.props.active,
       date: '',
       error: {},
     };
@@ -147,6 +147,7 @@ function mapStateToProps(state) {
     },
     shouldFetch: state.essays.shouldFetch,
     requesting: state.essays.requesting,
+    active: state.profileNavigation.essay,
   };
 }
 

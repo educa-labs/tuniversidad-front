@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import is from 'is_js';
 import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
+import { selectEssay, selectTab } from '../actions/profile';
 import { updateUserInfo } from '../actions/user';
 import { removeGoal, getGoals } from '../actions/goals';
 import { getEssays, addEssay, removeEssay } from '../actions/essays';
@@ -79,7 +80,7 @@ class Profile extends Component {
   }
 
   handleSlideChange(value) {
-    this.setState({ slideIndex: value });
+    this.props.selectTab(value);
   }
 
   render() {
@@ -101,14 +102,14 @@ class Profile extends Component {
         {mobile ? <MobileBanner onClick={this.props.toggleMenu} /> : null}
           <Tabs
             onChange={this.handleSlideChange}
-            value={slideIndex}
+            value={this.props.navigation.tab}
             className={`tabs ${mobile ? '' : 'tabs-desk'}`}
           >
             <Tab label="General" value={0} style={tabStyle} />
             <Tab label="Progreso" value={1} style={tabStyle} />
             <Tab label="Newton" value={2} style={tabStyle} />
           </Tabs >
-        {this.getContent(slideIndex)}
+        {this.getContent(this.props.navigation.tab)}
       </div>
     );
   }
@@ -138,6 +139,7 @@ function mapStateToProps(state) {
     goals: state.goals.goals,
     subjects: state.fetch.subjects,
     regions: state.fetch.regions,
+    navigation: state.profileNavigation,
   };
 }
 
@@ -150,4 +152,6 @@ export default connect(mapStateToProps, {
   updateUserObjectives,
   updateUserInfo,
   getGoals,
+  selectEssay,
+  selectTab,
 })(Profile);

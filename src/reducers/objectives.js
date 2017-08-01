@@ -13,7 +13,6 @@ const initalState = {
 };
 
 function objectives(state = initalState, action) {
-  
   switch (action.type) {
     case OBJECTIVES_REQUEST:
       return Object.assign({}, state, {

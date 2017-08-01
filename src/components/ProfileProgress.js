@@ -49,11 +49,12 @@ class PropfileProgress extends Component {
     for (let i = 1; i < 5; i += 1) {
       if (is.null(this.props.essays[i])) return <div>Cargando ... </div>;
     }
+    const active = this.props.navigation.essay;
     if (this.props.mobile) {
       return (
         <div className="col">
           <UserEssayForm
-            active={this.state.active}
+            active={active}
             open={this.state.openModal}
             handleClose={this.closeModal}
             subjects={this.props.subjects}
@@ -64,13 +65,13 @@ class PropfileProgress extends Component {
           <UserEssayChart
             essays={this.props.essays}
             subjects={this.props.subjects}
-            active={this.state.active}
+            active={active}
             mobile
           />
           <UserEssays
             mobile
-            active={this.state.active}
-            handleSubjectClick={active => this.setState({ active })}
+            active={active}
+            handleSubjectClick={active => this.props.selectEssay(active)}
             essays={this.props.essays}
             removeEssay={(essayId, subjectId) => this.props.removeEssay(this.props.token, essayId, subjectId)}
           />
@@ -85,7 +86,7 @@ class PropfileProgress extends Component {
     return (
       <div className="row">
         <UserEssayForm
-          active={this.state.active}
+          active={active}
           open={this.state.openModal}
           handleClose={this.closeModal}
           subjects={this.props.subjects}
@@ -96,15 +97,14 @@ class PropfileProgress extends Component {
           <UserEssayChart
             essays={this.props.essays}
             subjects={this.props.subjects}
-            active={this.state.active}
+            active={active}
           />
         </div>
         <div className="col col-2">
           <UserEssays
-            active={this.state.active}
-            handleSubjectClick={active => this.setState({ active })}
+            active={active}
+            handleSubjectClick={active => this.props.selectEssay(active)}
             essays={this.props.essays}
-            selectEssay={selected => this.handleEdit(selected)}
             removeEssay={(essayId, subjectId) => this.props.removeEssay(this.props.token, essayId, subjectId)}
           />
         </div>

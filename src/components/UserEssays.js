@@ -6,8 +6,8 @@ import Loading from './Loading';
 const subjects = [
   'Lenguaje',
   'Matemáticas',
-  'Ciencias Naturales',
   'Historia',
+  'Ciencias Naturales',
 ];
 
 function UserEssays(props) {
