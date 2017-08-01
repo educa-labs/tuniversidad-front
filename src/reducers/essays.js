@@ -39,7 +39,7 @@ function essays(state = initialState, action) {
         shouldFetch: action.id,
         requesting: false,
       });
-      case CLEAR_STATE: return initialState;
+    case CLEAR_STATE: return initialState;
     default: return state;
   }
 }
