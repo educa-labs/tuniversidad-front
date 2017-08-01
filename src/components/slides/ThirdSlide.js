@@ -40,6 +40,7 @@ class ThirdSlide extends Component {
             value={this.state.phone}
             errorText={this.props.error.phone || ''}
             fullWidth
+            type="number"
           />
           <SelectInput
             title="Preuniversitario"
