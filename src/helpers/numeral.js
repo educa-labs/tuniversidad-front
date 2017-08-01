@@ -11,6 +11,7 @@ export function checkScore(number) {
 }
 
 export function validateRut(value) {
+  if (value.length > 10) return false;
   if (!value.includes('-')) return false;
   let t = parseInt(value.slice(0,-1), 10), m = 0, s = 1;
   while (t > 0) {

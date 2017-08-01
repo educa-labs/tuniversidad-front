@@ -15,6 +15,7 @@ import Objectives from './slides/Objectives';
 import Ready from './slides/Ready';
 import Steps from './slides/Steps';
 import Dialog from './Dialog';
+import SecondSide from './slides/SecondSlide';
 
 import { validateRut, validateDate, checkScore, validatePhone } from '../helpers/numeral';
 import { rutIsAviable } from '../helpers/api';
@@ -32,7 +33,7 @@ class FirstSteps extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      slideIndex: 0,
+      slideIndex: 2,
       error: '',
       city_id: null,
       birth_date: null,
@@ -81,10 +82,25 @@ class FirstSteps extends Component {
     let requesting = false;
     if (slideIndex < 8 && !this.disabled()) {
       if (slideIndex === 2) {
-        if (!validateDate(this.state.birth_date)) {
-          this.setState({ error: 'Esta fecha no existe' });
+        const error = {};
+        if (!validateDate(this.state.birth_date)) error.date = 'Esta fecha no existe';
+        if (!validateRut(this.state.rut)) error.rut = 'Debes ingresar un rut válido';
+        if (is.not.empty(error)) {
+          this.setState({ error });
           return;
         }
+        requesting = true;
+        rutIsAviable(this.state.rut).then((res) => {
+          if (!res.body.valid) {
+            this.setState({
+              error: {
+                rut: res.body.error,
+              },
+            });
+          } else {
+            this.setState({ slideIndex: slideIndex + 1, error: '' });
+          }
+        });
       }
       if (slideIndex === 3) {
         if (!validatePhone(this.state.phone)) {
@@ -189,11 +205,17 @@ class FirstSteps extends Component {
                 logChange={id => this.logChange('city_id', id)}
                 mobile={mobile}
               />
-              <BirthDate
+              <SecondSide
+                logDateChange={date => this.logChange('birth_date', date)}
+                logRutChange={rut => this.logChange('rut', rut)}
+                error={this.state.error}
+                mobile={mobile}
+              />
+              {/* <BirthDate
                 logChange={date => this.logChange('birth_date', date)}
                 error={this.getError(2)}
                 mobile={mobile}
-              />
+              /> */}
               <Phone
                 logChange={phone => this.logChange('phone', phone)}
                 error={this.getError(3)}
