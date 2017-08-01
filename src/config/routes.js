@@ -17,6 +17,7 @@ import Signup from '../components/Signup';
 import FiltersMobile from '../containers/FiltersMobile';
 import EditObjectives from '../components/forms/EditObjectives';
 import NewEssay from '../components/forms/NewEssay';
+import FirstStepsMobile from '../containers/FirstStepsMobile';
 
 export default (
   <Route path="/" component={App}>
@@ -36,6 +37,7 @@ export default (
       <Route path="profile" component={Profile} />
       <Route path="profile/edit/objectives" component={EditObjectives} />
       <Route path="profile/new/essay" component={NewEssay} />
+      <Route path="profile/steps" component={FirstStepsMobile} />
     </Route>
   </Route>
 );

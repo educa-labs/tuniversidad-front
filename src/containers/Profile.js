@@ -125,7 +125,7 @@ Profile.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    token: state.user.currentUser.auth_token,
+    token: state.user.currentUser ? state.user.currentUser.auth_token : null,
     user: state.user.currentUser,
     objectives: state.objectives,
     essays: {
