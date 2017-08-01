@@ -16,6 +16,7 @@ import Ready from './slides/Ready';
 import Steps from './slides/Steps';
 import Dialog from './Dialog';
 import SecondSide from './slides/SecondSlide';
+import ThirdSlide from './slides/ThirdSlide';
 
 import { validateRut, validateDate, checkScore, validatePhone } from '../helpers/numeral';
 import { rutIsAviable } from '../helpers/api';
@@ -33,7 +34,7 @@ class FirstSteps extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      slideIndex: 2,
+      slideIndex: 3,
       error: '',
       city_id: null,
       birth_date: null,
@@ -104,7 +105,11 @@ class FirstSteps extends Component {
       }
       if (slideIndex === 3) {
         if (!validatePhone(this.state.phone)) {
-          this.setState({ error: 'Debes ingresar un número válido' });
+          this.setState({
+            error: {
+              phone: 'Debes ingresar un número válido',
+            },
+          });
           return;
         }
       }
@@ -208,6 +213,12 @@ class FirstSteps extends Component {
               <SecondSide
                 logDateChange={date => this.logChange('birth_date', date)}
                 logRutChange={rut => this.logChange('rut', rut)}
+                error={this.state.error}
+                mobile={mobile}
+              />
+              <ThirdSlide
+                logPreuChange={preuniversity => this.logChange('preuniversity', preuniversity)}
+                logPhoneChange={phone => this.logChange('phone', phone)}
                 error={this.state.error}
                 mobile={mobile}
               />
