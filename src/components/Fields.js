@@ -71,7 +71,6 @@ class Fields extends Component {
             }}
             fullWidth
             maxHeight={180}
-            style={{ transform: 'scale(0.9)' }}
           />
           <SelectInput
             title="Ciudad"
@@ -79,7 +78,6 @@ class Fields extends Component {
             value={props.values.cities}
             handleChange={id => props.changeFilterValue('cities', id)}
             fullWidth
-            style={{ transform: 'scale(0.9)' }}
           />
           <SelectInput
             title="Tipo de Universidad"
@@ -87,7 +85,6 @@ class Fields extends Component {
             value={props.values.university_type}
             handleChange={type => props.changeFilterValue('university_type', type)}
             fullWidth
-            style={{ transform: 'scale(0.9)' }}
           />
           <SelectInput
             title="Gratuidad"
@@ -95,7 +92,6 @@ class Fields extends Component {
             value={props.values.freeness}
             handleChange={freeness => props.changeFilterValue('freeness', freeness)}
             fullWidth
-            style={{ transform: 'scale(0.9)' }}
           />
         </div>
       );

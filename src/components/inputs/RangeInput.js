@@ -7,8 +7,8 @@ class RangeInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      min: this.props.minValue,
-      max: this.props.maxValue,
+      min: Number(this.props.minValue),
+      max: Number(this.props.maxValue),
     };
   }
 

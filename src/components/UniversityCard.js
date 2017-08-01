@@ -43,11 +43,11 @@ function UniversityCard(props, context) {
           <div className="label">Gratuidad</div>
         </div>
         <div className="general-card__item">
-          <div className="value">{numeral(university.students)}</div>
+          <div className="value">{university.students ? numeral(university.students) : 'No disponible'}</div>
           <div className="label">Alumnos</div>
         </div>
         <div className="general-card__item">
-          <div className="value">{numeral(university.postgraduates)}</div>
+          <div className="value">{university.postgraduates ? numeral(university.postgraduates) : 'No disponible'}</div>
           <div className="label">Postgrados</div>
         </div>
       </div>
@@ -57,11 +57,11 @@ function UniversityCard(props, context) {
           <div className="label">Fundación</div>
         </div>
         <div className="general-card__item">
-          <div className="value">{numeral(university.teachers)}</div>
+          <div className="value">{university.teachers ? numeral(university.teachers) : 'No disponible'}</div>
           <div className="label">Profesores</div>
         </div>
         <div className="general-card__item">
-          <div className="value">{numeral(university.doctorates)}</div>
+          <div className="value">{university.doctorates ? numeral(university.doctorates) : 'No disponible'}</div>
           <div className="label">Doctorados</div>
         </div>
       </div>

@@ -50,6 +50,7 @@ export function search(active, text, token, filters) {
         }
       })
       .catch((err) => {
+        console.log(err);
         dispath({
           type: SEARCH_FAILURE,
           error: err.response.body,

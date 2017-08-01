@@ -1,4 +1,4 @@
-import { SET_ACTIVE_FILTER, CHANGE_FILTER_VALUE } from '../actions/types';
+import { SET_ACTIVE_FILTER, CHANGE_FILTER_VALUE, CLEAR_SEARCH } from '../actions/types';
 
 const initialState = {
   page: 0,
@@ -23,6 +23,10 @@ function filter(state = initialState, action) {
     case CHANGE_FILTER_VALUE:
       return Object.assign({}, state, {
         [action.filter]: action.value,
+      });
+    case CLEAR_SEARCH:
+      return Object.assign(initialState, {
+        active: state.active,
       });
     default: return state;
   }

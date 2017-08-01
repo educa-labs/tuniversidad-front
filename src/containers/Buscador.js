@@ -190,6 +190,7 @@ function mapStateToProps(state) {
       max_price: state.filter.price ? state.filter.price.max : null,
       min_semesters: state.filter.duration ? state.filter.duration.min : null,
       max_semesters: state.filter.duration ? state.filter.duration.max : null,
+      schedule: state.filter.schedule ? state.filter.schedule : null,
     },
   };
 }
