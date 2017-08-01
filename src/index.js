@@ -18,9 +18,19 @@ const muiTheme = getMuiTheme({
     accent1Color: '#0091EA',
   },
   tabs: {
-    backgroundColor: 'white',
+    backgroundColor: '#FFFFFF',
     selectedTextColor: '#424242',
     textColor: '#D2D2D2',
+  },
+  stepper: {
+    iconColor: '#0091EA',
+  },
+  checkbox: {
+    checkedColor: '#0091EA',
+    requiredColor: '#0091EA',
+  },
+  radioButton: {
+    checkedColor: '#0091EA',
   },
 });
 

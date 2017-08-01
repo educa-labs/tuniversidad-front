@@ -6,10 +6,14 @@ import {
   SIGN_USER_SUCCESS,
   SIGN_USER_FAILURE,
   CLEAR_STATE,
+  CLEAR_ERROR,
   SETUP_USER,
   LOGOUT_USER_FAILURE,
   LOGOUT_USER_REQUEST,
   LOGOUT_USER_SUCCESS,
+  UPDATE_USER_FAILURE,
+  UPDATE_USER_REQUEST,
+  UPDATE_USER_SUCCESS,
 } from '../actions/types';
 
 const initialState = {
@@ -23,12 +27,14 @@ function user(state = initialState, action) {
     case LOG_USER_REQUEST:
     case LOGOUT_USER_REQUEST:
     case SIGN_USER_REQUEST:
+    case UPDATE_USER_REQUEST:
       return Object.assign({}, state, {
         requesting: true,
       });
     case LOG_USER_FAILURE:
     case LOGOUT_USER_FAILURE:
     case SIGN_USER_FAILURE:
+    case UPDATE_USER_FAILURE:
       return Object.assign({}, state, {
         requesting: false,
         error: action.error,
@@ -45,21 +51,21 @@ function user(state = initialState, action) {
         requesting: false,
         error: {},
       });
+    case UPDATE_USER_SUCCESS:
     case SIGN_USER_SUCCESS:
       return Object.assign({}, state, {
         currentUser: action.user,
         requesting: false,
         error: {},
       });
-    case CLEAR_STATE:
-      return Object.assign({}, state, {
-        currentUser: null,
-        error: {},
-        requesting: false,
-      });
     case SETUP_USER:
       return Object.assign({}, state, {
         currentUser: action.user,
+      });
+    case CLEAR_STATE: return initialState;
+    case CLEAR_ERROR:
+      return Object.assign({}, state, {
+        error: {},
       });
     default: return state;
   }

@@ -1,15 +1,16 @@
-import { SET_ACTIVE_FILTER, CHANGE_FILTER_VALUE } from '../actions/types';
+import { SET_ACTIVE_FILTER, CHANGE_FILTER_VALUE, CLEAR_SEARCH } from '../actions/types';
 
 const initialState = {
-  active: 'university',
+  page: 0,
+  active: 'carreer',
   university_type: null,
   freeness: null,
   cities: null,
   region_id: null,
   area: null,
-  duration: [null, null],
-  price: [null, null],
-  cut: [null, null],
+  duration: { min: 1, max: 16 },
+  price: { min: 0, max: 7000000 },
+  cut: { min: 450, max: 850 },
   schedule: null,
 };
 
@@ -22,6 +23,10 @@ function filter(state = initialState, action) {
     case CHANGE_FILTER_VALUE:
       return Object.assign({}, state, {
         [action.filter]: action.value,
+      });
+    case CLEAR_SEARCH:
+      return Object.assign(initialState, {
+        active: state.active,
       });
     default: return state;
   }

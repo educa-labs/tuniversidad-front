@@ -1,36 +1,45 @@
 import React, { PropTypes } from 'react';
+import is from 'is_js';
 import round from '../helpers/round';
+import { makeList } from '../helpers/strings';
 import '../styles/BarChart.css';
-
-const data = {
-  me: 513,
-  goal: 670,
-  cut: 647,
-};
 
 
 function BarChart(props) {
   function getWidth(value) {
+    if (value === null) return 100;
     return `${round((value * 100) / props.max, 1)}%`;
   }
+  const { avg, obj, last_cut } = props.scores;
+
+  const missing = is.not.empty(props.missing) ? (
+    <div className="bar-chart-missing" onClick={props.linkToProgress}>
+      Agrega un ensayo de {makeList(props.missing)} para ver tu progreso.
+    </div>
+  ) : null;
+
+  const barOne = (
+    <div className="bar" style={{ width: getWidth(avg) }}>
+      <div className="rectangle rectangle-1" >
+        <div className="bar__label">Mi Puntaje</div>
+        <div className="bar__value">{avg}</div>
+      </div>
+    </div>
+  );
+  
   return (
     <div className="bar-chart">
-      <div className="bar">
-        <div className="rectangle rectangle-1" style={{ width: getWidth(data.me) }}>
-          <div className="bar__label">Mi Puntaje</div>
-          <div className="bar__value">{data.me}</div>
-        </div>
-      </div>
-      <div className="bar">
-        <div className=" rectangle rectangle-2" style={{ width: getWidth(data.goal) }}>
+      {missing || barOne}
+      <div className="bar" style={{ width: getWidth(obj) }}>
+        <div className="rectangle rectangle-2">
           <div className="bar__label">Mi Objetivo</div>
-          <div className="bar__value">{data.goal}</div>
+          <div className="bar__value">{obj}</div>
         </div>
       </div>
-      <div className="bar">
-        <div className=" rectangle rectangle-3" style={{ width: getWidth(data.cut) }}>
+      <div className="bar" style={{ width: getWidth(last_cut) }} >
+        <div className=" rectangle rectangle-3">
           <div className="bar__label">Corte 2016</div>
-          <div className="bar__value">{data.cut}</div>
+          <div className="bar__value">{last_cut}</div>
         </div>
       </div>
     </div>
@@ -39,6 +48,7 @@ function BarChart(props) {
 
 BarChart.propTypes = {
   max: PropTypes.number.isRequired,
+  missing: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default BarChart;

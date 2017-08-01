@@ -10,7 +10,11 @@ import {
   SIGN_USER_REQUEST,
   SIGN_USER_SUCCESS,
   SIGN_USER_FAILURE,
+  UPDATE_USER_FAILURE,
+  UPDATE_USER_REQUEST,
+  UPDATE_USER_SUCCESS,
   CLEAR_STATE,
+  CLEAR_ERROR,
 } from './types';
 
 import url from '../constants/url';
@@ -18,6 +22,12 @@ import url from '../constants/url';
 export function clearState() {
   return {
     type: CLEAR_STATE,
+  };
+}
+
+export function clearError() {
+  return {
+    type: CLEAR_ERROR,
   };
 }
 
@@ -89,7 +99,6 @@ export function logUser(email, password) {
 }
 
 export function signUser(firstname, lastname, email, password) {
-  console.log(firstname, lastname, email, password);
   const request = Request.post(`${url}/users`)
     .set('Content-Type', 'application/json')
     .accept('application/tuniversidad.v1')
@@ -108,18 +117,46 @@ export function signUser(firstname, lastname, email, password) {
     });
     return request
       .then((res) => {
+        dispatch({
+          type: SIGN_USER_SUCCESS,
+          user: res.body,
+        });
+      })
+      .catch((err, res) => {
+        dispatch({
+          type: SIGN_USER_FAILURE,
+          error: err.response.body,
+        });
+      });
+  };
+}
+
+export function updateUserInfo(id, token, fields) {
+  const request = Request.put(`${url}/users/${id}`)
+    .set('Content-Type', 'application/json')
+    .set('Authorization', token)
+    .accept('application/tuniversidad.v1')
+    .withCredentials()
+    .send(fields);
+  return (dispatch) => {
+    dispatch({
+      type: UPDATE_USER_REQUEST,
+    });
+    return request
+      .then((res) => {
         if (res.ok) {
           dispatch({
-            type: SIGN_USER_SUCCESS,
+            type: UPDATE_USER_SUCCESS,
             user: res.body,
           });
         }
       })
       .catch((err) => {
         dispatch({
-          type: SIGN_USER_FAILURE,
+          type: UPDATE_USER_FAILURE,
           error: err.response.body.errors,
         });
       });
   };
 }
+

@@ -1,15 +1,23 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import is from 'is_js';
-import { getCareers } from '../helpers/api';
-import Banner from '../components/Banner';
+import { getCareers, getCampus } from '../helpers/api';
+import NavigationBar from '../components/NavigationBar';
 import UniversityCard from '../components/UniversityCard';
 import CareerCard from '../components/CareerCard';
-// import Questions from './Questions';
+import MapCard from '../components/MapCard';
+import CareerHeading from '../components/CareerHeading';
+import Loading from '../components/Loading';
 import { fetch } from '../actions/fetch';
 import '../styles/University.css';
 
+
+const tabStyle = {
+  fontSize: '12px',
+  fontWeight: 400,
+};
 
 class University extends Component {
 
@@ -20,50 +28,89 @@ class University extends Component {
       src: '',
       slideIndex: 0,
       careers: null,
+      campus: null,
     });
     this.handleSlideChange = this.handleSlideChange.bind(this);
+    this.getContent = this.getContent.bind(this);
     getCareers(this.props.params.id, this.props.token)
       .then(res => this.setState({ careers: res.body }))
       .catch(err => this.setState({ careers: err.body }));
+
+    getCampus(this.props.params.id, this.props.token)
+      .then(res => this.setState({ campus: res.body }))
+      .catch(err => this.setState({ campus: err.body }));
   }
 
+  getContent(slideIndex) {
+    switch (slideIndex) {
+      case 0:
+        return (
+          <div>
+            <UniversityCard
+              university={this.props.university}
+              detail
+              mobile={this.props.mobile}
+            />
+            {this.state.campus.map(campus => (
+              <MapCard campus={campus} mobile={this.props.mobile} key={campus.id} />
+            ))}
+          </div>
+        );
+      case 1:
+        return (
+          <InfiniteScroll pageStart={0}>
+            {this.state.careers.map((res) => {
+              if (this.props.mobile) {
+                return (
+                  <CareerHeading
+                    key={res.id}
+                    mobile={this.props.mobile}
+                    title={res.title}
+                    subtitle={`${res.university_name} en ${res.campu_name}`}
+                    onClick={() => this.context.router.push(`site/career/${res.id}`)}
+                  />
+                );
+              }
+              return <CareerCard career={res} key={res.id} />;
+            })}
+          </InfiniteScroll>
+        );
+      default: return null;
+    }
+  }
   handleSlideChange(value) {
     this.setState({ slideIndex: value });
   }
 
   render() {
-    const { careers, slideIndex } = this.state;
-    const { university } = this.props;
-    if (is.any.null(university, careers)) {
+    const { careers, slideIndex, campus } = this.state;
+    const { university, mobile } = this.props;
+
+    if (is.any.null(university, careers, campus)) {
       return (
-        <div>
-          Cargando ...
+        <div className="fullscreen">
+          <Loading />
         </div>
       );
     }
     return (
-      <div className="site__children">
-        <Banner location="site" title={university.title} />
-        <div className="university-cover">
-          <div className="university-cover__title">{university.title}</div>
-          <div className="university-cover__subtitle">{university.motto}</div>
+      <div className={`page page-university ${mobile ? 'page-university-mobile' : ''}`}>
+        <NavigationBar location="site" title={university.title} />
+        <div className={`university-cover ${mobile ? 'university-cover-mobile' : 'university-cover-desk'}`}>
+          <div>
+            <div className="university-cover__title">{university.title}</div>
+            <div className="university-cover__subtitle">{university.motto}</div>
+          </div>
         </div>
-        <div className="tabs-container">
-          <Tabs
-            onChange={this.handleSlideChange}
-            value={slideIndex}
-            className="tabs"
-          >
-            <Tab label="Información general" value={0} />
-            <Tab label="Carreras" value={1} />
-            <Tab label="Preguntas y respuestas" value={2} />
-          </Tabs >
-        </div>
-        <div className="university-children">
-          {slideIndex === 0 ? <UniversityCard university={university} detail /> : null }
-          {slideIndex === 1 ? this.state.careers.map(car => <CareerCard career={car} key={car.id} />) : null}
-          {slideIndex === 2 ? <div>Preguntas</div> : null } 
-        </div>
+        <Tabs
+          onChange={this.handleSlideChange}
+          value={slideIndex}
+          className={`tabs-search ${mobile ? 'tabs-search-mobile' : 'tabs-search-desktop'}`}
+        >
+          <Tab label="Información general" value={0} style={tabStyle} />
+          <Tab label="Carreras" value={1} style={tabStyle} />
+        </Tabs >
+        {this.getContent(slideIndex)}
       </div>
     );
   }
@@ -76,12 +123,22 @@ function mapStateToProps(state) {
   };
 }
 
+University.defaultProps = {
+  mobile: false,
+};
+
 University.propTypes = {
   fetch: PropTypes.func.isRequired,
   token: PropTypes.string.isRequired,
   params: PropTypes.object,
   university: PropTypes.object,
+  mobile: PropTypes.bool,
 };
+
+University.contextTypes = {
+  router: PropTypes.object,
+};
+
 
 export default connect(mapStateToProps, {
   fetch,

@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Tooltip from 'rc-tooltip';
 import { Handle } from 'rc-slider';
 import 'rc-tooltip/assets/bootstrap.css';
-import numeral from '../../helpers/numeral';
+import { numeral } from '../../helpers/numeral';
 
 function Handler(props) {
   const { value, dragging, custom, index, ...restProps } = props;

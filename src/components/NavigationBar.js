@@ -1,43 +1,87 @@
 import React, { PropTypes } from 'react';
-import FlatButton from 'material-ui/FlatButton';
-import Arrow from 'material-ui/svg-icons/hardware/keyboard-arrow-right';
+import { scroller } from 'react-scroll';
+import IconButton from 'material-ui/IconButton';
+import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
 import '../styles/NavigationBar.css';
 
 
 function NavigationBar(props, context) {
-  const { path } = props;
-  const buttons = [];
-  for (let i = 0; i < path.length; i += 1) {
-    buttons.push(
-      <div className="navigation-bar-item" key={i}>
-        <FlatButton
-          label={path[i].label}
-          onTouchTap={() => context.router.push(path[i].value)}
-          labelStyle={i === path.length - 1 ? { color: '#C9C9C9' } : { color: '#0091EA' }}
-          hoverColor="white"
-        />
-        {i === path.length - 1 ? null : <Arrow color="#C9C9C9" />}
-      </div>,
+  const params = {
+    duration: 500,
+    smooth: true,
+    offset: -48,
+  };
+
+  let className = 'navigation-bar';
+
+  if (props.location === 'landing') {
+    className = `${className} navigation-bar_landing${props.dirty ? '-dirty' : ''}`;
+    if (props.solid && props.dirty) className = `${className} navigation-bar_landing-solid`;
+    const tuniLogo = props.mobile ? null : (
+      <div className="navigation-bar-logo">
+        <div className={`logo-tuni ${props.solid ? 'logo-tuni-black' : ''}`} />
+      </div>
     );
+
+    return (
+      <div className={className}>
+        {tuniLogo}
+        <div className={`navigation-bar-actions ${props.mobile ? 'navigation-bar-actions-mobile' : ''}`}>
+          <button
+            className={`action ${props.mobile ? 'action-mobile' : ''}  ${props.active === 0 ? 'action-active' : ''}`}
+            onClick={() => scroller.scrollTo('login', params)}
+          >
+            Comenzar
+          </button>
+          <button
+            className={`action ${props.mobile ? 'action-mobile' : ''} ${props.active === 1 ? 'action-active' : ''}`}
+            onClick={() => scroller.scrollTo('body', params)}
+          >
+            ¿Qué hace?
+          </button>
+          <button
+            className={`action ${props.mobile ? 'action-mobile' : ''} ${props.active === 2 ? 'action-active' : ''}`}
+            onClick={() => scroller.scrollTo('newton', params)}
+          >
+            Newton
+          </button>
+          <button
+            className={`action ${props.mobile ? 'action-mobile' : ''} ${props.active === 3 ? 'action-active' : ''}`}
+            onClick={() => scroller.scrollTo('cover-bottom', params)}
+          >
+            Descargar
+          </button>
+        </div>
+      </div>
+    )
   }
+
+  if (props.location === 'site') className = `${className} navigation-bar_site`;
+  const arrowColor = props.location === 'filters' ? '#000000' : '#FFFFFF';
   return (
-    <div className="navigation-bar">
-      {buttons}
+    <div className={className}>
+      <IconButton onTouchTap={() => context.router.goBack()}>
+        <ArrowBack color={arrowColor} />
+      </IconButton>
+      {/*<div className="navigation-bar-title">{props.title}</div>*/}
     </div>
   );
 }
 
-NavigationBar.defaultProps = {
-  path: [
-    { value: 'careers', label: 'Carreras' },
-  ],
+NavigationBar.propTypes = {
+  location: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  solid: PropTypes.bool,
+  dirty: PropTypes.bool,
+  active: PropTypes.number,
 };
 
-NavigationBar.propTypes = {
-  path: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
-  })),
+NavigationBar.defaultProps = {
+  user: null,
+  title: null,
+  solid: false,
+  dirty: false,
+  active: null,
 };
 
 NavigationBar.contextTypes = {

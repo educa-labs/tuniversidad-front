@@ -1,11 +1,10 @@
-import is from 'is_js';
 import _ from 'lodash';
 import {
-  GOAL_FAILURE,
   GOAL_REQUEST,
   GET_GOALS,
   ADD_GOAL,
   REMOVE_GOAL,
+  CLEAR_STATE,
 } from '../actions/types';
 
 const initialState = {
@@ -34,9 +33,10 @@ function goals(state = initialState, action) {
 
     case REMOVE_GOAL:
       return Object.assign({}, state, {
-        goals: _.filter(state.goals, car => car.id !== action.id),
+        goals: _.filter(state.goals, goal => goal.carreer.id !== action.id),
         requesting: false,
       });
+    case CLEAR_STATE: return initialState;
     default: return state;
   }
 }

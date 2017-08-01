@@ -2,6 +2,7 @@
   display: flex;
   flex: 1;
   flex-direction: column;
+  padding-bottom: 1rem;
 }
 
 .bar {
@@ -9,11 +10,7 @@
  flex: 1;
  align-items: center;
  margin: 2px 0;
-}
-
-.bar__label {
-  display: flex;
-  flex: 1;
+ font-weight: 300;
 }
 
 .bar__value {
@@ -25,9 +22,20 @@
 .bar .rectangle {
   color: white;
   height: 2rem;
+  width: 100%;
   padding: 0 10px;
   display: flex;
   align-items: center;
+  animation: 1s ease 0s 1 expandFromLeft;
+}
+
+@keyframes expandFromLeft {
+  From {
+    width: 32%;
+  }
+  To {
+    width: 100%;
+  }
 }
 
 .bar .rectangle:hover {
@@ -44,4 +52,19 @@
 
 .bar .rectangle-3 {
   background-color: #616161;
+}
+
+.bar-chart-missing {
+  color: #0091EA;
+  display: flex;
+  align-items: center;
+  border: 1px solid #0091EA;
+  padding: 0 10px;
+  margin: 2px 0;
+  min-height: 2rem;
+}
+
+.bar-chart-missing:hover {
+  background-color: #0091EA;
+  color: white;
 }

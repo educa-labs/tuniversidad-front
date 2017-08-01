@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import Drawer from 'material-ui/Drawer';
 import Search from 'material-ui/svg-icons/action/search';
 import RaisedButton from 'material-ui/RaisedButton';
-import CompareIcon from 'material-ui/svg-icons/image/compare';
+// import CompareIcon from 'material-ui/svg-icons/image/compare';
 import LightbulbIcon from 'material-ui/svg-icons/action/lightbulb-outline';
 import NewsIcon from 'material-ui/svg-icons/av/fiber-new';
 import ProfileBanner from '../components/ProfileBanner';
@@ -19,70 +20,98 @@ class SideMenu extends Component {
     }
     this.handleSelectItem = this.handleSelectItem.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
+    this.onRequest = this.onRequest.bind(this);
   }
 
   handleLogout() {
     this.props.clearState();
     clearUser();
-    this.context.router.replace('/');
-    // props.logoutUser(props.user.id, props.user.auth_token);
+    this.context.router.replace('/login');
   }
 
   handleSelectItem(selected) {
+    if (this.props.mobile) this.props.onRequestChange(false);
     this.setState({ selected });
     this.context.router.push(`site/${selected}`);
   }
 
+  onRequest(open, reason) {
+    this.props.onRequestChange(open);
+  }
+
   render() {
     const { selected } = this.state;
+    const { mobile } = this.props;
     return (
-      <div className="side-menu">
-        <div className="side-menu__banner" />
+      <Drawer
+        docked={!mobile}
+        width={230}
+        open={this.props.open}
+        onRequestChange={this.onRequest}
+        containerClassName="side-menu"
+        containerStyle={{
+          backgroundColor: '#424242',
+          minHeight: '32rem',
+        }}
+      >
+        {mobile ? null : <div className="side-menu__banner" />}
         <ProfileBanner
           user={this.props.user}
-          onClick={ () => this.handleSelectItem('profile')}
+          onClick={() => {
+            this.handleSelectItem('profile');
+          }}
           selected={selected === 'profile'}
         />
-        <div
+        <button
           className={`side-menu__item ${selected === 'search' ? 'side-menu__item_selected' : ''}`}
           onClick={() => this.handleSelectItem('search')}
         >
-          <div className="icon" ><Search color="white" /></div>
-          <div className="label">Buscador</div>
-        </div>
-        <div
+          <div className="icon" ><Search color="#FFFFFF" /></div>
+          <div className="side-menu__item-label">Buscador</div>
+        </button>
+        {/* <button
           className={`side-menu__item ${selected === 'compare' ? 'side-menu__item_selected' : ''}`}
-          onClick={() => this.handleSelectItem('compare')}
+          // onClick={() => this.handleSelectItem('compare')}
         >
-          <div className="icon" ><CompareIcon color="white" /></div>
-          <div className="label">Comparador</div>
-        </div>
-        <div
+          <div className="icon" ><CompareIcon color="#FFFFFF" /></div>
+          <div className="side-menu__item-label">Comparador (Pronto)</div>
+        </button>*/}
+        <button
           className={`side-menu__item ${selected === 'recommend' ? 'side-menu__item_selected' : ''}`}
-          onClick={() => this.handleSelectItem('recommend')}
+          // onClick={() => this.handleSelectItem('recommend')}
         >
-          <div className="icon" ><LightbulbIcon color="white" /></div>
-          <div className="label">Recomendaciones</div>
-        </div>
-        <div
+          <div className="icon" ><LightbulbIcon color="#FFFFFF" /></div>
+          <div className="side-menu__item-label">Newton (Pronto)</div>
+        </button>
+        <button
           className={`side-menu__item ${selected === 'news' ? 'side-menu__item_selected' : ''}`}
           onClick={() => this.handleSelectItem('news')}
         >
-          <div className="icon" ><NewsIcon color="white" /></div>
-          <div className="label">Noticias</div>
-        </div>
+          <div className="icon" ><NewsIcon color="#FFFFFF" /></div>
+          <div className="side-menu__item-label">Noticias</div>
+        </button>
         <div className="side-menu__button-container">
           <RaisedButton
             onTouchTap={this.handleLogout}
             label="Cerrar sesión"
-            backgroundColor="#0091EA"
-            labelColor="white"
+            backgroundColor="#616161"
+            labelColor="#FFFFFF"
+            style={{ borderRadius: '5px' }}
+            labelStyle={{ fontSize: '11px' }}
           />
         </div>
-      </div>
+      </Drawer >
     );
   }
 }
+
+SideMenu.defaultProps = {
+  mobile: false,
+};
+
+SideMenu.propTypes = {
+  mobile: PropTypes.bool.isRequired,
+};
 
 SideMenu.contextTypes = {
   router: PropTypes.object,

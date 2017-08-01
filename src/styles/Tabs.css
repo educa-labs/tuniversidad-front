@@ -1,0 +1,35 @@
+.tabs {
+  position: fixed;
+  width: 100%;
+  top: 48px;
+  z-index: 2;
+  box-shadow: 6px 0px 18px -4px rgba(0,0,0,0.75);
+}
+
+.tabs-desk {
+  width: auto;
+  top: 0;
+  right: 0;
+  left: 230px;
+  min-width: 634px;
+}
+
+.tabs-search {
+  z-index: 10;
+  box-shadow: 6px 0px 18px -4px rgba(0,0,0,0.75);
+}
+
+.tabs-search-desktop {
+  position: fixed;
+  left: 230px;
+  right: 0;
+  top: 238px;
+  min-width: 440px;
+}
+
+.tabs-search-mobile {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 200px;
+}

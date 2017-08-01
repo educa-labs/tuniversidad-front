@@ -1,27 +1,29 @@
 .site {
   display: flex;
+  min-height: 500px;
 }
 
 .site__children {
   flex: 1;
   flex-direction: column;
   height: 100vh;
+  display: flex;
 }
 
 .side-menu {
-  background-color: #424242;
-  flex: 0 0 230px;
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  z-index: 100;
-  box-shadow: 6px 0px 18px -4px rgba(0,0,0,0.75);
   padding-bottom: 28px;
 }
+
+.side-menu__mobile {
+  display: none;
+}
+
 .side-menu__banner {
   background-color: #424242;
-  flex: 0 0 60px;
-  background-image: url(../assets/tuniversidad-logotipo-blanco.svg);
+  flex: 0 0 48px;
+  background-image: url(../assets/logo-tuni.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 60% 60%;
@@ -54,7 +56,7 @@
   justify-content: center;
 }
 
-.side-menu__item .label {
+.side-menu__item-label {
   flex: 2;
 }
 
@@ -74,6 +76,9 @@
   color: white;
   flex-direction: column;
   cursor: pointer;
+}
+.profile-banner:hover {
+  background-color: #0091EA;
 }
 .profile-banner_selected {
   background-color: #0091EA;

@@ -1,21 +1,67 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import UserInfo from './UserInfo';
 import UserGoals from './UserGoals';
-import UserTarget from './UserTarget';
+import UserObjectives from './UserObjectives';
 
 
 function ProfileGeneral(props) {
+  if (props.mobile) {
+    return (
+      <div className="col">
+        <UserGoals
+          removeGoal={id => props.removeGoal(id, props.token)}
+          goals={props.goals}
+          mobile={props.mobile}
+          essays={props.essays}
+          linkToProgress={() => props.handleSlideChange(1)}
+        />
+        <UserInfo
+          user={props.user}
+          token={props.token}
+          mobile={props.mobile}
+        />
+        <UserObjectives
+          updateUser={props.updateUser}
+          objectives={props.objectives.objectives}
+          user={props.user}
+          handleSubmit={(l, m, h, s) => props.updateUserObjectives(props.token, l, m, h, s)}
+          mobile={props.mobile}
+        />
+      </div>
+    );
+  }
   return (
-    <div className="general">
+    <div className="row">
       <div className="col col-3">
-        <UserGoals {...props} />
+        <UserGoals
+          removeGoal={id => props.removeGoal(id, props.token)}
+          goals={props.goals}
+          essays={props.essays}
+          linkToProgress={() => props.handleSlideChange(1)}
+        />
       </div>
       <div className="col col-2">
-        <UserInfo {...props} />
-        <UserTarget {...props} />
+        <UserInfo
+          user={props.user}
+          token={props.token}
+        />
+        <UserObjectives
+          updateUser={props.updateUser}
+          objectives={props.objectives.objectives}
+          user={props.user}
+          handleSubmit={(l, m, h, s) => props.updateUserObjectives(props.token, l, m, h, s)}
+        />
       </div>
     </div>
   );
 }
+
+ProfileGeneral.defaultProps = {
+  mobile: false,
+};
+
+ProfileGeneral.propTypes = {
+  mobile: PropTypes.bool,
+};
 
 export default ProfileGeneral;

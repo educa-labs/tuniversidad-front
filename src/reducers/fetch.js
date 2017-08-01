@@ -11,6 +11,7 @@ const initialState = {
   areas: null,
   schedules: null,
   regions: null,
+  subjects: null,
   requesting: false,
   error: {},
 };

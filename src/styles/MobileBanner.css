@@ -1,0 +1,22 @@
+.mobile-banner {
+  width: 100%;
+  height: 48px;
+  background-color: #0091EA;
+  position: fixed;
+  top: 0;
+  z-index: 12;
+  display: flex;
+}
+
+.tuni-logo {
+  background-image: url(../assets/logo-tuni.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 120px;
+  height: 100%;
+}
+
+.mobile-banner-news {
+  box-shadow: 6px 0px 18px -4px rgba(0,0,0,0.75);
+}

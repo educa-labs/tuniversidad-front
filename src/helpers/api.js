@@ -17,10 +17,17 @@ export function getCities(id, token) {
       .withCredentials();
 }
 
-export function getGoals(id, token) {
-  return Request.get(`${url}/goals`)
-    .set('Content-Type', 'application/json')
-    .set('Authorization', token)
-    .accept('application/tuniversidad.v1')
-    .withCredentials();
+export function getCampus(id, token) {
+  return Request.get(`${url}/universities/${id}/campus`)
+      .set('Content-Type', 'application/json')
+      .set('Authorization', token)
+      .accept('application/tuniversidad.v1')
+      .withCredentials();
+}
+
+export function rutIsAviable(rut) {
+  return Request.get(`${url}/validate_rut?rut=${rut}`)
+      .set('Content-Type', 'application/json')
+      .accept('application/tuniversidad.v1')
+      .withCredentials();
 }

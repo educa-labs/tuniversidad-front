@@ -1,0 +1,16 @@
+.form-container {
+  max-width: 22rem !important;
+  width: 50% !important;
+}
+
+.form-container-mobile {
+  width: 90% !important;
+}
+
+.form__field {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  margin: 0 1rem;
+}
+

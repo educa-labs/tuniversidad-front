@@ -15,6 +15,7 @@ export function fetch(key, id, token) {
   else if (key === 'types') path = `${url}/university_types`;
   else if (key === 'schedules') path = `${url}/schedules`;
   else if (key === 'regions') path = `${url}/regions`;
+  else if (key === 'subjects') path = `${url}/subjects`;
   else {
     console.error('Key error', key);
   }
@@ -42,7 +43,7 @@ export function fetch(key, id, token) {
       .catch((err) => {
         dispatch({
           type: FETCH_FAILURE,
-          error: err.response.body,
+          error: err.response,
         });
       });
   };

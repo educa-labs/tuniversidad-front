@@ -2,9 +2,15 @@ import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import is from 'is_js';
-import Banner from '../components/Banner';
+import NavigationBar from '../components/NavigationBar';
 import CareerCard from '../components/CareerCard';
+import Loading from '../components/Loading';
 import { fetch } from '../actions/fetch';
+
+const tabStyle = {
+  fontSize: '12px',
+  fontWeight: 400,
+};
 
 class Career extends Component {
   componentWillMount() {
@@ -28,18 +34,20 @@ class Career extends Component {
 
   render() {
     const { slideIndex } = this.state;
-    const { career } = this.props;
+    const { career, mobile } = this.props;
     if (is.any.null(career)) {
       return (
-        <div>
-          Cargando ...
+        <div className="fullscreen">
+          <Loading />
         </div>
       );
     }
+    const first = <CareerCard career={career} detail mobile={mobile} />;
+
     return (
-      <div className="university">
-        <Banner location="site" title={career.title} />
-        <div className="university-cover">
+      <div className={`page page-university ${mobile ? 'page-university-mobile' : ''}`}>
+        <NavigationBar location="site" title={`${career.title} en ${career.university_name}`} />
+        <div className={`university-cover ${mobile ? 'university-cover-mobile' : 'university-cover-desk'} career-cover`}>
           <div className="university-cover__title">{career.title}</div>
           <div
             className="university-cover__subtitle"
@@ -48,22 +56,16 @@ class Career extends Component {
             {career.university_name}
           </div>
         </div>
-        <div className="tabs-container">
-          <Tabs
-            onChange={this.handleSlideChange}
-            value={slideIndex}
-            className="tabs"
-          >
-            <Tab label="Información general" value={0} />
-            <Tab label="Malla" value={1} />
-            <Tab label="Preguntas y respuestas" value={2} />
-          </Tabs >
-        </div>
-        <div className="university-children">
-          {slideIndex === 0 ? <CareerCard career={career} detail /> : null }
-          {slideIndex === 1 ? <div>Malla</div> : null}
-          {slideIndex === 2 ? <div>Preguntas</div> : null}
-        </div>
+        <Tabs
+          onChange={this.handleSlideChange}
+          value={slideIndex}
+          className={`tabs-search ${mobile ? 'tabs-search-mobile' : 'tabs-search-desktop'}`}
+        >
+          <Tab label="Información general" value={0} style={tabStyle} />
+          <Tab label="Preguntas y respuestas" value={1} style={tabStyle} />
+        </Tabs >
+        {slideIndex === 0 ? first : null }
+        {slideIndex === 1 ? <div>Preguntas</div> : null}
       </div>
     );
   }

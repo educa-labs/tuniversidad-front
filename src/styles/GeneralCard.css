@@ -1,0 +1,144 @@
+.label {
+  font-size: small;
+  font-weight: 300;
+  color: #C9C9C9;
+}
+
+.general-card {
+  background-color: white;
+  box-shadow: 0px 0px 4px 0.5px rgba(0,0,0,0.10);
+  border-radius: 2px;
+}
+
+.general-card-full-size {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+.general-card_no-hover:hover {
+  box-shadow: 0px 0px 4px 0.5px rgba(0,0,0,0.10)!important;
+}
+
+.general-card_desk {
+  margin: 1rem;
+}
+
+.general-card:hover {
+  box-shadow: 0px 0px 4px 0.5px rgba(0,0,0,0.40);
+}
+
+.general-card__header {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  padding: 0 1rem;
+}
+
+.general-card__header_hide {
+  display: none;
+}
+
+.general-card__title {
+  flex: 1;
+  font-size: large;
+  color: #424242;
+  margin: 1rem 0;
+}
+
+.title_no-margin {
+  margin: 5px 0;
+}
+
+.title-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 250px;
+}
+
+.general-card__subtitle {
+  font-size: small;
+  margin-bottom: 5px;
+}
+
+.general-card__edit-button {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.general-card__item {
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0;
+  flex: 1;
+}
+
+.general-card__empty-msg {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+  flex: 2;
+}
+
+.general-card__chart {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.general-card__no-content{
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+  padding: 0 1rem;
+}
+
+.general-card__no-content span {
+  color: #0091EA;
+  cursor: pointer;
+}
+
+.action-button {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  z-index: 10;
+}
+
+.expandible-card {
+  background-color: white;
+}
+
+.expandible-card-desk:hover {
+  background-color: #EEEEEE;
+}
+
+.general-card-description {
+  padding: 1rem;
+  text-align: justify;
+}
+
+.map-card-body {
+  height: 17rem;
+}
+
+.expandible-body {
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.expandible-label {
+  display: flex;
+  flex: 1;
+  font-weight: 200;
+}
+
+.expandible-value {
+  display: flex;
+  flex: 1;
+  color: #747474;
+  font-weight: 300;
+}

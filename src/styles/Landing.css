@@ -3,32 +3,223 @@
   background-color: #F5F5F5;
 }
 
-.landing .row {
-  margin: 1rem 0;
+.landing-cover {
   display: flex;
-  align-items: center;
-  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  height: 30rem;
+  widows: 100%;
+  padding: 2rem;
+  color: white;
+  background-image: url(../assets/fondotuni2.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.6);
+  background-blend-mode: multiply;
+  background-attachment: fixed;
 }
-.landing .col {
-  flex: 1;
+
+.landing-cover-mobile {
+  height: 25rem;
+}
+
+.landing-cover-title {
+  font-size: 2.5rem;
+  margin: 0.1rem 0;
+}
+
+.landing-cover-title-mobile {
+  font-size: xx-large;
+}
+
+.landing-cover-subtitle {
+  font-size: medium;
+  font-weight: 300;
+  width: 50%;
+  margin: 0.5rem 0;
+}
+
+.landing-cover-subtitle-mobile {
+  width: 100%;
+}
+
+.landing-body {
+  height: 40rem;
+  margin-bottom: 4rem;
+}
+
+.landing-body-title {
+  font-size: xx-large;
+  font-weight: 400;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 10rem;
+}
+
+.landing-body-title-mobile {
+  font-size: xx-large;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.landing-body-mobile {
+  padding: 2rem 2rem;
+}
+
+.section {
+  width: 75%;
+  min-width: 280px;
+}
+
+.section-mobile {
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.section-top {
+  margin: 4rem 0;
+}
+
+.section-header {
+  font-size: xx-large;
+  color: #0091EA;
+  font-weight: 300;
+  margin: 1rem 0;
+}
+
+.section-header-mobile {
+  color: #0091EA;
+  font-size: x-large;
+  margin: 0.5rem 0;
+}
+
+.section-text {
+  font-size: medium;
+  font-weight: 100;
+}
+
+.landing-body-phone {
+  height: 30rem;
+  width: 260px;
+  min-width: 255px;
+  background-image: url(../assets/white-phone.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.newton-section {
+  background-color: #0091EA;
+  height: 30rem;
+  padding: 0 7rem;
+  display: flex;
+  width: 100%;
+}
+
+.newton-section-mobile {
+  background-color: #0091EA;
+  padding: 2rem;
+}
+.newton-landing {
+  width: 210px;
+  height: 20rem;
+  background-image: url('../assets/newton.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.newton-section-title  {
+  font-size: xx-large;
+  font-weight: 400;
+  margin: 1rem;
+}
+
+.newton-section-title-mobile {
+  font-size: xx-large;
+  margin: 0;
+}
+
+.newton-section-text {
+  color: white;
+  font-size: medium;
+  font-weight: 100;
+  width: 80%;
+  min-width: 310px;
+  margin: 0 1rem;
+}
+
+.newton-section-text-mobile {
+  margin-top: 0.5rem;
+  color: white;
+  font-size: medium;
+  font-weight: 100;
+}
+
+.landing-cover-bottom {
+  display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 25rem;
+  width: 100%;
+  padding: 2rem;
+  color: white;
+  background-image: url(../assets/fondotuni.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.5);
+  background-blend-mode: multiply;
+  background-attachment: fixed;
 }
 
-
-
-.landing__title {
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-  max-width: 25rem;
+.app-store {
+  height: 3rem;
+  width: 10rem;
+  background-image: url(../assets/app-store.png);
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
-.landing__body {
+.google-play {
+  height: 3rem;
+  width: 10rem;
+  background-image: url(../assets/google-play.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.landing-footer {
+  height: 25rem;
+  background-color: #0091EA;
+  display: flex;
+  color: white;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tuni-logo-footer {
+  background-image: url(../assets/logo-tuni.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 9rem;
+  height: 3rem;
+}
+
+.landing-footer-icons {
+  display: flex;
+  justify-content: space-between;
+  width: 10rem;
+  font-size: x-large;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+  color: white;
+}
+
+.slogan {
   text-align: center;
-  font-size: 18px;
-  font-weight: lighter;
-  max-width: 25rem;
 }

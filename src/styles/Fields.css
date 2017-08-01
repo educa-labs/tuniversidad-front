@@ -1,41 +1,30 @@
-.filters {
-  height: 100%;
-  box-shadow: -4px 0px 10px -5px rgba(0,0,0,0.75);
-}
-
-.filters__banner {
+.filters__header {
   color: #424242;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50px;
+  height: 48px;
   width: 100%;
+  text-transform: uppercase;
 }
 
-.filters__radio-input {
+.filters__body {
   display: flex;
-  justify-content: flex-start;
   margin: 0rem 2rem;
+  flex-direction: column;
 }
 
-.fields-container {
-  display: inline-block;
-  margin: 0 1rem;
-}
-
-.filters-container.hidden {
-  display: none;
-}
-
-.filter-banner {
-  height: 2rem;
+.edit-form-container {
+  min-height: 100vh;
+  width: 100vw;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+  flex-direction: column;
 }
 
-.fields-container.hide {
-  display: none;
+.fields {
+  padding: 1rem;
+  flex: 1;
+  justify-content: center;
 }
+
 

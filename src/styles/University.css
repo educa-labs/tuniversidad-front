@@ -1,55 +1,71 @@
 .university {
   flex: 1;
-  height: 100%;
   display: flex;
-  flex-direction: column;
 }
 .university-cover {
-  height: 250px;
+  height: 238px;
   flex-direction: column;
-  background-image: url(../assets/univ-cover.jpg);
+  background-image: url(../assets/puc-cover.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   color: white;
+  font-weight: 100;
   display: flex;
   justify-content: flex-end;
-  padding: 0 4rem;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.3);
+  background-blend-mode: multiply;
+  z-index: 10;
+}
+
+.university-cover-desk {
+  position: fixed;
+  top: 0;
+  left: 230px;
+  right: 0;
+}
+
+.university-cover-mobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+}
+
+.career-cover {
+  background-image: url(../assets/loconta.jpg);
+}
+
+.university-cover-puc {
+  background-image: url(../assets/puc-cover.jpg);
 }
 
 .university-cover__title {
-  text-transform: uppercase;
-  font-size: 24px;
-  width: 30rem;
+  font-size: x-large;
 }
 .university-cover__subtitle {
-  font-size: 18px;
+  font-size: medium;
   margin: 5px 0;
   cursor: pointer;
 }
-.university-children {
-  flex: 2;
-  height: 100%;
-  overflow: scroll;
+
+.university-content {
   background-color: #F5F5F5;
-}
-
-.tabs-container {
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 286px;
   width: 100%;
-  background-color: white;
-  box-shadow: 1px 1px 10px 0px rgba(0,0,0,0.75);
 }
 
-.tabs {
-  width: 45%;
-  min-width: 25rem;
-  margin-left: 3rem;
+.university-content-mobile {
+  margin-top: 250px;
 }
 
-.tabs_profile {
-  padding-top: 12px;
+.university-card {
+  width: 90%;
 }
-
 
 

@@ -12,10 +12,19 @@ import Site from '../containers/Site';
 import University from '../containers/University';
 import Career from '../containers/Career';
 import Profile from '../containers/Profile';
+import Login from '../containers/Login';
+import Signup from '../components/Signup';
+import FiltersMobile from '../containers/FiltersMobile';
+import EditObjectives from '../components/forms/EditObjectives';
+import NewEssay from '../components/forms/NewEssay';
+import FirstStepsMobile from '../containers/FirstStepsMobile';
 
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={Landing} />
+    <Route path="login" component={Login} />
+    <Route path="signup" component={Signup} />
+    <Route path="filters" component={FiltersMobile} />
     <Route path="site" component={Site}>
       <IndexRoute component={Profile} />
       <Route path="search" component={Buscador} />
@@ -26,6 +35,9 @@ export default (
       <Route path="university/:id" component={University} />
       <Route path="career/:id" component={Career} />
       <Route path="profile" component={Profile} />
+      <Route path="profile/edit/objectives" component={EditObjectives} />
+      <Route path="profile/new/essay" component={NewEssay} />
+      <Route path="profile/steps" component={FirstStepsMobile} />
     </Route>
   </Route>
 );

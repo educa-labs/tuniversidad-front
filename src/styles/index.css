@@ -1,13 +1,218 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 body {
   margin: 0;
   padding: 0;
+  position: relative;
+  top: 0;
+  bottom: 0;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
-  overflow: hidden;
+  font-weight: 400;
+  color: #424242;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+button {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    text-align: inherit;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.empty {
+  min-width: 230px;
+  width: 230px;
+  height: 100vh;
+}
+
+.empty-left {
+  min-width: 256px;
+  width: 256px;
+}
+
+.row {
+  display: flex;
+  margin: 5px 0;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.padding-8 {
+  padding: 0 8rem;
+}
+
+.padding-7 {
+  padding: 0 7rem;
+}
+
+.padding-1 {
+  padding: 0 1rem;
+}
+
+.full-height {
+  min-height: 100vh;
+}
+
+.margin-left {
+  margin-left: 0.5rem;
+}
+
+.margin-right {
+  margin-right: 0.5rem;
+}
+
+.page {
+  flex: 1;
+  margin-left: 230px;
+  padding-top: 48px;
+  min-height: 100vh;
+  background-color: #F5F5F5;  
+}
+
+.page-filters {
+  margin-right: 256px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.page-university {
+  padding: 286px 2rem 0 2rem;
+}
+
+.page-university-mobile {
+  padding-top: 248px;
+  margin-left: 0;
+  margin-right: 0;
+   padding-left: 0;
+  padding-right: 0;
+}
+
+.page-mobile {
+  padding-top: 96px;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.is-48x48 {
+  height: 48px;
+  width: 48px;
+}
+
+
+.position-relative {
+  position: relative;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.min-width {
+  min-width: 630px;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.align-end {
+  align-items: flex-end;
+}
+
+.col-2 {
+  flex: 2;
+}
+
+.col-3 {
+  flex: 3;
+}
+
+.col-grey-desk {
+  background-color: #F5F5F5;
+  margin-top: 48px;
+}
+
+.col-grey {
+  background-color: #F5F5F5;
+  margin-top: 96px;
+}
+
+.col-row {
+  flex-direction: row;
+}
+
+.bg-blue {
+  background-color: #0091EA;
+}
+
+.bg-grey {
+  background-color: #F5F5F5;
+}
+
+.color-white {
+  color: white;
+}
+
+.color-blue {
+  color: #0091EA;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.start {
+  justify-content: flex-start;
+  display: flex;
+  flex: 1;
+}
+
+.end {
+  justify-content: flex-end;
+  display: flex;
+  flex: 1;
+}
+
+.fullscreen {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.is-scale {
+  transform: scale(0.9);
 }

@@ -1,61 +1,7 @@
-.range-input-container {
-  display: block;
-  width: 11rem;
-  margin: 0 1rem;
-  padding-bottom: 1rem;
-}
 
-.range-input-container > span {
-  font-size: 12px;
-  color: rgba(0, 0, 0, 0.298039);
-  font-weight: 400;
-}
-
-.range-input-container > .range {
-  margin: 1rem 0.5rem;
-}
-
-.rc-slider-rail {
-  background-color: #B9B9B9;
-  height: 2px;
-}
-
-.rc-slider-track {
-  background-color: #0091EA;
-  height: 2px;
-}
-
-.rc-slider-handle {
-  background-color: #0091EA;
-  border-color: #0091EA;
-  height: 12px;
-  width: 12px;
-}
-
-.rc-slider-tooltip {
-  z-index: 2000;
-}
-
-.rc-slider-step {
-  height: 2px;
-}
-
-
-
-.rc-slider-tooltip-content > .rc-slider-tooltip-inner {
-  color: #8F8F8F;
-  background-color: transparent;
-  padding: 2px;
-  box-shadow: none;
-}
-
-.rc-slider-tooltip-placement-top {
-  padding: 0;
-}
-
-.rc-slider-tooltip-placement-top > .rc-slider-tooltip-content {
-}
-
-.rc-slider-tooltip-placement-top > .rc-slider-tooltip-content > .rc-slider-tooltip-arrow {
-  display: none;
+.range-input__title {
+  font-weight: 100;
+  color: #B2B2B2;
+  position: relative;
+  top: 20px;
 }

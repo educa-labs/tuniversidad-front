@@ -17,91 +17,22 @@
   overflow: scroll;
 }
 
-.general {
-  display: flex;
-}
-
-.general .row {
-  display: flex;
-}
-
-.general .col {
-  display: flex;
-  flex-direction: column;
-}
-
-.general .col-1 {
-  flex: 1;
-}
-
-.general .col-2 {
-  flex: 2;
-}
-
-.general .col-3 {
-  flex: 3;
-}
-
 .general .label {
   font-size: small;
   color: #C9C9C9;
   margin: 3px 0;
+  font-weight: 100;
 }
 
 .general .value {
   font-size: medium;
 }
 
-.general-card {
-  background-color: white;
-  margin: 1rem;
-  box-shadow: 0px 0px 4px 0.5px rgba(0,0,0,0.50);
-  z-index: 10;
-  border-radius: 2px;
-}
-
-.general-card__header {
-  display: flex;
-  align-items: center;
-  flex: 1;
-  padding: 0 1rem;
-}
-
-.general-card__title {
-  flex: 1;
-  font-size: large;
-  color: #424242;
-}
-
-.general-card__edit-button {
-  display: flex;
-  flex: 1;
-  justify-content: flex-end;
-}
-
-.general-card__item {
-  padding: 0 1rem;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 10px;
-}
-
-.general-card__footer {
-  display: flex;
-  padding: 0 1rem;
-  margin: 10px 0;
-}
-
-.general-card__footer_item {
-  flex: 1;
-  flex-direction: column;
-  display: flex;
-}
-
-
 .goal {
-  margin-bottom: 20px;
   padding: 0 1rem;
+}
+.goal:hover {
+  background-color: #EEEEEE;
 }
 
 .goal__header {
@@ -115,71 +46,36 @@
   margin: 5px 0;
 }
 
-.goal__delete-button {
+.goal .goal__delete-button {
   display: flex;
   flex: 1;
   justify-content: flex-end;
+  display: none;
 }
 
-.form {
-  width: 50%;
+.goal:hover .goal__delete-button {
+  display: inherit;
 }
 
-.form .row {
-  display: flex;  
-}
-
-.form__field {
-  display: flex;
-  flex: 1;
-  justify-content: center;
-  margin: 0 2rem;
-}
-
-.form__field-2 {
-  color: black;
-  font-weight: 100;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex: 2;
-  margin: 5px 2rem;
-}
-
-.form__field-3 {
-  flex: 3;
-  margin: 5px 2rem;
-}
-
-.test {
-  padding: 0 1rem;
-}
-
-.test__title {
-  font-size: medium;
-  margin: 10px 0;
-}
-
-.test__item {
+.progress {
   display: flex;
   flex-direction: column;
+  height: 100%;
+}
+
+.newton-empty {
   flex: 1;
-  margin: 5px 0;
-}
-
-.target {
   display: flex;
-  padding: 0 1rem;
-}
-
-
-.date-picker {
-  display: flex;
-}
-
-.date-picker .select-input-container {
-  display: flex;
-  margin: 0;
-  width: 8rem;
+  justify-content: flex-end;
   align-items: flex-end;
 }
+
+.newton-ulala {
+  background-image: url('../assets/ulala.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 30rem;
+  width: 20rem;
+}
+
