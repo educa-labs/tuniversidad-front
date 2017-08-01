@@ -24,7 +24,7 @@ class UserGoals extends Component {
     if (is.empty(this.props.essays[2].essays)) missing.push('Matemáticas');
 
     let source = null;
-    if (goal.scores.science === null) {
+    if (goal.carreer.weighing.science === 0) {
       source = goal.scores.history;
       if (is.empty(this.props.essays[3].essays)) missing.push('Historia');
     } else {
@@ -32,7 +32,9 @@ class UserGoals extends Component {
       if (is.empty(this.props.essays[4].essays)) missing.push('Ciencias');
     }
 
-    const both = goal.scores.science !== null && goal.scores.history !== null;
+    console.log(goal.scores);
+
+    const both = goal.carreer.weighing.science > 0 && goal.carreer.weighing.history > 0;
     const scores = Object.assign({}, {
       last_cut: goal.scores.last_cut,
       avg: both ? Math.max(goal.scores.science.avg, goal.scores.history.avg) : source.max,
@@ -40,7 +42,7 @@ class UserGoals extends Component {
     });
 
     const onClick = () => this.context.router.push(`site/career/${goal.carreer.id}`);
-
+    console.log(missing);
     return (
       <div key={goal.carreer.id}>
         <div className="goal">
