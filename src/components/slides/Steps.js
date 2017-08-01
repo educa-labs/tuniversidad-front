@@ -6,7 +6,8 @@ const styles = {
     transform: 'scale(0.8)',
     position: 'absolute',
     bottom: 0,
-    left: -32,
+    left: -12,
+    right: 0,
   },
   desktop: {
     position: 'absolute',

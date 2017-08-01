@@ -26,7 +26,7 @@ class Nem extends Component {
           ¿Cuáles son tus puntajes de enseñanza media?
         </div>
         <div className={`col padding-${this.props.mobile ? '2' : '8'}`}>
-          Si aún estás en el colegio puedes estimar cúanto obtendrás
+          Si aun estás en el colegio puedes estimar cuánto obtendrás
           <TextField
             onChange={(e, val) => this.handleNemChange(val)}
             floatingLabelText="Nem"

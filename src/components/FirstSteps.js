@@ -24,9 +24,9 @@ import { rutIsAviable } from '../helpers/api';
 import '../styles/FirstSteps.css';
 
 function getStepIndex(slideIndex) {
-  if (is.inArray(slideIndex, [1, 2, 3, 4])) return 0;
-  if (is.inArray(slideIndex, [5, 6, 7])) return 1;
-  if (is.inArray(slideIndex, [8])) return 3;
+  if (is.inArray(slideIndex, [1, 2, 3])) return 0;
+  if (is.inArray(slideIndex, [4, 5])) return 1;
+  if (is.inArray(slideIndex, [6])) return 3;
   return -1;
 }
 
@@ -34,7 +34,7 @@ class FirstSteps extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      slideIndex: 3,
+      slideIndex: 0,
       error: '',
       city_id: null,
       birth_date: null,
@@ -79,7 +79,7 @@ class FirstSteps extends Component {
 
   handleNext() {
     const { slideIndex } = this.state;
-    const scoreError = 'Debes ingresar un puntaje válido';
+    const scoreError = 'Puntaje inválido';
     let requesting = false;
     if (slideIndex < 8 && !this.disabled()) {
       if (slideIndex === 2) {
@@ -113,21 +113,21 @@ class FirstSteps extends Component {
           return;
         }
       }
+      // if (slideIndex === 4) {
+      //   if (!validateRut(this.state.rut)) {
+      //     this.setState({ error: 'Debes ingresar un rut válido' });
+      //     return;
+      //   }
+      //   requesting = true;
+      //   rutIsAviable(this.state.rut).then((res) => {
+      //     if (!res.body.valid) {
+      //       this.setState({ error: res.body.error });
+      //     } else {
+      //       this.setState({ slideIndex: slideIndex + 1, error: '' });
+      //     }
+      //   });
+      // }
       if (slideIndex === 4) {
-        if (!validateRut(this.state.rut)) {
-          this.setState({ error: 'Debes ingresar un rut válido' });
-          return;
-        }
-        requesting = true;
-        rutIsAviable(this.state.rut).then((res) => {
-          if (!res.body.valid) {
-            this.setState({ error: res.body.error });
-          } else {
-            this.setState({ slideIndex: slideIndex + 1, error: '' });
-          }
-        });
-      }
-      if (slideIndex === 6) {
         const error = {};
         if (!checkScore(this.state.nem)) error.nem = scoreError;
         if (!checkScore(this.state.ranking)) error.ranking = scoreError;
@@ -136,7 +136,7 @@ class FirstSteps extends Component {
           return;
         }
       }
-      if (slideIndex === 7) {
+      if (slideIndex === 5) {
         const error = {};
         if (!checkScore(this.state.language)) error.language = scoreError;
         if (!checkScore(this.state.math)) error.math = scoreError;
@@ -179,13 +179,13 @@ class FirstSteps extends Component {
       for (const s of this.state.birth_date.split('-')) {
         if (s === 'null') return true;
       }
-      return false;
+      return !this.state.rut;
     }
-    if (slideIndex === 3) return !this.state.phone;
-    if (slideIndex === 4) return !this.state.rut;
-    if (slideIndex === 5) return !this.state.preuniversity;
-    if (slideIndex === 6) return !this.state.nem || !this.state.ranking;
-    if (slideIndex === 7) return !this.state.language || !this.state.math || !(this.state.history || this.state.science);
+    if (slideIndex === 3) return !this.state.phone || !this.state.preuniversity;
+    // if (slideIndex === 4) return !this.state.rut;
+    // if (slideIndex === 5) return !this.state.preuniversity;
+    if (slideIndex === 4) return !this.state.nem || !this.state.ranking;
+    if (slideIndex === 5) return !this.state.language || !this.state.math || !(this.state.history || this.state.science);
     return false;
   }
 
@@ -227,12 +227,12 @@ class FirstSteps extends Component {
                 error={this.getError(2)}
                 mobile={mobile}
               /> */}
-              <Phone
+              {/* <Phone
                 logChange={phone => this.logChange('phone', phone)}
                 error={this.getError(3)}
                 mobile={mobile}
-              />
-              <Rut
+              /> */}
+              {/* <Rut
                 logChange={rut => this.logChange('rut', rut)}
                 error={this.getError(4)}
                 mobile={mobile}
@@ -240,11 +240,11 @@ class FirstSteps extends Component {
               <Preu
                 logChange={preuniversity => this.logChange('preuniversity', preuniversity)}
                 mobile={mobile}
-              />
+              /> */}
               <Nem
                 logNemChange={val => this.logChange('nem', val)}
                 logRankingChange={val => this.logChange('ranking', val)}
-                error={this.getError(6)}
+                error={this.state.error}
                 mobile={mobile}
               />
               <Objectives
@@ -252,7 +252,7 @@ class FirstSteps extends Component {
                 logMathChange={val => this.logChange('math', val)}
                 logHistoryChange={val => this.logChange('history', val)}
                 logScienceChange={val => this.logChange('science', val)}
-                error={this.getError(7)}
+                error={this.state.error}
                 mobile={mobile}
               />
               <Ready onSubmit={this.handleSubmit} mobile={mobile} />
@@ -260,7 +260,7 @@ class FirstSteps extends Component {
           </div>
           {slideIndex > 0 ? <Steps activeStep={getStepIndex(slideIndex)} mobile={mobile}/> : null }
           <div className="step__button" onClick={this.handleNext}>
-            <IconButton disabled={this.disabled()}><RigthArrow color={is.inArray(slideIndex, [8]) ? '#FFFFFF' : 'black'} /></IconButton>
+            <IconButton disabled={this.disabled()}><RigthArrow color={is.inArray(slideIndex, [6]) ? '#FFFFFF' : 'black'} /></IconButton>
           </div>
         </Dialog>
     );
