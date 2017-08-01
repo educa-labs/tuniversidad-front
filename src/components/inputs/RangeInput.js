@@ -13,7 +13,7 @@ class RangeInput extends Component {
   }
 
   logChange(val, extreme) {
-    this.setState({ [extreme]: val }, () => (
+    this.setState({ [extreme]: val === '' ? val : Number(val) }, () => (
       this.props.onChange(this.state)
     ));
   }
