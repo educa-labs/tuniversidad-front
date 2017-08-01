@@ -49,7 +49,7 @@ class ExpandibleCard extends Component {
 
   getType() {
     const { career } = this.props;
-    if (career.weighing.science !== 0 && career.weighing.history) return 'Ciencias o Historia';
+    if (career.weighing.science !== 0 && career.weighing.history) return 'Historia o Ciencias';
     return career.weighing.science !== 0 ? 'Ciencias' : 'Historia';
   }
 
@@ -77,64 +77,30 @@ class ExpandibleCard extends Component {
             </IconButton>
           </div>
           <Collapse isOpened={expanded}>
-            <div className="expandible-card-body">
+            <div className="expandible-body">
               <div className="row">
-                <div className="general-card__item">
-                  <div className="value">{career.weighing ? career.weighing.language : null}%</div>
-                  <div className="label">Lenguaje</div>
-                </div>
-                <div className="general-card__item">
-                  <div className="value">{career.weighing ? career.weighing.math : null}%</div>
-                  <div className="label">Matemáticas</div>
-                </div>
-                <div className="general-card__item">
-                  <div className="value">{career.weighing ? career.weighing.science || career.weighing.history : null}%</div>
-                  <div className="label">{this.getType()}</div>
-                </div>
+                <div className="expandible-label">Lenguaje</div>
+                <div className="expandible-value">{career.weighing ? career.weighing.language : null}%</div>
               </div>
               <div className="row">
-                <div className="general-card__item">
-                  <div className="value">{career.weighing ? career.weighing.NEM : null}%</div>
-                  <div className="label">NEM</div>
-                </div>
-                <div className="general-card__item">
-                  <div className="value">{career.weighing ? career.weighing.ranking : null}%</div>
-                  <div className="label">Ranking</div>
-                </div>
-                <div className="general-card__item">
-                  <div className="value">{career.last_cut}</div>
-                  <div className="label">Corte 2016</div>
-                </div>
+                <div className="expandible-label">Matemáticas</div>
+                <div className="expandible-value">{career.weighing ? career.weighing.math : null}%</div>
               </div>
               <div className="row">
-                <div className="general-card__item">
-                  <div className="value">{career.area_title}</div>
-                  <div className="label">Área</div>
-                </div>
-                <div className="general-card__item">
-                  <div className="value">{career.openings}</div>
-                  <div className="label">Vacantes</div>
-                </div>
+                <div className="expandible-label">{this.getType()}</div>
+                <div className="expandible-value">{career.weighing ? career.weighing.science || career.weighing.history : null}%</div>
               </div>
               <div className="row">
-                <div className="general-card__item">
-                  <div className="value">{career.semesters} Semestres</div>
-                  <div className="label">Duración</div>
-                </div>
-                <div className="general-card__item">
-                  <div className="value">{career.price ? `$ ${numeral(career.price)}` : 'No disponible'}</div>
-                  <div className="label">Arancel</div>
-                </div>
+                <div className="expandible-label">NEM</div>
+                <div className="expandible-value">{career.weighing ? career.weighing.NEM : null}%</div>
               </div>
               <div className="row">
-                <div className="general-card__item">
-                  <div className="value">{career.income ? `$ ${numeral(career.income)}` : 'No disponible'}</div>
-                  <div className="label">Sueldo promedio (3er año)</div>
-                </div>
-                <div className="general-card__item">
-                  <div className="value">{career.employability ? `${career.employability}%` : 'No disponible'}</div>
-                  <div className="label">Empleabilidad</div>
-                </div>
+                <div className="expandible-label">Ranking</div>
+                <div className="expandible-value">{career.weighing ? career.weighing.ranking : null}%</div>
+              </div>
+              <div className="row">
+                <div className="expandible-label">Corte 2016</div>
+                <div className="expandible-value">{career.last_cut}</div>
               </div>
             </div>
             <div className="row no-margin">

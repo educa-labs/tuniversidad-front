@@ -132,13 +132,13 @@
 
 .expandible-label {
   display: flex;
-  flex: 2;
+  flex: 1;
   font-weight: 200;
 }
 
 .expandible-value {
   display: flex;
-  flex: 3;
+  flex: 1;
   color: #747474;
   font-weight: 300;
 }
