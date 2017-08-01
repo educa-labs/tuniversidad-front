@@ -32,8 +32,6 @@ class UserGoals extends Component {
       if (is.empty(this.props.essays[4].essays)) missing.push('Ciencias');
     }
 
-    console.log(goal.scores);
-
     const both = goal.carreer.weighing.science > 0 && goal.carreer.weighing.history > 0;
     const scores = Object.assign({}, {
       last_cut: goal.scores.last_cut,
@@ -42,7 +40,6 @@ class UserGoals extends Component {
     });
 
     const onClick = () => this.context.router.push(`site/career/${goal.carreer.id}`);
-    console.log(missing);
     return (
       <div key={goal.carreer.id}>
         <div className="goal">

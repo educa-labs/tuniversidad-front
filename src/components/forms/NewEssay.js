@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import is from 'is_js';
 import TextField from 'material-ui/TextField';
 import { addEssay, getEssays } from '../../actions/essays';
+import { getGoals } from '../../actions/goals';
 import { checkScore, validateDate } from '../../helpers/numeral';
 import NavigationBar from '../../components/NavigationBar';
 import SelectInput from '../inputs/SelectInput';
@@ -30,8 +31,9 @@ class Form extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.shouldFetch != nextProps.shouldFetch) {
+    if (this.props.shouldFetch !== nextProps.shouldFetch) {
       if (is.not.null(nextProps.shouldFetch)) {
+        this.props.getGoals(nextProps.token);
         this.props.getEssays(nextProps.token, nextProps.shouldFetch);
       }
     }
@@ -154,4 +156,5 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, {
   addEssay,
   getEssays,
+  getGoals,
 })(Form);

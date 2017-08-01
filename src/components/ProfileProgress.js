@@ -26,10 +26,12 @@ class PropfileProgress extends Component {
         this.closeModal();
       }
     }
-
+    console.log(nextProps.essays.shouldFetch);
     if (is.not.null(nextProps.essays.shouldFetch)) {
+      console.log('Hola');
       if (nextProps.essays.shouldFetch !== this.props.essays.shouldFetch) {
         this.props.getEssays(nextProps.token, nextProps.essays.shouldFetch);
+        this.props.getGoals(nextProps.token);
       }
     }
   }
