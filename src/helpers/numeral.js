@@ -32,7 +32,6 @@ export function validateDate(value) {
   let max = 28;
   if (is.inArray(Number(month), [1, 3, 5, 7, 8, 10, 12])) max = 31;
   if (is.inArray(Number(month), [4, 6, 9, 11])) max = 30;
-  console.log(max);
   return day <= max;
 }
 
