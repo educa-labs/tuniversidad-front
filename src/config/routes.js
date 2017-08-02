@@ -18,6 +18,7 @@ import FiltersMobile from '../containers/FiltersMobile';
 import EditObjectives from '../components/forms/EditObjectives';
 import NewEssay from '../components/forms/NewEssay';
 import FirstStepsMobile from '../containers/FirstStepsMobile';
+import Terms from '../components/landing/Terms';
 
 export default (
   <Route path="/" component={App}>
@@ -25,6 +26,7 @@ export default (
     <Route path="login" component={Login} />
     <Route path="signup" component={Signup} />
     <Route path="filters" component={FiltersMobile} />
+    <Route path="terms" component={Terms} />
     <Route path="site" component={Site}>
       <IndexRoute component={Profile} />
       <Route path="search" component={Buscador} />
