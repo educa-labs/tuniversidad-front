@@ -5,7 +5,7 @@ import '../styles/Dialog.css';
 class Dialog extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps !== this.props) {
-      if (nextProps.open && nextProps.mobile) {
+      if (nextProps.open && nextProps.mobile && nextProps.form) {
         this.context.router.push(`site/profile/${nextProps.form}`);
       }
     }
@@ -26,7 +26,7 @@ class Dialog extends Component {
     ) : null;
     return (
       <div className={`dialog-container ${props.open ? '' : 'dialog-container-hide'}`}>
-        <div className={`dialog-content ${props.containerClassName ? props.containerClassName : ''}`} onClick={event => event.stopPropagation()}>
+        <div className={`dialog-content ${props.containerClassName ? props.containerClassName : ''} ${props.mobile ? 'dialog-content-mobile' : ''}`} onClick={event => event.stopPropagation()}>
           {title}
           {props.children}
           {actions}

@@ -3,10 +3,10 @@ import { Step, Stepper, StepLabel } from 'material-ui/Stepper';
 
 const styles = {
   mobile: {
-    transform: 'scale(0.8)',
+    transform: 'scale(0.85)',
     position: 'absolute',
     bottom: 0,
-    left: -12,
+    left: -20,
     right: 0,
   },
   desktop: {

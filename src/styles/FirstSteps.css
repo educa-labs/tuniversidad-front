@@ -26,7 +26,8 @@
 }
 
 .slide-mobile {
-  width: 16rem;
+  width: 100%;
+  height: 100%;
 }
 
 .step__button {
@@ -34,7 +35,6 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  width: 1.75rem;
 }
 
 

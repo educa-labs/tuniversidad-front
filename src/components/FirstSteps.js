@@ -6,10 +6,6 @@ import RigthArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-right';
 import LeftArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-left';
 import Welcome from './slides/Welcome';
 import City from './slides/City';
-import BirthDate from './slides/BirthDate';
-import Phone from './slides/Phone';
-import Rut from './slides/Rut';
-import Preu from './slides/Preu';
 import Nem from './slides/Nem';
 import Objectives from './slides/Objectives';
 import Ready from './slides/Ready';
@@ -113,20 +109,6 @@ class FirstSteps extends Component {
           return;
         }
       }
-      // if (slideIndex === 4) {
-      //   if (!validateRut(this.state.rut)) {
-      //     this.setState({ error: 'Debes ingresar un rut válido' });
-      //     return;
-      //   }
-      //   requesting = true;
-      //   rutIsAviable(this.state.rut).then((res) => {
-      //     if (!res.body.valid) {
-      //       this.setState({ error: res.body.error });
-      //     } else {
-      //       this.setState({ slideIndex: slideIndex + 1, error: '' });
-      //     }
-      //   });
-      // }
       if (slideIndex === 4) {
         const error = {};
         if (!checkScore(this.state.nem)) error.nem = scoreError;
@@ -182,8 +164,6 @@ class FirstSteps extends Component {
       return !this.state.rut;
     }
     if (slideIndex === 3) return !this.state.phone || !this.state.preuniversity;
-    // if (slideIndex === 4) return !this.state.rut;
-    // if (slideIndex === 5) return !this.state.preuniversity;
     if (slideIndex === 4) return !this.state.nem || !this.state.ranking;
     if (slideIndex === 5) return !this.state.language || !this.state.math || !(this.state.history || this.state.science);
     return false;
@@ -193,7 +173,7 @@ class FirstSteps extends Component {
     const { slideIndex } = this.state;
     const { mobile } = this.props;
     return (
-      <Dialog open={!this.props.user.tutorial} containerClassName="row position-relative">
+      <Dialog open={!this.props.user.tutorial} containerClassName="row position-relative" mobile={mobile}>
           <div className="step__button" onClick={this.handleBack}>
             <IconButton><LeftArrow color={is.inArray(slideIndex, [0]) ? '#FFFFFF' : '#9E9E9E'} /></IconButton>
           </div>
@@ -222,25 +202,6 @@ class FirstSteps extends Component {
                 error={this.state.error}
                 mobile={mobile}
               />
-              {/* <BirthDate
-                logChange={date => this.logChange('birth_date', date)}
-                error={this.getError(2)}
-                mobile={mobile}
-              /> */}
-              {/* <Phone
-                logChange={phone => this.logChange('phone', phone)}
-                error={this.getError(3)}
-                mobile={mobile}
-              /> */}
-              {/* <Rut
-                logChange={rut => this.logChange('rut', rut)}
-                error={this.getError(4)}
-                mobile={mobile}
-              />
-              <Preu
-                logChange={preuniversity => this.logChange('preuniversity', preuniversity)}
-                mobile={mobile}
-              /> */}
               <Nem
                 logNemChange={val => this.logChange('nem', val)}
                 logRankingChange={val => this.logChange('ranking', val)}

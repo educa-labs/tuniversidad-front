@@ -43,7 +43,7 @@ class City extends Component {
             value={this.state.region}
             fullWidth
             handleChange={region => this.handleRegionChange(region)}
-            maxHeight={150}
+            maxHeight={250}
           />
           <SelectInput
             title="Ciudad"
@@ -51,6 +51,7 @@ class City extends Component {
             value={this.state.city}
             handleChange={id => this.handleCityChange(id)}
             fullWidth
+            maxHeight={250}
           />
         </div>
       </div>
