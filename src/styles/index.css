@@ -220,3 +220,7 @@ button {
 .is-scale {
   transform: scale(0.9);
 }
+
+.is-marging-top {
+  margin-top: 48px;
+}
