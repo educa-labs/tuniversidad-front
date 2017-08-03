@@ -53,6 +53,10 @@ button {
   margin: 0;
 }
 
+.padding-2 {
+  padding: 0 1rem;
+}
+
 .padding-8 {
   padding: 0 8rem;
 }
@@ -215,4 +219,8 @@ button {
 
 .is-scale {
   transform: scale(0.9);
+}
+
+.is-marging-top {
+  margin-top: 48px;
 }

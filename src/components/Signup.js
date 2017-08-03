@@ -61,7 +61,7 @@ class Signup extends Component {
   }
 
   render() {
-    const label = <span>Acepto lo términos y condiciones de uso</span>;
+    const label = <span>Acepto los <button>términos y condiciones</button> de uso</span>;
     const { firstName, lastName, password, email, accept, confirm_password } = this.state;
     const disabled = is.any.empty(firstName, lastName, password, email, confirm_password) || !accept || this.props.requesting;
     return (
@@ -106,13 +106,18 @@ class Signup extends Component {
               })}
               errorText={this.getError('password')}
             />
-            <div className="row align-center">
+            <div className="terms-input">
+              <input type="checkbox" id="accept" onClick={() => this.setState({ accept: !this.state.accept })} checked={this.state.accept} />
+              <label className="accept-label" htmlFor="accept">Acepto </label>
+              <div className="terms-dialog"> los <Link to="/terms">términos y condiciones</Link> de uso.</div>
+            </div>
+            {/* <div className="row align-center">
               <Checkbox
                 label={label}
                 style={{ transform: 'scale(0.80)' }}
                 onCheck={(e, val) => this.setState({ accept: val })}
               />
-            </div>
+            </div> */}
             <div className="row justify-end">
               <RaisedButton
                 type="submit"
