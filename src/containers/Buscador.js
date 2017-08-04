@@ -26,6 +26,7 @@ class Buscador extends Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInfinite = this.handleInfinite.bind(this);
+    this.handleActiveChange = this.handleActiveChange.bind(this);
   }
 
 
@@ -71,6 +72,10 @@ class Buscador extends Component {
     this.props.search(active, input, token, filters);
     if (this.state.showFilters) this.setState({ showFilters: false });
   }
+  handleActiveChange(value) {
+    this.props.setActiveFilter(value);
+    this.props.clearSearch();
+  }
 
 
   render() {
@@ -93,6 +98,7 @@ class Buscador extends Component {
           <FiltersDrawer
             open
             handleSubmit={this.handleSubmit}
+            handleActiveChange={this.handleActiveChange}
           />
         )}
         <div className={`page page-filters ${this.props.mobile ? 'page-mobile' : ''}`}>
@@ -100,7 +106,7 @@ class Buscador extends Component {
             <RadioButtonGroup
               name="filter options"
               defaultSelected={this.props.active}
-              onChange={(event, value) => this.props.setActiveFilter(value)}
+              onChange={(event, value) => this.handleActiveChange(value)}
               style={{
                 display: 'flex',
                 margin: '0 2rem',

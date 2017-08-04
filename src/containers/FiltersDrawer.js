@@ -29,7 +29,7 @@ class FiltersDrawer extends Component {
           <RadioButtonGroup
             name="filter options"
             defaultSelected={props.active}
-            onChange={(event, value) => props.setActiveFilter(value)}
+            onChange={(event, value) => props.handleActiveChange(value)}
           >
             <RadioButton
               style={{ margin: '10px 0' }}
