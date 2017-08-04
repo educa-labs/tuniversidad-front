@@ -68,4 +68,16 @@
   width: 90%;
 }
 
+.career-section-header {
+  margin: 0.5rem 1rem;
+}
 
+.career-section-body {
+  background-color: white;
+  padding: 0.5rem 1rem;
+}
+
+.career-description {
+  font-weight: 200;
+  text-align: justify;
+}
