@@ -3,6 +3,7 @@ import IconButton from 'material-ui/IconButton';
 import EditIcon from 'material-ui/svg-icons/image/edit';
 import UserInfoForm from './UserInfoForm';
 import { getDate2 } from '../helpers/strings';
+import { saveUser } from '../helpers/storage';
 
 class UserInfo extends Component {
 
@@ -14,7 +15,10 @@ class UserInfo extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.user !== this.props.user) this.setState({ editMode: false });
+    if (nextProps.user !== this.props.user) {
+      this.setState({ editMode: false });
+      saveUser(nextProps.user);
+    } 
   }
 
   render() {

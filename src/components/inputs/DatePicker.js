@@ -39,7 +39,7 @@ class DatePicker extends Component {
     this.setState({
       day: date[0] ? Number(date[0]) : null,
       month: date[1] ? Number(date[1]) : null,
-      year: date[2] || this.props.year,
+      year: this.props.year ? this.props.year : Number(date[2]),
     });
   }
 

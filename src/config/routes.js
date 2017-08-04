@@ -18,6 +18,7 @@ import FiltersMobile from '../containers/FiltersMobile';
 import EditObjectives from '../components/forms/EditObjectives';
 import NewEssay from '../components/forms/NewEssay';
 import FirstStepsMobile from '../containers/FirstStepsMobile';
+import EditUser from '../components/forms/EditUser';
 import Terms from '../components/landing/Terms';
 
 export default (
@@ -40,6 +41,7 @@ export default (
       <Route path="profile/edit/objectives" component={EditObjectives} />
       <Route path="profile/new/essay" component={NewEssay} />
       <Route path="profile/steps" component={FirstStepsMobile} />
+      <Route path="profile/edit/user" component={EditUser} />
     </Route>
   </Route>
 );

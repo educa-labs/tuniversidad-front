@@ -7,7 +7,6 @@ import { updateUserObjectives } from '../../actions/objectives';
 import { updateUserInfo } from '../../actions/user';
 import { checkScore } from '../../helpers/numeral';
 import NavigationBar from '../../components/NavigationBar';
-import Loading from '../../components/Loading';
 
 class Form extends Component {
   constructor(props) {

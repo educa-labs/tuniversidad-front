@@ -44,5 +44,5 @@ export function getDate2(dateString) {
   const day = Number(list[0]);
   const month = Number(list[1]);
   const year = list[2];
-  return `${day} de ${months[month]} de ${year}`;
+  return `${day} de ${months[month - 1]} de ${year}`;
 }
