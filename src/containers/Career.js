@@ -20,18 +20,36 @@ class Career extends Component {
     this.setState({
       src: '',
       slideIndex: 0,
+      solid: false,
     });
     this.handleSlideChange = this.handleSlideChange.bind(this);
     this.handleSubtitleClick = this.handleSubtitleClick.bind(this);
     this.getType = this.getType.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
+    window.addEventListener('scroll', this.handleScroll);
   }
 
-  handleSlideChange(value) {
-    this.setState({ slideIndex: value });
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
   }
+
 
   handleSubtitleClick() {
     this.context.router.push(`site/university/${this.props.career.university_id}`);
+  }
+
+  handleScroll() {
+    const pos = document.body.scrollTop;
+    const limit = this.props.mobile ? 152 : 182;
+    this.setState({ height: this.state.height - pos });
+    console.log(pos);
+
+    if (pos > limit) {
+      if (!this.state.solid) this.setState({ solid: true });
+    }
+    if (pos <= limit) {
+      if (this.state.solid) this.setState({ solid: false });
+    }
   }
 
   getType() {
@@ -40,8 +58,12 @@ class Career extends Component {
     return career.weighing.science !== 0 ? 'Ciencias' : 'Historia';
   }
 
+  handleSlideChange(value) {
+    this.setState({ slideIndex: value });
+  }
+
   render() {
-    const { slideIndex } = this.state;
+    const { slideIndex, solid } = this.state;
     const { career, mobile } = this.props;
     if (is.any.null(career)) {
       return (
@@ -116,7 +138,7 @@ class Career extends Component {
     return (
       <div className={`page page-university ${mobile ? 'page-university-mobile' : ''}`}>
         <NavigationBar location="site" title={`${career.title} en ${career.university_name}`} />
-        <div className={`university-cover ${mobile ? 'university-cover-mobile' : 'university-cover-desk'} career-cover`}>
+        <div className={`university-cover ${mobile ? 'university-cover-mobile' : 'university-cover-desk'} career-cover ${solid ? 'cover-solid' : ''}`}>
           <div className="university-cover__title">{career.title}</div>
           <div
             className="university-cover__subtitle"
