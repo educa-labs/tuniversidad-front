@@ -38,3 +38,11 @@ export function getDate(dateInString) {
   const day = date.getDate();
   return `${day} de ${months[month]} de ${year}`;
 }
+
+export function getDate2(dateString) {
+  const list = dateString.split('-');
+  const day = Number(list[0]);
+  const month = Number(list[1]);
+  const year = list[2];
+  return `${day} de ${months[month]} de ${year}`;
+}

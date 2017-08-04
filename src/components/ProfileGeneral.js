@@ -19,6 +19,7 @@ function ProfileGeneral(props) {
           user={props.user}
           token={props.token}
           mobile={props.mobile}
+          updateUser={props.updateUser}
         />
         <UserObjectives
           updateUser={props.updateUser}
@@ -44,6 +45,7 @@ function ProfileGeneral(props) {
         <UserInfo
           user={props.user}
           token={props.token}
+          updateUser={props.updateUser}
         />
         <UserObjectives
           updateUser={props.updateUser}

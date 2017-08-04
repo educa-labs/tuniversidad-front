@@ -59,7 +59,7 @@ class DatePicker extends Component {
             handleChange={val => this.onChange('day', val)}
             value={this.state.day}
             floatingLabelText="Dia"
-            floatingLabelFixed
+            floatingLabelFixed={this.props.fixed}
             hintText="17"
             maxHeight={180}
             errorText={this.props.errorText}
@@ -73,7 +73,7 @@ class DatePicker extends Component {
             value={this.state.month}
             hintText="Agosto"
             floatingLabelText="Mes"
-            floatingLabelFixed
+            floatingLabelFixed={this.props.fixed}
             fullWidth
             maxHeight={180}
           />
@@ -87,7 +87,7 @@ class DatePicker extends Component {
               value={this.state.year}
               hintText="2017"
               floatingLabelText="Año"
-              floatingLabelFixed
+              floatingLabelFixed={this.props.fixed}
               maxHeight={180}
             />
           </div>
