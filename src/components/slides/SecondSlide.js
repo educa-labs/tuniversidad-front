@@ -36,6 +36,7 @@ class SecondSlide extends Component {
             errorText={this.props.error.rut || ''}
             fullWidth
           />
+          <div className="input-help">Ejemplo: 18918496-4</div>
         </div>
       </div>
     );
