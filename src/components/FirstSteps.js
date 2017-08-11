@@ -30,7 +30,7 @@ class FirstSteps extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      slideIndex: 0,
+      slideIndex: 5,
       error: '',
       city_id: null,
       birth_date: null,
@@ -120,8 +120,8 @@ class FirstSteps extends Component {
       }
       if (slideIndex === 5) {
         const error = {};
-        if (!checkScore(this.state.language)) error.language = scoreError;
-        if (!checkScore(this.state.math)) error.math = scoreError;
+        if (!checkScore(this.state.language) && this.state.language) error.language = scoreError;
+        if (!checkScore(this.state.math) && this.state.language) error.math = scoreError;
         if (!checkScore(this.state.history) && this.state.history) error.history = scoreError;
         if (!checkScore(this.state.science) && this.state.science) error.science = scoreError;
         if (is.not.empty(error)) {
@@ -143,7 +143,7 @@ class FirstSteps extends Component {
   logChange(field, value) {
     if (is.inArray(field, ['nem', 'ranking', 'language', 'math', 'history', 'science'])) {
       this.setState({
-        [field]: value,
+        [field]: value || null,
         error: Object.assign({}, this.state.error, {
           [field]: '',
         }),
@@ -165,7 +165,7 @@ class FirstSteps extends Component {
     }
     if (slideIndex === 3) return !this.state.phone || !this.state.preuniversity;
     if (slideIndex === 4) return !this.state.nem || !this.state.ranking;
-    if (slideIndex === 5) return !this.state.language || !this.state.math || !(this.state.history || this.state.science);
+    // if (slideIndex === 5) return !this.state.language || !this.state.math || !(this.state.history || this.state.science);
     return false;
   }
 
