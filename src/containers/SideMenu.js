@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import Drawer from 'material-ui/Drawer';
 import Search from 'material-ui/svg-icons/action/search';
 import RaisedButton from 'material-ui/RaisedButton';
-// import CompareIcon from 'material-ui/svg-icons/image/compare';
+import IconButton from 'material-ui/IconButton';
 import LightbulbIcon from 'material-ui/svg-icons/action/lightbulb-outline';
+import Exit from 'material-ui/svg-icons/action/exit-to-app';
 import NewsIcon from 'material-ui/svg-icons/av/fiber-new';
 import ProfileBanner from '../components/ProfileBanner';
 import { clearUser } from '../helpers/storage';
@@ -21,7 +22,6 @@ class SideMenu extends Component {
     }
     this.handleSelectItem = this.handleSelectItem.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
-    this.onRequest = this.onRequest.bind(this);
   }
 
   handleLogout() {
@@ -36,26 +36,27 @@ class SideMenu extends Component {
     this.context.router.push(`site/${selected}`);
   }
 
-  onRequest(open, reason) {
-    this.props.onRequestChange(open);
-  }
-
   render() {
     const { selected } = this.state;
     const { mobile } = this.props;
+    const logoBanner = (
+      <div className="side-menu-header">
+        <div className="logo-tuni" />
+      </div>
+    );
     return (
       <Drawer
         docked={!mobile}
         width={230}
         open={this.props.open}
-        onRequestChange={this.onRequest}
+        onRequestChange={this.props.onRequestChange}
         containerClassName="side-menu"
         containerStyle={{
           backgroundColor: '#424242',
           minHeight: '32rem',
         }}
       >
-        {mobile ? null : <div className="side-menu__banner" />}
+        {mobile ? null : logoBanner}
         <ProfileBanner
           user={this.props.user}
           onClick={() => {
@@ -70,13 +71,6 @@ class SideMenu extends Component {
           <div className="icon" ><Search color="#FFFFFF" /></div>
           <div className="side-menu__item-label">Buscador</div>
         </button>
-        {/* <button
-          className={`side-menu__item ${selected === 'compare' ? 'side-menu__item_selected' : ''}`}
-          // onClick={() => this.handleSelectItem('compare')}
-        >
-          <div className="icon" ><CompareIcon color="#FFFFFF" /></div>
-          <div className="side-menu__item-label">Comparador (Pronto)</div>
-        </button>*/}
         <button
           className={`side-menu__item ${selected === 'recommend' ? 'side-menu__item_selected' : ''}`}
           onClick={() => {
@@ -84,7 +78,7 @@ class SideMenu extends Component {
             this.handleSelectItem('profile');
           }}
         >
-          <div className="icon" ><LightbulbIcon color="#FFFFFF" /></div>
+          <div className="icon"><LightbulbIcon color="#FFFFFF" /></div>
           <div className="side-menu__item-label">Newton (Pronto)</div>
         </button>
         <button
@@ -94,15 +88,10 @@ class SideMenu extends Component {
           <div className="icon" ><NewsIcon color="#FFFFFF" /></div>
           <div className="side-menu__item-label">Noticias</div>
         </button>
-        <div className="side-menu__button-container">
-          <RaisedButton
-            onTouchTap={this.handleLogout}
-            label="Cerrar sesión"
-            backgroundColor="#616161"
-            labelColor="#FFFFFF"
-            style={{ borderRadius: '5px' }}
-            labelStyle={{ fontSize: '11px' }}
-          />
+        <div className="side-menu-exit-button">
+          <IconButton onTouchTap={this.handleLogout}>
+            <Exit color="#C9C9C9" />
+          </IconButton>
         </div>
       </Drawer >
     );
