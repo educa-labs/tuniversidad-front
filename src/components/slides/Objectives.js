@@ -38,7 +38,7 @@ class Objectives extends Component {
           ¿Cuánto quieres sacar en la PSU?
         </div>
         <div className={`col padding-${this.props.mobile ? '1' : '7'}`}>
-          Ingresa los puntajes que quieres obtener en cada prueba
+          Ingresa los puntajes que quieres obtener en cada prueba, esta seción es opcional.
           <div className="row">
             <div className="col margin-right">
               <TextField

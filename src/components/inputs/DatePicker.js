@@ -27,7 +27,7 @@ const getDays = () => {
 
 const getYears = () => {
   const years = [];
-  for (let i = 1990; i <= 2017; i ++) {
+  for (let i = 1980; i <= 2017; i ++) {
     years.push({ label: i.toString(), value: i});
   }
   return years;
@@ -39,7 +39,7 @@ class DatePicker extends Component {
     this.setState({
       day: date[0] ? Number(date[0]) : null,
       month: date[1] ? Number(date[1]) : null,
-      year: date[2] || this.props.year,
+      year: date[2] ? Number(date[2]) : this.props.year || null,
     });
   }
 
@@ -59,7 +59,7 @@ class DatePicker extends Component {
             handleChange={val => this.onChange('day', val)}
             value={this.state.day}
             floatingLabelText="Dia"
-            floatingLabelFixed
+            floatingLabelFixed={this.props.fixed}
             hintText="17"
             maxHeight={180}
             errorText={this.props.errorText}
@@ -73,7 +73,7 @@ class DatePicker extends Component {
             value={this.state.month}
             hintText="Agosto"
             floatingLabelText="Mes"
-            floatingLabelFixed
+            floatingLabelFixed={this.props.fixed}
             fullWidth
             maxHeight={180}
           />
@@ -87,7 +87,7 @@ class DatePicker extends Component {
               value={this.state.year}
               hintText="2017"
               floatingLabelText="Año"
-              floatingLabelFixed
+              floatingLabelFixed={this.props.fixed}
               maxHeight={180}
             />
           </div>

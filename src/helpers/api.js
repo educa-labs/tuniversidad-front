@@ -31,3 +31,11 @@ export function rutIsAviable(rut) {
       .accept('application/tuniversidad.v1')
       .withCredentials();
 }
+
+export function getCover(id, token) {
+  return Request.get(`${url}/universities/${id}?image=true`)
+    .set('Content-Type', 'application/json')
+    .set('Authorization', token)
+    .accept('application/tuniversidad.v1')
+    .withCredentials();
+}

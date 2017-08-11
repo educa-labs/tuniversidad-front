@@ -42,6 +42,7 @@ class ThirdSlide extends Component {
             fullWidth
             type="number"
           />
+          <div className="input-help">Ejemplo: 961403258</div>
           <SelectInput
             title="Preuniversitario"
             items={items}

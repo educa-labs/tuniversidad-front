@@ -46,7 +46,7 @@ class City extends Component {
             maxHeight={250}
           />
           <SelectInput
-            title="Ciudad"
+            title={this.state.region === 13 ? 'Comuna' : 'Ciudad'}
             items={this.state.cities}
             value={this.state.city}
             handleChange={id => this.handleCityChange(id)}

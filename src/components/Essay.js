@@ -28,7 +28,7 @@ class Essay extends Component {
         </div>
         <div className="col">
           <div className="score">{ess.score}</div>
-          <div className="label">Puntaje</div>
+          <div className="label">Puntos</div>
         </div>
         <div className="score-menu">
           <div className="menu">

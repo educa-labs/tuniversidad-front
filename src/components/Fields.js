@@ -73,7 +73,7 @@ class Fields extends Component {
             maxHeight={180}
           />
           <SelectInput
-            title="Ciudad"
+            title={this.state.region === 13 ? 'Comuna' : 'Ciudad'}
             items={cities}
             value={props.values.cities}
             handleChange={id => props.changeFilterValue('cities', id)}
@@ -111,7 +111,7 @@ class Fields extends Component {
           maxHeight={150}
         />
         <SelectInput
-          title="Ciudad"
+          title={this.state.region === 13 ? 'Comuna' : 'Ciudad'}
           items={cities}
           multiple
           value={props.values.cities}

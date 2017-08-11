@@ -5,7 +5,6 @@
 .university-cover {
   height: 238px;
   flex-direction: column;
-  background-image: url(../assets/puc-cover.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -34,20 +33,12 @@
   height: 200px;
 }
 
-.career-cover {
-  background-image: url(../assets/loconta.jpg);
-}
-
-.university-cover-puc {
-  background-image: url(../assets/puc-cover.jpg);
-}
 
 .university-cover__title {
-  font-size: x-large;
+  font-size: 18px;
 }
 .university-cover__subtitle {
-  font-size: medium;
-  margin: 5px 0;
+  font-size: 14px;
   cursor: pointer;
 }
 
@@ -68,4 +59,31 @@
   width: 90%;
 }
 
+.university-logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 80% 80%;
+  background-color: white;
+  margin-right: 1rem;
+}
 
+.career-section-header {
+  margin: 0.5rem 1rem;
+}
+
+.career-section-body {
+  background-color: white;
+  padding: 0.5rem 1rem;
+}
+
+.career-cover {
+  background-image: url(../assets/loconta.jpg);
+}
+
+.career-description {
+  font-weight: 200;
+  text-align: justify;
+}

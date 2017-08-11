@@ -1,32 +1,46 @@
-import React, { PropTypes, Component } from 'react';
-import is from 'is_js';
+import React, { Component, PropTypes } from 'react';
 import FlatButton from 'material-ui/FlatButton';
+import { connect } from 'react-redux';
+import is from 'is_js';
 import TextField from 'material-ui/TextField';
-import DatePicker from './inputs/DatePicker';
-import Dialog from './Dialog';
-import { validateDate, validatePhone } from '../helpers/numeral';
+import { updateUserInfo } from '../../actions/user';
+import NavigationBar from '../../components/NavigationBar';
+import DatePicker from '../inputs/DatePicker';
+import { validateDate, validatePhone } from '../../helpers/numeral';
+import { saveUser } from '../../helpers/storage';
 
 
-const styles = {
-  button: {
-    margin: '0 5px',
-  },
-};
-
-class UserInfoForm extends Component {
+class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      first_name: '',
+      last_name: '',
+      birth_date: '',
+      email: '',
+      phone: '',
+      error: null,
+    };
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  componentWillMount() {
+    this.setState({
       first_name: this.props.user.first_name,
       last_name: this.props.user.last_name,
       birth_date: this.props.user.birth_date,
       email: this.props.user.email,
       phone: this.props.user.phone,
       error: {},
-    };
-    this.onSubmit = this.onSubmit.bind(this);
+    });
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.user !== this.props.user) {
+      saveUser(nextProps.user);
+      this.context.router.replace('/site/profile');
+    }
+  }
 
   onSubmit() {
     const { first_name, last_name, birth_date, email, phone } = this.state;
@@ -35,7 +49,7 @@ class UserInfoForm extends Component {
     if (!validateDate(this.state.birth_date)) error.date = 'Esta fecha no existe';
     if (is.not.empty(error)) this.setState({ error });
     else {
-      this.props.updateUser({
+      this.props.updateUserInfo(this.props.user.id, this.props.token, {
         first_name,
         last_name,
         birth_date,
@@ -51,32 +65,12 @@ class UserInfoForm extends Component {
   }
 
   render() {
-    const actions = [
-      <FlatButton
-        label="Cancelar"
-        onTouchTap={this.props.handleClose}
-        secondary
-      />,
-      <FlatButton
-        label="Ok"
-        onTouchTap={this.onSubmit}
-        style={styles.button}
-        secondary
-        disabled={this.disabled()}
-      />,
-    ];
+    if (is.null(this.props.user)) return <div>Cargando</div>;
     return (
-      <Dialog
-        title="Información general"
-        open={this.props.open}
-        actions={actions}
-        contentContainerClassName="form-container"
-        onRequestClose={this.props.handleClose}
-        className="form"
-        mobile={this.props.mobile}
-        form="edit/user"
-      >
-        <div className="row">
+      <div className="edit-form-container">
+        <NavigationBar location="filters" />
+        <div className="filters__header">Información General</div>
+        <div className="fields">
           <div className="form__field">
             <TextField
               onChange={(e, val) => this.setState({ first_name: val })}
@@ -93,8 +87,6 @@ class UserInfoForm extends Component {
               value={this.state.last_name}
             />
           </div>
-        </div>
-        <div className="row">
           <div className="form__field">
             <TextField
               onChange={(e, val) => this.setState({ email: val })}
@@ -113,26 +105,47 @@ class UserInfoForm extends Component {
               errorText={this.state.error.phone || ''}
             />
           </div>
-        </div>
-        <div className="col">
-          <span className="range-input__title is-margin-left">Cumpleaños</span>
-          <div className="form__field form__field-3">
-            <DatePicker
-              handleChange={val => this.setState({ birth_date: val, error: {} })}
-              date={this.state.birth_date}
-              errorText={this.state.error.date || ''}
+          <div className="col">
+            <span className="range-input__title is-margin-left">Cumpleaños</span>
+            <div className="form__field form__field-3">
+              <DatePicker
+                handleChange={val => this.setState({ birth_date: val, error: {} })}
+                date={this.state.birth_date}
+                errorText={this.state.error.date || ''}
+              />
+            </div>
+          </div>
+          <div className="dialog-footer">
+            <FlatButton
+              label="Cancelar"
+              onTouchTap={this.context.router.goBack}
+              secondary
+            />
+            <FlatButton
+              label="OK"
+              onTouchTap={this.onSubmit}
+              secondary
+              disabled={this.disabled()}
             />
           </div>
         </div>
-      </Dialog>
+      </div>
     );
   }
 }
 
-UserInfoForm.propTypes = {
-  handleClose: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
-  user: PropTypes.object.isRequired,
+Form.contextTypes = {
+  router: PropTypes.object,
 };
 
-export default UserInfoForm;
+function mapStateToProps(state) {
+  return {
+    user: state.user.currentUser,
+    token: state.user.currentUser.auth_token,
+  };
+}
+
+export default connect(mapStateToProps, {
+  updateUserInfo,
+})(Form);
+
