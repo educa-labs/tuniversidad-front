@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import is from 'is_js';
-import { getCareers, getCampus } from '../helpers/api';
 import NavigationBar from '../components/NavigationBar';
 import UniversityCard from '../components/UniversityCard';
 import CareerCard from '../components/CareerCard';
@@ -12,6 +11,7 @@ import CareerHeading from '../components/CareerHeading';
 import Loading from '../components/Loading';
 import { fetch } from '../actions/fetch';
 import '../styles/University.css';
+import { getCareers, getCampus, getCover } from '../helpers/api';
 import { numeral } from '../helpers/numeral';
 import { getDate } from '../helpers/strings';
 
@@ -27,7 +27,8 @@ class University extends Component {
     const { params, token } = this.props;
     this.props.fetch('university', params.id, token);
     this.setState({
-      src: '',
+      cover: null,
+      logo: null,
       slideIndex: 0,
       careers: null,
       campus: null,
@@ -41,6 +42,10 @@ class University extends Component {
     getCampus(this.props.params.id, this.props.token)
       .then(res => this.setState({ campus: res.body }))
       .catch(err => this.setState({ campus: err.body }));
+
+    getCover(this.props.params.id, this.props.token)
+      .then(res => this.setState({ cover: res.body.cover, logo: res.body.profile }))
+      .catch(err => this.setState({ cover: err.body }));
   }
 
   getContent(slideIndex) {
@@ -132,10 +137,10 @@ class University extends Component {
   }
 
   render() {
-    const { careers, slideIndex, campus } = this.state;
+    const { careers, slideIndex, campus, cover, logo } = this.state;
     const { university, mobile } = this.props;
 
-    if (is.any.null(university, careers, campus)) {
+    if (is.any.null(university, careers, campus, cover, logo)) {
       return (
         <div className="fullscreen">
           <Loading />
@@ -145,10 +150,13 @@ class University extends Component {
     return (
       <div className={`page page-university ${mobile ? 'page-university-mobile' : ''}`}>
         <NavigationBar location="site" title={university.title} />
-        <div className={`university-cover ${mobile ? 'university-cover-mobile' : 'university-cover-desk'}`}>
-          <div>
-            <div className="university-cover__title">{university.title}</div>
-            <div className="university-cover__subtitle">{university.motto}</div>
+        <div style={{ backgroundImage: `url(${cover})` }} className={`university-cover ${mobile ? 'university-cover-mobile' : 'university-cover-desk'}`}>
+          <div className="row align-center">
+            <div className="university-logo" style={{ backgroundImage: `url(${logo})` }} />
+            <div className="col">
+              <div className="university-cover__title">{university.title}</div>
+              <div className="university-cover__subtitle">{university.motto}</div>
+            </div>
           </div>
         </div>
         <Tabs
