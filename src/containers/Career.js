@@ -7,7 +7,7 @@ import CareerCard from '../components/CareerCard';
 import Loading from '../components/Loading';
 import { fetch } from '../actions/fetch';
 import { numeral } from '../helpers/numeral';
-import { getCover } from '../helpers/api';
+import { getCareerCover } from '../helpers/api';
 
 const tabStyle = {
   fontSize: '12px',
@@ -30,8 +30,9 @@ class Career extends Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.career !== nextProps.career) {
       if (is.not.null(nextProps.career)) {
-        getCover(nextProps.career.university_id, nextProps.token)
-          .then(res => this.setState({ cover: res.body.cover }))
+        console.log('Hola');
+        getCareerCover(nextProps.career.area_id)
+          .then(res => this.setState({ cover: res.body.image }))
           .catch(err => this.setState({ cover: err.body }));
       }
     }

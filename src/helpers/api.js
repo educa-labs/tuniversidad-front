@@ -39,3 +39,10 @@ export function getCover(id, token) {
     .accept('application/tuniversidad.v1')
     .withCredentials();
 }
+
+export function getCareerCover(id) {
+  return Request.get(`${url}/areas/${id}`)
+    .set('Content-Type', 'application/json')
+    .accept('application/tuniversidad.v1')
+    .withCredentials();
+}
