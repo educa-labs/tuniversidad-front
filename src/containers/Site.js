@@ -6,7 +6,7 @@ import SideMenu from './SideMenu';
 import { getGoals } from '../actions/goals';
 import { fetch } from '../actions/fetch';
 import { getMostPopular } from '../actions/search';
-import '../styles/Site.css';
+import '../styles/SideMenu.css';
 import '../styles/GeneralCard.css';
 
 
