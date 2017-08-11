@@ -79,10 +79,6 @@
   padding: 0.5rem 1rem;
 }
 
-.career-cover {
-  background-image: url(../assets/loconta.jpg);
-}
-
 .career-description {
   font-weight: 200;
   text-align: justify;

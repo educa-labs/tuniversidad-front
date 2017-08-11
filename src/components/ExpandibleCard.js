@@ -7,7 +7,6 @@ import FlatButton from 'material-ui/FlatButton';
 import ArrowDown from 'material-ui/svg-icons/hardware/keyboard-arrow-down';
 import ArrowUp from 'material-ui/svg-icons/hardware/keyboard-arrow-up';
 import { Collapse } from 'react-collapse';
-import { numeral } from '../helpers/numeral';
 import { addGoal, removeGoal } from '../actions/goals';
 import { addToCompare, removeFromCompare } from '../actions/compare';
 

@@ -30,7 +30,6 @@ class Career extends Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.career !== nextProps.career) {
       if (is.not.null(nextProps.career)) {
-        console.log('Hola');
         getCareerCover(nextProps.career.area_id)
           .then(res => this.setState({ cover: res.body.image }))
           .catch(err => this.setState({ cover: err.body }));

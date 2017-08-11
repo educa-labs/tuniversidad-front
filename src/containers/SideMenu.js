@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Drawer from 'material-ui/Drawer';
 import Search from 'material-ui/svg-icons/action/search';
-import RaisedButton from 'material-ui/RaisedButton';
 import IconButton from 'material-ui/IconButton';
 import LightbulbIcon from 'material-ui/svg-icons/action/lightbulb-outline';
 import Exit from 'material-ui/svg-icons/action/exit-to-app';
