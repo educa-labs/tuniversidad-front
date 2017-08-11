@@ -7,6 +7,7 @@ import CareerCard from '../components/CareerCard';
 import Loading from '../components/Loading';
 import { fetch } from '../actions/fetch';
 import { numeral } from '../helpers/numeral';
+import { getCover } from '../helpers/api';
 
 const tabStyle = {
   fontSize: '12px',
@@ -18,12 +19,22 @@ class Career extends Component {
     const { params, token } = this.props;
     this.props.fetch('career', params.id, token);
     this.setState({
-      src: '',
+      cover: null,
       slideIndex: 0,
     });
     this.handleSlideChange = this.handleSlideChange.bind(this);
     this.handleSubtitleClick = this.handleSubtitleClick.bind(this);
     this.getType = this.getType.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.career !== nextProps.career) {
+      if (is.not.null(nextProps.career)) {
+        getCover(nextProps.career.university_id, nextProps.token)
+          .then(res => this.setState({ cover: res.body.cover }))
+          .catch(err => this.setState({ cover: err.body }));
+      }
+    }
   }
 
   handleSlideChange(value) {
@@ -41,9 +52,9 @@ class Career extends Component {
   }
 
   render() {
-    const { slideIndex } = this.state;
+    const { slideIndex, cover } = this.state;
     const { career, mobile } = this.props;
-    if (is.any.null(career)) {
+    if (is.any.null(career, cover)) {
       return (
         <div className="fullscreen">
           <Loading />
@@ -116,7 +127,7 @@ class Career extends Component {
     return (
       <div className={`page page-university ${mobile ? 'page-university-mobile' : ''}`}>
         <NavigationBar location="site" title={`${career.title} en ${career.university_name}`} />
-        <div className={`university-cover ${mobile ? 'university-cover-mobile' : 'university-cover-desk'} career-cover`}>
+        <div style={{ backgroundImage: `url(${cover})` }} className={`university-cover ${mobile ? 'university-cover-mobile' : 'university-cover-desk'}`}>
           <div className="university-cover__title">{career.title}</div>
           <div
             className="university-cover__subtitle"
