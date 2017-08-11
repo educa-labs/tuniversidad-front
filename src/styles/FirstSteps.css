@@ -77,6 +77,15 @@
   flex: 1;
 }
 
+.newton-ulala {
+  width: 5rem;
+  height: 5rem;
+  background-image: url('../assets/ulala.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 
 .newton-msg {
   display: flex;

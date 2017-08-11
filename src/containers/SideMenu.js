@@ -9,6 +9,7 @@ import NewsIcon from 'material-ui/svg-icons/av/fiber-new';
 import ProfileBanner from '../components/ProfileBanner';
 import { clearUser } from '../helpers/storage';
 import { clearState } from '../actions/user';
+import { selectTab } from '../actions/profile';
 
 
 class SideMenu extends Component {
@@ -78,7 +79,10 @@ class SideMenu extends Component {
         </button>*/}
         <button
           className={`side-menu__item ${selected === 'recommend' ? 'side-menu__item_selected' : ''}`}
-          // onClick={() => this.handleSelectItem('recommend')}
+          onClick={() => {
+            this.props.selectTab(2);
+            this.handleSelectItem('profile');
+          }}
         >
           <div className="icon" ><LightbulbIcon color="#FFFFFF" /></div>
           <div className="side-menu__item-label">Newton (Pronto)</div>
@@ -125,4 +129,5 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
   clearState,
+  selectTab,
 })(SideMenu);
