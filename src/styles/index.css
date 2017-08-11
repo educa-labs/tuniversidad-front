@@ -44,8 +44,13 @@ button {
   width: 256px;
 }
 
+.full-width {
+  width: 100%;
+}
+
 .row {
   display: flex;
+  flex: 1;
   margin: 5px 0;
 }
 
@@ -227,4 +232,20 @@ button {
 
 .is-margin-left {
   margin-left: 1rem;
+}
+
+.row-hover:hover {
+  background-color: #EEEEEE;
+}
+
+.menu {
+  display: none;
+}
+ 
+.row-hover:hover .is-48x48 {
+  display: none;
+}
+
+.row-hover:hover .menu {
+  display: inherit;
 }

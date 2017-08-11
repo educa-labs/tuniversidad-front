@@ -18,35 +18,29 @@ class Essay extends Component {
     this.renderEssay = this.renderEssay.bind(this);
   }
 
-
   renderEssay(ess) {
     return (
-      <div className="essay__score" key={ess.id}>
-        <div className="col">
-          <div>{ess.title}</div>
+      <div className="row align-center row-hover" key={ess.id}>
+        <div className="general-card__item">
+          <div className="value">{ess.title}</div>
           <div className="label">{ess.date}</div>
         </div>
-        <div className="col">
+        <div className="general-card__item">
           <div className="score">{ess.score}</div>
           <div className="label">Puntos</div>
         </div>
-        <div className="score-menu">
-          <div className="menu">
-            <IconMenu
-              iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
-              anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
-              targetOrigin={{ horizontal: 'right', vertical: 'top' }}
-            >
-              {/* <MenuItem
-                secondaryText="Editar"
-                onTouchTap={handleEditEssay}
-              /> */}
-              <MenuItem
-                secondaryText="Borrar"
-                onTouchTap={() => this.props.removeEssay(ess.id, ess.subject.id)}
-              />
-            </IconMenu>
-          </div>
+        <div className="is-48x48" />
+        <div className="menu">
+          <IconMenu
+            iconButtonElement={<IconButton><MoreVertIcon color="#424242" /></IconButton>}
+            anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
+            targetOrigin={{ horizontal: 'right', vertical: 'top' }}
+          >
+            <MenuItem
+              secondaryText="Borrar"
+              onTouchTap={() => this.props.removeEssay(ess.id, ess.subject.id)}
+            />
+          </IconMenu>
         </div>
       </div>
     );
@@ -61,7 +55,7 @@ class Essay extends Component {
     return (
       <div>
         <div className="essay">
-          <div className={`essay__header ${this.props.active ? 'essay__header_active' : ''}`} onClick={this.props.handleClick}>
+          <div className={`essay__header ${this.props.active ? 'bg-blue color-white' : ''}`} onClick={this.props.handleClick}>
             <div className="essay__title">{this.props.title}</div>
           </div>
           <Collapse isOpened={this.props.active}>

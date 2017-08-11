@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import SelectInput from './SelectInput';
-import '../../styles/DatePicker.css';
 
 const months = [
   { label: 'Enero', value: 1 },
@@ -52,7 +51,7 @@ class DatePicker extends Component {
 
   render() {
     return (
-      <div className="date-picker">
+      <div className="row">
         <div className="col">
           <SelectInput
             items={getDays()}
