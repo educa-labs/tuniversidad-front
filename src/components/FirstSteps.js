@@ -30,7 +30,7 @@ class FirstSteps extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      slideIndex: 5,
+      slideIndex: 0,
       error: '',
       city_id: null,
       birth_date: null,
