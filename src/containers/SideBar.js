@@ -14,6 +14,7 @@ import { selectTab } from '../actions/profile';
 
 const sidebarStyles = {
   sidebar: {
+    position: 'fixed',
     width: '230px',
     backgroundColor: '#424242',
     display: 'flex',
@@ -24,7 +25,6 @@ const sidebarStyles = {
     zIndex: 14,
   },
   root: {
-    position: 'fixed',
   },
 };
 
