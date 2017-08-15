@@ -3,6 +3,7 @@ import MediaQuery from 'react-responsive';
 import is from 'is_js';
 import { connect } from 'react-redux';
 import SideMenu from './SideMenu';
+import SideBar from './SideBar';
 import { getGoals } from '../actions/goals';
 import { fetch } from '../actions/fetch';
 import { getMostPopular } from '../actions/search';
@@ -35,10 +36,12 @@ class Site extends Component {
     return (
       <div className="queries">
         <MediaQuery maxDeviceWidth={720} className="site">
-          <SideMenu
+          <SideBar
+            user={this.props.user}
             mobile
             open={this.state.showMenu}
-            onRequestChange={open => this.setState({ showMenu: open })}
+            shadow={false}
+            onSetOpen={open => this.setState({ showMenu: open })}
           />
           {cloneElement(this.props.children, {
             mobile: true,
@@ -46,7 +49,11 @@ class Site extends Component {
           }) }
         </MediaQuery>
         <MediaQuery minDeviceWidth={721} className="site">
-          <SideMenu open />
+          <SideBar
+            user={this.props.user}
+            docked
+            open={false}
+          />
           {this.props.children}
         </MediaQuery>
       </div>
