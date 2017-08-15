@@ -165,7 +165,7 @@ class FirstSteps extends Component {
     }
     if (slideIndex === 3) return !this.state.phone || !this.state.preuniversity;
     if (slideIndex === 4) return !this.state.nem || !this.state.ranking;
-    // if (slideIndex === 5) return !this.state.language || !this.state.math || !(this.state.history || this.state.science);
+    if (slideIndex === 5) return !this.state.language || !this.state.math || !(this.state.history || this.state.science);
     return false;
   }
 
