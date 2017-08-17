@@ -24,7 +24,10 @@ function UserEssays(props) {
           key={index}
           title={subjects[index]}
           active={props.active === index + 1}
-          handleClick={() => props.handleSubjectClick(index + 1)}
+          handleClick={() => {
+            console.log(index);
+            props.handleSubjectClick(index + 1);
+          }}
           removeEssay={props.removeEssay}
           selectEssay={props.selectEssay}
           essays={props.essays[props.active].essays}

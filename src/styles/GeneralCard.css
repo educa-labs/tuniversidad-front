@@ -5,6 +5,7 @@
 }
 
 .general-card {
+  z-index: 1;
   background-color: white;
   box-shadow: 0px 0px 4px 0.5px rgba(0,0,0,0.10);
   border-radius: 2px;

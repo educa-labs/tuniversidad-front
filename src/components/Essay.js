@@ -20,7 +20,7 @@ class Essay extends Component {
 
   renderEssay(ess) {
     return (
-      <div className="row align-center row-hover" key={ess.id}>
+      <div className="row align-center row-hover" onClick={() => console.log('hola')} key={ess.id}>
         <div className="general-card__item">
           <div className="value">{ess.title}</div>
           <div className="label">{ess.date}</div>

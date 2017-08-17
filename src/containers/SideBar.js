@@ -14,15 +14,15 @@ import { selectTab } from '../actions/profile';
 
 const sidebarStyles = {
   sidebar: {
+    zIndex: 4,
     position: 'fixed',
     width: '230px',
     backgroundColor: '#424242',
     display: 'flex',
     flexDirection: 'column',
-    zIndex: 15,
   },
   overlay: {
-    zIndex: 14,
+    zIndex: 3,
   },
   root: {
   },
