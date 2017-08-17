@@ -14,7 +14,7 @@ import { selectTab } from '../actions/profile';
 
 const sidebarStyles = {
   sidebar: {
-    zIndex: 4,
+    zIndex: 5,
     position: 'fixed',
     width: '230px',
     backgroundColor: '#424242',
@@ -22,7 +22,7 @@ const sidebarStyles = {
     flexDirection: 'column',
   },
   overlay: {
-    zIndex: 3,
+    zIndex: 4,
   },
   root: {
   },
