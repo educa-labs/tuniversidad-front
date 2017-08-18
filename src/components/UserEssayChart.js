@@ -37,7 +37,7 @@ function UserEssayChart(props) {
 
   const chart = (
     <LineChart width={width} height={height} data={data.essays} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-      <XAxis dataKey="date" type="category" padding={{ left: 30, right: 30 }} width={320} />
+      <XAxis hide dataKey="date" type="category" padding={{ left: 30, right: 30 }} width={320} />
       <YAxis domain={['dataMin - 100', 850]} padding={{ top: 30, bottom: 30 }} tick={!props.mobile} tickSize={props.mobile? 0 : 6} />
       <Tooltip />
       <CartesianGrid strokeDasharray="4 4" />

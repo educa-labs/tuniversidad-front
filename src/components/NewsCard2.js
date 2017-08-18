@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FlatButton from 'material-ui/FlatButton';
 import { Collapse } from 'react-collapse';
+import { getDate } from '../helpers/strings';
 
 const labelStyle = {
   color: '#0091EA',
@@ -29,7 +30,7 @@ class NewsCard extends Component {
         <div className="news-photo" style={{ backgroundImage: `url(${news.picture})` }} />
         <div className="news-header">
           <div className="news-date">
-            Por {news.author}, {news.created_at}
+            Por {news.author}, {getDate(news.created_at)}
           </div>
           <div className="general-card__title title_no-margin">{news.title}</div>
           <div className="general-card__subtitle color-blue">{news.lowering}</div>
