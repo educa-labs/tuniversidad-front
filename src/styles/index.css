@@ -108,12 +108,23 @@ button {
   padding-top: 248px;
   margin-left: 0;
   margin-right: 0;
-   padding-left: 0;
+  padding-left: 0;
   padding-right: 0;
 }
 
 .page-mobile {
   padding-top: 96px;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.page-news {
+  padding: 2rem;
+}
+
+.page-news-mobile {
   margin-left: 0;
   margin-right: 0;
   padding-left: 0;
@@ -224,14 +235,6 @@ button {
 
 .is-scale {
   transform: scale(0.9);
-}
-
-.is-marging-top {
-  margin-top: 48px;
-}
-
-.is-margin-left {
-  margin-left: 1rem;
 }
 
 .row-hover:hover {

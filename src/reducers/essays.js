@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import {
   ESSAY_REQUEST,
   ADD_ESSAY,

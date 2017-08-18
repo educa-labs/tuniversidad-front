@@ -22,17 +22,17 @@ class NewsCard extends Component {
   }
 
   render() {
-    const { news } = this.props;
+    const { news, mobile } = this.props;
     const label = this.state.open ? 'Mostrar menos' : 'Mostrar más';
     return (
-      <div className="general-card">
-        <div className={`news-photo news-photo-${this.props.n}`} />
+      <div className={`general-card ${mobile ? '' : 'general-card_desk'}`}>
+        <div className="news-photo" style={{ backgroundImage: `url(${news.picture})` }} />
         <div className="news-header">
           <div className="news-date">
-            Por {news.author}, {news.date}
+            Por {news.author}, {news.created_at}
           </div>
           <div className="general-card__title title_no-margin">{news.title}</div>
-          <div className="general-card__subtitle color-blue">{news.subtitle}</div>
+          <div className="general-card__subtitle color-blue">{news.lowering}</div>
         </div>
         <Collapse isOpened={this.state.open}>
           <div className="news-body">

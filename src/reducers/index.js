@@ -8,6 +8,7 @@ import search from './search';
 import essays from './essays';
 import objectives from './objectives';
 import profileNavigation from './profile';
+import news from './news';
 
 export default combineReducers({
   user,
@@ -19,4 +20,5 @@ export default combineReducers({
   essays,
   objectives,
   profileNavigation,
+  news,
 });
