@@ -36,12 +36,10 @@ class Site extends Component {
     return (
       <div className="queries">
         <MediaQuery maxDeviceWidth={720} className="site">
-          <SideBar
-            user={this.props.user}
+          <SideMenu
             mobile
             open={this.state.showMenu}
-            shadow={false}
-            onSetOpen={open => this.setState({ showMenu: open })}
+            onRequestChange={open => this.setState({ showMenu: open })}
           />
           {cloneElement(this.props.children, {
             mobile: true,
@@ -49,11 +47,7 @@ class Site extends Component {
           }) }
         </MediaQuery>
         <MediaQuery minDeviceWidth={721} className="site">
-          <SideBar
-            user={this.props.user}
-            docked
-            open={false}
-          />
+          <SideMenu open />
           {this.props.children}
         </MediaQuery>
       </div>
