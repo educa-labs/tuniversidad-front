@@ -1,64 +1,168 @@
-import React from 'react';
+import React, { Component } from 'react';
 import is from 'is_js';
-import { LineChart, XAxis, YAxis, Tooltip, Line, CartesianGrid } from 'recharts';
-
-function CustomizedLabel(props) {
-  const { x, y, stroke, value } = props;
-  return <text x={x} y={y} dy={-8} fill={stroke} fontSize={10} textAnchor="middle">{value}</text>;
-}
+import { Line, Chart } from 'react-chartjs-2';
+import Loading from '../components/Loading';
 
 
-function UserEssayChart(props) {
-  if (is.null(props.subjects)) {
+class UserEssayChart extends Component {
+  componentWillMount() {
+    Chart.pluginService.register({
+      afterDraw: (chartInstance) => {
+        let yValue;
+        console.log(chartInstance);
+        const yScale = chartInstance.scales['y-axis-0'];
+        const canvas = chartInstance.chart;
+        const ctx = canvas.ctx;
+        const xAxe = chartInstance.scales[chartInstance.config.options.scales.xAxes[0].id];
+        let index;
+        let line;
+        let style;
+    
+        if (chartInstance.options.horizontalLine) {
+          for (index = 0; index < chartInstance.options.horizontalLine.length; index++) {
+            line = chartInstance.options.horizontalLine[index];
+    
+            if (!line.style) {
+              style = 'rgba(169,169,169, .6)';
+            } else {
+              style = line.style;
+            }
+    
+            if (line.y) {
+              yValue = yScale.getPixelForValue(line.y);
+            } else {
+              yValue = 0;
+            }
+    
+            ctx.lineWidth = 3;
+            if (yValue) {
+              ctx.beginPath();
+              ctx.moveTo(xAxe.left, yValue);
+              ctx.lineTo(xAxe.right, yValue);
+              ctx.strokeStyle = style;
+              ctx.stroke();
+            }
+    
+            if (line.text) {
+              ctx.fillStyle = style;
+              ctx.fillText(line.text, 0, yValue + ctx.lineWidth);
+            }
+          }
+        }
+      },
+    });
+  }
+  render() {
+    if (is.null(this.props.subjects)) {
+      return <Loading />;
+    }
+    
+    const subjects = {};
+    this.props.subjects.forEach(sub => (
+      subjects[sub.id] = sub.title
+    ));
+    const selected = this.props.essays[this.props.active]
+    const labels = selected.essays.map(obj => obj.title);
+    const scores = selected.essays.map(obj => obj.score);
+    const dates = selected.essays.map(obj => obj.date);
+
+
+    const data = {
+      labels,
+      datasets: [
+        {
+          fill: true,
+          lineTension: 0.1,
+          backgroundColor: 'rgba(0, 145, 234, 0.4)',
+          borderColor: '#0091EA',
+          borderDash: [],
+          borderDashOffset: 0.0,
+          borderJoinStyle: 'miter',
+          pointBorderColor: '#0091EA',
+          pointBackgroundColor: '#fff',
+          pointBorderWidth: 2,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: '#0091EA',
+          pointHoverBorderColor: '#0091EA',
+          pointHoverBorderWidth: 2,
+          pointRadius: 3,
+          pointHitRadius: 10,
+          data: scores,
+        },
+      ],
+    };
+
+    const options = {
+      legend: {
+        display: false,
+      },
+      layout: {
+        padding: {
+          left: 20,
+          right: 20,
+          top: 0,
+          bottom: 0,
+        },
+      },
+      scales: {
+        xAxes: [{
+          display: true,
+          gridLines: {
+            display: true,
+          },
+          ticks: {
+            minRotation: 45,
+            padding: 50,
+            type: 'category',
+          },
+        }],
+        yAxes: [{
+          display: true,
+          gridLines: {
+            display: true,
+          },
+          ticks: {
+            suggestedMin: 450,
+            suggestedMax: 850,
+          },
+        }],
+      },
+      // horizontalLine: [
+      //   {
+      //     y: 740,
+      //     style: '#969696',
+      //     text: 'max',
+      //   },
+      // ],
+    };
+
+    
+    // const data = props.essays[props.active];
+
+  
+    const noContent = (
+      <div className="general-card__no-content">
+        <div className="newton-pensando" />
+        <div className="general-card__empty-msg">
+          Aún no has agregado un ensayo de {subjects[this.props.active]}.
+        </div>
+      </div>
+    );
+    
+    const header = this.props.mobile ? null : (
+      <div className="general-card__header">
+        <div className="general-card__title">Mi progreso en {subjects[this.props.active]}</div>
+      </div>
+    );
+  
     return (
-      <div>
-        Cargando ...
+      <div className={`general-card ${this.props.mobile ? '' : 'general-card_desk'}`}>
+        {header}
+        <div className="general-card__chart">
+          {is.empty(data.essays) ? noContent : <Line data={data} options={options} />}
+        </div>
       </div>
     );
   }
-  
-  const subjects = {};
-  props.subjects.forEach(sub => (
-    subjects[sub.id] = sub.title
-  ));
-
-  const data = props.essays[props.active];
-  const width = props.mobile ? 300 : 700;
-  const height = props.mobile ? 180 : 350;
-
-  const noContent = (
-    <div className="general-card__no-content">
-      <div className="newton-pensando" />
-      <div className="general-card__empty-msg">
-        Aún no has agregado un ensayo de {subjects[props.active]}.
-      </div>
-    </div>
-  );
-
-  const chart = (
-    <LineChart width={width} height={height} data={data.essays} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-      <XAxis hide dataKey="date" type="category" padding={{ left: 30, right: 30 }} width={320} />
-      <YAxis domain={['dataMin - 100', 850]} padding={{ top: 30, bottom: 30 }} tick={!props.mobile} tickSize={props.mobile? 0 : 6} />
-      <Tooltip />
-      <CartesianGrid strokeDasharray="4 4" />
-      <Line name="Puntaje" type="natural" dataKey="score" stroke="#0091EA" label={<CustomizedLabel />} dot={{ strokeWidth: 2 }} />
-    </LineChart>
-  );
-  
-  const header = props.mobile ? null : (
-    <div className="general-card__header">
-      <div className="general-card__title">Mi progreso en {subjects[props.active]}</div>
-    </div>
-  );
-
-  return (
-    <div className={`general-card ${props.mobile ? '' : 'general-card_desk'}`}>
-      {header}
-      <div className="general-card__chart">
-        {is.empty(data.essays) ? noContent : chart}
-      </div>
-    </div>
-  );
 }
-
 export default UserEssayChart;
