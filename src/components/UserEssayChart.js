@@ -100,13 +100,13 @@ class UserEssayChart extends Component {
         padding: {
           left: 20,
           right: 20,
-          top: 0,
-          bottom: 0,
+          top: 20,
+          bottom: 20,
         },
       },
       scales: {
         xAxes: [{
-          display: true,
+          display: false,
           gridLines: {
             display: true,
           },
