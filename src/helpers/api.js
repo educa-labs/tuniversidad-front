@@ -46,3 +46,11 @@ export function getCareerCover(id) {
     .accept('application/tuniversidad.v1')
     .withCredentials();
 }
+
+export function getNewsPhoto(id, token) {
+  return Request.get(`${url}/news/${id}?image=true`)
+    .set('Content-Type', 'application/json')
+    .set('Authorization', token)
+    .accept('application/tuniversidad.v1')
+    .withCredentials();
+}
