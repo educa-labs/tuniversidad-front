@@ -1,7 +1,7 @@
 import { SELECT_ESSAY, SELECT_TAB } from '../actions/types';
 
 const initialState = {
-  tab: 1,
+  tab: 0,
   essay: 1,
 };
 

@@ -9,7 +9,6 @@ class UserEssayChart extends Component {
     Chart.pluginService.register({
       afterDraw: (chartInstance) => {
         let yValue;
-        console.log(chartInstance);
         const yScale = chartInstance.scales['y-axis-0'];
         const canvas = chartInstance.chart;
         const ctx = canvas.ctx;
