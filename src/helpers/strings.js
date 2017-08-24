@@ -1,3 +1,5 @@
+import is from 'is_js';
+
 export function makeList(list) {
   let rep = '';
   for (let i = 0; i < list.length; i++) {
@@ -45,4 +47,9 @@ export function getDate2(dateString) {
   const month = Number(list[1]);
   const year = list[2];
   return `${day} de ${months[month - 1]} de ${year}`;
+}
+
+export function getUrl(url) {
+  console.log(is.url(url));
+  return `http://${url}`;
 }
