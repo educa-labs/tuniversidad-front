@@ -166,7 +166,7 @@ class Form extends Component {
             </div>
           </div>
         </div>
-        <div className="dialog-footer">
+        <div className="dialog-footer-mobile">
           <FlatButton
             label="Cancelar"
             onTouchTap={this.context.router.goBack}
