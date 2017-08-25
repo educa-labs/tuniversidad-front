@@ -58,8 +58,10 @@ class Form extends Component {
     const error = {};
     const errMsg = 'Puntaje Inválido';
     fields.forEach((fld) => {
-      if (!checkScore(this.state[fld] && this.state[fld])) {
-        error[fld] = errMsg;
+      if (!this.state[fld] === '') {
+        if (!checkScore(this.state[fld])) {
+          error[fld] = errMsg;
+        }
       }
     });
     if (is.not.empty(error)) this.setState({ error });
@@ -164,7 +166,7 @@ class Form extends Component {
             </div>
           </div>
         </div>
-        <div className="dialog-footer">
+        <div className="dialog-footer-mobile">
           <FlatButton
             label="Cancelar"
             onTouchTap={this.context.router.goBack}

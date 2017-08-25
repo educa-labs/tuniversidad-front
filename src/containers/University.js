@@ -13,7 +13,7 @@ import { fetch } from '../actions/fetch';
 import '../styles/University.css';
 import { getCareers, getCampus, getCover } from '../helpers/api';
 import { numeral } from '../helpers/numeral';
-import { getDate } from '../helpers/strings';
+import { getDate, getUrl } from '../helpers/strings';
 
 
 const tabStyle = {
@@ -71,6 +71,10 @@ class University extends Component {
               <div className="row">
                 <div className="expandible-label">Fundación</div>
                 <div className="expandible-value">{getDate(university.foundation)}</div>
+              </div>
+              <div className="row">
+                <div className="expandible-label">Sitio web</div>
+                <a className="expandible-value" href={!!window.cordova ? '#' : getUrl(university.website)}>{university.website || 'No disponible'}</a>
               </div>
               <div className="row">
                 <div className="expandible-label">Alumnos</div>

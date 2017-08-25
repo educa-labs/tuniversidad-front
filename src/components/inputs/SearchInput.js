@@ -8,7 +8,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 const labelStyle = {
   color: '#C9C9C9',
-  fontWeight: 300,
+  fontWeight: 400,
   padding: 0,
 };
 
@@ -18,7 +18,7 @@ function SearchInput({ value, handleOnChange, handleSubmit, active, mobile, open
   return (
     <div className={`search-input ${mobile ? 'search-input-mobile' : ''}`}>
       <form onSubmit={handleSubmit} className={`search-input-form ${mobile ? 'search-input-form-mobile' : ''}`}>
-        <IconButton type="submit"><Search color="#C9C9C9" /></IconButton>
+        <IconButton type="submit"><Search color="#424242" /></IconButton>
         <input
           className={mobile ? 'mobile' : ''}
           type="text"

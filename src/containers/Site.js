@@ -3,10 +3,12 @@ import MediaQuery from 'react-responsive';
 import is from 'is_js';
 import { connect } from 'react-redux';
 import SideMenu from './SideMenu';
+import SideBar from './SideBar';
 import { getGoals } from '../actions/goals';
 import { fetch } from '../actions/fetch';
 import { getMostPopular } from '../actions/search';
-import '../styles/Site.css';
+import { getNews } from '../actions/news';
+import '../styles/SideMenu.css';
 import '../styles/GeneralCard.css';
 
 
@@ -29,6 +31,7 @@ class Site extends Component {
     if (is.empty(this.props.popularCareers)) this.props.getMostPopular('carreers', token);
     if (is.empty(this.props.popularUniv)) this.props.getMostPopular('universities', token);
     if (is.null(this.props.regions)) this.props.fetch('regions', null, token);
+    if (is.null(this.props.news)) this.props.getNews(token);
   }
 
   render() {
@@ -78,6 +81,7 @@ function mapStateToProps(state) {
     popularUniv: state.search.popular_univ,
     regions: state.fetch.regions,
     goals: state.goals.goals,
+    news: state.news.news,
   };
 }
 
@@ -85,4 +89,5 @@ export default connect(mapStateToProps, {
   fetch,
   getGoals,
   getMostPopular,
+  getNews,
 })(Site);

@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
-import Checkbox from 'material-ui/Checkbox';
 import TextField from 'material-ui/TextField';
 import is from 'is_js';
 import { signUser, clearState } from '../actions/user';

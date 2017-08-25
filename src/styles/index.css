@@ -44,8 +44,13 @@ button {
   width: 256px;
 }
 
+.full-width {
+  width: 100%;
+}
+
 .row {
   display: flex;
+  flex: 1;
   margin: 5px 0;
 }
 
@@ -103,12 +108,23 @@ button {
   padding-top: 248px;
   margin-left: 0;
   margin-right: 0;
-   padding-left: 0;
+  padding-left: 0;
   padding-right: 0;
 }
 
 .page-mobile {
   padding-top: 96px;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.page-news {
+  padding: 2rem;
+}
+
+.page-news-mobile {
   margin-left: 0;
   margin-right: 0;
   padding-left: 0;
@@ -221,10 +237,18 @@ button {
   transform: scale(0.9);
 }
 
-.is-marging-top {
-  margin-top: 48px;
+.row-hover:hover {
+  background-color: #EEEEEE;
 }
 
-.is-margin-left {
-  margin-left: 1rem;
+.menu {
+  display: none;
+}
+ 
+.row-hover:hover .is-48x48 {
+  display: none;
+}
+
+.row-hover:hover .menu {
+  display: inherit;
 }

@@ -55,8 +55,6 @@
   font-size: 14px;
 }
 
-
-
 .newton {
   width: 16rem;
   height: 10rem;
@@ -75,6 +73,15 @@
   background-size: contain;
   margin: 1rem;
   flex: 1;
+}
+
+.newton-ulala {
+  width: 5rem;
+  height: 5rem;
+  background-image: url('../assets/ulala.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 

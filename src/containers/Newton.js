@@ -1,13 +1,13 @@
 import React from 'react';
 
-function Newton() {
+function Newton({ mobile }) {
   return (
-    <div>
-      <div className="newton-msg">
-        Muy pronto te ayudaré a encontrar tu carrera ideal.
-      </div>
-      <div className="newton-empty">
-        <div className="newton-ulala" />
+    <div className="col">
+      <div className={`general-card ${mobile ? '' : 'general-card_desk'}`}>
+        <div className="general-card__header">
+          <div className="general-card__title">Muy pronto te ayudaré a encontrar tu carrera ideal.</div>
+        </div>
+      <div className="newton-ulala" />
       </div>
     </div>
   );

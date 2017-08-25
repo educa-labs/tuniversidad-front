@@ -74,7 +74,7 @@ class Profile extends Component {
       case 1:
         return <ProfileProgress {...this.props} />;
       case 2:
-        return <Newton />;
+        return <Newton {...this.props} />;
       default: return null;
     }
   }
@@ -84,7 +84,6 @@ class Profile extends Component {
   }
 
   render() {
-    const { slideIndex } = this.state;
     const { mobile } = this.props;
     return (
       <div className={`page ${mobile ? 'page-mobile' : ''}`}>
@@ -100,15 +99,15 @@ class Profile extends Component {
           />
         )}
         {mobile ? <MobileBanner onClick={this.props.toggleMenu} /> : null}
-          <Tabs
-            onChange={this.handleSlideChange}
-            value={this.props.navigation.tab}
-            className={`tabs ${mobile ? '' : 'tabs-desk'}`}
-          >
-            <Tab label="General" value={0} style={tabStyle} />
-            <Tab label="Progreso" value={1} style={tabStyle} />
-            <Tab label="Newton" value={2} style={tabStyle} />
-          </Tabs >
+        <Tabs
+          onChange={this.handleSlideChange}
+          value={this.props.navigation.tab}
+          className={`tabs ${mobile ? '' : 'tabs-desk'}`}
+        >
+          <Tab label="General" value={0} style={tabStyle} />
+          <Tab label="Progreso" value={1} style={tabStyle} />
+          <Tab label="Newton" value={2} style={tabStyle} />
+        </Tabs>
         {this.getContent(this.props.navigation.tab)}
       </div>
     );

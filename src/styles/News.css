@@ -9,7 +9,6 @@
   height: 12rem;
   background-position: center;
   background-size: cover;
- 
 }
 
 .news-header {
@@ -23,13 +22,6 @@
 }
 
 .news-body {
+  text-align: justify;
   margin: 0 1rem;
-}
-
-.news-photo-1 {
-  background-image: url('../assets/news.jpg');
-}
-
-.news-photo-2 {
-  background-image: url('../assets/news-2.jpg');
 }

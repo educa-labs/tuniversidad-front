@@ -1,6 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Drawer from 'material-ui/Drawer';
+import PropTypes from 'prop-types';
+import Sidebar from 'react-sidebar';
 import Search from 'material-ui/svg-icons/action/search';
 import IconButton from 'material-ui/IconButton';
 import LightbulbIcon from 'material-ui/svg-icons/action/lightbulb-outline';
@@ -11,8 +12,30 @@ import { clearUser } from '../helpers/storage';
 import { clearState } from '../actions/user';
 import { selectTab } from '../actions/profile';
 
+const sidebarStyles = {
+  sidebar: {
+    zIndex: 5,
+    position: 'fixed',
+    width: '230px',
+    backgroundColor: '#424242',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  overlay: {
+    zIndex: 4,
+  },
+  root: {
+  },
+};
 
 class SideMenu extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selected: 'search',
+    };
+  }
+
   componentWillMount() {
     if (this.context.router.location.pathname === '/site') {
       this.setState({ selected: 'search' });
@@ -30,7 +53,7 @@ class SideMenu extends Component {
   }
 
   handleSelectItem(selected) {
-    if (this.props.mobile) this.props.onRequestChange(false);
+    if (this.props.mobile) this.props.onSetOpen(false);
     this.setState({ selected });
     this.context.router.push(`site/${selected}`);
   }
@@ -43,18 +66,9 @@ class SideMenu extends Component {
         <div className="logo-tuni" />
       </div>
     );
-    return (
-      <Drawer
-        docked={!mobile}
-        width={230}
-        open={this.props.open}
-        onRequestChange={this.props.onRequestChange}
-        containerClassName="side-menu"
-        containerStyle={{
-          backgroundColor: '#424242',
-          minHeight: '32rem',
-        }}
-      >
+  
+    const sidebarContent = (
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
         {mobile ? null : logoBanner}
         <ProfileBanner
           user={this.props.user}
@@ -92,7 +106,15 @@ class SideMenu extends Component {
             <Exit color="#C9C9C9" />
           </IconButton>
         </div>
-      </Drawer >
+      </div>
+    );
+    return (
+      <Sidebar
+        sidebar={sidebarContent}
+        styles={sidebarStyles}
+        {...this.props}
+      >
+      </Sidebar>
     );
   }
 }
@@ -109,13 +131,9 @@ SideMenu.contextTypes = {
   router: PropTypes.object,
 };
 
-function mapStateToProps(state) {
-  return {
-    user: state.user.currentUser,
-  };
-}
 
-export default connect(mapStateToProps, {
+export default connect(null, {
   clearState,
   selectTab,
 })(SideMenu);
+
