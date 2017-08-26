@@ -14,6 +14,9 @@ import '../styles/University.css';
 import { getCareers, getCampus, getCover } from '../helpers/api';
 import { numeral } from '../helpers/numeral';
 import { getDate, getUrl } from '../helpers/strings';
+import Description from '../components/university/DescriptionCard';
+import Info from '../components/university/Info';
+import Grid from '../components/utility/Grid';
 
 
 const tabStyle = {
@@ -50,6 +53,13 @@ class University extends Component {
 
   getContent(slideIndex) {
     const { mobile, university } = this.props;
+    const mapCards = this.state.campus.map(campus => (
+      <MapCard campus={campus} mobile={this.props.mobile} key={campus.id} />
+    ));
+    const deskContent = [
+      <Description text={university.description} />,
+      <Info university={university} />,
+    ].concat(mapCards);
     switch (slideIndex) {
       case 0:
         return mobile ? (
@@ -103,16 +113,9 @@ class University extends Component {
             </div>
           </div>
         ) : (
-          <div>
-            <UniversityCard
-              university={this.props.university}
-              detail
-              mobile={this.props.mobile}
-            />
-            {this.state.campus.map(campus => (
-              <MapCard campus={campus} mobile={this.props.mobile} key={campus.id} />
-            ))}
-          </div>
+          <Grid columns={2}>
+            {deskContent}
+          </Grid>
         );
       case 1:
         return (
