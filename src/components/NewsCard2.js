@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import FlatButton from 'material-ui/FlatButton';
 import { Collapse } from 'react-collapse';
-import { getDate } from '../helpers/strings';
+import { getDate2 } from '../helpers/strings';
 import { getNewsPhoto } from '../helpers/api';
 
 const labelStyle = {
@@ -35,8 +35,8 @@ class NewsCard extends Component {
     let header = '';
     if (news.author) {
       header = `Por ${news.author}`;
-      if (news.created_at) header = `${header}, ${getDate(news.created_at)}`;
-    } else if (news.created_at) header = getDate(news.created_at);
+      if (news.date) header = `${header}, ${getDate2(news.date)}`;
+    } else if (news.date) header = getDate2(news.date);
 
     return (
       <div className={`general-card ${mobile ? '' : 'general-card_desk'}`}>
