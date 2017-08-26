@@ -8,7 +8,7 @@ function Info({ university, mobile }) {
     <div className="univ-card">
       <div className="univ-card-header">Información</div>
       <div className="general-card">
-        <div className="row">
+        <div className="univ-card-body">
           <div className="col">
             <div className="general-card__item">
               <div className="value">{university.u_type}</div>

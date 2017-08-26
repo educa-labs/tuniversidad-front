@@ -92,3 +92,8 @@
   margin-left: 1rem;
   margin-bottom: 0.7rem;
 }
+
+.univ-card-body {
+  padding: 1rem 0;
+  display: flex;
+}
