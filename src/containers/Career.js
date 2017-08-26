@@ -3,13 +3,12 @@ import { connect } from 'react-redux';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import is from 'is_js';
 import NavigationBar from '../components/NavigationBar';
-import CareerCard from '../components/CareerCard';
 import Loading from '../components/Loading';
 import { fetch } from '../actions/fetch';
-import { numeral } from '../helpers/numeral';
 import { getCareerCover, getCareerCampus } from '../helpers/api';
 import Description from '../components/university/DescriptionCard';
 import Info from '../components/university/CareerInfo';
+import InfoMobile from '../components/university/CareerInfoMobile';
 import Grid from '../components/utility/Grid';
 import Campus from '../components/university/CareerCampus';
 
@@ -29,7 +28,6 @@ class Career extends Component {
     });
     this.handleSlideChange = this.handleSlideChange.bind(this);
     this.handleSubtitleClick = this.handleSubtitleClick.bind(this);
-    this.getType = this.getType.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -55,12 +53,6 @@ class Career extends Component {
     this.context.router.push(`site/university/${this.props.career.university_id}`);
   }
 
-  getType() {
-    const { career } = this.props;
-    if (career.weighing.science !== 0 && career.weighing.history) return 'Historia o Ciencias';
-    return career.weighing.science !== 0 ? 'Ciencias' : 'Historia';
-  }
-
   render() {
     const { slideIndex, cover } = this.state;
     const { career, mobile } = this.props;
@@ -72,66 +64,7 @@ class Career extends Component {
       );
     }
     const first = mobile ? (
-      <div>
-        <div className="career-section-header">Ponderación</div>
-        <div className="career-section-body">
-          <div className="row">
-            <div className="expandible-label">Lenguaje</div>
-            <div className="expandible-value">{career.weighing ? career.weighing.language : null}%</div>
-          </div>
-          <div className="row">
-            <div className="expandible-label">Matemáticas</div>
-            <div className="expandible-value">{career.weighing ? career.weighing.math : null}%</div>
-          </div>
-          <div className="row">
-            <div className="expandible-label">{this.getType()}</div>
-            <div className="expandible-value">{career.weighing ? career.weighing.science || career.weighing.history : null}%</div>
-          </div>
-          <div className="row">
-            <div className="expandible-label">NEM</div>
-            <div className="expandible-value">{career.weighing ? career.weighing.NEM : null}%</div>
-          </div>
-          <div className="row">
-            <div className="expandible-label">Ranking</div>
-            <div className="expandible-value">{career.weighing ? career.weighing.ranking : null}%</div>
-          </div>
-          <div className="row">
-            <div className="expandible-label">Corte 2016</div>
-            <div className="expandible-value">{career.last_cut}</div>
-          </div>
-        </div>
-        <div className="career-section-header">Información</div>
-        <div className="career-section-body">
-          <div className="row">
-            <div className="expandible-label">Área</div>
-            <div className="expandible-value">{career.area_title ? career.area_title : 'No disponible'}</div>
-          </div>
-          <div className="row">
-            <div className="expandible-label">Vacantes</div>
-            <div className="expandible-value">{career.openings ? career.openings : 'No disponible'}</div>
-          </div>
-          <div className="row">
-            <div className="expandible-label">Duración</div>
-            <div className="expandible-value">{career.semesters ? career.semesters : 'No disponible'}</div>
-          </div>
-          <div className="row">
-            <div className="expandible-label">Arancel</div>
-            <div className="expandible-value">{career.price ? `$${numeral(career.price)}` : 'No disponible'}</div>
-          </div>
-          <div className="row">
-            <div className="expandible-label">Sueldo promedio</div>
-            <div className="expandible-value">{career.income ? `$${numeral(career.income)}` : 'No disponible'}</div>
-          </div>
-          <div className="row">
-            <div className="expandible-label">Empleabilidad</div>
-            <div className="expandible-value">{career.employability ? `${career.employability}%` : 'No disponible'}</div>
-          </div>
-        </div>
-        <div className="career-section-header">Descripción</div>
-        <div className="career-section-body career-description">
-          {career.description}
-        </div>
-      </div>
+      <InfoMobile career={career} />
     ) : (
       <Grid columns={2}>
         <Description text={career.description} />
