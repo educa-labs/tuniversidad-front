@@ -54,3 +54,11 @@ export function getNewsPhoto(id, token) {
     .accept('application/tuniversidad.v1')
     .withCredentials();
 }
+
+export function getCareerCampus(id, token) {
+  return Request.get(`${url}/campus/${id}`)
+    .set('Content-Type', 'application/json')
+    .set('Authorization', token)
+    .accept('application/tuniversidad.v1')
+    .withCredentials();
+}

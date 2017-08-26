@@ -4,7 +4,6 @@ import { Tabs, Tab } from 'material-ui/Tabs';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import is from 'is_js';
 import NavigationBar from '../components/NavigationBar';
-import UniversityCard from '../components/UniversityCard';
 import CareerCard from '../components/CareerCard';
 import MapCard from '../components/MapCard';
 import CareerHeading from '../components/CareerHeading';
@@ -15,8 +14,9 @@ import { getCareers, getCampus, getCover } from '../helpers/api';
 import { numeral } from '../helpers/numeral';
 import { getDate, getUrl } from '../helpers/strings';
 import Description from '../components/university/DescriptionCard';
-import Info from '../components/university/Info';
+import Info from '../components/university/UniversityInfo';
 import Grid from '../components/utility/Grid';
+import CareerCampus from '../components/university/CareerCampus';
 
 
 const tabStyle = {
@@ -54,7 +54,7 @@ class University extends Component {
   getContent(slideIndex) {
     const { mobile, university } = this.props;
     const mapCards = this.state.campus.map(campus => (
-      <MapCard campus={campus} mobile={this.props.mobile} key={campus.id} />
+      <CareerCampus campus={campus} mobile={this.props.mobile} key={campus.id} />
     ));
     const deskContent = [
       <Description text={university.description} />,

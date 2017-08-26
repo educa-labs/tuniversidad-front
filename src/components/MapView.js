@@ -11,7 +11,7 @@ const SimpleMapExampleGoogleMap = withGoogleMap(props => {
   };
   return (
     <GoogleMap
-      defaultZoom={14}
+      defaultZoom={16}
       defaultCenter={{ lat: parseFloat(props.lat), lng: parseFloat(props.lng) }}
       defaultOptions={{
         scrollwheel: false,

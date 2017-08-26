@@ -7,7 +7,11 @@ import CareerCard from '../components/CareerCard';
 import Loading from '../components/Loading';
 import { fetch } from '../actions/fetch';
 import { numeral } from '../helpers/numeral';
-import { getCareerCover } from '../helpers/api';
+import { getCareerCover, getCareerCampus } from '../helpers/api';
+import Description from '../components/university/DescriptionCard';
+import Info from '../components/university/CareerInfo';
+import Grid from '../components/utility/Grid';
+import Campus from '../components/university/CareerCampus';
 
 const tabStyle = {
   fontSize: '12px',
@@ -20,6 +24,7 @@ class Career extends Component {
     this.props.fetch('career', params.id, token);
     this.setState({
       cover: null,
+      campus: null,
       slideIndex: 0,
     });
     this.handleSlideChange = this.handleSlideChange.bind(this);
@@ -33,6 +38,11 @@ class Career extends Component {
         getCareerCover(nextProps.career.area_id)
           .then(res => this.setState({ cover: res.body.image }))
           .catch(err => this.setState({ cover: err.body }));
+      }
+      if (is.not.null(nextProps.career)) {
+        getCareerCampus(nextProps.career.campu_id, nextProps.token)
+          .then(res => this.setState({ campus: res.body }))
+          .catch(err => this.setState({ campus: err.body }));
       }
     }
   }
@@ -122,7 +132,13 @@ class Career extends Component {
           {career.description}
         </div>
       </div>
-    ) : <CareerCard career={career} detail mobile={mobile} />;
+    ) : (
+      <Grid columns={2}>
+        <Description text={career.description} />
+        <Info career={career} />
+        {this.state.campus ? <Campus campus={this.state.campus} /> : <Loading />}
+      </Grid>
+    );
 
     return (
       <div className={`page page-university ${mobile ? 'page-university-mobile' : ''}`}>

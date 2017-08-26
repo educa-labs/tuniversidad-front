@@ -26,7 +26,7 @@ function Info({ university, mobile }) {
               <div className="value">{university.initials}</div>
               <div className="label">Sigla</div>
             </div>
-            <div className="general-card__item">
+            <div className="general-card__item no-margin">
               <a className="value" href={!!window.cordova ? '#' : getUrl(university.website)}>{university.website || 'No disponible'}</a>
               <div className="label">Sitio web</div>
             </div>
@@ -48,7 +48,7 @@ function Info({ university, mobile }) {
               <div className="value">{university.students ? numeral(university.students) : 'No disponible'}</div>
               <div className="label">Alumnos</div>
             </div>
-            <div className="general-card__item">
+            <div className="general-card__item no-margin">
               <div className="value">{university.teachers ? numeral(university.teachers) : 'No disponible'}</div>
               <div className="label">Profesores</div>
             </div>
