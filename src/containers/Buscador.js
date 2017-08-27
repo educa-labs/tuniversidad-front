@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import is from 'is_js';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import FiltersDrawer from './FiltersDrawer';
 import SearchInput from '../components/buscador/Input';
@@ -9,7 +10,7 @@ import { fetch } from '../actions/fetch';
 import SearchResult from '../components/buscador/Results';
 import Selector from '../components/buscador/Selector';
 import MobileBanner from './MobileBanner';
-import { CAREER } from '../constants/strings';
+import { CAREER, UNIVERSITY } from '../constants/strings';
 import '../styles/Buscador.css';
 
 const mapFreeness = (value) => {
@@ -18,11 +19,15 @@ const mapFreeness = (value) => {
   return -1;
 };
 
-const searchResultFeedback = (active) => {
-  if (active === CAREER) {
-    return 'Carreras populares';
+const searchResultFeedback = (active, afterSearch, data) => {
+  if (!afterSearch) {
+    if (active === CAREER) {
+      return 'Carreras más buscadas';
+    }
+    return 'Universidades más buscadas';
   }
-  return 'Nada';
+  if (is.empty(data)) return 'La búsqueda no produjo resultados';
+  return 'Resultados';
 };
 
 const inputPlaceholder = (active) => {
@@ -30,6 +35,14 @@ const inputPlaceholder = (active) => {
     return 'Busca una carrera';
   }
   return 'Busca una universidad';
+};
+
+const getResults = (active, afterSearch, result, careers, univs) => {
+  if (!afterSearch) {
+    if (active === CAREER) return careers;
+    return univs;
+  }
+  return result;
 };
 
 
@@ -75,7 +88,7 @@ class Buscador extends Component {
   handleInfinite() {
     const { active, token, currentPage } = this.props;
     const { input } = this.state;
-    const filters = active === 'university' ? this.props.university_filters : this.props.career_filters;
+    const filters = active === UNIVERSITY ? this.props.university_filters : this.props.career_filters;
     if (filters.freeness) filters.freeness = mapFreeness(filters.freeness);
     this.props.getNextPage(active, input, token, filters, currentPage);
   }
@@ -84,7 +97,7 @@ class Buscador extends Component {
     if (event) event.preventDefault();
     const { active, token } = this.props;
     const { input } = this.state;
-    const filters = active === 'university' ? this.props.university_filters : this.props.career_filters;
+    const filters = active === UNIVERSITY ? this.props.university_filters : this.props.career_filters;
     if (filters.freeness) filters.freeness = mapFreeness(filters.freeness);
     this.props.search(active, input, token, filters);
     if (this.state.showFilters) this.setState({ showFilters: false });
@@ -96,28 +109,31 @@ class Buscador extends Component {
 
 
   render() {
-    const openFilters = () => this.context.router.push('/filters');
+    const { active, popCareers, afterSearch, result, popUniversities, requesting } = this.props;
+    const data = getResults(active, afterSearch, result, popCareers, popUniversities);
+    const feedback = searchResultFeedback(active, afterSearch, data);
+    const placeholder = inputPlaceholder(active);
     return (
       <div className="col">
         {this.props.mobile ? <MobileBanner onClick={this.props.toggleMenu} /> : null}
         <SearchInput
           value={this.state.input}
-          placeholder={inputPlaceholder(this.props.active)}
           handleOnChange={value => this.setState({ input: value })}
-          openFilters={openFilters}
-          requesting={this.props.requesting}
+          placeholder={placeholder}
+          // openFilters={openFilters}
+          requesting={requesting}
           handleSubmit={this.handleSubmit}
-          active={this.props.active}
+          active={active}
+          afterSearch={afterSearch}
           mobile={this.props.mobile}
           clearSearch={this.props.clearSearch}
-          afterSearch={this.props.data !== null}
         />
         <div className="search-content-page">
           <div className="search-results">
             <Selector active={this.props.active} onSelect={this.handleActiveChange} />
             <SearchResult
-              feedback={searchResultFeedback(this.props.active)}
-              data={this.props.careers}
+              feedback={feedback}
+              data={data}
               active={this.props.active}
               requesting={this.props.requesting}
               handleInfinite={this.handleInfinite}
@@ -131,7 +147,6 @@ class Buscador extends Component {
     );
   }
 }
-
 
 
 Buscador.defaultProps = {
@@ -159,14 +174,14 @@ function mapStateToProps(state) {
   return {
     token: state.user.currentUser.auth_token,
     active: state.filter.active,
-    data: state.search.result,
-    careers: state.search.popular_careers,
-    universities: state.search.popular_univ,
+    result: state.search.result,
+    afterSearch: state.search.afterSearch,
+    popCareers: state.search.popular_careers,
+    popUniversities: state.search.popular_univ,
     makeSubmit: state.search.makeSubmit,
     requesting: state.search.requesting || state.fetch.requesting,
     hasMore: state.search.hasMore,
     currentPage: state.search.current_page,
-    result: state.fetch.result,
     university_filters: {
       region_id: state.filter.region_id !== -1 ? state.filter.region_id : null,
       cities: state.filter.cities !== -1 ? state.filter.cities : null,
