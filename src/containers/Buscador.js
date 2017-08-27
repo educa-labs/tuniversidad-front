@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import FiltersDrawer from './FiltersDrawer';
-import SearchInput from '../components/inputs/SearchInput';
+import SearchInput from '../components/buscador/Input';
 import { search, getNextPage, clearSearch } from '../actions/search';
 import { setActiveFilter } from '../actions/filter';
 import { fetch } from '../actions/fetch';
@@ -94,14 +94,14 @@ class Buscador extends Component {
           clearSearch={this.props.clearSearch}
           afterSearch={this.props.data !== null}
         />
-        {this.props.mobile ? null : (
+        {/*this.props.mobile ? null : (
           <FiltersDrawer
             open
             handleSubmit={this.handleSubmit}
             handleActiveChange={this.handleActiveChange}
           />
-        )}
-        <div className={`page page-filters ${this.props.mobile ? 'page-mobile' : ''}`}>
+        )*/}
+        <div className={`page ${this.props.mobile ? 'page-mobile' : ''}`}>
           {this.props.mobile ? (
             <RadioButtonGroup
               name="filter options"
@@ -130,17 +130,22 @@ class Buscador extends Component {
               />
             </RadioButtonGroup>
           ) : null}
-          <SearchResult
-            data={this.props.data}
-            popularCareers={this.props.careers}
-            popularUniv={this.props.universities}
-            active={this.props.active}
-            dataTypeHasChanged={this.state.dataTypeHasChanged}
-            requesting={this.props.requesting}
-            handleInfinite={this.handleInfinite}
-            hasMore={this.props.hasMore}
-            mobile={this.props.mobile}
-          />
+          <div className="row">
+            <div className="col-3">
+              <SearchResult
+                data={this.props.data}
+                popularCareers={this.props.careers}
+                popularUniv={this.props.universities}
+                active={this.props.active}
+                dataTypeHasChanged={this.state.dataTypeHasChanged}
+                requesting={this.props.requesting}
+                handleInfinite={this.handleInfinite}
+                hasMore={this.props.hasMore}
+                mobile={this.props.mobile}
+              />
+            </div>
+            <div className="col">Hola</div>
+          </div>
         </div>
       </div>
     );
