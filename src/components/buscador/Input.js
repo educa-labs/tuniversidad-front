@@ -41,6 +41,7 @@ class SearchInput extends React.Component {
             onChange={e => props.handleOnChange(e.target.value)}
             onFocus={this.handleOnFocus}
             onBlur={this.handleOnBlur}
+            placeholder={props.placeholder}
           />
           {props.afterSearch ? (
             <IconButton

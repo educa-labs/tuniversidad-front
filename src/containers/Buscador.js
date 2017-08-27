@@ -6,8 +6,9 @@ import SearchInput from '../components/buscador/Input';
 import { search, getNextPage, clearSearch } from '../actions/search';
 import { setActiveFilter } from '../actions/filter';
 import { fetch } from '../actions/fetch';
-import SearchResult from '../components/SearchResult';
+import SearchResult from '../components/buscador/Results';
 import MobileBanner from './MobileBanner';
+import { CAREER } from '../constants/strings';
 import '../styles/Buscador.css';
 
 const mapFreeness = (value) => {
@@ -15,6 +16,21 @@ const mapFreeness = (value) => {
   if (value === 2) return true;
   return -1;
 };
+
+const searchResultFeedback = (active) => {
+  if (active === CAREER) {
+    return 'Carreras populares';
+  }
+  return 'Nada';
+};
+
+const inputPlaceholder = (active) => {
+  if (active === CAREER) {
+    return 'Busca una carrera';
+  }
+  return 'Busca una universidad';
+};
+
 
 class Buscador extends Component {
   constructor(props) {
@@ -77,6 +93,8 @@ class Buscador extends Component {
     this.props.clearSearch();
   }
 
+ 
+
 
   render() {
     const openFilters = () => this.context.router.push('/filters');
@@ -85,6 +103,7 @@ class Buscador extends Component {
         {this.props.mobile ? <MobileBanner onClick={this.props.toggleMenu} /> : null}
         <SearchInput
           value={this.state.input}
+          placeholder={inputPlaceholder(this.props.active)}
           handleOnChange={value => this.setState({ input: value })}
           openFilters={openFilters}
           requesting={this.props.requesting}
@@ -94,63 +113,24 @@ class Buscador extends Component {
           clearSearch={this.props.clearSearch}
           afterSearch={this.props.data !== null}
         />
-        {/*this.props.mobile ? null : (
-          <FiltersDrawer
-            open
-            handleSubmit={this.handleSubmit}
-            handleActiveChange={this.handleActiveChange}
+        <div className="search-content-page">
+          <SearchResult
+            feedback={searchResultFeedback(this.props.active)}
+            data={this.props.careers}
+            active={this.props.active}
+            requesting={this.props.requesting}
+            handleInfinite={this.handleInfinite}
+            hasMore={this.props.hasMore}
+            mobile={this.props.mobile}
           />
-        )*/}
-        <div className={`page ${this.props.mobile ? 'page-mobile' : ''}`}>
-          {this.props.mobile ? (
-            <RadioButtonGroup
-              name="filter options"
-              defaultSelected={this.props.active}
-              onChange={(event, value) => this.handleActiveChange(value)}
-              style={{
-                display: 'flex',
-                margin: '0 2rem',
-              }}
-            >
-              <RadioButton
-                style={{
-                  marginTop: '10px',
-                  width: '49%',
-                }}
-                value="carreer"
-                label="Carreras"
-              />
-              <RadioButton
-                style={{
-                  marginTop: '10px',
-                  width: '49%',
-                }}
-                value="university"
-                label="Universidades"
-              />
-            </RadioButtonGroup>
-          ) : null}
-          <div className="row">
-            <div className="col-3">
-              <SearchResult
-                data={this.props.data}
-                popularCareers={this.props.careers}
-                popularUniv={this.props.universities}
-                active={this.props.active}
-                dataTypeHasChanged={this.state.dataTypeHasChanged}
-                requesting={this.props.requesting}
-                handleInfinite={this.handleInfinite}
-                hasMore={this.props.hasMore}
-                mobile={this.props.mobile}
-              />
-            </div>
-            <div className="col">Hola</div>
-          </div>
+          <div className="filtros">Hola</div>
         </div>
       </div>
     );
   }
 }
+
+
 
 Buscador.defaultProps = {
   mobile: false,

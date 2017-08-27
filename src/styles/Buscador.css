@@ -23,7 +23,7 @@
 .search-input-form {
   display: flex;
   flex: 3;
-  margin: 0 4rem;
+  margin: 0 60px;
   align-items: center;
   border-radius: 2px;
   background-color: #F5F5F5;
@@ -56,6 +56,31 @@
 
 .search-input form input.input-focused {
   background-color: #FFFFFF;
+}
+
+.search-content-page {
+  flex: 1;
+  margin-left: 230px;
+  padding-top: 48px;
+  min-height: 100vh;
+  background-color: #F5F5F5; 
+  display: flex;
+}
+
+.filtros {
+  flex: 1;
+}
+
+.search-results {
+  margin: 0 60px;
+  display: flex;
+  flex-direction: column;
+  flex: 3;
+}
+
+.search-feedback {
+  margin: 5px 1rem;
+  color: #C9C9C9;
 }
 
 .search-input form input.mobile {

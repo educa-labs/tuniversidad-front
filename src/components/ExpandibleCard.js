@@ -53,7 +53,7 @@ class ExpandibleCard extends Component {
   }
 
   render() {
-    const { career, goals } = this.props;
+    const { career, goals, mobile } = this.props;
     const { expanded } = this.state;
     const isFavorite = _.findIndex(goals, goal => goal.carreer.id === career.id) > -1;
     
@@ -62,8 +62,8 @@ class ExpandibleCard extends Component {
         <div className="expandible-card">
           <div className="general-card__header" onClick={() => this.setState({ expanded: !expanded })}>
             <div className="col">
-              <div className="general-card__title title_no-margin title-truncate">{career.title}</div>
-              <button className="general-card__subtitle color-blue title-truncate">
+              <div className={`general-card__title title_no-margin ${mobile ? 'title-truncate' : ''}`}>{career.title}</div>
+              <button className={`general-card__subtitle color-blue ${mobile ? 'title-truncate' : ''}`}>
                 {career.university_name} en {career.campu_name}
               </button>
             </div>
@@ -124,12 +124,17 @@ class ExpandibleCard extends Component {
   }
 }
 
+ExpandibleCard.defaultProps = {
+  mobile: false,
+};
+
 ExpandibleCard.propTypes = {
   // handleFavButton: PropTypes.func.isRequired,
   // handleInfoClick: PropTypes.func.isRequired,
   // handleSubTitleClick: PropTypes.func.isRequired,
   // isFavorite: PropTypes.bool.isRequired,
   // requesting: PropTypes.bool.isRequired,
+  mobile: PropTypes.bool,
 };
 
 ExpandibleCard.contextTypes = {
