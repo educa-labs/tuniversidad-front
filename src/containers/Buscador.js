@@ -7,6 +7,7 @@ import { search, getNextPage, clearSearch } from '../actions/search';
 import { setActiveFilter } from '../actions/filter';
 import { fetch } from '../actions/fetch';
 import SearchResult from '../components/buscador/Results';
+import Selector from '../components/buscador/Selector';
 import MobileBanner from './MobileBanner';
 import { CAREER } from '../constants/strings';
 import '../styles/Buscador.css';
@@ -93,8 +94,6 @@ class Buscador extends Component {
     this.props.clearSearch();
   }
 
- 
-
 
   render() {
     const openFilters = () => this.context.router.push('/filters');
@@ -114,15 +113,18 @@ class Buscador extends Component {
           afterSearch={this.props.data !== null}
         />
         <div className="search-content-page">
-          <SearchResult
-            feedback={searchResultFeedback(this.props.active)}
-            data={this.props.careers}
-            active={this.props.active}
-            requesting={this.props.requesting}
-            handleInfinite={this.handleInfinite}
-            hasMore={this.props.hasMore}
-            mobile={this.props.mobile}
-          />
+          <div className="search-results">
+            <Selector active={this.props.active} onSelect={this.handleActiveChange} />
+            <SearchResult
+              feedback={searchResultFeedback(this.props.active)}
+              data={this.props.careers}
+              active={this.props.active}
+              requesting={this.props.requesting}
+              handleInfinite={this.handleInfinite}
+              hasMore={this.props.hasMore}
+              mobile={this.props.mobile}
+            />
+          </div>
           <div className="filtros">Hola</div>
         </div>
       </div>

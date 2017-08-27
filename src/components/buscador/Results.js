@@ -8,22 +8,20 @@ import { CAREER } from '../../constants/strings';
 
 function SearchResult(props) {
   return (
-    <div className="search-results">
-      <InfiniteScroll
-        pageStart={0}
-        loader={<Loading />}
-        next={() => props.handleInfinite()}
-        hasMore={props.hasMore}
-      >
-        <div className="search-feedback">{props.feedback}</div>
-        {props.data.map((res) => {
-          if (props.active === CAREER) {
-            return <ExpandibleCard career={res} key={res.id} mobile={props.mobile} />;
-          }
-          return <ExpandibleUnivCard university={res} key={res.id} mobile={props.mobile} />;
-        })}
-      </InfiniteScroll>
-    </div>
+    <InfiniteScroll
+      pageStart={0}
+      loader={<Loading />}
+      next={() => props.handleInfinite()}
+      hasMore={props.hasMore}
+    >
+      <div className="search-feedback">{props.feedback}</div>
+      {props.data.map((res) => {
+        if (props.active === CAREER) {
+          return <ExpandibleCard career={res} key={res.id} mobile={props.mobile} />;
+        }
+        return <ExpandibleUnivCard university={res} key={res.id} mobile={props.mobile} />;
+      })}
+    </InfiniteScroll>
   );
 }
 
