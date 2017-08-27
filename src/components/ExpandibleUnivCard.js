@@ -28,14 +28,14 @@ class ExpandibleUnivCard extends Component {
 
   render() {
     const { expanded } = this.state;
-    const { university } = this.props;
+    const { university, mobile } = this.props;
     return (
       <div>
         <div className="expandible-card">
           <div className="general-card__header" onClick={() => this.setState({ expanded: !expanded })}>
             <div className="col">
-              <div className="general-card__title title_no-margin title-truncate">{university.title}</div>
-              <button className="general-card__subtitle color-blue title-truncate">
+            <div className={`general-card__title title_no-margin ${mobile ? 'title-truncate' : ''}`}>{university.title}</div>
+              <button className={`general-card__subtitle color-blue ${mobile ? 'title-truncate' : ''}`}>
                 {university.motto || ''}
               </button>
             </div>
