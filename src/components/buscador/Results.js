@@ -7,6 +7,7 @@ import ExpandibleUnivCard from '../ExpandibleUnivCard';
 import { CAREER } from '../../constants/strings';
 
 function SearchResult(props) {
+  if (props.requesting) return <Loading />;
   return (
     <InfiniteScroll
       pageStart={0}

@@ -28,6 +28,7 @@
   border-radius: 2px;
   background-color: #F5F5F5;
   height: 36px;
+  transition: background-color 1s;
 }
 
 .form-focused {
@@ -51,6 +52,7 @@
   font-weight: 400;
   outline: none;
   background-color: #F5F5F5;
+  transition: background-color 1s;
 }
 
 
