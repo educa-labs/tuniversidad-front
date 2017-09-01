@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import IconButton from 'material-ui/IconButton';
 import Close from 'material-ui/svg-icons/navigation/close';
+import '../styles/Tag.css';
 
 function Tag({ title, onClose }) {
   return (
     <div className="tag">
-      <div className="tag-name">{title}</div>
-      <IconButton onTouchTap={onClose}><Close /></IconButton>
+      <span className="tag-name">{title}</span>
+      <div className="circle">
+        <Close color="#0091EA" onClick={onClose} style={{ transform: 'scale(0.7)' }} />
+      </div>
     </div>
   );
 }

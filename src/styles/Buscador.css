@@ -85,6 +85,10 @@
   color: #C9C9C9;
 }
 
+.search-filters {
+  flex: 1;
+}
+
 .search-input form input.mobile {
   background-color: #FFFFFF;
 }
