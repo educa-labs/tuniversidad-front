@@ -1,11 +1,12 @@
 import React from 'react';
 import Tag from '../Tag';
 
-function FilterTags() {
+function FilterTags({ activeFilters }) {
   return (
     <div className="tags">
-      <Tag title="Hola" onClose={() => console.log('Cerramos')} />
-      <Tag title="Chao" onClose={() => console.log('Cerramos')} />
+      {activeFilters.map(item => (
+        <Tag title={item} onClose="cerramos" key={item} />
+      ))}
     </div>
   );
 }

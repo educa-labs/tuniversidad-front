@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import is from 'is_js';
-import capitalize from '../helpers/capitalize';
+import { capitalize } from '../helpers/strings';
 import SelectInput from './inputs/SelectInput';
 import RangeInput from './inputs/RangeInput';
 import Loading from '../components/Loading';
@@ -41,7 +41,7 @@ class Fields extends Component {
     const regions = props.fields.regions.map((reg) => {
       return { value: reg.id, label: reg.title };
     });
-    regions.unshift(all);
+    
     const cities = this.state.cities.map((city) => {
       return { label: city.title, value: city.id };
     });

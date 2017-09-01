@@ -12,7 +12,8 @@ import Selector from '../components/buscador/Selector';
 import FilterTags from '../components/buscador/FilterTags';
 import Filters from '../components/buscador/Filters';
 import MobileBanner from './MobileBanner';
-import { CAREER, UNIVERSITY } from '../constants/strings';
+import { CAREER, UNIVERSITY, REGION, CITIES, SEMESTERS, DURATION, CUT, PRICE, SCHEDULE } from '../constants/strings';
+import { MIN_CUT, MIN_DURATION, MIN_PRICE, MAX_CUT, MAX_DURATION, MAX_PRICE, MIN_SEMESTERS, MAX_SEMESTERS } from '../constants/num';
 import '../styles/Buscador.css';
 
 const mapFreeness = (value) => {
@@ -47,6 +48,21 @@ const getResults = (active, afterSearch, result, careers, univs) => {
   return result;
 };
 
+const isDefaultValue = (filterName, value) => {
+  if (is.null(value)) return true;
+  switch (filterName) {
+    case 'min_cut': return value === MIN_CUT;
+    case 'max_cut': return value === MAX_CUT;
+    case 'min_price': return value === MIN_PRICE;
+    case 'max_price': return value === MAX_PRICE;
+    case 'min_duration': return value === MIN_DURATION;
+    case 'max_duration': return value === MAX_DURATION;
+    case 'min_semesters': return value === MIN_SEMESTERS;
+    case 'max_semesters': return value === MAX_SEMESTERS;
+    default: return false;
+  }
+};
+
 
 class Buscador extends Component {
   constructor(props) {
@@ -59,6 +75,7 @@ class Buscador extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInfinite = this.handleInfinite.bind(this);
     this.handleActiveChange = this.handleActiveChange.bind(this);
+    this.getActivefilters = this.getActivefilters.bind(this);
   }
 
 
@@ -104,9 +121,36 @@ class Buscador extends Component {
     this.props.search(active, input, token, filters);
     if (this.state.showFilters) this.setState({ showFilters: false });
   }
+
   handleActiveChange(value) {
     this.props.setActiveFilter(value);
     this.props.clearSearch();
+  }
+
+
+  getActivefilters(filters, afterSearch) {
+    const tagName = (filterName, value) => {
+      switch (filterName) {
+        case 'max_cut':
+        case 'min_cut': return `Corte: ${filters.min_cur} - ${filters.max_cut}`;
+        case 'max_price':
+        case 'min_price': return PRICE;
+        case 'min_semesters':
+        case 'max_semesters': return SEMESTERS;
+        case 'region_id': return `Región: ${this.props.regions[value].title}`;
+        case 'cities': return CITIES;
+        default: return '';
+      }
+    };
+
+    if (afterSearch) return [];
+    const result = [];
+    Object.keys(filters).forEach((filterName) => {
+      if (!isDefaultValue(filterName, filters[filterName])) {
+        result.push(tagName(filterName, filters[filterName]));
+      }
+    });
+    return result;
   }
 
 
@@ -115,6 +159,7 @@ class Buscador extends Component {
     const data = getResults(active, afterSearch, result, popCareers, popUniversities);
     const feedback = searchResultFeedback(active, afterSearch, data);
     const placeholder = inputPlaceholder(active);
+    const filters = active === UNIVERSITY ? this.props.university_filters : this.props.career_filters;
     return (
       <div className="col">
         {this.props.mobile ? <MobileBanner onClick={this.props.toggleMenu} /> : null}
@@ -133,7 +178,7 @@ class Buscador extends Component {
         <div className="search-content-page">
           <div className="search-results">
             <Selector active={this.props.active} onSelect={this.handleActiveChange} />
-            <FilterTags />
+            <FilterTags activeFilters={this.getActivefilters(filters, afterSearch)} />
             <SearchResult
               feedback={feedback}
               data={data}
@@ -145,7 +190,11 @@ class Buscador extends Component {
             />
           </div>
           <div className="search-filters">
-            <Filters active={active} />
+            <Filters
+              active={active}
+              token={this.props.token}
+              
+            />
           </div>
         </div>
       </div>
@@ -205,6 +254,7 @@ function mapStateToProps(state) {
       max_semesters: state.filter.duration ? state.filter.duration.max : null,
       schedule: state.filter.schedule ? state.filter.schedule : null,
     },
+    regions: state.fetch.regions,
   };
 }
 

@@ -50,6 +50,10 @@ export function getDate2(dateString) {
 }
 
 export function getUrl(url) {
-  console.log(is.url(url));
   return `http://${url}`;
+}
+
+export function capitalize(string) {
+  if (string === null) return '';
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
