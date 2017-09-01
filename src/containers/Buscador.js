@@ -9,6 +9,8 @@ import { setActiveFilter } from '../actions/filter';
 import { fetch } from '../actions/fetch';
 import SearchResult from '../components/buscador/Results';
 import Selector from '../components/buscador/Selector';
+import FilterTags from '../components/buscador/FilterTags';
+import Filters from '../components/buscador/Filters';
 import MobileBanner from './MobileBanner';
 import { CAREER, UNIVERSITY } from '../constants/strings';
 import '../styles/Buscador.css';
@@ -131,6 +133,7 @@ class Buscador extends Component {
         <div className="search-content-page">
           <div className="search-results">
             <Selector active={this.props.active} onSelect={this.handleActiveChange} />
+            <FilterTags />
             <SearchResult
               feedback={feedback}
               data={data}
@@ -141,7 +144,9 @@ class Buscador extends Component {
               mobile={this.props.mobile}
             />
           </div>
-          <div className="filtros">Hola</div>
+          <div className="search-filters">
+            <Filters active={active} />
+          </div>
         </div>
       </div>
     );
