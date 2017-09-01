@@ -6,7 +6,8 @@ import { CAREER, UNIVERSITY } from '../../constants/strings';
 
 const radioStyle = {
   marginTop: '10px',
-  width: '49%',
+  marginRight: '10px',
+  width: 'auto',
 };
 
 function Selector({ active, onSelect }) {
@@ -16,8 +17,7 @@ function Selector({ active, onSelect }) {
       defaultSelected={active}
       onChange={(event, value) => onSelect(value)}
       style={{
-        display: 'flex',
-        width: '40%',
+        display: 'inline-flex',
       }}
     >
       <RadioButton
