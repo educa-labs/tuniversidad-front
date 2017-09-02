@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function Grid({ children, mobile, columns }) {
-  console.log(children);
   function generateCols() {
     if (mobile) {
       return (
@@ -19,14 +18,12 @@ function Grid({ children, mobile, columns }) {
       const i = index % columns;
       res[i].push(item);
     });
-    console.log(res);
     const result = [];
     res.forEach((col, index) => result.push(
       <div className="col" key={index}>
         {col}
       </div>,
     ));
-    console.log(result);
     return result;
   }
   return (

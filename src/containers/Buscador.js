@@ -140,7 +140,6 @@ class Buscador extends Component {
   getActivefilters(filters, afterSearch) {
     if (!afterSearch) return [];
     const tagName = (filterName, value) => {
-      console.log(filterName, value);
       switch (filterName) {
         case 'cut': return `Corte: ${filters.cut.min} - ${filters.cut.max}`;
         case 'price': return `Arancel: $${numeral(filters.price.min)} - $${numeral(filters.price.max)}`;
