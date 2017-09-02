@@ -22,6 +22,12 @@ const mapFreeness = (value) => {
   return -1;
 };
 
+const freeness2String = (value) => {
+  if (value === 1) return 'No';
+  if (value === 2) return 'Sí';
+  return '';
+};
+
 const searchResultFeedback = (active, afterSearch, data) => {
   if (!afterSearch) {
     if (active === CAREER) {
@@ -107,7 +113,6 @@ class Buscador extends Component {
     }
   }
 
-
   handleInfinite() {
     const { active, token, currentPage } = this.props;
     const { input } = this.state;
@@ -142,6 +147,9 @@ class Buscador extends Component {
         case 'region_id': return `Región: ${this.props.regions[value - 1].title}`;
         case 'cities': return `Ciudad: ${getItemWithId(this.props.cities, value).title}`;
         case 'schedule': return `Horario: ${capitalize(filters.schedule)}`;
+        case 'university_type': return `Tipo de universidad: ${getItemWithId(this.props.types, filters.university_type).title}`;
+        case 'freeness': return `Gratuidad: ${freeness2String(filters.freeness)}`;
+        case 'area': return `Área: ${getItemWithId(this.props.areas, filters.area).title}`;
         default: return '';
       }
     };
@@ -248,7 +256,7 @@ function mapStateToProps(state) {
     university_filters: {
       region_id: state.filter.region_id !== -1 ? state.filter.region_id : null,
       cities: state.filter.cities !== -1 ? state.filter.cities : null,
-      university_type_id: state.filter.university_type !== -1 ? state.filter.university_type : null,
+      university_type: state.filter.university_type !== -1 ? state.filter.university_type : null,
       freeness: state.filter.freeness !== -1 ? state.filter.freeness : null,
     },
     career_filters: {
@@ -271,6 +279,8 @@ function mapStateToProps(state) {
     },
     regions: state.fetch.regions,
     cities: state.fetch.cities,
+    types: state.fetch.types,
+    areas: state.fetch.areas,
   };
 }
 

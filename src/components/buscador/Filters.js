@@ -13,6 +13,12 @@ import { CAREER } from '../../constants/strings';
 const all = { value: -1, label: 'Todas' };
 const allM = { value: -1, label: 'Todos' };
 
+const yesNo = [
+  { value: 1, label: 'No' },
+  { value: 2, label: 'Sí' },
+  { value: -1, label: 'Todas' },
+];
+
 const getOptions = (items) => {
   if (is.null(items)) return [];
   const result = items.map(item => ({
@@ -43,6 +49,7 @@ function Filters(props) {
       handleChange={(region) => {
         props.changeFilterValue('region_id', region);
         props.getCities(region);
+        props.makeSubmit();
       }}
       fullWidth
       maxHeight={180}
@@ -54,7 +61,10 @@ function Filters(props) {
       title={values.region === 13 ? 'Comuna' : 'Ciudad'}
       items={getOptions(props.cities)}
       value={values.cities}
-      handleChange={id => props.changeFilterValue('cities', id)}
+      handleChange={(id) => {
+        props.changeFilterValue('cities', id);
+        props.makeSubmit();
+      }}
       fullWidth
     />
   );
@@ -70,14 +80,20 @@ function Filters(props) {
           title="Area"
           items={getOptions(props.areas)}
           value={values.area}
-          handleChange={area => props.changeFilterValue('area', area)}
+          handleChange={(area) => {
+            props.changeFilterValue('area', area);
+            props.makeSubmit();
+          }}
           fullWidth
         />
         <SelectInput
           title="Horario"
           items={getSchedulesOptions(props.schedules)}
           value={values.schedule}
-          handleChange={schedule => props.changeFilterValue('schedule', schedule)}
+          handleChange={(schedule) => {
+            props.changeFilterValue('schedule', schedule);
+            props.makeSubmit();
+          }}
           fullWidth
         />
         <RangeInput
@@ -100,7 +116,7 @@ function Filters(props) {
     );
   }
   return (
-    <form onSubmit={props.handleSubmit}>
+    <form onSubmit={props.makeSubmit}>
       <div className="filter-header">Filtros</div>
       {regionInput}
       {cityInput}
@@ -108,7 +124,20 @@ function Filters(props) {
         title="Tipo de Universidad"
         items={getOptions(props.types)}
         value={values.university_type}
-        handleChange={type => props.changeFilterValue('university_type', type)}
+        handleChange={(type) => {
+          props.changeFilterValue('university_type', type);
+          props.makeSubmit();
+        }}
+        fullWidth
+      />
+      <SelectInput
+        title="Gratuidad"
+        items={yesNo}
+        value={values.freeness}
+        handleChange={(freeness) => {
+          props.changeFilterValue('freeness', freeness);
+          props.makeSubmit();
+        }}
         fullWidth
       />
       <input type="submit" style={{ display: 'none' }} />
@@ -119,6 +148,7 @@ function Filters(props) {
 Filters.propTypes = {
   active: PropTypes.string.isRequired,
   changeFilterValue: PropTypes.func.isRequired,
+  makeSubmit: PropTypes.func.isRequired,
   getCities: PropTypes.func.isRequired,
   values: PropTypes.shape({
     area: PropTypes.number,
@@ -146,6 +176,7 @@ const stateToProps = state => ({
     area: state.filter.area,
     schedule: state.filter.schedule,
     university_type: state.filter.university_type,
+    freeness: state.filter.freeness,
   },
 });
 
