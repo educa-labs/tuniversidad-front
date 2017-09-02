@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import is from 'is_js';
 import SelectInput from '../inputs/SelectInput';
+import RangeInput from '../inputs/RangeInput';
 import Loading from '../Loading';
 import { getCities } from '../../helpers/api';
 import { capitalize } from '../../helpers/strings';
@@ -14,6 +15,7 @@ const all = { value: -1, label: 'Todas' };
 const allM = { value: -1, label: 'Todos' };
 
 const getOptions = (items) => {
+  if (is.null(items)) return [];
   const result = items.map(item => ({
     value: item.id, label: capitalize(item.title),
   }));
@@ -21,82 +23,79 @@ const getOptions = (items) => {
   return result;
 };
 
-class Filters extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cities: [],
-    };
-  }
+function Filters(props) {
+  if (is.null(props.regions)) return <Loading />;
 
-  onRegionChange(id, token) {
-    getCities(id, token)
-    .then(res => this.setState({ cities: res.body }))
-    .catch(() => this.setState({ cities: [] }));
-  }
+  const { values, active } = props;
 
-  render() {
-    if (is.null(this.props.regions)) return <Loading />;
+  const regionInput = (
+    <SelectInput
+      title="Region"
+      items={getOptions(props.regions)}
+      value={values.region}
+      handleChange={(region) => {
+        props.changeFilterValue('region_id', region);
+        props.getCities(region);
+      }}
+      fullWidth
+      maxHeight={180}
+    />
+  );
 
-    const { values, token, active } = this.props;
+  const cityInput = (
+    <SelectInput
+      title={values.region === 13 ? 'Comuna' : 'Ciudad'}
+      items={getOptions(props.cities)}
+      value={values.cities}
+      handleChange={id => props.changeFilterValue('cities', id)}
+      fullWidth
+    />
+  );
 
-    const regionInput = (
-      <SelectInput
-        title="Region"
-        items={getOptions(this.props.regions)}
-        value={values.region}
-        handleChange={(region) => {
-          this.props.changeFilterValue('region_id', region);
-          this.onRegionChange(region, token);
-        }}
-        fullWidth
-        maxHeight={180}
-      />
-    );
+  const cutInput = (
+    <RangeInput
+      title="Puntaje de corte"
+      onChange={cut => props.changeFilterValue('cut', cut)}
+      value={values.cut}
+    />
+  );
 
-    const cityInput = (
-      <SelectInput
-        title={this.state.region === 13 ? 'Comuna' : 'Ciudad'}
-        items={getOptions(this.state.cities)}
-        value={values.cities}
-        multiple
-        handleChange={id => this.props.changeFilterValue('cities', id)}
-        fullWidth
-      />
-    );
-
-    if (active === CAREER) {
-      return (
-        <div>
-          {regionInput}
-          {cityInput}
-        </div>
-      );
-    }
+  if (active === CAREER) {
     return (
       <div>
         {regionInput}
+        {cityInput}
+        {cutInput}
       </div>
     );
   }
+  return (
+    <div>
+      {regionInput}
+    </div>
+  );
 }
 
 Filters.propTypes = {
   active: PropTypes.string.isRequired,
   changeFilterValue: PropTypes.func.isRequired,
-  token: PropTypes.string.isRequired,
+  getCities: PropTypes.func.isRequired,
   regions: PropTypes.array,
   values: PropTypes.shape({
     region: PropTypes.number,
-    cities: PropTypes.arrayOf(PropTypes.number),
+    cities: PropTypes.number,
+    cut: PropTypes.object,
   }).isRequired,
 };
 
 const stateToProps = state => ({
   regions: state.fetch.regions,
+  cities: state.fetch.cities,
+  active: state.filter.active,
   values: {
     region: state.filter.region_id,
-    cities: state.filter.cities ,
+    cities: state.filter.cities,
+    cut: state.filter.cut,
   },
 });
 
