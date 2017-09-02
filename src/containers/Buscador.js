@@ -73,11 +73,7 @@ const isDefaultValue = (filterName, value) => {
 class Buscador extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      input: '',
-      showFilters: false,
-      dataTypeHasChanged: false,
-    };
+    this.state = { input: '' };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInfinite = this.handleInfinite.bind(this);
     this.handleActiveChange = this.handleActiveChange.bind(this);
@@ -100,16 +96,7 @@ class Buscador extends Component {
       }
     }
     if (nextProps.active !== this.props.active) {
-      this.setState({
-        dataTypeHasChanged: true,
-        input: '',
-      });
-    }
-    if (nextProps.data !== this.props.data) {
-      if (nextProps.active === this.props.active) {
-        this.setState({ dataTypeHasChanged: false });
-      }
-      if (nextProps.data === null) this.setState({ input: '' });
+      this.setState({ input: '' });
     }
   }
 
