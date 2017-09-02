@@ -17,16 +17,11 @@ export function changeFilterValue(filter, value) {
 }
 
 export function clearFilterValue(filter) {
-  console.log(filter);
   let value;
   switch (filter) {
     case 'cut': value = { min: MIN_CUT, max: MAX_CUT }; break;
-    case 'min_duration': value = MIN_DURATION; break;
-    case 'min_price': value = MIN_PRICE; break;
-    case 'min_semesters': value = MIN_SEMESTERS; break;
-    case 'max_duration': value = MAX_DURATION; break;
-    case 'max_price': value = MAX_PRICE; break;
-    case 'max_semesters': value = MAX_SEMESTERS; break;
+    case 'duration': value = { min: MIN_DURATION, max: MAX_DURATION }; break;
+    case 'price': value = { min: MIN_PRICE, max: MAX_PRICE }; break;
     default: value = null;
   }
 
