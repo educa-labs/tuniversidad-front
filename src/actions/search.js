@@ -87,6 +87,7 @@ export function getNextPage(active, text, token, filters, page) {
         }
       })
       .catch((err) => {
+        console.log(err);
         dispath({
           type: SEARCH_FAILURE,
           error: err.response.body,
@@ -95,7 +96,6 @@ export function getNextPage(active, text, token, filters, page) {
   };
 }
 export function getMostPopular(active, token) {
-
   const field = active === CAREER ? 'carreers' : 'universities';
   const request = Request.get(`${url}/popular/${field}`)
     .set('Content-Type', 'application/json')

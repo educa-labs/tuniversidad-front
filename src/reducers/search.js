@@ -8,6 +8,7 @@ import {
   INFINITE_SUCCESS,
   MAKE_SUBMIT,
   CLEAR_SEARCH,
+  CLEAR_FILTER_VALUE,
 } from '../actions/types';
 import { CAREER } from '../constants/strings';
 
@@ -24,6 +25,10 @@ const initalState = {
 
 function search(state = initalState, action) {
   switch (action.type) {
+    case CLEAR_FILTER_VALUE:
+      return Object.assign({}, state, {
+        makeSubmit: true,
+      });
     case CLEAR_SEARCH:
       return Object.assign({}, state, {
         result: null,

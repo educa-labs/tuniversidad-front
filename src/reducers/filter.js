@@ -20,6 +20,7 @@ function filter(state = initialState, action) {
       return Object.assign({}, state, {
         active: action.active,
       });
+    case CLEAR_FILTER_VALUE:
     case CHANGE_FILTER_VALUE:
       return Object.assign({}, state, {
         [action.filter]: action.value,

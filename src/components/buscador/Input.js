@@ -61,7 +61,7 @@ class SearchInput extends React.Component {
               />
           )}
         </form>
-        <div className="col" />
+        <div className="search-input-empty" />
       </div>
     );
   }

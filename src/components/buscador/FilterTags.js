@@ -2,16 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Tag from '../Tag';
 
-function FilterTags({ activeFilters, clearFilterValue, makeSubmit }) {
+function FilterTags({ activeFilters, clearFilterValue }) {
   return (
     <div className="tags">
       {activeFilters.map(item => (
         <Tag
           title={item.title}
-          onClose={() => {
-            clearFilterValue(item.filter);
-            makeSubmit();
-          }}
+          onClose={() => clearFilterValue(item.filter)}
           key={item.title}
         />
       ))}
@@ -22,7 +19,6 @@ function FilterTags({ activeFilters, clearFilterValue, makeSubmit }) {
 FilterTags.propTypes = {
   activeFilters: PropTypes.array.isRequired,
   clearFilterValue: PropTypes.func.isRequired,
-  makeSubmit: PropTypes.func.isRequired,
 };
 
 export default FilterTags;
