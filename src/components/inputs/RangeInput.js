@@ -1,51 +1,47 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField';
 import '../../styles/RangeInput.css';
 
 
-class RangeInput extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      min: Number(this.props.minValue),
-      max: Number(this.props.maxValue),
-    };
-  }
+function RangeInput(props) {
+  const logChange = (val, extreme) => {
+    const newVal = Object.assign(props.value, {
+      [extreme]: val === '' ? val : Number(val),
+    });
+    props.onChange(newVal);
+  };
 
-  logChange(val, extreme) {
-    this.setState({ [extreme]: val === '' ? val : Number(val) }, () => (
-      this.props.onChange(this.state)
-    ));
-  }
-
-  render() {
-    return (
-      <div className="col">
-        <span className="range-input__title">{this.props.title}</span>
-        <div className="row">
-          <TextField
-            type="number"
-            floatingLabelText="Min"
-            onChange={(e, val) => this.logChange(val, 'min')}
-            className="margin-right"
-            value={this.state.min}
-          />
-          <TextField
-            type="number"
-            floatingLabelText="Max"
-            onChange={(e, val) => this.logChange(val, 'max')}
-            className="margin-left"
-            value={this.state.max}
-          />
-        </div>
+  return (
+    <div className="col">
+      <span className="range-input__title">{props.title}</span>
+      <div className="row">
+        <TextField
+          type="number"
+          floatingLabelText="Mínimo"
+          onChange={(e, val) => logChange(val, 'min')}
+          className="margin-right"
+          value={props.value.min}
+        />
+        <TextField
+          type="number"
+          floatingLabelText="Máximo"
+          onChange={(e, val) => logChange(val, 'max')}
+          className="margin-left"
+          value={props.value.max}
+        />
       </div>
-    );
-  }
+    </div>
+  );
 }
 
-RangeInput.defaultProps = {
-  custom: false,
-  step: 1,
+RangeInput.propTypes = {
+  value: PropTypes.shape({
+    min: PropTypes.number,
+    max: PropTypes.number,
+  }).isRequired,
+  title: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default RangeInput;
