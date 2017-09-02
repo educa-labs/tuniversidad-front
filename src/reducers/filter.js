@@ -1,4 +1,4 @@
-import { SET_ACTIVE_FILTER, CHANGE_FILTER_VALUE, CLEAR_SEARCH } from '../actions/types';
+import { SET_ACTIVE_FILTER, CHANGE_FILTER_VALUE, CLEAR_SEARCH, CLEAR_FILTER_VALUE } from '../actions/types';
 
 const initialState = {
   page: 0,
