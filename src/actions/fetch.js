@@ -10,6 +10,7 @@ import url from '../constants/url';
 export function fetch(key, id, token) {
   let path = null;
   if (key === 'university') path = `${url}/universities/${id}`;
+  else if (key === 'universities') path = `${url}/universities`;
   else if (key === 'career') path = `${url}/carreers/${id}`;
   else if (key === 'areas') path = `${url}/areas`;
   else if (key === 'types') path = `${url}/university_types`;

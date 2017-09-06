@@ -6,6 +6,7 @@ import {
 
 const initialState = {
   university: null,
+  universities: null,
   career: null,
   types: null,
   areas: null,

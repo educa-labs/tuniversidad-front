@@ -111,15 +111,16 @@ class Buscador extends Component {
     if (!afterSearch) return [];
     const tagName = (filterName, value) => {
       switch (filterName) {
-        case 'cut': return `Corte: ${filters.cut.min} - ${filters.cut.max}`;
-        case 'price': return `Arancel: $${numeral(filters.price.min)} - $${numeral(filters.price.max)}`;
-        case 'duration': return `Duración: ${filters.duration.min} a ${filters.duration.max} semestres`;
-        case 'region_id': return `Región: ${this.props.regions[value - 1].title}`;
+        case 'cut': return `Corte: ${value.min} - ${value.max}`;
+        case 'price': return `Arancel: $${numeral(filters.price.min)} - $${numeral(value.max)}`;
+        case 'duration': return `Duración: ${value.min} a ${value.max} semestres`;
+        case 'region_id': return `Región: ${getItemWithId(this.props.regions, value).title}`;
         case 'city_ids': return `Ciudad: ${getItemWithId(this.props.cities, value).title}`;
-        case 'schedule': return `Horario: ${capitalize(filters.schedule)}`;
-        case 'university_type': return `Tipo de universidad: ${getItemWithId(this.props.types, filters.university_type).title}`;
-        case 'freeness': return `Gratuidad: ${freeness2String(filters.freeness)}`;
-        case 'area': return `Área: ${getItemWithId(this.props.areas, filters.area).title}`;
+        case 'schedule': return `Horario: ${capitalize(value)}`;
+        case 'university_type': return `Tipo de universidad: ${getItemWithId(this.props.types, value).title}`;
+        case 'freeness': return `Gratuidad: ${freeness2String(value)}`;
+        case 'area': return `Área: ${getItemWithId(this.props.areas, value).title}`;
+        case 'university_id': return `${getItemWithId(this.props.universities, value).title}`;
         default: return '';
       }
     };
@@ -209,7 +210,6 @@ class Buscador extends Component {
           value={this.state.input}
           handleOnChange={value => this.setState({ input: value })}
           placeholder={placeholder}
-          // openFilters={openFilters}
           handleSubmit={this.handleSubmit}
           requesting={requesting}
           active={active}
@@ -290,6 +290,7 @@ function mapStateToProps(state) {
       region_id: state.filter.region_id !== -1 ? state.filter.region_id : null,
       city_ids: state.filter.cities !== -1 ? state.filter.cities : null,
       area: state.filter.area !== -1 ? state.filter.area : null,
+      university_id: state.filter.university,
       cut: state.filter.cut ? {
         min: state.filter.cut.min,
         max: state.filter.cut.max,
@@ -308,6 +309,7 @@ function mapStateToProps(state) {
     cities: state.fetch.cities,
     types: state.fetch.types,
     areas: state.fetch.areas,
+    universities: state.fetch.universities,
   };
 }
 

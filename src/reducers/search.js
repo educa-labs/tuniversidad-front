@@ -76,12 +76,14 @@ function search(state = initalState, action) {
         return Object.assign({}, state, {
           popular_careers: action.payload,
           requesting: false,
+          hasMore: false,
           error: {},
         });
       }
       return Object.assign({}, state, {
         popular_univ: action.payload,
         requesting: false,
+        hasMore: false,
         error: {},
       });
     default: return state;

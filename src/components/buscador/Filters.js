@@ -45,10 +45,10 @@ function Filters(props, context) {
   const handleSubmit = (e) => {
     e.preventDefault();
     props.makeSubmit();
-    context.router.goBack();
+    if (props.mobile) context.router.goBack();
   };
 
-  const getCities = id => props.fetch('cities', id, props.token);
+  // const getCities = id => props.fetch('cities', id, props.token);
   
   const { values, active, mobile } = props;
 
@@ -59,14 +59,15 @@ function Filters(props, context) {
       value={values.region}
       handleChange={(region) => {
         props.changeFilterValue('region_id', region);
-        getCities(region);
-        props.makeSubmit();
+        // getCities(region);
+        if (!props.mobile) props.makeSubmit();
       }}
       fullWidth
       maxHeight={300}
     />
   );
 
+  /*
   const cityInput = (
     <SelectInput
       title={values.region === 13 ? 'Comuna' : 'Ciudad'}
@@ -74,21 +75,32 @@ function Filters(props, context) {
       value={values.cities}
       handleChange={(id) => {
         props.changeFilterValue('cities', id);
-        props.makeSubmit();
+        if (!props.mobile) props.makeSubmit();
       }}
       fullWidth
     />
   );
+  */
 
   const body = active === CAREER ? (
     <div>
+      <SelectInput
+        title="Universidad"
+        items={getOptions(props.universities)}
+        value={values.university}
+        handleChange={(univ) => {
+          props.changeFilterValue('university', univ);
+          if (!props.mobile) props.makeSubmit();
+        }}
+        fullWidth
+      />
       <SelectInput
         title="Area"
         items={getOptions(props.areas)}
         value={values.area}
         handleChange={(area) => {
           props.changeFilterValue('area', area);
-          props.makeSubmit();
+          if (!props.mobile) props.makeSubmit();
         }}
         fullWidth
       />
@@ -98,7 +110,7 @@ function Filters(props, context) {
         value={values.schedule}
         handleChange={(schedule) => {
           props.changeFilterValue('schedule', schedule);
-          props.makeSubmit();
+          if (!props.mobile) props.makeSubmit();
         }}
         fullWidth
       />
@@ -126,7 +138,7 @@ function Filters(props, context) {
         value={values.university_type}
         handleChange={(type) => {
           props.changeFilterValue('university_type', type);
-          props.makeSubmit();
+          if (!props.mobile) props.makeSubmit();
         }}
         fullWidth
       />
@@ -136,7 +148,7 @@ function Filters(props, context) {
         value={values.freeness}
         handleChange={(freeness) => {
           props.changeFilterValue('freeness', freeness);
-          props.makeSubmit();
+          if (!props.mobile) props.makeSubmit();
         }}
         fullWidth
       />
@@ -148,7 +160,6 @@ function Filters(props, context) {
       {mobile ? <NavigationBar title="Filtros" location="filters" /> : null}
       {mobile ? null : <div className="filter-header">Filtros</div>}
       {regionInput}
-      {cityInput}
       {body}
       <input type="submit" style={{ display: 'none' }} />
       {mobile ? (
@@ -181,6 +192,7 @@ Filters.propTypes = {
   fetch: PropTypes.func.isRequired,
   values: PropTypes.shape({
     area: PropTypes.number,
+    university: PropTypes.number,
     region: PropTypes.number,
     cities: PropTypes.number,
     cut: PropTypes.object,
@@ -193,6 +205,7 @@ const stateToProps = state => ({
   token: state.user.currentUser.auth_token,
   regions: state.fetch.regions,
   cities: state.fetch.cities,
+  universities: state.fetch.universities,
   areas: state.fetch.areas,
   types: state.fetch.types,
   schedules: state.fetch.schedules ? state.fetch.schedules.schedules : null,
@@ -206,6 +219,7 @@ const stateToProps = state => ({
     area: state.filter.area,
     schedule: state.filter.schedule,
     university_type: state.filter.university_type,
+    university: state.filter.university,
     freeness: state.filter.freeness,
   },
 });

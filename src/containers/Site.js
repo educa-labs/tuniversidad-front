@@ -31,6 +31,7 @@ class Site extends Component {
     if (is.empty(this.props.popularCareers)) this.props.getMostPopular(CAREER, token);
     if (is.empty(this.props.popularUniv)) this.props.getMostPopular(UNIVERSITY, token);
     if (is.null(this.props.regions)) this.props.fetch('regions', null, token);
+    if (is.null(this.props.universities)) this.props.fetch('universities', null, token);
     if (is.null(this.props.news)) this.props.getNews(token);
   }
 
@@ -80,6 +81,7 @@ function mapStateToProps(state) {
     popularCareers: state.search.popular_careers,
     popularUniv: state.search.popular_univ,
     regions: state.fetch.regions,
+    universities: state.fetch.universities,
     goals: state.goals.goals,
     news: state.news.news,
   };
