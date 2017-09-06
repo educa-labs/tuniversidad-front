@@ -103,6 +103,7 @@ SideMenu.defaultProps = {
 
 SideMenu.propTypes = {
   mobile: PropTypes.bool.isRequired,
+  selectTab: PropTypes.func.isRequired,
 };
 
 SideMenu.contextTypes = {

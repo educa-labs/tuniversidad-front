@@ -1,5 +1,5 @@
 import { SET_ACTIVE_FILTER, CHANGE_FILTER_VALUE, CLEAR_FILTER_VALUE } from './types';
-import { MIN_CUT, MIN_DURATION, MIN_PRICE, MIN_SEMESTERS, MAX_CUT, MAX_DURATION, MAX_PRICE, MAX_SEMESTERS } from '../constants/num';
+import { MIN_CUT, MIN_DURATION, MIN_PRICE, MAX_CUT, MAX_DURATION, MAX_PRICE } from '../constants/num';
 
 export function setActiveFilter(active) {
   return {

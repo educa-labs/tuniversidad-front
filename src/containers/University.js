@@ -5,7 +5,6 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import is from 'is_js';
 import NavigationBar from '../components/NavigationBar';
 import ExpandibleCard from '../components/ExpandibleCard';
-import CareerCard from '../components/CareerCard';
 import CareerHeading from '../components/CareerHeading';
 import Loading from '../components/Loading';
 import { fetch } from '../actions/fetch';

@@ -1,5 +1,3 @@
-import is from 'is_js';
-
 export function makeList(list) {
   let rep = '';
   for (let i = 0; i < list.length; i++) {
@@ -10,8 +8,7 @@ export function makeList(list) {
       } else {
         rep = `${rep} y ${list[i]}`;
       }
-    }
-    else {
+    } else {
       rep = `${rep}, ${list[i]}`;
     }
   }

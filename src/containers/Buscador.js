@@ -14,7 +14,7 @@ import MobileBanner from './MobileBanner';
 import { CAREER, UNIVERSITY } from '../constants/strings';
 import { numeral } from '../helpers/numeral';
 import { capitalize } from '../helpers/strings';
-import { MIN_CUT, MIN_DURATION, MIN_PRICE, MAX_CUT, MAX_DURATION, MAX_PRICE, MIN_SEMESTERS, MAX_SEMESTERS } from '../constants/num';
+import { MIN_CUT, MIN_DURATION, MIN_PRICE, MAX_CUT, MAX_DURATION, MAX_PRICE } from '../constants/num';
 import '../styles/Buscador.css';
 
 const mapFreeness = (value) => {

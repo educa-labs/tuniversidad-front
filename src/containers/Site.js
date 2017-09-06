@@ -3,7 +3,6 @@ import MediaQuery from 'react-responsive';
 import is from 'is_js';
 import { connect } from 'react-redux';
 import SideMenu from './SideMenu';
-import SideBar from './SideBar';
 import { getGoals } from '../actions/goals';
 import { fetch } from '../actions/fetch';
 import { getMostPopular } from '../actions/search';

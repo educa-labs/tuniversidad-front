@@ -9,7 +9,7 @@ import {
   MAKE_SUBMIT,
   CLEAR_SEARCH,
 } from './types';
-import { CAREER, UNIVERSITY } from '../constants/strings';
+import { CAREER } from '../constants/strings';
 
 import url from '../constants/url';
 
