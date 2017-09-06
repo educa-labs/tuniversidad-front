@@ -208,6 +208,10 @@ button {
   color: #0091EA;
 }
 
+.hover-blue:hover {
+  background-color: aliceblue;
+}
+
 .cursor {
   cursor: pointer;
 }

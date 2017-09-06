@@ -32,7 +32,7 @@ class ExpandibleUnivCard extends Component {
     return (
       <div>
         <div className="expandible-card">
-          <div className="general-card__header" onClick={() => this.setState({ expanded: !expanded })}>
+          <div className="general-card__header cursor" onClick={() => this.setState({ expanded: !expanded })}>
             <div className="col">
             <div className={`general-card__title title_no-margin ${mobile ? 'title-truncate' : ''}`}>{university.title}</div>
               <button className={`general-card__subtitle color-blue ${mobile ? 'title-truncate' : ''}`}>

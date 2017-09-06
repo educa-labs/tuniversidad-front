@@ -60,11 +60,11 @@ class ExpandibleCard extends Component {
     return (
       <div>
         <div className="expandible-card">
-          <div className="general-card__header" onClick={() => this.setState({ expanded: !expanded })}>
+          <div className="general-card__header cursor" onClick={() => this.setState({ expanded: !expanded })}>
             <div className="col">
               <div className={`general-card__title title_no-margin ${mobile ? 'title-truncate' : ''}`}>{career.title}</div>
-              <button className={`general-card__subtitle color-blue ${mobile ? 'title-truncate' : ''}`}>
-                {career.university_name} en {career.campu_name}
+              <button className={`general-card__subtitle color-blue ${mobile ? 'title-truncate' : ''}`} onTouchTap={this.linkTo} >
+                <span className="hover-blue">{career.university_name} en {career.campu_name}</span>
               </button>
             </div>
             <IconButton>
