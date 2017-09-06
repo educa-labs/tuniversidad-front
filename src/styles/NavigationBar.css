@@ -87,6 +87,10 @@
   }
 }
 
+.navigation-bar_site {
+  left: 230px;
+}
+
 .navigation-bar-title {
   margin-right: 48px;
   display: flex;

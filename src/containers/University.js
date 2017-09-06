@@ -4,6 +4,7 @@ import { Tabs, Tab } from 'material-ui/Tabs';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import is from 'is_js';
 import NavigationBar from '../components/NavigationBar';
+import ExpandibleCard from '../components/ExpandibleCard';
 import CareerCard from '../components/CareerCard';
 import CareerHeading from '../components/CareerHeading';
 import Loading from '../components/Loading';
@@ -82,7 +83,7 @@ class University extends Component {
                   />
                 );
               }
-              return <CareerCard career={res} key={res.id} />;
+              return <ExpandibleCard career={res} key={res.id} />
             })}
           </InfiniteScroll>
         );
@@ -106,7 +107,7 @@ class University extends Component {
     }
     return (
       <div className={`page page-university ${mobile ? 'page-university-mobile' : ''}`}>
-        <NavigationBar location="site" title={university.title} />
+        <NavigationBar location="site" />
         <div style={{ backgroundImage: `url(${cover})` }} className={`university-cover ${mobile ? 'university-cover-mobile' : 'university-cover-desk'}`}>
           <div className="row align-center">
             <div className="university-logo" style={{ backgroundImage: `url(${logo})` }} />
