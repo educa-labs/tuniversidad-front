@@ -236,6 +236,7 @@ class Buscador extends Component {
           </div>
           <div className="search-filters">
             <Filters
+              mobile={false}
               getCities={id => this.props.fetch('cities', id, this.props.token)}
             />
           </div>

@@ -2,9 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import is from 'is_js';
+import RaisedButton from 'material-ui/RaisedButton';
 import SelectInput from '../inputs/SelectInput';
 import RangeInput from '../inputs/RangeInput';
+import NavigationBar from '../../components/NavigationBar';
 import Loading from '../Loading';
+import { fetch } from '../../actions/fetch';
 import { makeSubmit } from '../../actions/search';
 import { capitalize } from '../../helpers/strings';
 import { changeFilterValue } from '../../actions/filter';
@@ -36,10 +39,18 @@ const getSchedulesOptions = (items) => {
   return result;
 };
 
-function Filters(props) {
+function Filters(props, context) {
   if (is.null(props.regions)) return <Loading />;
 
-  const { values, active } = props;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    props.makeSubmit();
+    context.router.goBack();
+  };
+
+  const getCities = id => props.fetch('cities', id, props.token);
+  
+  const { values, active, mobile } = props;
 
   const regionInput = (
     <SelectInput
@@ -48,7 +59,7 @@ function Filters(props) {
       value={values.region}
       handleChange={(region) => {
         props.changeFilterValue('region_id', region);
-        props.getCities(region);
+        getCities(region);
         props.makeSubmit();
       }}
       fullWidth
@@ -69,57 +80,46 @@ function Filters(props) {
     />
   );
 
-
-  if (active === CAREER) {
-    return (
-      <form onSubmit={props.makeSubmit}>
-        <div className="filter-header">Filtros</div>
-        {regionInput}
-        {cityInput}
-        <SelectInput
-          title="Area"
-          items={getOptions(props.areas)}
-          value={values.area}
-          handleChange={(area) => {
-            props.changeFilterValue('area', area);
-            props.makeSubmit();
-          }}
-          fullWidth
-        />
-        <SelectInput
-          title="Horario"
-          items={getSchedulesOptions(props.schedules)}
-          value={values.schedule}
-          handleChange={(schedule) => {
-            props.changeFilterValue('schedule', schedule);
-            props.makeSubmit();
-          }}
-          fullWidth
-        />
-        <RangeInput
-          title="Puntaje de corte"
-          onChange={cut => props.changeFilterValue('cut', cut)}
-          value={values.cut}
-        />
-        <RangeInput
-          title="Duración (semestres)"
-          onChange={duration => props.changeFilterValue('duration', duration)}
-          value={values.duration}
-        />
-        <RangeInput
-          title="Arancel"
-          onChange={price => props.changeFilterValue('price', price)}
-          value={values.price}
-        />
-        <input type="submit" style={{ display: 'none' }} />
-      </form>
-    );
-  }
-  return (
-    <form onSubmit={props.makeSubmit}>
-      <div className="filter-header">Filtros</div>
-      {regionInput}
-      {cityInput}
+  const body = active === CAREER ? (
+    <div>
+      <SelectInput
+        title="Area"
+        items={getOptions(props.areas)}
+        value={values.area}
+        handleChange={(area) => {
+          props.changeFilterValue('area', area);
+          props.makeSubmit();
+        }}
+        fullWidth
+      />
+      <SelectInput
+        title="Horario"
+        items={getSchedulesOptions(props.schedules)}
+        value={values.schedule}
+        handleChange={(schedule) => {
+          props.changeFilterValue('schedule', schedule);
+          props.makeSubmit();
+        }}
+        fullWidth
+      />
+      <RangeInput
+        title="Puntaje de corte"
+        onChange={cut => props.changeFilterValue('cut', cut)}
+        value={values.cut}
+      />
+      <RangeInput
+        title="Duración (semestres)"
+        onChange={duration => props.changeFilterValue('duration', duration)}
+        value={values.duration}
+      />
+      <RangeInput
+        title="Arancel"
+        onChange={price => props.changeFilterValue('price', price)}
+        value={values.price}
+      />
+    </div>
+  ) : (
+    <div>
       <SelectInput
         title="Tipo de Universidad"
         items={getOptions(props.types)}
@@ -140,16 +140,45 @@ function Filters(props) {
         }}
         fullWidth
       />
+    </div>
+  );
+
+  return (
+    <form onSubmit={handleSubmit} className={mobile ? 'filters-mobile' : ''}>
+      {mobile ? <NavigationBar title="Filtros" location="filters" /> : null}
+      {mobile ? null : <div className="filter-header">Filtros</div>}
+      {regionInput}
+      {cityInput}
+      {body}
       <input type="submit" style={{ display: 'none' }} />
+      {mobile ? (
+        <RaisedButton
+          type="submit"
+          label="Aplicar filtros"
+          backgroundColor="#616161"
+          labelColor="#FFFFFF"
+          labelStyle={{ fontSize: '11px' }}
+          fullWidth
+        />
+      ) : null }
     </form>
   );
 }
+
+Filters.contextTypes = {
+  router: PropTypes.object,
+};
+
+Filters.defaultProps = {
+  mobile: false,
+};
 
 Filters.propTypes = {
   active: PropTypes.string.isRequired,
   changeFilterValue: PropTypes.func.isRequired,
   makeSubmit: PropTypes.func.isRequired,
-  getCities: PropTypes.func.isRequired,
+  mobile: PropTypes.bool,
+  fetch: PropTypes.func.isRequired,
   values: PropTypes.shape({
     area: PropTypes.number,
     region: PropTypes.number,
@@ -161,6 +190,7 @@ Filters.propTypes = {
 };
 
 const stateToProps = state => ({
+  token: state.user.currentUser.auth_token,
   regions: state.fetch.regions,
   cities: state.fetch.cities,
   areas: state.fetch.areas,
@@ -183,4 +213,5 @@ const stateToProps = state => ({
 export default connect(stateToProps, {
   changeFilterValue,
   makeSubmit,
+  fetch,
 })(Filters);

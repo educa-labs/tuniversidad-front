@@ -107,15 +107,16 @@
   padding: 0 2rem;
 }
 
+.filters-mobile {
+  padding: 20px 2rem;
+}
+
 .filter-header {
   margin-top: 20px;
   font-size: 16px;
   color: #C9C9C9;
 }
 
-.search-input form input.mobile {
-  background-color: #FFFFFF;
-}
 
 
 .search-input form ::-webkit-input-placeholder {
@@ -129,14 +130,4 @@
 
 .before-search {
   flex: 1;
-}
-
-.popular-msg {
-  color: #C9C9C9;
-  padding: 1rem 1rem 0 1rem;
-}
-
-.popular-msg-mobile {
-  padding: 1rem;
-  color: #C9C9C9;
 }

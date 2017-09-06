@@ -16,22 +16,12 @@ function InputMobile(props) {
           onChange={e => props.handleOnChange(e.target.value)}
           placeholder={props.placeholder}
         />
-        {props.afterSearch ? (
-          <IconButton
-            type="button"
-            onClick={props.clearSearch}
-            style={{ margin: '0 1rem' }}
-          >
-            <CloseIcon color="#C9C9C9" />
-          </IconButton>
-        ) : (
-          <FlatButton
-            label="Filtros"
-            type="button"
-            labelStyle={{ color: '#0091EA' }}
-            onClick={props.openFilters}
-          />
-        )}
+        <FlatButton
+          label="Filtros"
+          type="button"
+          labelStyle={{ color: '#0091EA' }}
+          onClick={props.openFilters}
+        />
         <input type="submit" style={{ display: 'none' }} />
       </form>
     </div>

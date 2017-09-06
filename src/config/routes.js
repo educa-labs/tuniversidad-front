@@ -14,10 +14,10 @@ import Career from '../containers/Career';
 import Profile from '../containers/Profile';
 import Login from '../containers/Login';
 import Signup from '../components/Signup';
-import FiltersMobile from '../containers/FiltersMobile';
 import EditObjectives from '../components/forms/EditObjectives';
 import NewEssay from '../components/forms/NewEssay';
 import FirstStepsMobile from '../containers/FirstStepsMobile';
+import Filters from '../components/buscador/Filters';
 import EditUser from '../components/forms/EditUser';
 import Terms from '../components/landing/Terms';
 
@@ -26,7 +26,7 @@ export default (
     <IndexRoute component={Landing} />
     <Route path="login" component={Login} />
     <Route path="signup" component={Signup} />
-    <Route path="filters" component={FiltersMobile} />
+    <Route path="filters" component={Filters} />
     <Route path="terms" component={Terms} />
     <Route path="site" component={Site}>
       <IndexRoute component={Profile} />
