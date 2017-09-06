@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import is from 'is_js';
 import SearchInput from '../components/buscador/Input';
+import SearchInputMobile from '../components/buscador/InputMobile';
 import { search, getNextPage, clearSearch, makeSubmit as onClearFilter } from '../actions/search';
 import { setActiveFilter, clearFilterValue } from '../actions/filter';
 import { fetch } from '../actions/fetch';
@@ -100,24 +101,6 @@ class Buscador extends Component {
     }
   }
 
-  handleInfinite() {
-    const { active, token, currentPage } = this.props;
-    const { input } = this.state;
-    const filters = active === UNIVERSITY ? this.props.university_filters : this.props.career_filters;
-    if (filters.freeness) filters.freeness = mapFreeness(filters.freeness);
-    this.props.getNextPage(active, input, token, filters, currentPage);
-  }
-
-  handleSubmit(event) {
-    if (event) event.preventDefault();
-    const { active, token } = this.props;
-    const { input } = this.state;
-    const filters = active === UNIVERSITY ? this.props.university_filters : this.props.career_filters;
-    if (filters.freeness) filters.freeness = mapFreeness(filters.freeness);
-    this.props.search(active, input, token, filters);
-    if (this.state.showFilters) this.setState({ showFilters: false });
-  }
-
   handleActiveChange(value) {
     this.props.setActiveFilter(value);
     this.props.clearSearch();
@@ -154,6 +137,23 @@ class Buscador extends Component {
     return result;
   }
 
+  handleSubmit(event) {
+    if (event) event.preventDefault();
+    const { active, token } = this.props;
+    const { input } = this.state;
+    const filters = active === UNIVERSITY ? this.props.university_filters : this.props.career_filters;
+    if (filters.freeness) filters.freeness = mapFreeness(filters.freeness);
+    this.props.search(active, input, token, filters);
+    if (this.state.showFilters) this.setState({ showFilters: false });
+  }
+
+  handleInfinite() {
+    const { active, token, currentPage } = this.props;
+    const { input } = this.state;
+    const filters = active === UNIVERSITY ? this.props.university_filters : this.props.career_filters;
+    if (filters.freeness) filters.freeness = mapFreeness(filters.freeness);
+    this.props.getNextPage(active, input, token, filters, currentPage);
+  }
 
   render() {
     const { active, popCareers, afterSearch, result, popUniversities, requesting } = this.props;
@@ -162,16 +162,56 @@ class Buscador extends Component {
     const placeholder = inputPlaceholder(active);
     const filters = active === UNIVERSITY ? this.props.university_filters : this.props.career_filters;
     const activeFilters = this.getActivefilters(filters, afterSearch);
+    if (this.props.mobile) {
+      return (
+        <div className="col">
+          <MobileBanner onClick={this.props.toggleMenu} />
+          <SearchInputMobile
+            value={this.state.input}
+            handleOnChange={value => this.setState({ input: value })}
+            placeholder={placeholder}
+            openFilters={() => this.context.router.push('filters')}
+            handleSubmit={this.handleSubmit}
+            requesting={requesting}
+            active={active}
+            afterSearch={afterSearch}
+            clearSearch={this.props.clearSearch}
+          />
+          <div className="search-results-mobile">
+            <div className="search-tags">
+              <Selector
+                active={this.props.active}
+                onSelect={this.handleActiveChange}
+                mobile
+              />
+              <FilterTags
+                activeFilters={activeFilters}
+                clearFilterValue={this.props.clearFilterValue}
+                makeSubmit={this.props.onClearFilter}
+              />
+            </div>
+            <SearchResult
+              feedback={feedback}
+              data={data}
+              active={this.props.active}
+              requesting={this.props.requesting}
+              handleInfinite={this.handleInfinite}
+              hasMore={this.props.hasMore}
+              mobile
+            />
+          </div>
+        </div>
+      );
+    }
     return (
       <div className="col">
-        {this.props.mobile ? <MobileBanner onClick={this.props.toggleMenu} /> : null}
         <SearchInput
           value={this.state.input}
           handleOnChange={value => this.setState({ input: value })}
           placeholder={placeholder}
           // openFilters={openFilters}
-          requesting={requesting}
           handleSubmit={this.handleSubmit}
+          requesting={requesting}
           active={active}
           afterSearch={afterSearch}
           mobile={this.props.mobile}
@@ -192,7 +232,6 @@ class Buscador extends Component {
               requesting={this.props.requesting}
               handleInfinite={this.handleInfinite}
               hasMore={this.props.hasMore}
-              mobile={this.props.mobile}
             />
           </div>
           <div className="search-filters">

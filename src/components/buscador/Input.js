@@ -26,7 +26,6 @@ class SearchInput extends React.Component {
   render() {
     const { props } = this;
     const { inputFocused } = this.state;
-    const empty = <div className="is-48x48" />;  
     return (
       <div className="search-input">
         <form

@@ -52,7 +52,7 @@ function Filters(props) {
         props.makeSubmit();
       }}
       fullWidth
-      maxHeight={180}
+      maxHeight={300}
     />
   );
 
