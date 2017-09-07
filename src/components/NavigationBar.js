@@ -53,7 +53,7 @@ function NavigationBar(props, context) {
           </button>
         </div>
       </div>
-    )
+    );
   }
 
   if (props.location === 'site') className = `${className} navigation-bar_site`;
@@ -63,7 +63,7 @@ function NavigationBar(props, context) {
       <IconButton onTouchTap={() => context.router.goBack()}>
         <ArrowBack color={arrowColor} />
       </IconButton>
-      {/*<div className="navigation-bar-title">{props.title}</div>*/}
+      <div className="navigation-bar-title">{props.title}</div>
     </div>
   );
 }

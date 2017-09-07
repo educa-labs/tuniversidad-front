@@ -1,9 +1,10 @@
-import { SET_ACTIVE_FILTER, CHANGE_FILTER_VALUE, CLEAR_SEARCH } from '../actions/types';
+import { SET_ACTIVE_FILTER, CHANGE_FILTER_VALUE, CLEAR_SEARCH, CLEAR_FILTER_VALUE } from '../actions/types';
 
 const initialState = {
   page: 0,
   active: 'carreer',
   university_type: null,
+  university: null,
   freeness: null,
   cities: null,
   region_id: null,
@@ -20,6 +21,7 @@ function filter(state = initialState, action) {
       return Object.assign({}, state, {
         active: action.active,
       });
+    case CLEAR_FILTER_VALUE:
     case CHANGE_FILTER_VALUE:
       return Object.assign({}, state, {
         [action.filter]: action.value,

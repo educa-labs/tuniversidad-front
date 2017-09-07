@@ -53,18 +53,18 @@ class ExpandibleCard extends Component {
   }
 
   render() {
-    const { career, goals } = this.props;
+    const { career, goals, mobile } = this.props;
     const { expanded } = this.state;
     const isFavorite = _.findIndex(goals, goal => goal.carreer.id === career.id) > -1;
     
     return (
       <div>
         <div className="expandible-card">
-          <div className="general-card__header" onClick={() => this.setState({ expanded: !expanded })}>
+          <div className="general-card__header cursor" onClick={() => this.setState({ expanded: !expanded })}>
             <div className="col">
-              <div className="general-card__title title_no-margin title-truncate">{career.title}</div>
-              <button className="general-card__subtitle color-blue title-truncate">
-                {career.university_name} en {career.campu_name}
+              <div className={`general-card__title title_no-margin ${mobile ? 'title-truncate' : ''}`}>{career.title}</div>
+              <button className={`general-card__subtitle color-blue ${mobile ? 'title-truncate' : ''}`} onTouchTap={this.linkTo} >
+                <span className="hover-blue">{career.university_name} en {career.campu_name}</span>
               </button>
             </div>
             <IconButton>
@@ -124,12 +124,17 @@ class ExpandibleCard extends Component {
   }
 }
 
+ExpandibleCard.defaultProps = {
+  mobile: false,
+};
+
 ExpandibleCard.propTypes = {
   // handleFavButton: PropTypes.func.isRequired,
   // handleInfoClick: PropTypes.func.isRequired,
   // handleSubTitleClick: PropTypes.func.isRequired,
   // isFavorite: PropTypes.bool.isRequired,
   // requesting: PropTypes.bool.isRequired,
+  mobile: PropTypes.bool,
 };
 
 ExpandibleCard.contextTypes = {

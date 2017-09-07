@@ -60,11 +60,9 @@ class UserEssayChart extends Component {
     this.props.subjects.forEach(sub => (
       subjects[sub.id] = sub.title
     ));
-    const selected = this.props.essays[this.props.active]
+    const selected = this.props.essays[this.props.active];
     const labels = selected.essays.map(obj => obj.title);
     const scores = selected.essays.map(obj => obj.score);
-    const dates = selected.essays.map(obj => obj.date);
-
 
     const data = {
       labels,
@@ -126,19 +124,9 @@ class UserEssayChart extends Component {
           },
         }],
       },
-      // horizontalLine: [
-      //   {
-      //     y: 740,
-      //     style: '#969696',
-      //     text: 'max',
-      //   },
-      // ],
     };
 
-    
-    // const data = props.essays[props.active];
-
-  
+ 
     const noContent = (
       <div className="general-card__no-content">
         <div className="newton-pensando" />
@@ -158,7 +146,7 @@ class UserEssayChart extends Component {
       <div className={`general-card ${this.props.mobile ? '' : 'general-card_desk'}`}>
         {header}
         <div className="general-card__chart">
-          {is.empty(data.essays) ? noContent : <Line data={data} options={options} />}
+          {is.empty(selected.essays) ? noContent : <Line data={data} options={options} />}
         </div>
       </div>
     );

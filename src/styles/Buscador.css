@@ -2,37 +2,50 @@
   height: 48px;
   box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.75);
   display: flex;
-  justify-content: center;
   align-items: center;
-  z-index: 1;
+  z-index: 2;
   background-color: white;
 
   position: fixed;
-  right: 256px;
+  right: 0;
   top: 0;
   left: 230px;
+}
+
+.search-input-empty {
+  width: 300px;
 }
 
 .search-input-mobile {
   position: fixed;
   top: 48px;
   left: 0;
-  width: 100%;
-  z-index: 2;
+  right: 0 ;
 }
 
 .search-input-form {
   display: flex;
-  width: 70%;
+  flex: 3;
+  margin: 0 60px;
   align-items: center;
   border-radius: 2px;
   background-color: #F5F5F5;
   height: 36px;
+  transition: background-color 1s;
 }
 
-.search-input-form-mobile {
+.form-focused {
   background-color: #FFFFFF;
-  width: 100%;
+  box-shadow: 0px 0px 4px 0.5px rgba(0,0,0,0.10);
+}
+
+
+
+.search-input-form-mobile {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
 }
 
 .search-input form input {
@@ -44,11 +57,66 @@
   font-weight: 400;
   outline: none;
   background-color: #F5F5F5;
+  transition: background-color 1s;
 }
 
-.search-input form input.mobile {
+.search-input form input.input-focused {
   background-color: #FFFFFF;
 }
+
+
+.search-input-mobile form input {
+  background-color: white;
+}
+
+
+.search-content-page {
+  flex: 1;
+  margin-left: 230px;
+  padding-top: 48px;
+  min-height: 100vh;
+  background-color: #F5F5F5; 
+  display: flex;
+}
+
+
+.search-results {
+  margin: 0 60px;
+  display: flex;
+  flex-direction: column;
+  flex: 3;
+}
+
+.search-results-mobile {
+  padding-top: 96px;
+  min-height: 100vh;
+  background-color: #F5F5F5; 
+}
+
+.search-tags {
+  padding: 0 1rem;
+}
+
+.search-feedback {
+  margin: 7px 1rem;
+  color: #C9C9C9;
+}
+
+.search-filters {
+  width: 300px;
+  padding: 0 2rem;
+}
+
+.filters-mobile {
+  padding: 20px 2rem;
+}
+
+.filter-header {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #C9C9C9;
+}
+
 
 
 .search-input form ::-webkit-input-placeholder {
@@ -62,14 +130,4 @@
 
 .before-search {
   flex: 1;
-}
-
-.popular-msg {
-  color: #C9C9C9;
-  padding: 1rem 1rem 0 1rem;
-}
-
-.popular-msg-mobile {
-  padding: 1rem;
-  color: #C9C9C9;
 }

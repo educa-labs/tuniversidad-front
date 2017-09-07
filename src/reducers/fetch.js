@@ -6,11 +6,13 @@ import {
 
 const initialState = {
   university: null,
+  universities: null,
   career: null,
   types: null,
   areas: null,
   schedules: null,
   regions: null,
+  cities: null,
   subjects: null,
   requesting: false,
   error: {},

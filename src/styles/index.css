@@ -95,7 +95,6 @@ button {
 }
 
 .page-filters {
-  margin-right: 256px;
   padding-left: 2rem;
   padding-right: 2rem;
 }
@@ -209,6 +208,10 @@ button {
   color: #0091EA;
 }
 
+.hover-blue:hover {
+  background-color: aliceblue;
+}
+
 .cursor {
   cursor: pointer;
 }
@@ -233,10 +236,6 @@ button {
   align-items: center;
 }
 
-.is-scale {
-  transform: scale(0.9);
-}
-
 .row-hover:hover {
   background-color: #EEEEEE;
 }
@@ -251,4 +250,8 @@ button {
 
 .row-hover:hover .menu {
   display: inherit;
+}
+
+.is-margin-top {
+  margin-top: 48px;
 }

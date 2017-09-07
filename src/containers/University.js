@@ -4,16 +4,17 @@ import { Tabs, Tab } from 'material-ui/Tabs';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import is from 'is_js';
 import NavigationBar from '../components/NavigationBar';
-import UniversityCard from '../components/UniversityCard';
-import CareerCard from '../components/CareerCard';
-import MapCard from '../components/MapCard';
+import ExpandibleCard from '../components/ExpandibleCard';
 import CareerHeading from '../components/CareerHeading';
 import Loading from '../components/Loading';
 import { fetch } from '../actions/fetch';
 import '../styles/University.css';
 import { getCareers, getCampus, getCover } from '../helpers/api';
-import { numeral } from '../helpers/numeral';
-import { getDate, getUrl } from '../helpers/strings';
+import Description from '../components/university/DescriptionCard';
+import Info from '../components/university/UniversityInfo';
+import InfoMobile from '../components/university/UniversityInfoMobile';
+import Grid from '../components/utility/Grid';
+import CareerCampus from '../components/university/CareerCampus';
 
 
 const tabStyle = {
@@ -50,69 +51,21 @@ class University extends Component {
 
   getContent(slideIndex) {
     const { mobile, university } = this.props;
+    
+    const mapCards = this.state.campus.map(campus => (
+      <CareerCampus campus={campus} mobile={this.props.mobile} key={campus.id} />
+    ));
+    const deskContent = [
+      <Description text={university.description} />,
+      <Info university={university} />,
+    ].concat(mapCards);
+
     switch (slideIndex) {
       case 0:
-        return mobile ? (
-          <div>
-            <div className="career-section-header">Información</div>
-            <div className="career-section-body">
-              <div className="row">
-                <div className="expandible-label">Tipo</div>
-                <div className="expandible-value">{university.u_type}</div>
-              </div>
-              <div className="row">
-                <div className="expandible-label">Sigla</div>
-                <div className="expandible-value">{university.initials}</div>
-              </div>
-              <div className="row">
-                <div className="expandible-label">Gratuidad</div>
-                <div className="expandible-value">{university.freeness ? 'Sí' : 'No'}</div>
-              </div>
-              <div className="row">
-                <div className="expandible-label">Fundación</div>
-                <div className="expandible-value">{getDate(university.foundation)}</div>
-              </div>
-              <div className="row">
-                <div className="expandible-label">Sitio web</div>
-                <a className="expandible-value" href={!!window.cordova ? '#' : getUrl(university.website)}>{university.website || 'No disponible'}</a>
-              </div>
-              <div className="row">
-                <div className="expandible-label">Alumnos</div>
-                <div className="expandible-value">{university.students ? numeral(university.students) : 'No disponible'}</div>
-              </div>
-              <div className="row">
-                <div className="expandible-label">Profesores</div>
-                <div className="expandible-value">{university.teachers ? numeral(university.teachers) : 'No disponible'}</div>
-              </div>
-              <div className="row">
-                <div className="expandible-label">Grados</div>
-                <div className="expandible-value">{university.degrees ? numeral(university.degrees) : 'No disponible'}</div>
-              </div>
-              <div className="row">
-                <div className="expandible-label">Postgrados</div>
-                <div className="expandible-value">{university.postgraduates ? numeral(university.postgraduates) : 'No disponible'}</div>
-              </div>
-              <div className="row">
-                <div className="expandible-label">Doctorados</div>
-                <div className="expandible-value">{university.doctorates ? numeral(university.doctorates) : 'No disponible'}</div>
-              </div>
-            </div>
-            <div className="career-section-header">Descripción</div>
-            <div className="career-section-body career-description">
-              {university.description}
-            </div>
-          </div>
-        ) : (
-          <div>
-            <UniversityCard
-              university={this.props.university}
-              detail
-              mobile={this.props.mobile}
-            />
-            {this.state.campus.map(campus => (
-              <MapCard campus={campus} mobile={this.props.mobile} key={campus.id} />
-            ))}
-          </div>
+        return (
+          <Grid columns={2}>
+            {mobile ? <InfoMobile university={university} /> : deskContent}
+          </Grid>
         );
       case 1:
         return (
@@ -129,7 +82,7 @@ class University extends Component {
                   />
                 );
               }
-              return <CareerCard career={res} key={res.id} />;
+              return <ExpandibleCard career={res} key={res.id} />
             })}
           </InfiniteScroll>
         );
@@ -153,7 +106,7 @@ class University extends Component {
     }
     return (
       <div className={`page page-university ${mobile ? 'page-university-mobile' : ''}`}>
-        <NavigationBar location="site" title={university.title} />
+        <NavigationBar location="site" />
         <div style={{ backgroundImage: `url(${cover})` }} className={`university-cover ${mobile ? 'university-cover-mobile' : 'university-cover-desk'}`}>
           <div className="row align-center">
             <div className="university-logo" style={{ backgroundImage: `url(${logo})` }} />

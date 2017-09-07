@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import NewsCard from '../components/NewsCard2';
 import MobileBanner from './MobileBanner';
 import Loading from '../components/Loading';
+import Grid from '../components/utility/Grid';
 import '../styles/News.css';
 
 
@@ -15,32 +16,14 @@ function News(props) {
       </div>
     );
   }
-  if (props.mobile) {
-    return (
-      <div className="page page-news page-news-mobile">
-        <MobileBanner onClick={props.toggleMenu} location="news" />
-        {props.news.map(item => (
-          <NewsCard key={item.id} news={item} mobile token={props.token} />
-        ))}
-      </div>
-    );
-  }
   return (
-    <div className="page page-news">
-      <div className="row">
-        <div className="col">
-          {props.news.map((item, index) => {
-            if (index % 2 === 0) return <NewsCard key={item.id} news={item} token={props.token} />;
-            return null;
-          })}
-        </div>
-        <div className="col">
-          {props.news.map((item, index) => {
-            if (index % 2 === 1) return <NewsCard key={item.id} news={item} token={props.token} />;
-            return null;
-          })}
-        </div>
-      </div>
+    <div className={`page page-news ${props.mobile ? 'page-news-mobile' : '' }`}>
+      {props.mobile ? <MobileBanner onClick={props.toggleMenu} location="news" /> : null}
+      <Grid columns={2} mobile={props.mobile}>
+        {props.news.map(item => (
+          <NewsCard key={item.id} news={item} mobile={props.mobile} token={props.token} />
+        ))}
+      </Grid>
     </div>
   );
 }

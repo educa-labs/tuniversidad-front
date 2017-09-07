@@ -9,6 +9,7 @@ import {
   MAKE_SUBMIT,
   CLEAR_SEARCH,
 } from './types';
+import { CAREER } from '../constants/strings';
 
 import url from '../constants/url';
 
@@ -93,7 +94,8 @@ export function getNextPage(active, text, token, filters, page) {
   };
 }
 export function getMostPopular(active, token) {
-  const request = Request.get(`${url}/popular/${active}`)
+  const field = active === CAREER ? 'carreers' : 'universities';
+  const request = Request.get(`${url}/popular/${field}`)
     .set('Content-Type', 'application/json')
       .set('Authorization', token)
       .accept('application/tuniversidad.v1')
