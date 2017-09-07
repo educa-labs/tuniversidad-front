@@ -4,7 +4,7 @@ const initialState = {
   page: 0,
   active: 'carreer',
   university_type: null,
-  university: null,
+  university_id: null,
   freeness: null,
   cities: null,
   region_id: null,

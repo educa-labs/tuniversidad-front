@@ -290,7 +290,7 @@ function mapStateToProps(state) {
       region_id: state.filter.region_id !== -1 ? state.filter.region_id : null,
       city_ids: state.filter.cities !== -1 ? state.filter.cities : null,
       area: state.filter.area !== -1 ? state.filter.area : null,
-      university_id: state.filter.university,
+      university_id: state.filter.university_id,
       cut: state.filter.cut ? {
         min: state.filter.cut.min,
         max: state.filter.cut.max,

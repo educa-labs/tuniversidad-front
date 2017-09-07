@@ -17,6 +17,7 @@ export function changeFilterValue(filter, value) {
 }
 
 export function clearFilterValue(filter) {
+  console.log(filter);
   let value;
   switch (filter) {
     case 'cut': value = { min: MIN_CUT, max: MAX_CUT }; break;
