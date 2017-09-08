@@ -9,6 +9,7 @@
   align-items: center;
   z-index: 4;
   background: rgba(0, 0, 0, 0.4);
+  overflow: hidden;
 }
 
 .modal-content {
@@ -17,20 +18,16 @@
 }
 
 
-
 .tutorial-slides {
   display: flex;
-  height: 20rem;
-  width: 20rem;
+  height: 25rem;
+  width: 25rem;
 }
 
 .tutorial-slide {
-  min-height: 20rem;
-  min-width: 20rem;
-}
-
-.hide {
-  display: none;
+  min-height: 25rem;
+  min-width: 25rem;
+  display: flex;
 }
 
 .slides-container .button {
@@ -46,4 +43,35 @@
 
 .next-button {
   right: -58px;
+}
+
+.slide {
+  flex: 1;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.slide-header {
+  font-size: 16px;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.slide-body {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+
+.slide-col {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 0 3rem;
+}
+
+.input-help {
+  font-size: 12px;
+  margin-top: 12px;
 }

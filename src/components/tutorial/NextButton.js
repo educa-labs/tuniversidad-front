@@ -9,10 +9,10 @@ const style = {
   borderRadius: '50%',
 };
 
-const NextButton = ({ next, onClick }) => (
+const NextButton = ({ next, onClick, disabled }) => (
   <div className={next ? 'button next-button' : 'button back-button'}>
-    <IconButton onTouchTap={onClick} style={style}>
-      {next ? <ArrowFoward /> : <ArrowBack />}
+    <IconButton onTouchTap={onClick} style={style} disabled={disabled}>
+      {next ? <ArrowFoward color="#0091EA" /> : <ArrowBack color="#0091EA" />}
     </IconButton>
   </div>
 );
@@ -24,6 +24,7 @@ NextButton.defaultProps = {
 NextButton.propTypes = {
   next: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired,
 };
 
 export default NextButton;
