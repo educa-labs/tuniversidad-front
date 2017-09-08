@@ -1,0 +1,49 @@
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 4;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: 4px;
+}
+
+
+
+.tutorial-slides {
+  display: flex;
+  height: 20rem;
+  width: 20rem;
+}
+
+.tutorial-slide {
+  min-height: 20rem;
+  min-width: 20rem;
+}
+
+.hide {
+  display: none;
+}
+
+.slides-container .button {
+  position: fixed;
+  z-index: 2;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.back-button {
+  left: -58px;
+}
+
+.next-button {
+  right: -58px;
+}

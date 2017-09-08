@@ -11,7 +11,9 @@ import { saveUser } from '../helpers/storage';
 import ProfileGeneral from '../components/ProfileGeneral';
 import ProfileProgress from '../components/ProfileProgress';
 import Newton from '../containers/Newton';
-import FirstSteps from '../components/FirstSteps';
+import Loading from '../components/Loading';
+// import FirstSteps from '../components/FirstSteps';
+import FirstSteps from '../components/tutorial/FirstSteps';
 import MobileBanner from './MobileBanner';
 import '../styles/Profile.css';
 import '../styles/Essay.css';
@@ -85,9 +87,11 @@ class Profile extends Component {
 
   render() {
     const { mobile } = this.props;
+    if (is.null(this.props.user)) return <Loading />
     return (
       <div className={`page ${mobile ? 'page-mobile' : ''}`}>
         {this.props.user.tutorial ? null : (
+          /*
           <FirstSteps
             mobile={mobile}
             open={!this.props.user.tutorial}
@@ -97,6 +101,8 @@ class Profile extends Component {
             updateUserObjectives={this.props.updateUserObjectives}
             user={this.props.user}
           />
+          */
+          <FirstSteps />
         )}
         {mobile ? <MobileBanner onClick={this.props.toggleMenu} /> : null}
         <Tabs
