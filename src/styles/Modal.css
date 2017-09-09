@@ -30,6 +30,10 @@
   display: flex;
 }
 
+.slides-container {
+  outline: none;
+}
+
 .slides-container .button {
   position: fixed;
   z-index: 2;

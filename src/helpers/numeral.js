@@ -26,6 +26,8 @@ export function validateRut(value) {
 }
 
 export function validateDate(value) {
+  if (value === '' || value === null) return false;
+  if (value.length < 8) return false;
   const data = value.split('-');
   const day = data[0];
   const month = data[1];

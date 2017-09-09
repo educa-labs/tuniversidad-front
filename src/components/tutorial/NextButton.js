@@ -19,12 +19,13 @@ const NextButton = ({ next, onClick, disabled }) => (
 
 NextButton.defaultProps = {
   next: false,
+  disabled: false,
 };
 
 NextButton.propTypes = {
   next: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
-  disabled: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool,
 };
 
 export default NextButton;
