@@ -90,20 +90,7 @@ class Profile extends Component {
     if (is.null(this.props.user)) return <Loading />
     return (
       <div className={`page ${mobile ? 'page-mobile' : ''}`}>
-        {this.props.user.tutorial ? null : (
-          /*
-          <FirstSteps
-            mobile={mobile}
-            open={!this.props.user.tutorial}
-            token={this.props.token}
-            regions={this.props.regions}
-            updateUserInfo={this.props.updateUserInfo}
-            updateUserObjectives={this.props.updateUserObjectives}
-            user={this.props.user}
-          />
-          */
-          <FirstSteps />
-        )}
+        <FirstSteps />
         {mobile ? <MobileBanner onClick={this.props.toggleMenu} /> : null}
         <Tabs
           onChange={this.handleSlideChange}

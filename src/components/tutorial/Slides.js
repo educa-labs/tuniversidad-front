@@ -12,7 +12,6 @@ const Slides = (props) => {
   };
   return (
     <div className="slides-container" tabIndex="-1" onKeyDown={handleEnterKey} >
-      <input style={{ display: 'none' }} onKeyDown={() => console.log('hola')} />
       {props.current > 0 ? (
         <NextButton onClick={props.onBackClick} />
       ) : null}
@@ -65,4 +64,10 @@ Slides.propTypes = {
   disabled: PropTypes.bool.isRequired,
 };
 
-export default Modal(Slides);
+const SlidesMobile = () => (
+  <div>
+    Somos mobile;
+  </div>
+);
+
+export default Modal(Slides, SlidesMobile);

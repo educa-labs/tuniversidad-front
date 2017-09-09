@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import is from 'is_js';
 import { fetch } from '../../actions/fetch';
+import { updateUserInfo } from '../../actions/user';
+import { updateUserObjectives } from '../../actions/objectives';
 import { capitalize } from '../../helpers/strings';
 import { validateRut, validateDate, checkScore, validatePhone } from '../../helpers/numeral';
 import { rutIsAviable } from '../../helpers/api';
@@ -12,6 +14,8 @@ import City from './City';
 import SecondSlide from './SecondSlide';
 import ThirdSlide from './ThirdSlide';
 import Nem from './Nem';
+import Objectives from './Objectives';
+import Ready from './Ready';
 
 
 const getOptions = (items) => {
@@ -22,12 +26,18 @@ const getOptions = (items) => {
   return result;
 };
 
+const getStepIndex = (current) => {
+  if (current < 3) return 0;
+  if (current < 6) return 1;
+  return 2;
+};
+
 class FirstSteps extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      current: 4,
-      next: 4,
+      current: 0,
+      next: 0,
       region: null,
       city_id: null,
       date: '',
@@ -36,6 +46,10 @@ class FirstSteps extends Component {
       phone: '',
       nem: '',
       ranking: '',
+      math: '',
+      language: '',
+      science: '',
+      history: '',
       error: {},
     };
     this.handleBack = this.handleBack.bind(this);
@@ -43,10 +57,11 @@ class FirstSteps extends Component {
     this.handleRegionChange = this.handleRegionChange.bind(this);
     this.handleFieldChange = this.handleFieldChange.bind(this);
     this.getError = this.getError.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   getError() {
-    const { current, rut, date, phone, nem, ranking } = this.state;
+    const { current, rut, date, phone, nem, ranking, language, math, science, history } = this.state;
     const scoreError = 'Puntaje inválido';
     return new Promise((resolve, reject) => {
       const error = {};
@@ -62,9 +77,32 @@ class FirstSteps extends Component {
         if (!checkScore(nem)) error.nem = scoreError;
         if (!checkScore(ranking)) error.ranking = scoreError;
       }
+      if (current === 5) {
+        if (language && !checkScore(language)) error.language = scoreError;
+        if (math && !checkScore(math)) error.math = scoreError;
+        if (science && !checkScore(science)) error.science = scoreError;
+        if (history && !checkScore(history)) error.history = scoreError;
+      }
       if (is.not.empty(error)) reject(error);
       else resolve({});
     });
+  }
+
+  handleSubmit() {
+    const fields = {
+      city_id: this.state.city_id,
+      birth_date: this.state.date,
+      rut: this.state.rut,
+      phone: `+56${this.state.phone}`,
+      preuniversity: this.state.preu,
+      nem: this.state.nem,
+      ranking: this.state.ranking,
+      tutorial: false,
+    };
+    console.log(fields);
+    this.props.updateUserInfo(this.props.userId, this.props.token, fields);
+    // const { language, math, science, history } = this.state;
+    // this.props.updateUserObjectives(this.props.token, language, math, science, history);
   }
 
   disabled() {
@@ -87,7 +125,7 @@ class FirstSteps extends Component {
   }
   handleNext() {
     const { current, next } = this.state;
-    if (current < 5 && !this.disabled()) {
+    if (current < 7 && !this.disabled()) {
       this.getError()
         .then(() => {
           this.setState({
@@ -116,7 +154,8 @@ class FirstSteps extends Component {
       <Slides
         current={this.state.current}
         next={this.state.next}
-        lastIndex={5}
+        stepIndex={getStepIndex(this.state.current)}
+        lastIndex={6}
         onBackClick={this.handleBack}
         onNextClick={this.handleNext}
         disabled={this.disabled()}
@@ -151,8 +190,18 @@ class FirstSteps extends Component {
           ranking={this.state.ranking}
           error={this.state.error}
         />
-        <p>Segundo</p>
-        <p>Tercero</p>
+        <Objectives
+          handleHistoryChange={this.handleFieldChange('history')}
+          handleLanguageChange={this.handleFieldChange('language')}
+          handleMathChange={this.handleFieldChange('math')}
+          handleScienceChange={this.handleFieldChange('science')}
+          math={this.state.math}
+          language={this.state.language}
+          history={this.state.history}
+          science={this.state.science}
+          error={this.state.error}
+        />
+        <Ready handleSubmit={this.handleSubmit} />
       </Slides>
     );
   }
@@ -161,14 +210,20 @@ class FirstSteps extends Component {
 FirstSteps.propTypes = {
   fetch: PropTypes.func.isRequired,
   token: PropTypes.string.isRequired,
+  userId: PropTypes.number.isRequired,
+  updateUserInfo: PropTypes.func.isRequired,
+  updateUserObjectives: PropTypes.func.isRequired,
 };
 
 const stateToProps = state => ({
   token: state.user.currentUser.auth_token,
+  userId: state.user.currentUser.id,
   regions: state.fetch.regions,
   cities: state.fetch.cities,
 });
 
 export default connect(stateToProps, {
   fetch,
+  updateUserInfo,
+  updateUserObjectives,
 })(FirstSteps);
