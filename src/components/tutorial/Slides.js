@@ -8,8 +8,7 @@ import Modal from '../utility/Modal';
 
 const Slides = (props) => {
   const handleEnterKey = (event) => {
-    if (event.keyCode === 13 || event.keyCode === 39) props.onNextClick();
-    if (event.keyCode === 37) props.onBackClick();
+    if (event.keyCode === 13) props.onNextClick();
   };
   return (
     <div className="slides-container" tabIndex="-1" onKeyDown={handleEnterKey} >
