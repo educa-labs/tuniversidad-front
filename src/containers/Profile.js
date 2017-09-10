@@ -12,7 +12,7 @@ import ProfileGeneral from '../components/ProfileGeneral';
 import ProfileProgress from '../components/ProfileProgress';
 import Newton from '../containers/Newton';
 import Loading from '../components/Loading';
-// import FirstSteps from '../components/FirstSteps';
+import FirstStepsMobile from '../components/FirstSteps';
 import FirstSteps from '../components/tutorial/FirstSteps';
 import MobileBanner from './MobileBanner';
 import '../styles/Profile.css';
@@ -87,10 +87,21 @@ class Profile extends Component {
 
   render() {
     const { mobile } = this.props;
+    const tutorial = mobile ? (
+      <FirstStepsMobile
+        token={this.props.token}
+        regions={this.props.regions}
+        updateUserInfo={this.props.updateUserInfo}
+        updateUserObjectives={this.props.updateUserObjectives}
+        user={this.props.user}
+        open={!this.props.user.tutorial}
+        mobile
+      />
+    ) : <FirstSteps />;
     if (is.null(this.props.user)) return <Loading />
     return (
       <div className={`page ${mobile ? 'page-mobile' : ''}`}>
-        <FirstSteps />
+        {this.props.user.tutorial ? null : tutorial}
         {mobile ? <MobileBanner onClick={this.props.toggleMenu} /> : null}
         <Tabs
           onChange={this.handleSlideChange}

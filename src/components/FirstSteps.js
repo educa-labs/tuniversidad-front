@@ -87,17 +87,11 @@ class FirstSteps extends Component {
           return;
         }
         requesting = true;
-        rutIsAviable(this.state.rut).then((res) => {
-          if (!res.body.valid) {
+        rutIsAviable(this.state.rut).then(() =>
             this.setState({
-              error: {
-                rut: res.body.error,
-              },
-            });
-          } else {
-            this.setState({ slideIndex: slideIndex + 1, error: '' });
-          }
-        });
+              slideIndex: slideIndex + 1,
+              error: '',
+            })).catch(error => this.setState({ error }));
       }
       if (slideIndex === 3) {
         if (!validatePhone(this.state.phone)) {

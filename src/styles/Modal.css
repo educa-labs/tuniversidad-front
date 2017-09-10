@@ -51,18 +51,18 @@
 
 .slide {
   flex: 1;
-  padding: 1rem;
   display: flex;
   flex-direction: column;
 }
 
 .slide-header {
   font-size: 16px;
-  margin-bottom: 1rem;
+  padding: 1rem;
   font-weight: 500;
 }
 
 .slide-body {
+  padding: 1rem;
   display: flex;
   flex: 1;
   justify-content: center;

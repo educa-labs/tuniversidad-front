@@ -1,9 +1,9 @@
 import React, { Children } from 'react';
 import PropTypes from 'prop-types';
 import { Motion, spring } from 'react-motion';
-import { Step, Stepper, StepLabel } from 'material-ui/Stepper';
 import NextButton from './NextButton';
 import Modal from '../utility/Modal';
+import Steps from './Steps';
 
 
 const Slides = (props) => {
@@ -34,17 +34,7 @@ const Slides = (props) => {
           </div>
         )}
       </Motion>
-      <Stepper activeStep={props.current}>
-        <Step>
-          <StepLabel>Información</StepLabel>
-        </Step>
-        <Step>
-          <StepLabel>Mi objetivo</StepLabel>
-        </Step>
-        <Step>
-          <StepLabel>Comenzar</StepLabel>
-        </Step>
-      </Stepper>
+      <Steps activeStep={props.stepIndex}></Steps>
     </div>
   );
 };
@@ -62,6 +52,7 @@ Slides.propTypes = {
   next: PropTypes.number.isRequired,
   width: PropTypes.number,
   disabled: PropTypes.bool.isRequired,
+  stepIndex: PropTypes.number.isRequired,
 };
 
 const SlidesMobile = () => (
