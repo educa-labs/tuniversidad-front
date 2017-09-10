@@ -1,14 +1,16 @@
 import React from 'react';
 import MediaQuery from 'react-responsive';
-import '../../styles/Modal.css';
+import './Modal.css';
 
 function Modal(DeskComponent, MobileComponent) {
   return ({ children, ...props }) => (
     <div>
       <MediaQuery maxDeviceWidth={720}>
-        <MobileComponent {...props}>
-          {children}
-        </MobileComponent>
+        <div className="modal-fullscreen">
+          <MobileComponent {...props}>
+            {children}
+          </MobileComponent>
+        </div>
       </MediaQuery>
       <MediaQuery minDeviceWidth={721}>
         <div className="modal-overlay">

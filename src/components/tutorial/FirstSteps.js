@@ -125,7 +125,9 @@ class FirstSteps extends Component {
   }
   handleNext() {
     const { current, next } = this.state;
+    console.log('Hola');
     if (current < 7 && !this.disabled()) {
+      console.log('Entramos');
       this.getError()
         .then(() => {
           this.setState({
