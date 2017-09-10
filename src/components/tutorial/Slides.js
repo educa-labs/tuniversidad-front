@@ -1,10 +1,22 @@
 import React, { Children } from 'react';
 import PropTypes from 'prop-types';
 import { Motion, spring } from 'react-motion';
+import FlatButton from 'material-ui/FlatButton';
 import NextButton from './NextButton';
 import Modal from '../utility/Modal';
 import Steps from './Steps';
+import './Slides.css';
 
+const proptypes = {
+  onBackClick: PropTypes.func.isRequired,
+  onNextClick: PropTypes.func.isRequired,
+  lastIndex: PropTypes.number.isRequired,
+  current: PropTypes.number.isRequired,
+  next: PropTypes.number.isRequired,
+  width: PropTypes.number,
+  disabled: PropTypes.bool.isRequired,
+  stepIndex: PropTypes.number.isRequired,
+};
 
 const Slides = (props) => {
   const handleEnterKey = (event) => {
@@ -44,20 +56,40 @@ Slides.defaultProps = {
   width: 25,
 };
 
-Slides.propTypes = {
-  onBackClick: PropTypes.func.isRequired,
-  onNextClick: PropTypes.func.isRequired,
-  lastIndex: PropTypes.number.isRequired,
-  current: PropTypes.number.isRequired,
-  next: PropTypes.number.isRequired,
-  width: PropTypes.number,
-  disabled: PropTypes.bool.isRequired,
-  stepIndex: PropTypes.number.isRequired,
-};
+Slides.propTypes = proptypes;
 
-const SlidesMobile = () => (
-  <div>
-    Somos mobile;
+const SlidesMobile = props => (
+  <div className="slides-container-mobile">
+    <Motion style={{ x: spring(-props.next * 100) }}>
+      {({ x }) => (
+        <div
+          className="tutorial-slides-mobile"
+          style={{
+            transform: `translate3d(${x}vw, 0, 0)`,
+          }}
+        >
+          {Children.map(props.children, child => (
+            <div className="tutorial-slide-mobile">
+              {child}
+            </div>
+          ))}
+        </div>
+      )}
+    </Motion>
+    <div className="row end">
+      <FlatButton
+        label="Atrás"
+        onTouchTap={props.onBackClick}
+        secondary
+      />
+      <FlatButton
+        label="Siguiente"
+        onTouchTap={props.onNextClick}
+        secondary
+        disabled={props.disabled}
+      />
+    </div>
+    <Steps activeStep={props.stepIndex} mobile />
   </div>
 );
 
