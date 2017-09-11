@@ -53,7 +53,10 @@ class SideMenu extends Component {
         containerStyle={{
           backgroundColor: '#424242',
           minHeight: '32rem',
-          zIndex: 2,
+          zIndex: 5,
+        }}
+        overlayStyle={{
+          zIndex: 4,
         }}
       >
         {mobile ? null : logoBanner}
