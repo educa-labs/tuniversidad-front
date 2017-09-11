@@ -67,9 +67,8 @@ class Form extends Component {
   render() {
     if (is.null(this.props.user)) return <div>Cargando</div>;
     return (
-      <div className="edit-form-container">
-        <NavigationBar location="filters" />
-        <div className="filters__header">Información General</div>
+      <div className="filters-mobile">
+        <NavigationBar location="filters" title="Información General" />
         <div className="fields">
           <div className="form__field">
             <TextField

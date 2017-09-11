@@ -77,17 +77,21 @@ const SlidesMobile = props => (
       )}
     </Motion>
     <div className="row end">
-      <FlatButton
-        label="Atrás"
-        onTouchTap={props.onBackClick}
-        secondary
-      />
-      <FlatButton
-        label="Siguiente"
-        onTouchTap={props.onNextClick}
-        secondary
-        disabled={props.disabled}
-      />
+      {props.current > 0 ? (
+        <FlatButton
+          label="Atrás"
+          onTouchTap={props.onBackClick}
+          secondary
+        />
+      ) : null}
+      {props.current < props.lastIndex ? (
+        <FlatButton
+          label="Siguiente"
+          onTouchTap={props.onNextClick}
+          secondary
+          disabled={props.disabled}
+        />
+      ) : null}
     </div>
     <Steps activeStep={props.stepIndex} mobile />
   </div>
