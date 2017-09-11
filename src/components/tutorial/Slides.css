@@ -52,7 +52,7 @@
 .slide-header {
   font-size: 16px;
   font-weight: 500;
-  padding: 0 1rem;
+  padding: 1rem;
 }
 
 .slide-body {
@@ -60,7 +60,6 @@
   padding: 0 1rem;
   flex: 1;
   justify-content: center;
-  align-items: center;
 }
 
 .slide-col {
