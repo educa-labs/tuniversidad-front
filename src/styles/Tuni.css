@@ -16,10 +16,11 @@
 }
 
 .newton-welcome {
+  margin-top: 1rem;
   height: 15rem;
-  width: 10rem;
+  width: 9rem;
   background-image: url(../assets/newton.png);
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
 }
 

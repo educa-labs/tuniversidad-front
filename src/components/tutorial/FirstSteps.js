@@ -99,10 +99,12 @@ class FirstSteps extends Component {
       ranking: this.state.ranking,
       tutorial: false,
     };
-    console.log(fields);
     this.props.updateUserInfo(this.props.userId, this.props.token, fields);
-    // const { language, math, science, history } = this.state;
-    // this.props.updateUserObjectives(this.props.token, language, math, science, history);
+    const language = this.state.language || null;
+    const math = this.state.math || null;
+    const history = this.state.history || null;
+    const science = this.state.science || null;
+    this.props.updateUserObjectives(this.props.token, language, math, science, history);
   }
 
   disabled() {
@@ -125,7 +127,9 @@ class FirstSteps extends Component {
   }
   handleNext() {
     const { current, next } = this.state;
+    console.log('Hola');
     if (current < 7 && !this.disabled()) {
+      console.log('Entramos');
       this.getError()
         .then(() => {
           this.setState({

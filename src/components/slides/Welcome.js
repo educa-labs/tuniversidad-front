@@ -3,11 +3,10 @@ import React from 'react';
 function Welcome({ mobile }) {
   return (
     <div className={`slide ${mobile ? 'slide-mobile' : ''}`}>
-      <div className="slide-header">¡Hola, soy Newton!</div>
+      <div className="slide-header">¡Hola!</div>
       <div className="row">
-        <div className="newton" />
         <div className={`welcome-text ${mobile ? 'welcome-text-mobile' : ''}`}>
-          !Bienvenido a tuniversidad! Antes de comenzar, te haré un par de preguntas para saber más de ti.
+          Gracias por ingresar a Tuniversidad, como equipo estamos muy agradecidos y quisieramos saber un poco más de ti.
         </div>
       </div>
     </div>
