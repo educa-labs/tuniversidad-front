@@ -97,7 +97,7 @@ class FirstSteps extends Component {
       preuniversity: this.state.preu,
       nem: this.state.nem,
       ranking: this.state.ranking,
-      tutorial: false,
+      tutorial: true,
     };
     this.props.updateUserInfo(this.props.userId, this.props.token, fields);
     const language = this.state.language || null;
