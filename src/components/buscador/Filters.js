@@ -89,7 +89,7 @@ function Filters(props, context) {
         items={getOptions(props.universities)}
         value={values.university}
         handleChange={(univ) => {
-          props.changeFilterValue('university', univ);
+          props.changeFilterValue('university_id', univ);
           if (!props.mobile) props.makeSubmit();
         }}
         fullWidth
@@ -219,7 +219,7 @@ const stateToProps = state => ({
     area: state.filter.area,
     schedule: state.filter.schedule,
     university_type: state.filter.university_type,
-    university: state.filter.university,
+    university: state.filter.university_id,
     freeness: state.filter.freeness,
   },
 });

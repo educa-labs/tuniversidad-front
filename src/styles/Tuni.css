@@ -14,3 +14,16 @@
 .logo-tuni-blue {
   background-image: url(../assets/logo-tuni-blue.svg);
 }
+
+.newton-welcome {
+  margin-top: 1rem;
+  height: 15rem;
+  width: 9rem;
+  background-image: url(../assets/newton.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.slide p {
+  text-align: justify;
+}

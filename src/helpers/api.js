@@ -29,7 +29,12 @@ export function rutIsAviable(rut) {
   return Request.get(`${url}/validate_rut?rut=${rut}`)
       .set('Content-Type', 'application/json')
       .accept('application/tuniversidad.v1')
-      .withCredentials();
+      .withCredentials()
+      .then(res => new Promise((resolve, reject) => {
+        if (!res.body.valid) reject({ rut: res.body.error });
+        resolve({});
+      }),
+      );
 }
 
 export function getCover(id, token) {

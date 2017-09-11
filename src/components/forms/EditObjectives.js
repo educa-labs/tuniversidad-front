@@ -95,9 +95,8 @@ class Form extends Component {
 
   render() {
     return (
-      <div className="edit-form-container">
-        <NavigationBar location="filters" />
-        <div className="filters__header">Mi Objetivo</div>
+      <div className="filters-mobile">
+        <NavigationBar location="filters" title="Mi Objetivo" />
         <div className="fields">
           <div className="row">
             <div className="form__field">

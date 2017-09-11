@@ -1,0 +1,29 @@
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 4;
+  background: rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+.modal-fullscreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: white;
+  z-index: 4;
+  overflow: hidden;
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: 4px;
+}

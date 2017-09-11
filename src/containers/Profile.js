@@ -11,7 +11,8 @@ import { saveUser } from '../helpers/storage';
 import ProfileGeneral from '../components/ProfileGeneral';
 import ProfileProgress from '../components/ProfileProgress';
 import Newton from '../containers/Newton';
-import FirstSteps from '../components/FirstSteps';
+import Loading from '../components/Loading';
+import FirstSteps from '../components/tutorial/FirstSteps';
 import MobileBanner from './MobileBanner';
 import '../styles/Profile.css';
 import '../styles/Essay.css';
@@ -36,7 +37,7 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    if (is.null(this.props.objectives.objectives)) this.props.getUserObjectives(this.props.token);
+    if (is.null(this.props.objectives.objectives) || this.props.objectives.shouldFetch) this.props.getUserObjectives(this.props.token);
     for (let i = 1; i < 5; i += 1) {
       if (is.null(this.props.essays[i])) this.props.getEssays(this.props.token, i);
     }
@@ -47,6 +48,7 @@ class Profile extends Component {
       saveUser(nextProps.user);
     }
     if (this.props.objectives.shouldFetch !== nextProps.objectives.shouldFetch) {
+      console.log(nextProps.objectives.shouldFetch);
       if (nextProps.objectives.shouldFetch) this.props.getUserObjectives(this.props.token);
     }
     if (nextProps.objectives.objectives !== null && this.props.objectives.objectives !== null) {
@@ -85,19 +87,10 @@ class Profile extends Component {
 
   render() {
     const { mobile } = this.props;
+    if (is.null(this.props.user)) return <Loading />
     return (
       <div className={`page ${mobile ? 'page-mobile' : ''}`}>
-        {this.props.user.tutorial ? null : (
-          <FirstSteps
-            mobile={mobile}
-            open={!this.props.user.tutorial}
-            token={this.props.token}
-            regions={this.props.regions}
-            updateUserInfo={this.props.updateUserInfo}
-            updateUserObjectives={this.props.updateUserObjectives}
-            user={this.props.user}
-          />
-        )}
+        {this.props.user.tutorial ? null : <FirstSteps />}
         {mobile ? <MobileBanner onClick={this.props.toggleMenu} /> : null}
         <Tabs
           onChange={this.handleSlideChange}

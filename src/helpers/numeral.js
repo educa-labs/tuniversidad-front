@@ -26,6 +26,8 @@ export function validateRut(value) {
 }
 
 export function validateDate(value) {
+  if (value === '' || value === null) return false;
+  if (value.length < 8) return false;
   const data = value.split('-');
   const day = data[0];
   const month = data[1];
@@ -36,5 +38,5 @@ export function validateDate(value) {
 }
 
 export function validatePhone(value) {
-  return value.length === 12 && value.slice(0, 4) === '+569' && !isNaN(value.slice(1));
+  return value.length === 9 && !isNaN(value.slice(1));
 }

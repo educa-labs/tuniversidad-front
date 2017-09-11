@@ -10,6 +10,7 @@ import routes from './config/routes';
 import configureStore from './config/configureStore';
 import './styles/index.css';
 
+
 injectTapEventPlugin();
 
 const muiTheme = getMuiTheme({

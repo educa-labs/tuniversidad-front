@@ -51,7 +51,7 @@ class DatePicker extends Component {
 
   render() {
     return (
-      <div className="row">
+      <div style={{ display: 'flex', width: '100%' }}>
         <div className="col">
           <SelectInput
             items={getDays()}

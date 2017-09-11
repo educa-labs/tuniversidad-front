@@ -16,7 +16,6 @@ import Login from '../containers/Login';
 import Signup from '../components/Signup';
 import EditObjectives from '../components/forms/EditObjectives';
 import NewEssay from '../components/forms/NewEssay';
-import FirstStepsMobile from '../containers/FirstStepsMobile';
 import Filters from '../components/buscador/Filters';
 import EditUser from '../components/forms/EditUser';
 import Terms from '../components/landing/Terms';
@@ -40,7 +39,6 @@ export default (
       <Route path="profile" component={Profile} />
       <Route path="profile/edit/objectives" component={EditObjectives} />
       <Route path="profile/new/essay" component={NewEssay} />
-      <Route path="profile/steps" component={FirstStepsMobile} />
       <Route path="profile/edit/user" component={EditUser} />
     </Route>
   </Route>
