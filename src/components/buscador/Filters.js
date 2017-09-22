@@ -47,8 +47,6 @@ function Filters(props, context) {
     props.makeSubmit();
     if (props.mobile) context.router.goBack();
   };
-
-  // const getCities = id => props.fetch('cities', id, props.token);
   
   const { values, active, mobile } = props;
 
@@ -66,21 +64,6 @@ function Filters(props, context) {
       maxHeight={300}
     />
   );
-
-  /*
-  const cityInput = (
-    <SelectInput
-      title={values.region === 13 ? 'Comuna' : 'Ciudad'}
-      items={getOptions(props.cities)}
-      value={values.cities}
-      handleChange={(id) => {
-        props.changeFilterValue('cities', id);
-        if (!props.mobile) props.makeSubmit();
-      }}
-      fullWidth
-    />
-  );
-  */
 
   const body = active === CAREER ? (
     <div>
@@ -202,7 +185,7 @@ Filters.propTypes = {
 };
 
 const stateToProps = state => ({
-  token: state.user.currentUser.auth_token,
+  token: state.user.currentUser ? state.user.currentUser.auth_token : null,
   regions: state.fetch.regions,
   cities: state.fetch.cities,
   universities: state.fetch.universities,
