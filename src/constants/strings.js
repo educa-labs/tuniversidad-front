@@ -1,6 +1,8 @@
 export const CAREER = 'carreer';
 export const UNIVERSITY = 'university';
 
+export const SITE = 'site';
+export const GUEST = 'guest';
 
 export const REGION = 'Región';
 export const CITIES = 'Ciudad';
