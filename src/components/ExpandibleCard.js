@@ -143,9 +143,9 @@ ExpandibleCard.contextTypes = {
 
 function mapStateToProps(state) {
   return {
+    token: state.user.currentUser ? state.user.currentUser.auth_token : null,
     goals: state.goals.goals,
     requesting: state.goals.requesting,
-    token: state.user.currentUser.auth_token,
     compare: state.compare,
   };
 }
