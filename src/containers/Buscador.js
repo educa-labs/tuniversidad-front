@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import is from 'is_js';
+import Snackbar from 'material-ui/Snackbar';
 import SearchInput from '../components/buscador/Input';
 import SearchInputMobile from '../components/buscador/InputMobile';
 import { search, getNextPage, clearSearch, makeSubmit as onClearFilter } from '../actions/search';
@@ -11,9 +12,9 @@ import Selector from '../components/buscador/Selector';
 import FilterTags from '../components/buscador/FilterTags';
 import Filters from '../components/buscador/Filters';
 import MobileBanner from './MobileBanner';
-import { CAREER, UNIVERSITY, GUEST, SITE } from '../constants/strings';
+import { CAREER, UNIVERSITY, GUEST } from '../constants/strings';
 import { numeral } from '../helpers/numeral';
-import { capitalize } from '../helpers/strings';
+import { capitalize, getLocation } from '../helpers/strings';
 import { MIN_CUT, MIN_DURATION, MIN_PRICE, MAX_CUT, MAX_DURATION, MAX_PRICE } from '../constants/num';
 import '../styles/Buscador.css';
 
@@ -59,10 +60,6 @@ const getItemWithId = (array, id) => (
   array.filter(item => item.id === id)[0]
 );
 
-const getLocation = (path) => {
-  if (path === '/search') return GUEST;
-  return SITE;
-};
 
 const isDefaultValue = (filterName, value) => {
   if (is.null(value)) return true;
@@ -78,11 +75,12 @@ const isDefaultValue = (filterName, value) => {
 class Buscador extends Component {
   constructor(props) {
     super(props);
-    this.state = { input: '' };
+    this.state = { input: '', popup: false };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInfinite = this.handleInfinite.bind(this);
     this.handleActiveChange = this.handleActiveChange.bind(this);
     this.getActivefilters = this.getActivefilters.bind(this);
+    this.handleGoalClick = this.handleGoalClick.bind(this);
   }
 
 
@@ -105,12 +103,13 @@ class Buscador extends Component {
     }
   }
 
+  
   handleActiveChange(value) {
     this.props.setActiveFilter(value);
     this.props.clearSearch();
   }
-
-
+  
+  
   getActivefilters(filters, afterSearch) {
     if (!afterSearch) return [];
     const tagName = (filterName, value) => {
@@ -128,7 +127,7 @@ class Buscador extends Component {
         default: return '';
       }
     };
-
+    
     const result = [];
     Object.keys(filters).forEach((filterName) => {
       if (!isDefaultValue(filterName, filters[filterName])) {
@@ -142,6 +141,10 @@ class Buscador extends Component {
     return result;
   }
 
+  handleGoalClick() {
+    this.setState({ popup: true });
+  }
+  
   handleSubmit(event) {
     if (event) event.preventDefault();
     const { active, token } = this.props;
@@ -161,17 +164,29 @@ class Buscador extends Component {
   }
 
   render() {
-    const { active, popCareers, afterSearch, result, popUniversities, requesting } = this.props;
+    const { active, popCareers, afterSearch, result, popUniversities, requesting, mobile } = this.props;
     const data = getResults(active, afterSearch, result, popCareers, popUniversities);
     const feedback = searchResultFeedback(active, afterSearch, data);
     const placeholder = inputPlaceholder(active);
     const filters = active === UNIVERSITY ? this.props.university_filters : this.props.career_filters;
     const activeFilters = this.getActivefilters(filters, afterSearch);
     const isGuest = getLocation(this.props.location.pathname) === GUEST;
-    if (this.props.mobile) {
+    const snackBar = (
+      <Snackbar
+        open={this.state.popup}
+        message={mobile ? 'Tienes que iniciar sesión' : 'Tienes que iniciar sesión para agregar una meta' }
+        autoHideDuration={4000}
+        onRequestClose={() => this.setState({ popup: false })}
+        action={mobile ? null : 'Iniciar Sesión'}
+        onActionTouchTap={() => this.context.router.push('/login')}
+      />
+    );
+
+    if (mobile) {
       return (
         <div className="col">
-          <MobileBanner onClick={this.props.toggleMenu} />
+          <MobileBanner onClick={this.props.toggleMenu} guest={isGuest} />
+          {isGuest ? snackBar : null}
           <SearchInputMobile
             value={this.state.input}
             handleOnChange={value => this.setState({ input: value })}
@@ -203,6 +218,8 @@ class Buscador extends Component {
               requesting={this.props.requesting}
               handleInfinite={this.handleInfinite}
               hasMore={this.props.hasMore}
+              goalClick={this.handleGoalClick}
+              guest={isGuest}
               mobile
             />
           </div>
@@ -211,6 +228,7 @@ class Buscador extends Component {
     }
     return (
       <div className="col">
+        {isGuest ? snackBar : null}
         <SearchInput
           value={this.state.input}
           handleOnChange={value => this.setState({ input: value })}
@@ -238,6 +256,7 @@ class Buscador extends Component {
               handleInfinite={this.handleInfinite}
               hasMore={this.props.hasMore}
               guest={isGuest}
+              goalClick={this.handleGoalClick}
             />
           </div>
           <div className="search-filters">

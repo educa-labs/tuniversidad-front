@@ -8,6 +8,13 @@
   display: flex;
 }
 
+.mobile-banner-guest {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 1rem;
+}
+
 .tuni-logo {
   background-image: url(../assets/logo-tuni.svg);
   background-position: center;

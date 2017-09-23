@@ -1,3 +1,4 @@
+import { GUEST, SITE } from '../constants/strings';
 export function makeList(list) {
   let rep = '';
   for (let i = 0; i < list.length; i++) {
@@ -54,3 +55,8 @@ export function capitalize(string) {
   if (string === null) return '';
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+export const getLocation = (path) => {
+  if (path.indexOf('site') > -1) return SITE;
+  return GUEST;
+};

@@ -33,6 +33,10 @@ const muiTheme = getMuiTheme({
   radioButton: {
     checkedColor: '#0091EA',
   },
+  snackbar: {
+    backgroundColor: '#0091EA',
+    actionColor: '#FFFFFF',
+  },
 });
 
 ReactDOM.render(

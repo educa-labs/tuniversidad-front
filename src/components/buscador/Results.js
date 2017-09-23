@@ -18,7 +18,7 @@ function SearchResult(props) {
       <div className="search-feedback">{props.feedback}</div>
       {props.data.map((res) => {
         if (props.active === CAREER) {
-          return <ExpandibleCard career={res} key={res.id} mobile={props.mobile} guest={props.guest} />;
+          return <ExpandibleCard career={res} key={res.id} mobile={props.mobile} guest={props.guest} goalClick={props.goalClick} />;
         }
         return <ExpandibleUnivCard university={res} key={res.id} mobile={props.mobile} guest={props.guest} />;
       })}

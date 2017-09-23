@@ -26,7 +26,7 @@ class SideMenu extends Component {
   handleLogout() {
     this.props.clearState();
     clearUser();
-    this.context.router.replace('/login');
+    this.context.router.replace('/search');
   }
 
   handleSelectItem(selected) {

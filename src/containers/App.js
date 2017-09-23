@@ -26,9 +26,6 @@ class App extends Component {
       this.context.router.replace('/search');
     }
   }
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps.user);
-  }
 
   render() {
     if (is.null(this.props.children)) return <div>Cargando...</div>;

@@ -7,6 +7,11 @@
   align-items: center;
   min-height: 24px;
   margin: 5px 10px 5px 0;
+  cursor: pointer;
+}
+
+.tag:hover {
+  opacity: 0.8;
 }
 
 .tag-name {

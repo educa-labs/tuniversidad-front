@@ -65,12 +65,15 @@ class University extends Component {
       <Description text={university.description} />,
       <Info university={university} />,
     ].concat(mapCards);
+    const mobileContent = [
+      <InfoMobile university={university} key={1} />,
+    ];
 
     switch (slideIndex) {
       case 0:
         return (
-          <Grid columns={2}>
-            {mobile ? <InfoMobile university={university} /> : deskContent}
+          <Grid columns={2} mobile={mobile}>
+            {mobile ? mobileContent : deskContent}
           </Grid>
         );
       case 1:
@@ -88,7 +91,7 @@ class University extends Component {
                   />
                 );
               }
-              return <ExpandibleCard career={res} key={res.id} guest={guest} />
+              return <ExpandibleCard career={res} key={res.id} guest={guest} />;
             })}
           </InfiniteScroll>
         );
@@ -100,17 +103,19 @@ class University extends Component {
   }
 
   render() {
+    console.log(this.state);
     const { careers, slideIndex, campus, cover, logo } = this.state;
     const { university, mobile } = this.props;
     const guest = getLocation(this.props.location.pathname);
 
-    if (is.any.null(university, careers, campus, cover, logo)) {
+    if (!is.all.existy(university, careers, campus, cover, logo)) {
       return (
         <div className="fullscreen">
           <Loading />
         </div>
       );
     }
+    console.log('Entramos', this.state);
     return (
       <div className={`page page-university ${guest ? 'page-guest' : ''} ${mobile ? 'page-university-mobile' : ''}`}>
         <NavigationBar location="site" guest={guest} />

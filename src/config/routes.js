@@ -22,6 +22,7 @@ import Terms from '../components/landing/Terms';
 
 export default (
   <Route path="/" component={App}>
+    <IndexRoute component={Buscador} />
     <Route path="search" component={Buscador} />
     <Route path="login" component={Login} />
     <Route path="signup" component={Signup} />

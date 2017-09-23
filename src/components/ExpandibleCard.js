@@ -22,11 +22,17 @@ class ExpandibleCard extends Component {
     super(props);
     this.state = {
       expanded: false,
+      popup: false,
     };
     this.linkTo = this.linkTo.bind(this);
     this.handleInfoClick = this.handleInfoClick.bind(this);
     this.handleFavButton = this.handleFavButton.bind(this);
     this.getType = this.getType.bind(this);
+  }
+  getType() {
+    const { career } = this.props;
+    if (career.weighing.science !== 0 && career.weighing.history) return 'Historia o Ciencias';
+    return career.weighing.science !== 0 ? 'Ciencias' : 'Historia';
   }
 
   handleInfoClick() {
@@ -37,20 +43,19 @@ class ExpandibleCard extends Component {
   }
 
   handleFavButton() {
-    const { career, token, goals } = this.props;
-    const isFavorite = _.findIndex(goals, goal => goal.carreer.id === career.id) > -1;
-    if (isFavorite) {
-      this.props.removeGoal(career.id, token);
+    const { career, token, goals, guest, goalClick } = this.props;
+    if (guest) {
+      goalClick();
     } else {
-      this.props.addGoal(career.id, token);
+      const isFavorite = _.findIndex(goals, goal => goal.carreer.id === career.id) > -1;
+      if (isFavorite) {
+        this.props.removeGoal(career.id, token);
+      } else {
+        this.props.addGoal(career.id, token);
+      }
     }
   }
 
-  getType() {
-    const { career } = this.props;
-    if (career.weighing.science !== 0 && career.weighing.history) return 'Historia o Ciencias';
-    return career.weighing.science !== 0 ? 'Ciencias' : 'Historia';
-  }
 
   render() {
     const { career, goals, mobile } = this.props;
