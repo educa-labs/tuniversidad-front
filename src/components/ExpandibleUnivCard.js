@@ -23,7 +23,7 @@ class ExpandibleUnivCard extends Component {
   }
 
   handleInfoClick() {
-    this.context.router.push(`site/university/${this.props.university.id}`);
+    this.context.router.push(`${this.props.guest ? '' : 'site'}/university/${this.props.university.id}`);
   }
 
   render() {

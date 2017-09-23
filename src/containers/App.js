@@ -22,7 +22,7 @@ class App extends Component {
     if (is.empty(this.props.popularUniv)) this.props.getMostPopular(UNIVERSITY, null);
     if (is.existy(user)) {
       this.props.setupUser(user);
-    } else {
+    } else if (this.props.location.pathname.indexOf('site') > -1) {
       this.context.router.replace('/search');
     }
   }

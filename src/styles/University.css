@@ -25,6 +25,11 @@
   right: 0;
 }
 
+.university-cover-guest {
+  left: 0 !important;
+  padding: 1rem 3rem;
+}
+
 .university-cover-mobile {
   position: fixed;
   top: 0;
@@ -35,7 +40,7 @@
 
 
 .university-cover__title {
-  font-size: 18px;
+  font-size: 20px;
 }
 .university-cover__subtitle {
   font-size: 14px;

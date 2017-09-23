@@ -11,10 +11,16 @@ import Info from '../components/university/CareerInfo';
 import InfoMobile from '../components/university/CareerInfoMobile';
 import Grid from '../components/utility/Grid';
 import Campus from '../components/university/CareerCampus';
+import { GUEST, SITE } from '../constants/strings';
 
 const tabStyle = {
   fontSize: '12px',
   fontWeight: 400,
+};
+
+const getLocation = (path) => {
+  if (path.indexOf('site') > -1) return SITE;
+  return GUEST;
 };
 
 class Career extends Component {
@@ -56,6 +62,7 @@ class Career extends Component {
   render() {
     const { slideIndex, cover } = this.state;
     const { career, mobile } = this.props;
+    const guest = getLocation(this.props.location.pathname);
     if (is.any.null(career, cover)) {
       return (
         <div className="fullscreen">
@@ -74,9 +81,9 @@ class Career extends Component {
     );
 
     return (
-      <div className={`page page-university ${mobile ? 'page-university-mobile' : ''}`}>
-        <NavigationBar location="site" title={`${career.title} en ${career.university_name}`} />
-        <div style={{ backgroundImage: `url(${cover})` }} className={`university-cover ${mobile ? 'university-cover-mobile' : 'university-cover-desk'}`}>
+      <div className={`page ${guest ? 'page-guest' : ''} page-university ${mobile ? 'page-university-mobile' : ''}`}>
+        <NavigationBar location="site" guest={guest} />
+        <div style={{ backgroundImage: `url(${cover})` }} className={`university-cover ${guest ? 'university-cover-guest' : ''} ${mobile ? 'university-cover-mobile' : 'university-cover-desk'}`}>
           <div className="university-cover__title">{career.title}</div>
           <div
             className="university-cover__subtitle"
@@ -88,7 +95,7 @@ class Career extends Component {
         <Tabs
           onChange={this.handleSlideChange}
           value={slideIndex}
-          className={`tabs-search ${mobile ? 'tabs-search-mobile' : 'tabs-search-desktop'}`}
+          className={`tabs-search ${guest ? 'tabs-search-guest' : ''} ${mobile ? 'tabs-search-mobile' : 'tabs-search-desktop'}`}
         >
           <Tab label="Información general" value={0} style={tabStyle} />
           <Tab label="Preguntas y respuestas" value={1} style={tabStyle} />
@@ -102,7 +109,7 @@ class Career extends Component {
 
 function mapStateToProps(state) {
   return {
-    token: state.user.currentUser.auth_token,
+    token: state.user.currentUser ? state.user.currentUser.auth_token : null,
     career: state.fetch.career,
   };
 }

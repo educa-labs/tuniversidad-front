@@ -56,7 +56,7 @@ function NavigationBar(props, context) {
     );
   }
 
-  if (props.location === 'site') className = `${className} navigation-bar_site`;
+  if (props.location === 'site' && !props.guest) className = `${className} navigation-bar_site`;
   const arrowColor = props.location === 'filters' ? '#000000' : '#FFFFFF';
   return (
     <div className={className}>
@@ -82,6 +82,7 @@ NavigationBar.defaultProps = {
   solid: false,
   dirty: false,
   active: null,
+  guest: false,
 };
 
 NavigationBar.contextTypes = {

@@ -3,7 +3,7 @@ import { SET_ACTIVE_FILTER, CHANGE_FILTER_VALUE, CLEAR_SEARCH, CLEAR_FILTER_VALU
 const initialState = {
   page: 0,
   active: 'carreer',
-  university_type: null,
+  university_type_id: null,
   university_id: null,
   freeness: null,
   cities: null,

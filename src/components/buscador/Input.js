@@ -1,9 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import IconButton from 'material-ui/IconButton';
 import Search from 'material-ui/svg-icons/action/search';
 import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import CloseIcon from 'material-ui/svg-icons/navigation/close';
 
+
+const formClassName = (focused, guest) => (
+  `search-input-form ${focused ? 'form-focused' : ''} ${guest ? 'search-input-form-guest' : ''}`
+);
 
 class SearchInput extends React.Component {
   constructor(props) {
@@ -27,10 +33,17 @@ class SearchInput extends React.Component {
     const { props } = this;
     const { inputFocused } = this.state;
     return (
-      <div className="search-input">
+      <div className={`search-input ${props.guest ? 'search-input-guest' : ''}`}>
+        {props.guest ? (
+          <div className="search-input-empty">
+            <div className="navigation-bar-logo">
+              <div className="logo-tuni logo-tuni-blue" />
+            </div>
+          </div>
+        ) : null}
         <form
           onSubmit={props.handleSubmit}
-          className={`search-input-form ${inputFocused ? 'form-focused' : ''}`}
+          className={formClassName(inputFocused, props.guest)}
         >
           <IconButton type="submit"><Search color="#424242" /></IconButton>
           <input
@@ -42,28 +55,36 @@ class SearchInput extends React.Component {
             onBlur={this.handleOnBlur}
             placeholder={props.placeholder}
           />
-          {props.afterSearch ? (
-            <IconButton
-              type="button"
-              onClick={props.clearSearch}
-              style={{ margin: '0 20px' }}
-            >
-              <CloseIcon color="#C9C9C9" />
-            </IconButton>
-            ) : (
-              <FlatButton
-                label="Buscar"
-                type="submit"
-                labelStyle={{
-                  color: '#0091EA',
-                }}
-              />
-          )}
+          <FlatButton
+            label="Buscar"
+            type="submit"
+            labelStyle={{
+              color: '#0091EA',
+            }}
+          />
         </form>
-        <div className="search-input-empty" />
+        <div className="search-input-empty">
+          <FlatButton
+            label="Regístrate"
+            labelStyle={{ color: '#0091EA' }}
+            style={{ marginRight: '5px' }}
+            onTouchTap={() => this.context.router.push('/signup')}
+          />
+          <RaisedButton
+            label="Inicia Sesión"
+            backgroundColor="#0091EA"
+            labelColor="#FFFFFF"
+            style={{ marginRight: '5px' }}
+            onTouchTap={() => this.context.router.push('/login')}
+          />
+        </div>
       </div>
     );
   }
 }
+
+SearchInput.contextTypes = {
+  router: PropTypes.object,
+};
 
 export default SearchInput;

@@ -30,10 +30,10 @@ class ExpandibleCard extends Component {
   }
 
   handleInfoClick() {
-    this.context.router.push(`site/career/${this.props.career.id}`);
+    this.context.router.push(`${this.props.guest ? '' : 'site'}/career/${this.props.career.id}`);
   }
   linkTo() {
-    this.context.router.push(`site/university/${this.props.career.university_id}`);
+    this.context.router.push(`${this.props.guest ? '' : 'site'}/university/${this.props.career.university_id}`);
   }
 
   handleFavButton() {
@@ -63,8 +63,8 @@ class ExpandibleCard extends Component {
           <div className="general-card__header cursor" onClick={() => this.setState({ expanded: !expanded })}>
             <div className="col">
               <div className={`general-card__title title_no-margin ${mobile ? 'title-truncate' : ''}`}>{career.title}</div>
-              <button className={`general-card__subtitle color-blue ${mobile ? 'title-truncate' : ''}`} onTouchTap={this.linkTo} >
-                <span className="hover-blue">{career.university_name} en {career.campu_name}</span>
+              <button className={`general-card__subtitle color-blue ${mobile ? 'title-truncate' : ''}`}>
+                <span onTouchTap={this.linkTo} className="hover-blue">{career.university_name} en {career.campu_name}</span>
               </button>
             </div>
             <IconButton>
@@ -126,6 +126,7 @@ class ExpandibleCard extends Component {
 
 ExpandibleCard.defaultProps = {
   mobile: false,
+  guest: false,
 };
 
 ExpandibleCard.propTypes = {
@@ -135,6 +136,7 @@ ExpandibleCard.propTypes = {
   // isFavorite: PropTypes.bool.isRequired,
   // requesting: PropTypes.bool.isRequired,
   mobile: PropTypes.bool,
+  guest: PropTypes.bool,
 };
 
 ExpandibleCard.contextTypes = {

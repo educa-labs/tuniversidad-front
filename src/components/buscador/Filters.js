@@ -118,9 +118,9 @@ function Filters(props, context) {
       <SelectInput
         title="Tipo de Universidad"
         items={getOptions(props.types)}
-        value={values.university_type}
+        value={values.university_type_id}
         handleChange={(type) => {
-          props.changeFilterValue('university_type', type);
+          props.changeFilterValue('university_type_id', type);
           if (!props.mobile) props.makeSubmit();
         }}
         fullWidth
@@ -201,7 +201,7 @@ const stateToProps = state => ({
     price: state.filter.price,
     area: state.filter.area,
     schedule: state.filter.schedule,
-    university_type: state.filter.university_type,
+    university_type_id: state.filter.university_type_id,
     university: state.filter.university_id,
     freeness: state.filter.freeness,
   },

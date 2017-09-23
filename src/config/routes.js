@@ -27,6 +27,8 @@ export default (
     <Route path="signup" component={Signup} />
     <Route path="filters" component={Filters} />
     <Route path="terms" component={Terms} />
+    <Route path="university/:id" component={University} />
+    <Route path="career/:id" component={Career} />
     <Route path="site" component={Site}>
       <IndexRoute component={Profile} />
       <Route path="search" component={Buscador} />
