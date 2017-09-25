@@ -15,12 +15,18 @@ import Info from '../components/university/UniversityInfo';
 import InfoMobile from '../components/university/UniversityInfoMobile';
 import Grid from '../components/utility/Grid';
 import CareerCampus from '../components/university/CareerCampus';
-
+import { GUEST, SITE } from '../constants/strings';
 
 const tabStyle = {
   fontSize: '12px',
   fontWeight: 400,
 };
+
+const getLocation = (path) => {
+  if (path.indexOf('site') > -1) return SITE;
+  return GUEST;
+};
+
 
 class University extends Component {
 
@@ -51,7 +57,7 @@ class University extends Component {
 
   getContent(slideIndex) {
     const { mobile, university } = this.props;
-    
+    const guest = getLocation(this.props.location.pathname);
     const mapCards = this.state.campus.map(campus => (
       <CareerCampus campus={campus} mobile={this.props.mobile} key={campus.id} />
     ));
@@ -59,12 +65,15 @@ class University extends Component {
       <Description text={university.description} />,
       <Info university={university} />,
     ].concat(mapCards);
+    const mobileContent = [
+      <InfoMobile university={university} key={1} />,
+    ];
 
     switch (slideIndex) {
       case 0:
         return (
-          <Grid columns={2}>
-            {mobile ? <InfoMobile university={university} /> : deskContent}
+          <Grid columns={2} mobile={mobile}>
+            {mobile ? mobileContent : deskContent}
           </Grid>
         );
       case 1:
@@ -78,11 +87,11 @@ class University extends Component {
                     mobile={this.props.mobile}
                     title={res.title}
                     subtitle={`${res.university_name} en ${res.campu_name}`}
-                    onClick={() => this.context.router.push(`site/career/${res.id}`)}
+                    onClick={() => this.context.router.push(`${guest ? '' : 'site'}/career/${res.id}`)}
                   />
                 );
               }
-              return <ExpandibleCard career={res} key={res.id} />
+              return <ExpandibleCard career={res} key={res.id} guest={guest} />;
             })}
           </InfiniteScroll>
         );
@@ -94,21 +103,24 @@ class University extends Component {
   }
 
   render() {
+    console.log(this.state);
     const { careers, slideIndex, campus, cover, logo } = this.state;
     const { university, mobile } = this.props;
+    const guest = getLocation(this.props.location.pathname);
 
-    if (is.any.null(university, careers, campus, cover, logo)) {
+    if (!is.all.existy(university, careers, campus, cover, logo)) {
       return (
         <div className="fullscreen">
           <Loading />
         </div>
       );
     }
+    console.log('Entramos', this.state);
     return (
-      <div className={`page page-university ${mobile ? 'page-university-mobile' : ''}`}>
-        <NavigationBar location="site" />
-        <div style={{ backgroundImage: `url(${cover})` }} className={`university-cover ${mobile ? 'university-cover-mobile' : 'university-cover-desk'}`}>
-          <div className="row align-center">
+      <div className={`page page-university ${guest ? 'page-guest' : ''} ${mobile ? 'page-university-mobile' : ''}`}>
+        <NavigationBar location="site" guest={guest} />
+        <div style={{ backgroundImage: `url(${cover})` }} className={`university-cover ${guest ? 'university-cover-guest' : ''} ${mobile ? 'university-cover-mobile' : 'university-cover-desk'}`}>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
             <div className="university-logo" style={{ backgroundImage: `url(${logo})` }} />
             <div className="col">
               <div className="university-cover__title">{university.title}</div>
@@ -119,7 +131,7 @@ class University extends Component {
         <Tabs
           onChange={this.handleSlideChange}
           value={slideIndex}
-          className={`tabs-search ${mobile ? 'tabs-search-mobile' : 'tabs-search-desktop'}`}
+          className={`tabs-search ${guest ? 'tabs-search-guest' : ''} ${mobile ? 'tabs-search-mobile' : 'tabs-search-desktop'}`}
         >
           <Tab label="Información general" value={0} style={tabStyle} />
           <Tab label="Carreras" value={1} style={tabStyle} />
@@ -132,7 +144,7 @@ class University extends Component {
 
 function mapStateToProps(state) {
   return {
-    token: state.user.currentUser.auth_token,
+    token: state.user.currentUser ? state.user.currentUser.auth_token : null,
     university: state.fetch.university,
   };
 }

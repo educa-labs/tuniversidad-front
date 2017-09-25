@@ -22,35 +22,40 @@ class ExpandibleCard extends Component {
     super(props);
     this.state = {
       expanded: false,
+      popup: false,
     };
     this.linkTo = this.linkTo.bind(this);
     this.handleInfoClick = this.handleInfoClick.bind(this);
     this.handleFavButton = this.handleFavButton.bind(this);
     this.getType = this.getType.bind(this);
   }
-
-  handleInfoClick() {
-    this.context.router.push(`site/career/${this.props.career.id}`);
-  }
-  linkTo() {
-    this.context.router.push(`site/university/${this.props.career.university_id}`);
-  }
-
-  handleFavButton() {
-    const { career, token, goals } = this.props;
-    const isFavorite = _.findIndex(goals, goal => goal.carreer.id === career.id) > -1;
-    if (isFavorite) {
-      this.props.removeGoal(career.id, token);
-    } else {
-      this.props.addGoal(career.id, token);
-    }
-  }
-
   getType() {
     const { career } = this.props;
     if (career.weighing.science !== 0 && career.weighing.history) return 'Historia o Ciencias';
     return career.weighing.science !== 0 ? 'Ciencias' : 'Historia';
   }
+
+  handleInfoClick() {
+    this.context.router.push(`${this.props.guest ? '' : 'site'}/career/${this.props.career.id}`);
+  }
+  linkTo() {
+    this.context.router.push(`${this.props.guest ? '' : 'site'}/university/${this.props.career.university_id}`);
+  }
+
+  handleFavButton() {
+    const { career, token, goals, guest, goalClick } = this.props;
+    if (guest) {
+      goalClick();
+    } else {
+      const isFavorite = _.findIndex(goals, goal => goal.carreer.id === career.id) > -1;
+      if (isFavorite) {
+        this.props.removeGoal(career.id, token);
+      } else {
+        this.props.addGoal(career.id, token);
+      }
+    }
+  }
+
 
   render() {
     const { career, goals, mobile } = this.props;
@@ -63,8 +68,8 @@ class ExpandibleCard extends Component {
           <div className="general-card__header cursor" onClick={() => this.setState({ expanded: !expanded })}>
             <div className="col">
               <div className={`general-card__title title_no-margin ${mobile ? 'title-truncate' : ''}`}>{career.title}</div>
-              <button className={`general-card__subtitle color-blue ${mobile ? 'title-truncate' : ''}`} onTouchTap={this.linkTo} >
-                <span className="hover-blue">{career.university_name} en {career.campu_name}</span>
+              <button className={`general-card__subtitle color-blue ${mobile ? 'title-truncate' : ''}`}>
+                <span onTouchTap={this.linkTo} className="hover-blue">{career.university_name} en {career.campu_name}</span>
               </button>
             </div>
             <IconButton>
@@ -126,6 +131,7 @@ class ExpandibleCard extends Component {
 
 ExpandibleCard.defaultProps = {
   mobile: false,
+  guest: false,
 };
 
 ExpandibleCard.propTypes = {
@@ -135,6 +141,7 @@ ExpandibleCard.propTypes = {
   // isFavorite: PropTypes.bool.isRequired,
   // requesting: PropTypes.bool.isRequired,
   mobile: PropTypes.bool,
+  guest: PropTypes.bool,
 };
 
 ExpandibleCard.contextTypes = {
@@ -143,9 +150,9 @@ ExpandibleCard.contextTypes = {
 
 function mapStateToProps(state) {
   return {
+    token: state.user.currentUser ? state.user.currentUser.auth_token : null,
     goals: state.goals.goals,
     requesting: state.goals.requesting,
-    token: state.user.currentUser.auth_token,
     compare: state.compare,
   };
 }

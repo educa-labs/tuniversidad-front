@@ -7,7 +7,6 @@ import { getGoals } from '../actions/goals';
 import { fetch } from '../actions/fetch';
 import { getMostPopular } from '../actions/search';
 import { getNews } from '../actions/news';
-import { CAREER, UNIVERSITY } from '../constants/strings';
 import '../styles/SideMenu.css';
 import '../styles/GeneralCard.css';
 
@@ -28,9 +27,6 @@ class Site extends Component {
       if (is.null(this.props.goals)) this.props.getGoals(token);
     }
     if (is.not.existy(user)) this.context.router.replace('/');
-    if (is.empty(this.props.popularCareers)) this.props.getMostPopular(CAREER, token);
-    if (is.empty(this.props.popularUniv)) this.props.getMostPopular(UNIVERSITY, token);
-    if (is.null(this.props.regions)) this.props.fetch('regions', null, token);
     if (is.null(this.props.universities)) this.props.fetch('universities', null, token);
     if (is.null(this.props.news)) this.props.getNews(token);
   }

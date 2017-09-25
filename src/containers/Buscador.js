@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import is from 'is_js';
+import Snackbar from 'material-ui/Snackbar';
 import SearchInput from '../components/buscador/Input';
 import SearchInputMobile from '../components/buscador/InputMobile';
 import { search, getNextPage, clearSearch, makeSubmit as onClearFilter } from '../actions/search';
@@ -11,9 +12,9 @@ import Selector from '../components/buscador/Selector';
 import FilterTags from '../components/buscador/FilterTags';
 import Filters from '../components/buscador/Filters';
 import MobileBanner from './MobileBanner';
-import { CAREER, UNIVERSITY } from '../constants/strings';
+import { CAREER, UNIVERSITY, GUEST } from '../constants/strings';
 import { numeral } from '../helpers/numeral';
-import { capitalize } from '../helpers/strings';
+import { capitalize, getLocation } from '../helpers/strings';
 import { MIN_CUT, MIN_DURATION, MIN_PRICE, MAX_CUT, MAX_DURATION, MAX_PRICE } from '../constants/num';
 import '../styles/Buscador.css';
 
@@ -74,11 +75,12 @@ const isDefaultValue = (filterName, value) => {
 class Buscador extends Component {
   constructor(props) {
     super(props);
-    this.state = { input: '' };
+    this.state = { input: '', popup: false };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInfinite = this.handleInfinite.bind(this);
     this.handleActiveChange = this.handleActiveChange.bind(this);
     this.getActivefilters = this.getActivefilters.bind(this);
+    this.handleGoalClick = this.handleGoalClick.bind(this);
   }
 
 
@@ -101,12 +103,13 @@ class Buscador extends Component {
     }
   }
 
+  
   handleActiveChange(value) {
     this.props.setActiveFilter(value);
     this.props.clearSearch();
   }
-
-
+  
+  
   getActivefilters(filters, afterSearch) {
     if (!afterSearch) return [];
     const tagName = (filterName, value) => {
@@ -117,14 +120,14 @@ class Buscador extends Component {
         case 'region_id': return `Región: ${getItemWithId(this.props.regions, value).title}`;
         case 'city_ids': return `Ciudad: ${getItemWithId(this.props.cities, value).title}`;
         case 'schedule': return `Horario: ${capitalize(value)}`;
-        case 'university_type': return `Tipo de universidad: ${getItemWithId(this.props.types, value).title}`;
+        case 'university_type_id': return `Tipo de universidad: ${getItemWithId(this.props.types, value).title}`;
         case 'freeness': return `Gratuidad: ${freeness2String(value)}`;
         case 'area': return `Área: ${getItemWithId(this.props.areas, value).title}`;
         case 'university_id': return `${getItemWithId(this.props.universities, value).title}`;
         default: return '';
       }
     };
-
+    
     const result = [];
     Object.keys(filters).forEach((filterName) => {
       if (!isDefaultValue(filterName, filters[filterName])) {
@@ -138,6 +141,10 @@ class Buscador extends Component {
     return result;
   }
 
+  handleGoalClick() {
+    this.setState({ popup: true });
+  }
+  
   handleSubmit(event) {
     if (event) event.preventDefault();
     const { active, token } = this.props;
@@ -157,16 +164,29 @@ class Buscador extends Component {
   }
 
   render() {
-    const { active, popCareers, afterSearch, result, popUniversities, requesting } = this.props;
+    const { active, popCareers, afterSearch, result, popUniversities, requesting, mobile } = this.props;
     const data = getResults(active, afterSearch, result, popCareers, popUniversities);
     const feedback = searchResultFeedback(active, afterSearch, data);
     const placeholder = inputPlaceholder(active);
     const filters = active === UNIVERSITY ? this.props.university_filters : this.props.career_filters;
     const activeFilters = this.getActivefilters(filters, afterSearch);
-    if (this.props.mobile) {
+    const isGuest = getLocation(this.props.location.pathname) === GUEST;
+    const snackBar = (
+      <Snackbar
+        open={this.state.popup}
+        message={mobile ? 'Tienes que iniciar sesión' : 'Tienes que iniciar sesión para agregar una meta' }
+        autoHideDuration={4000}
+        onRequestClose={() => this.setState({ popup: false })}
+        action={mobile ? null : 'Iniciar Sesión'}
+        onActionTouchTap={() => this.context.router.push('/login')}
+      />
+    );
+
+    if (mobile) {
       return (
         <div className="col">
-          <MobileBanner onClick={this.props.toggleMenu} />
+          <MobileBanner onClick={this.props.toggleMenu} guest={isGuest} />
+          {isGuest ? snackBar : null}
           <SearchInputMobile
             value={this.state.input}
             handleOnChange={value => this.setState({ input: value })}
@@ -198,6 +218,8 @@ class Buscador extends Component {
               requesting={this.props.requesting}
               handleInfinite={this.handleInfinite}
               hasMore={this.props.hasMore}
+              goalClick={this.handleGoalClick}
+              guest={isGuest}
               mobile
             />
           </div>
@@ -206,6 +228,7 @@ class Buscador extends Component {
     }
     return (
       <div className="col">
+        {isGuest ? snackBar : null}
         <SearchInput
           value={this.state.input}
           handleOnChange={value => this.setState({ input: value })}
@@ -213,12 +236,12 @@ class Buscador extends Component {
           handleSubmit={this.handleSubmit}
           requesting={requesting}
           active={active}
-          afterSearch={afterSearch}
           mobile={this.props.mobile}
-          clearSearch={this.props.clearSearch}
+          guest={isGuest}
         />
-        <div className="search-content-page">
-          <div className="search-results">
+        <div className={`search-content-page ${isGuest ? 'search-content-page-guest' : ''}`}>
+          {isGuest ? <div className="search-input-empty" /> : null}
+          <div className={`search-results ${isGuest ? 'search-results-guest' : ''}`}>
             <Selector active={this.props.active} onSelect={this.handleActiveChange} />
             <FilterTags
               activeFilters={activeFilters}
@@ -232,6 +255,8 @@ class Buscador extends Component {
               requesting={this.props.requesting}
               handleInfinite={this.handleInfinite}
               hasMore={this.props.hasMore}
+              guest={isGuest}
+              goalClick={this.handleGoalClick}
             />
           </div>
           <div className="search-filters">
@@ -249,10 +274,11 @@ class Buscador extends Component {
 
 Buscador.defaultProps = {
   mobile: false,
+  token: null,
 };
 
 Buscador.propTypes = {
-  token: PropTypes.string.isRequired,
+  token: PropTypes.string,
   active: PropTypes.string.isRequired,
   search: PropTypes.func.isRequired,
   requesting: PropTypes.bool.isRequired,
@@ -270,7 +296,7 @@ Buscador.contextTypes = {
 
 function mapStateToProps(state) {
   return {
-    token: state.user.currentUser.auth_token,
+    token: state.user.currentUser ? state.user.currentUser.auth_token : null,
     active: state.filter.active,
     result: state.search.result,
     afterSearch: state.search.afterSearch,
@@ -283,7 +309,7 @@ function mapStateToProps(state) {
     university_filters: {
       region_id: state.filter.region_id !== -1 ? state.filter.region_id : null,
       city_ids: state.filter.cities !== -1 ? state.filter.cities : null,
-      university_type: state.filter.university_type !== -1 ? state.filter.university_type : null,
+      university_type_id: state.filter.university_type_id !== -1 ? state.filter.university_type_id : null,
       freeness: state.filter.freeness !== -1 ? state.filter.freeness : null,
     },
     career_filters: {
