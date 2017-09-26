@@ -85,6 +85,9 @@ class Buscador extends Component {
 
 
   componentDidMount() {
+    if (this.props.location.pathname === '/search' && is.not.null(this.props.token)) {
+      this.context.router.replace('/site/search');
+    }
     if (this.props.mobile) {
       if (this.props.makeSubmit) this.handleSubmit();
     }

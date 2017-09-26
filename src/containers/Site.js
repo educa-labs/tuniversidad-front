@@ -21,14 +21,14 @@ class Site extends Component {
   }
 
   componentDidMount() {
-    const { user } = this.props;
-    const token = user.auth_token;
-    if (user.nem !== null && user.ranking !== null) {
+    const { token } = this.props;
+    if (is.null(token)) {
+      this.context.router.replace('/search');
+    } else {
       if (is.null(this.props.goals)) this.props.getGoals(token);
+      if (is.null(this.props.universities)) this.props.fetch('universities', null, token);
+      if (is.null(this.props.news)) this.props.getNews(token);
     }
-    if (is.not.existy(user)) this.context.router.replace('/');
-    if (is.null(this.props.universities)) this.props.fetch('universities', null, token);
-    if (is.null(this.props.news)) this.props.getNews(token);
   }
 
   render() {
@@ -56,6 +56,7 @@ class Site extends Component {
 
 Site.defaultProps = {
   children: null,
+  token: null,
 };
 
 Site.contextTypes = {
@@ -66,13 +67,14 @@ Site.propTypes = {
   children: PropTypes.node,
   getGoals: PropTypes.func.isRequired,
   fetch: PropTypes.func.isRequired,
+  token: PropTypes.string,
   getMostPopular: PropTypes.func.isRequired,
   active: PropTypes.string.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
-    user: state.user.currentUser,
+    token: state.user.currentUser ? state.user.currentUser.auth_token : null,
     active: state.filter.active,
     popularCareers: state.search.popular_careers,
     popularUniv: state.search.popular_univ,
