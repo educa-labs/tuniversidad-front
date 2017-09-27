@@ -64,19 +64,23 @@ class SearchInput extends React.Component {
           />
         </form>
         <div className="search-input-empty">
-          <FlatButton
-            label="Regístrate"
-            labelStyle={{ color: '#0091EA' }}
-            style={{ marginRight: '5px' }}
-            onTouchTap={() => this.context.router.push('/signup')}
-          />
-          <RaisedButton
-            label="Inicia Sesión"
-            backgroundColor="#0091EA"
-            labelColor="#FFFFFF"
-            style={{ marginRight: '5px' }}
-            onTouchTap={() => this.context.router.push('/login')}
-          />
+          {props.guest ? (
+            <FlatButton
+              label="Regístrate"
+              labelStyle={{ color: '#0091EA' }}
+              style={{ marginRight: '5px' }}
+              onTouchTap={() => this.context.router.push('/signup')}
+            />
+          ) : null}
+          {props.guest ? (
+            <RaisedButton
+              label="Inicia Sesión"
+              backgroundColor="#0091EA"
+              labelColor="#FFFFFF"
+              style={{ marginRight: '5px' }}
+              onTouchTap={() => this.context.router.push('/login')}
+            />
+          ) : null}
         </div>
       </div>
     );
