@@ -94,13 +94,6 @@ class Buscador extends Component {
 
   componentDidMount() {
     const { pathname } = this.props.location;
-    window.twttr.widgets.createShareButton(
-      '/',
-      document.getElementById('twitter-button'),
-      {
-        text: 'Hello World',
-      },
-    );
     if ((pathname === '/search' || pathname === '/') && is.not.null(this.props.token)) {
       this.context.router.replace('/site/search');
     }

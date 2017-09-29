@@ -18,6 +18,7 @@ class NewsCard extends Component {
       src: null,
     };
     this.toggleOpen = this.toggleOpen.bind(this);
+    this.parseBody = this.parseBody.bind(this);
   }
 
   componentWillMount() {
@@ -27,6 +28,16 @@ class NewsCard extends Component {
 
   toggleOpen() {
     this.setState({ open: !this.state.open });
+  }
+
+  parseBody() {
+    const body = this.props.news.body.split("\n");
+    const res = [];
+    body.forEach((par) => {
+      res.push(par);
+      res.push(<br />);
+    });
+    return res;
   }
 
   render() {
@@ -48,7 +59,7 @@ class NewsCard extends Component {
         </div>
         <Collapse isOpened={this.state.open}>
           <div className="news-body">
-            {news.body}
+            {this.parseBody()}
           </div>
         </Collapse>
         <div className="row">
