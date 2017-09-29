@@ -31,11 +31,11 @@ class NewsCard extends Component {
   }
 
   parseBody() {
-    const body = this.props.news.body.split("\n");
+    const body = this.props.news.body.split('\n');
     const res = [];
-    body.forEach((par) => {
+    body.forEach((par, index) => {
       res.push(par);
-      res.push(<br />);
+      res.push(<br key={index} />);
     });
     return res;
   }
