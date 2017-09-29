@@ -62,7 +62,7 @@ class Career extends Component {
   render() {
     const { slideIndex, cover } = this.state;
     const { career, mobile } = this.props;
-    const guest = getLocation(this.props.location.pathname);
+    const guest = getLocation(this.props.location.pathname) === GUEST;
     if (is.any.null(career, cover)) {
       return (
         <div className="fullscreen">

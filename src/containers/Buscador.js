@@ -11,6 +11,8 @@ import SearchResult from '../components/buscador/Results';
 import Selector from '../components/buscador/Selector';
 import FilterTags from '../components/buscador/FilterTags';
 import Filters from '../components/buscador/Filters';
+import ShareFB from '../components/utility/ShareFB';
+import ShareTwitter from '../components/utility/ShareTwitter';
 import MobileBanner from './MobileBanner';
 import { CAREER, UNIVERSITY, GUEST } from '../constants/strings';
 import { numeral } from '../helpers/numeral';
@@ -71,6 +73,12 @@ const isDefaultValue = (filterName, value) => {
   }
 };
 
+const handleShareFBClick = () => {
+  window.FB.ui({
+    method: 'share',
+    href: 'https://tuniversidad.cl',
+  });
+};
 
 class Buscador extends Component {
   constructor(props) {
@@ -86,6 +94,13 @@ class Buscador extends Component {
 
   componentDidMount() {
     const { pathname } = this.props.location;
+    window.twttr.widgets.createShareButton(
+      '/',
+      document.getElementById('twitter-button'),
+      {
+        text: 'Hello World',
+      },
+    );
     if ((pathname === '/search' || pathname === '/') && is.not.null(this.props.token)) {
       this.context.router.replace('/site/search');
     }
@@ -106,7 +121,6 @@ class Buscador extends Component {
       this.setState({ input: '' });
     }
   }
-
   
   handleActiveChange(value) {
     this.props.setActiveFilter(value);
@@ -246,7 +260,17 @@ class Buscador extends Component {
         <div className={`search-content-page ${isGuest ? 'search-content-page-guest' : ''}`}>
           {isGuest ? <div className="search-input-empty" /> : null}
           <div className={`search-results ${isGuest ? 'search-results-guest' : ''}`}>
-            <Selector active={this.props.active} onSelect={this.handleActiveChange} />
+            <div className="row">
+              <div className="col">
+                <Selector active={this.props.active} onSelect={this.handleActiveChange} />
+              </div>
+              <div className="col">
+                <div className="row justify-end">
+                  <ShareFB onClick={handleShareFBClick} type="facebook" />
+                  <ShareTwitter />
+                </div>
+              </div>
+            </div>
             <FilterTags
               activeFilters={activeFilters}
               clearFilterValue={this.props.clearFilterValue}

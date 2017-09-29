@@ -27,3 +27,21 @@
 .slide p {
   text-align: justify;
 }
+
+.share {
+  height: 24px;
+  width: 24px;
+  margin: 5px;
+  cursor: pointer;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.facebook {
+  background-image: url(../assets/facebook.svg);
+}
+
+.twitter {
+  background-image: url(../assets/twitter.svg);
+}
