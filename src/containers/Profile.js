@@ -10,7 +10,7 @@ import { getUserObjectives, updateUserObjectives } from '../actions/objectives';
 import { saveUser } from '../helpers/storage';
 import ProfileGeneral from '../components/ProfileGeneral';
 import ProfileProgress from '../components/ProfileProgress';
-import Newton from '../containers/Newton';
+import Newton from '../components/newton/Newton';
 import Loading from '../components/Loading';
 import FirstSteps from '../components/tutorial/FirstSteps';
 import MobileBanner from './MobileBanner';
