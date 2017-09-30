@@ -67,3 +67,12 @@ export function getCareerCampus(id, token) {
     .accept('application/tuniversidad.v1')
     .withCredentials();
 }
+
+export function getPrediction(subId, token) {
+  return Request.get(`${url}/prediction/${subId}`)
+    .set('Content-Type', 'application/json')
+    .set('Authorization', token)
+    .accept('application/tuniversidad.v1')
+    .withCredentials()
+    .then(res => res.body);
+}
