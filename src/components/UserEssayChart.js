@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import is from 'is_js';
 import { Line, Chart } from 'react-chartjs-2';
 import Loading from '../components/Loading';
+import Grid from '../components/utility/Grid';
 
 
 class UserEssayChart extends Component {
@@ -148,6 +149,14 @@ class UserEssayChart extends Component {
         <div className="general-card__chart">
           {is.empty(selected.essays) ? noContent : <Line data={data} options={options} />}
         </div>
+        <Grid columns={2} mobile={this.props.mobile}>
+          <div className="col">
+            Predicción
+          </div>
+          <div className="col">
+            Chao
+          </div>
+        </Grid>
       </div>
     );
   }

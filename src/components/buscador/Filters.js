@@ -57,7 +57,6 @@ function Filters(props, context) {
       value={values.region}
       handleChange={(region) => {
         props.changeFilterValue('region_id', region);
-        // getCities(region);
         if (!props.mobile) props.makeSubmit();
       }}
       fullWidth
