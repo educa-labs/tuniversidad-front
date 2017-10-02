@@ -76,3 +76,10 @@ export function getPrediction(subId, token) {
     .withCredentials()
     .then(res => res.body);
 }
+
+export function getSimilarCareers(id) {
+  return Request.get(`${url}/similar?carreer_id=${id}&k=9`)
+    .set('Content-Type', 'application/json')
+    .accept('application/tuniversidad.v1')
+    .withCredentials();
+}

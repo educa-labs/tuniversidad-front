@@ -16,7 +16,7 @@ import Info from '../components/university/UniversityInfo';
 import InfoMobile from '../components/university/UniversityInfoMobile';
 import Grid from '../components/utility/Grid';
 import CareerCampus from '../components/university/CareerCampus';
-import { GUEST, SITE } from '../constants/strings';
+import { GUEST } from '../constants/strings';
 
 const tabStyle = {
   fontSize: '12px',
@@ -52,7 +52,7 @@ class University extends Component {
 
   getContent(slideIndex) {
     const { mobile, university } = this.props;
-    const guest = getLocation(this.props.location.pathname);
+    const guest = getLocation(this.props.location.pathname) === GUEST;
     const mapCards = this.state.campus.map(campus => (
       <CareerCampus campus={campus} mobile={this.props.mobile} key={campus.id} />
     ));
