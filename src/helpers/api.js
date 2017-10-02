@@ -67,3 +67,19 @@ export function getCareerCampus(id, token) {
     .accept('application/tuniversidad.v1')
     .withCredentials();
 }
+
+export function getPrediction(subId, token) {
+  return Request.get(`${url}/prediction/${subId}`)
+    .set('Content-Type', 'application/json')
+    .set('Authorization', token)
+    .accept('application/tuniversidad.v1')
+    .withCredentials()
+    .then(res => res.body);
+}
+
+export function getSimilarCareers(id) {
+  return Request.get(`${url}/similar?carreer_id=${id}&k=9`)
+    .set('Content-Type', 'application/json')
+    .accept('application/tuniversidad.v1')
+    .withCredentials();
+}

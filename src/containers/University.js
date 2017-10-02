@@ -10,23 +10,18 @@ import Loading from '../components/Loading';
 import { fetch } from '../actions/fetch';
 import '../styles/University.css';
 import { getCareers, getCampus, getCover } from '../helpers/api';
+import { getLocation } from '../helpers/strings';
 import Description from '../components/university/DescriptionCard';
 import Info from '../components/university/UniversityInfo';
 import InfoMobile from '../components/university/UniversityInfoMobile';
 import Grid from '../components/utility/Grid';
 import CareerCampus from '../components/university/CareerCampus';
-import { GUEST, SITE } from '../constants/strings';
+import { GUEST } from '../constants/strings';
 
 const tabStyle = {
   fontSize: '12px',
   fontWeight: 400,
 };
-
-const getLocation = (path) => {
-  if (path.indexOf('site') > -1) return SITE;
-  return GUEST;
-};
-
 
 class University extends Component {
 
@@ -57,7 +52,7 @@ class University extends Component {
 
   getContent(slideIndex) {
     const { mobile, university } = this.props;
-    const guest = getLocation(this.props.location.pathname);
+    const guest = getLocation(this.props.location.pathname) === GUEST;
     const mapCards = this.state.campus.map(campus => (
       <CareerCampus campus={campus} mobile={this.props.mobile} key={campus.id} />
     ));
@@ -103,10 +98,9 @@ class University extends Component {
   }
 
   render() {
-    console.log(this.state);
     const { careers, slideIndex, campus, cover, logo } = this.state;
     const { university, mobile } = this.props;
-    const guest = getLocation(this.props.location.pathname);
+    const guest = getLocation(this.props.location.pathname) === GUEST;
 
     if (!is.all.existy(university, careers, campus, cover, logo)) {
       return (
@@ -115,7 +109,6 @@ class University extends Component {
         </div>
       );
     }
-    console.log('Entramos', this.state);
     return (
       <div className={`page page-university ${guest ? 'page-guest' : ''} ${mobile ? 'page-university-mobile' : ''}`}>
         <NavigationBar location="site" guest={guest} />

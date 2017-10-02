@@ -11,6 +11,8 @@ import SearchResult from '../components/buscador/Results';
 import Selector from '../components/buscador/Selector';
 import FilterTags from '../components/buscador/FilterTags';
 import Filters from '../components/buscador/Filters';
+import ShareFB from '../components/utility/ShareFB';
+import ShareTwitter from '../components/utility/ShareTwitter';
 import MobileBanner from './MobileBanner';
 import { CAREER, UNIVERSITY, GUEST } from '../constants/strings';
 import { numeral } from '../helpers/numeral';
@@ -28,6 +30,16 @@ const freeness2String = (value) => {
   if (value === 1) return 'No';
   if (value === 2) return 'Sí';
   return '';
+};
+
+const activeFilters = (filters) => {
+  const result = {};
+  Object.keys(filters).forEach((field) => {
+    if (!isDefaultValue(field, filters[field])) {
+      result[field] = filters[field];
+    }
+  });
+  return result;
 };
 
 const searchResultFeedback = (active, afterSearch, data) => {
@@ -71,6 +83,12 @@ const isDefaultValue = (filterName, value) => {
   }
 };
 
+const handleShareFBClick = () => {
+  window.FB.ui({
+    method: 'share',
+    href: 'https://tuniversidad.cl',
+  });
+};
 
 class Buscador extends Component {
   constructor(props) {
@@ -99,7 +117,7 @@ class Buscador extends Component {
       if (nextProps.makeSubmit) {
         const filters = nextProps.active === UNIVERSITY ? nextProps.university_filters :  nextProps.career_filters; 
         if (filters.freeness) filters.freeness = mapFreeness(filters.freeness);
-        nextProps.search(nextProps.active, this.state.input, nextProps.token, filters);
+        nextProps.search(nextProps.active, this.state.input, nextProps.token, activeFilters(filters));
       }
     }
     if (nextProps.active !== this.props.active) {
@@ -107,13 +125,6 @@ class Buscador extends Component {
     }
   }
 
-  
-  handleActiveChange(value) {
-    this.props.setActiveFilter(value);
-    this.props.clearSearch();
-  }
-  
-  
   getActivefilters(filters, afterSearch) {
     if (!afterSearch) return [];
     const tagName = (filterName, value) => {
@@ -145,6 +156,11 @@ class Buscador extends Component {
     return result;
   }
 
+  handleActiveChange(value) {
+    this.props.setActiveFilter(value);
+    this.props.clearSearch();
+  }
+
   handleGoalClick() {
     this.setState({ popup: true });
   }
@@ -155,7 +171,7 @@ class Buscador extends Component {
     const { input } = this.state;
     const filters = active === UNIVERSITY ? this.props.university_filters : this.props.career_filters;
     if (filters.freeness) filters.freeness = mapFreeness(filters.freeness);
-    this.props.search(active, input, token, filters);
+    this.props.search(active, input, token, activeFilters(filters));
     if (this.state.showFilters) this.setState({ showFilters: false });
   }
 
@@ -246,7 +262,17 @@ class Buscador extends Component {
         <div className={`search-content-page ${isGuest ? 'search-content-page-guest' : ''}`}>
           {isGuest ? <div className="search-input-empty" /> : null}
           <div className={`search-results ${isGuest ? 'search-results-guest' : ''}`}>
-            <Selector active={this.props.active} onSelect={this.handleActiveChange} />
+            <div style={{ display: 'flex' }}>
+              <div className="col">
+                <Selector active={this.props.active} onSelect={this.handleActiveChange} />
+              </div>
+              <div className="col">
+                <div className="row justify-end">
+                  <ShareFB onClick={handleShareFBClick} type="facebook" />
+                  <ShareTwitter />
+                </div>
+              </div>
+            </div>
             <FilterTags
               activeFilters={activeFilters}
               clearFilterValue={this.props.clearFilterValue}

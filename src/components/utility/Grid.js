@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function Grid({ children, mobile, columns }) {
-  console.log(children);
   function generateCols() {
     if (mobile) {
       return (
