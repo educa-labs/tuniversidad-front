@@ -114,7 +114,7 @@ class Career extends Component {
 
     return (
       <div className={`page ${guest ? 'page-guest' : ''} page-university ${mobile ? 'page-university-mobile' : ''}`}>
-        <NavigationBar location="site" guest={guest} />
+        <NavigationBar location="site" guest={guest} mobile={mobile} />
         <div style={{ backgroundImage: `url(${cover})` }} className={`university-cover ${guest ? 'university-cover-guest' : ''} ${mobile ? 'university-cover-mobile' : 'university-cover-desk'}`}>
           <div className="university-cover__title">{career.title}</div>
           <div

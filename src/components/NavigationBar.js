@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { scroller } from 'react-scroll';
 import IconButton from 'material-ui/IconButton';
 import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
@@ -56,7 +57,9 @@ function NavigationBar(props, context) {
     );
   }
 
-  if (props.location === 'site' && !props.guest) className = `${className} navigation-bar_site`;
+  if (props.location === 'site' && !props.guest) {
+    className = `${className} navigation-bar_site${props.mobile ? '-mobile' : ''}`;
+  }
   const arrowColor = props.location === 'filters' ? '#000000' : '#FFFFFF';
   return (
     <div className={className}>
@@ -74,6 +77,8 @@ NavigationBar.propTypes = {
   solid: PropTypes.bool,
   dirty: PropTypes.bool,
   active: PropTypes.number,
+  mobile: PropTypes.bool,
+  guest: PropTypes.guest,
 };
 
 NavigationBar.defaultProps = {
@@ -83,6 +88,7 @@ NavigationBar.defaultProps = {
   dirty: false,
   active: null,
   guest: false,
+  mobile: false,
 };
 
 NavigationBar.contextTypes = {
