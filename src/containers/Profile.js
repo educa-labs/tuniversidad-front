@@ -78,7 +78,7 @@ class Profile extends Component {
       case 1:
         return <ProfileProgress {...this.props} />;
       case 2:
-        return <Newton {...this.props} />;
+        return <Newton />;
       default: return null;
     }
   }
