@@ -63,7 +63,7 @@ class ExpandibleCard extends Component {
     const special = [33, 36].includes(career.university_id);
     
     return (
-      <div>
+      <div style={{ flex: 1 }}>
         <div className="expandible-card">
           <div className="general-card__header cursor" onClick={() => this.setState({ expanded: !expanded })}>
             <div className="col">
