@@ -1,0 +1,41 @@
+.newton-section {
+  width: 25rem;
+  display: flex;
+}
+
+.newton-section .title {
+  margin: 10px 0;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.newton-section .how-work {
+  color: #0091EA;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.newton-section p {
+  text-align: justify;
+}
+
+
+.newton-fullscreen {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.newton-fullscreen .title {
+  margin: 10px 0;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.recomendation {
+  display: flex;
+}
+
+.selections {
+  padding: 1rem;
+}
