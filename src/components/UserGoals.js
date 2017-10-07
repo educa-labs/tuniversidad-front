@@ -19,6 +19,7 @@ class UserGoals extends Component {
   }
 
   renderGoal(goal) {
+    if (is.null(goal.scores)) return null;
     const missing = [];
     if (is.empty(this.props.essays[1].essays)) missing.push('Lenguaje');
     if (is.empty(this.props.essays[2].essays)) missing.push('Matemáticas');
