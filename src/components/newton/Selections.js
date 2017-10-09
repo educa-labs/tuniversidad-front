@@ -1,12 +1,18 @@
 import React from 'react';
 import Recomendation from './Recomendation';
 
-const Selections = ({ careers }) => (
+const Selections = ({ recomendations, onDecline, onAcept, loading }) => (
   <section className="newton-fullscreen">
     <div className="col col-3 padding-2">
       <div className="search-feedback">Te recomiendo</div>
-      {careers.slice(0, 3).map(car => (
-        <Recomendation key={car.id} career={car} />
+      {recomendations.slice(0, 3).map(req => (
+        <Recomendation
+          key={req.id}
+          career={req.carreer}
+          onDecline={() => onDecline(req.id)}
+          onAccept={() => onAcept(req.id)}
+          loading={loading}
+        />
       ))}
     </div>
     <div className="col padding-2">

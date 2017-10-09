@@ -31,8 +31,11 @@ class ExpandibleCard extends Component {
   }
   getType() {
     const { career } = this.props;
-    if (career.weighing.science !== 0 && career.weighing.history) return 'Historia o Ciencias';
-    return career.weighing.science !== 0 ? 'Ciencias' : 'Historia';
+    if (career.weighing) {
+      if (career.weighing.science !== 0 && career.weighing.history) return 'Historia o Ciencias';
+      return career.weighing.science !== 0 ? 'Ciencias' : 'Historia';
+    }
+    return '';
   }
 
   handleInfoClick() {

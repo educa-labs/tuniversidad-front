@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import is from 'is_js';
 import { connect } from 'react-redux';
+import { getRecomendations, likeRecomendation } from '../../actions/recomends';
+import Loading from '../Loading';
 import HelloNewton from './HelloNewton';
 import NewtonOne from './NewtonOne';
 import NewtonTwo from './NewtonTwo';
@@ -19,6 +23,25 @@ class Newton extends Component {
     };
     this.handleNext = this.handleNext.bind(this);
     this.handleBack = this.handleBack.bind(this);
+    this.onRecomendClick = this.onRecomendClick.bind(this);
+    this.onRecomendationAcept = this.onRecomendationAcept.bind(this);
+    this.onRecomendationDecline = this.onRecomendationDecline.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.recomends !== this.props.recomends) {
+      if (is.not.null(nextProps.recomends)) {
+        console.log(nextProps.recomends)
+        if (nextProps.recomends.length > 0) this.setState({ current: 3 });
+        else this.setState({ current: 4 });
+      }
+    }
+  }
+
+  onRecomendClick() {
+    const { token } = this.props;
+    const { predictionScore, predictionArea, selectedArea } = this.state;
+    this.props.getRecomendations(token, predictionScore, predictionArea, selectedArea);
   }
 
   getContent(current) {
@@ -55,7 +78,10 @@ class Newton extends Component {
       case 3:
         return (
           <Selections
-            careers={this.props.careers}
+            recomendations={this.props.recomends}
+            onAcept={this.onRecomendationAcept}
+            onDecline={this.onRecomendationDecline}
+            loading={this.props.requesting}
           />
         );
       case 4:
@@ -69,10 +95,18 @@ class Newton extends Component {
             handlePredictionAreaChange={val => this.setState({ predictionArea: val })}
             predictionArea={this.state.predictionArea}
             predictionScore={this.state.predictionScore}
+            onRecomend={this.onRecomendClick}
           />
         );
       default: return null;
     }
+  }
+  onRecomendationAcept(id) {
+    this.props.likeRecomendation(this.props.token, id, true);
+  }
+  
+  onRecomendationDecline(id) {
+    this.props.likeRecomendation(this.props.token, id, false);
   }
 
   handleNext() {
@@ -86,14 +120,28 @@ class Newton extends Component {
   render() {
     return (
       <div className="newton-container">
-        {this.getContent(this.state.current)}
+        {this.props.loading && this.state.current === 4 ? (
+          <Loading />
+        ) : this.getContent(this.state.current)}
       </div>
     );
   }
 }
 
 
+Newton.propTypes = {
+  token: PropTypes.string.isRequired,
+  getRecomendations: PropTypes.func.isRequired,
+  likeRecomendation: PropTypes.func.isRequired,
+};
+
 export default connect(state => ({
+  recomends: state.recomends.recomends,
+  loading: state.recomends.requesting,
+  token: state.user.currentUser.auth_token,
   careers: state.search.popular_careers,
   areas: state.fetch.areas,
-}))(Newton);
+}), {
+  getRecomendations,
+  likeRecomendation,
+})(Newton);
