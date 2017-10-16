@@ -42,6 +42,10 @@ class Career extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    if (this.props.params.id !== nextProps.params.id) {
+      this.props.fetch('career', nextProps.params.id, nextProps.token);
+      this.setState({ slideIndex: 0 });
+    }
     if (this.props.career !== nextProps.career) {
       if (is.not.null(nextProps.career)) {
         getCareerCover(nextProps.career.area_id)
@@ -102,9 +106,9 @@ class Career extends Component {
 
   render() {
     const { slideIndex, cover } = this.state;
-    const { career, mobile } = this.props;
+    const { career, mobile, requesting } = this.props;
     const guest = getLocation(this.props.location.pathname) === GUEST;
-    if (is.null(career)) {
+    if (is.null(career) || requesting) {
       return (
         <div className="fullscreen">
           <Loading />
@@ -142,6 +146,7 @@ function mapStateToProps(state) {
   return {
     token: state.user.currentUser ? state.user.currentUser.auth_token : null,
     career: state.fetch.career,
+    requesting: state.fetch.requesting,
   };
 }
 
@@ -152,6 +157,7 @@ Career.defaultProps = {
 Career.propTypes = {
   fetch: PropTypes.func.isRequired,
   token: PropTypes.string.isRequired,
+  requesting: PropTypes.bool.isRequired,
   mobile: PropTypes.bool,
   params: PropTypes.object,
   career: PropTypes.object,

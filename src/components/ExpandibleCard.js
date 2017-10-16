@@ -56,7 +56,6 @@ class ExpandibleCard extends Component {
     }
   }
 
-
   render() {
     const { career, goals, mobile } = this.props;
     const { expanded } = this.state;
