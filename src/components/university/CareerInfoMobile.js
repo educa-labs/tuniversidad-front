@@ -1,11 +1,12 @@
 import React from 'react';
 import { numeral } from '../../helpers/numeral';
 
-function CareerInfoMobile({ career }) {
+function CareerInfoMobile({ career, links }) {
   function getType() {
     if (career.weighing.science !== 0 && career.weighing.history) return 'Historia o Ciencias';
     return career.weighing.science !== 0 ? 'Ciencias' : 'Historia';
   }
+  const special = [33, 36].includes(career.university_id);
   return (
     <div>
       <div className="career-section-header">Ponderación</div>
@@ -61,6 +62,12 @@ function CareerInfoMobile({ career }) {
           <div className="expandible-label">Empleabilidad</div>
           <div className="expandible-value">{career.employability ? `${career.employability}%` : 'No disponible'}</div>
         </div>
+        {special ? (
+          <div className="row">
+            <div className="expandible-label">Sitio web</div>
+            <div className="expandible-value"><a href={links[career.id]}>{career.university_name}</a></div>
+          </div>
+        ) : null}
       </div>
       <div className="career-section-header">Descripción</div>
       <div className="career-section-body career-description">

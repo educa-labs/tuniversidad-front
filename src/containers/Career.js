@@ -70,14 +70,14 @@ class Career extends Component {
   }
 
   getContent(slideIndex) {
-    const { mobile, career } = this.props;
+    const { mobile, career, links } = this.props;
     const guest = getLocation(this.props.location.pathname) === GUEST;
     switch (slideIndex) {
       case 0:
-        return mobile ? <InfoMobile career={career} /> : (
+        return mobile ? <InfoMobile career={career} links={links} /> : (
           <Grid columns={2}>
             <Description text={career.description} />
-            <Info career={career} />
+            <Info career={career} links={links} />
             {this.state.campus ? <Campus campus={this.state.campus} /> : <Loading />}
           </Grid>
         );
@@ -147,6 +147,7 @@ function mapStateToProps(state) {
     token: state.user.currentUser ? state.user.currentUser.auth_token : null,
     career: state.fetch.career,
     requesting: state.fetch.requesting,
+    links: state.links,
   };
 }
 

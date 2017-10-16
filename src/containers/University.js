@@ -111,7 +111,7 @@ class University extends Component {
     }
     return (
       <div className={`page page-university ${guest ? 'page-guest' : ''} ${mobile ? 'page-university-mobile' : ''}`}>
-        <NavigationBar location="site" guest={guest} />
+        <NavigationBar location="site" guest={guest} mobile={mobile} />
         <div style={{ backgroundImage: `url(${cover})` }} className={`university-cover ${guest ? 'university-cover-guest' : ''} ${mobile ? 'university-cover-mobile' : 'university-cover-desk'}`}>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <div className="university-logo" style={{ backgroundImage: `url(${logo})` }} />
