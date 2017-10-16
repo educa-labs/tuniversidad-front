@@ -83,6 +83,14 @@ class ExpandibleCard extends Component {
           <Collapse isOpened={expanded}>
             <div className="expandible-body">
               <div className="row">
+                <div className="expandible-label">NEM</div>
+                <div className="expandible-value">{career.weighing ? career.weighing.NEM : null}%</div>
+              </div>
+              <div className="row">
+                <div className="expandible-label">Ranking</div>
+                <div className="expandible-value">{career.weighing ? career.weighing.ranking : null}%</div>
+              </div>
+              <div className="row">
                 <div className="expandible-label">Lenguaje</div>
                 <div className="expandible-value">{career.weighing ? career.weighing.language : null}%</div>
               </div>
@@ -93,14 +101,6 @@ class ExpandibleCard extends Component {
               <div className="row">
                 <div className="expandible-label">{this.getType()}</div>
                 <div className="expandible-value">{career.weighing ? career.weighing.science || career.weighing.history : null}%</div>
-              </div>
-              <div className="row">
-                <div className="expandible-label">NEM</div>
-                <div className="expandible-value">{career.weighing ? career.weighing.NEM : null}%</div>
-              </div>
-              <div className="row">
-                <div className="expandible-label">Ranking</div>
-                <div className="expandible-value">{career.weighing ? career.weighing.ranking : null}%</div>
               </div>
               <div className="row">
                 <div className="expandible-label">Corte 2016</div>
