@@ -5,7 +5,6 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import UserEssays from './UserEssays';
 import UserEssayChart from './UserEssayChart';
 import UserEssayForm from './UserEssayForm';
-import { getPrediction } from '../helpers/api';
 
 
 class PropfileProgress extends Component {
@@ -21,21 +20,6 @@ class PropfileProgress extends Component {
     this.handleEdit = this.handleEdit.bind(this);
   }
 
-  async componentWillMount() {
-    const { token } = this.props;
-    try {
-      const predictions = {
-        1: await getPrediction(1, token),
-        2: await getPrediction(2, token),
-        3: await getPrediction(3, token),
-        4: await getPrediction(4, token),
-      };
-      this.setState({ predictions });
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
   async componentWillReceiveProps(nextProps) {
     if (this.props.essays.requesting) {
       if (!nextProps.essays.requesting && this.state.openModal) {
@@ -46,14 +30,6 @@ class PropfileProgress extends Component {
       if (nextProps.essays.shouldFetch !== this.props.essays.shouldFetch) {
         this.props.getEssays(nextProps.token, nextProps.essays.shouldFetch);
         this.props.getGoals(nextProps.token);
-        if (nextProps.essays[nextProps.essays.shouldFetch].essays.length > 2) {
-          const prediction = await getPrediction(nextProps.essays.shouldFetch, nextProps.token);
-          this.setState({
-            predictions: Object.assign(this.state.predictions, {
-              [nextProps.essays.shouldFetch]: prediction,
-            }),
-          });
-        }
       }
     }
   }
