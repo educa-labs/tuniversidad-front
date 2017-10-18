@@ -35,7 +35,7 @@ function Info({ career, mobile, links }) {
             {special ? (
               <div className="general-card__item">
                 <div className="value">Sitio web</div>
-                <div className="label"><a href={links[career.id]}>{career.university_name}</a></div>
+                <div className="label"><a href={links[career.id]}>{career.title}</a></div>
               </div>
             ) : null}
           </div>

@@ -65,7 +65,7 @@ function CareerInfoMobile({ career, links }) {
         {special ? (
           <div className="row">
             <div className="expandible-label">Sitio web</div>
-            <div className="expandible-value"><a href={links[career.id]}>{career.university_name}</a></div>
+            <div className="expandible-value"><a href={links[career.id]}>{career.title}</a></div>
           </div>
         ) : null}
       </div>
