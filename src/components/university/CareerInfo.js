@@ -41,6 +41,14 @@ function Info({ career, mobile, links }) {
           </div>
           <div className="col">
             <div className="general-card__item">
+              <div className="value">{career.weighing ? career.weighing.NEM : 'No disponible'}%</div>
+              <div className="label">NEM</div>
+            </div>
+            <div className="general-card__item no-margin">
+              <div className="value">{career.weighing ? career.weighing.ranking : 'No disponible'}%</div>
+              <div className="label">Ranking</div>
+            </div>
+            <div className="general-card__item">
               <div className="value">{career.weighing ? career.weighing.language : 'No disponible'}%</div>
               <div className="label">Lenguaje</div>
             </div>
@@ -51,14 +59,6 @@ function Info({ career, mobile, links }) {
             <div className="general-card__item">
               <div className="value">{career.weighing ? career.weighing.science || career.weighing.history : 'No disponible'}%</div>
               <div className="label">{science ? 'Ciencias' : 'Historia'}</div>
-            </div>
-            <div className="general-card__item">
-              <div className="value">{career.weighing ? career.weighing.NEM : 'No disponible'}%</div>
-              <div className="label">NEM</div>
-            </div>
-            <div className="general-card__item no-margin">
-              <div className="value">{career.weighing ? career.weighing.ranking : 'No disponible'}%</div>
-              <div className="label">Ranking</div>
             </div>
           </div>
         </div>
