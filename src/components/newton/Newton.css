@@ -27,7 +27,9 @@
 }
 
 .newton-fullscreen .title {
-  margin: 10px 0;
+  display: flex;
+  height: 48px;
+  align-items: center;
   font-weight: 500;
   font-size: 16px;
 }
@@ -38,4 +40,12 @@
 
 .selections {
   padding: 1rem;
+}
+
+.newton-modal {
+  text-align: justify;
+}
+
+.newton-modal span {
+  color: #0091EA;
 }

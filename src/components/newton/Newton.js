@@ -17,7 +17,7 @@ class Newton extends Component {
     this.state = {
       current: 4,
       showModal: false,
-      predictionScore: 'essays',
+      predictionScore: 'objectives',
       predictionArea: 'manual',
       selectedArea: null,
     };
@@ -31,7 +31,6 @@ class Newton extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.recomends !== this.props.recomends) {
       if (is.not.null(nextProps.recomends)) {
-        console.log(nextProps.recomends)
         if (nextProps.recomends.length > 0) this.setState({ current: 3 });
         else this.setState({ current: 4 });
       }
@@ -44,6 +43,7 @@ class Newton extends Component {
     this.props.getRecomendations(token, predictionScore, predictionArea, selectedArea);
   }
 
+  
   getContent(current) {
     switch (current) {
       case 0:
@@ -96,11 +96,28 @@ class Newton extends Component {
             predictionArea={this.state.predictionArea}
             predictionScore={this.state.predictionScore}
             onRecomend={this.onRecomendClick}
+            disableEssayOption={this.disableEssayOption()}
+            disableGoalOption={this.disableGoalOption()}
           />
         );
       default: return null;
     }
   }
+
+  disableEssayOption() {
+    let count = 0;
+    Object.keys(this.props.essays).forEach((id) => {
+      if (is.not.null(this.props.essays[id])) {
+        if (this.props.essays[id].essays.length > 2) count += 1;
+      }
+    });
+    return count === 0;
+  }
+
+  disableGoalOption() {
+    return is.null(this.props.goals) || is.empty(this.props.goals);
+  }
+
   onRecomendationAcept(id) {
     this.props.likeRecomendation(this.props.token, id, true);
   }
@@ -116,6 +133,7 @@ class Newton extends Component {
   handleBack() {
     this.setState({ current: this.state.current - 1 });
   }
+
 
   render() {
     return (
@@ -141,6 +159,13 @@ export default connect(state => ({
   token: state.user.currentUser.auth_token,
   careers: state.search.popular_careers,
   areas: state.fetch.areas,
+  goals: state.goals.goals,
+  essays: {
+    1: state.essays[1],
+    2: state.essays[2],
+    3: state.essays[3],
+    4: state.essays[4],
+  },
 }), {
   getRecomendations,
   likeRecomendation,
