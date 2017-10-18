@@ -63,7 +63,7 @@ button {
 }
 
 .padding-2 {
-  padding: 0 1rem;
+  padding: 1rem 2rem;
 }
 
 .padding-8 {
@@ -92,6 +92,7 @@ button {
 
 .page {
   flex: 1;
+  display: flex;
   margin-left: 230px;
   padding-top: 48px;
   min-height: 100vh;
@@ -184,6 +185,10 @@ button {
 
 .col-3 {
   flex: 3;
+}
+
+.col-4 {
+  flex: 4;
 }
 
 .col-grey-desk {

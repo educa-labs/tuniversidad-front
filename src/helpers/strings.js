@@ -1,4 +1,6 @@
+import is from 'is_js';
 import { GUEST, SITE } from '../constants/strings';
+
 export function makeList(list) {
   let rep = '';
   for (let i = 0; i < list.length; i++) {
@@ -59,4 +61,15 @@ export function capitalize(string) {
 export const getLocation = (path) => {
   if (path.indexOf('site') > -1) return SITE;
   return GUEST;
+};
+
+const all = { value: -1, label: 'Todas' };
+
+export const getOptions = (items, ...rest) => {
+  if (is.null(items)) return [];
+  const result = items.map(item => ({
+    value: item.id, label: capitalize(item.title),
+  }));
+  if (!rest[0]) result.unshift(all);
+  return result;
 };

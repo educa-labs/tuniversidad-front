@@ -22,7 +22,6 @@ function SelectInput(props) {
     <SelectField
       value={value}
       onChange={onChange}
-      fullWidth
       floatingLabelText={title}
       {...other}
     >

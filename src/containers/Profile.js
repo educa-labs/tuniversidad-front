@@ -10,7 +10,7 @@ import { getUserObjectives, updateUserObjectives } from '../actions/objectives';
 import { saveUser } from '../helpers/storage';
 import ProfileGeneral from '../components/ProfileGeneral';
 import ProfileProgress from '../components/ProfileProgress';
-import Newton from '../containers/Newton';
+import Newton from '../components/newton/Newton';
 import Loading from '../components/Loading';
 import FirstSteps from '../components/tutorial/FirstSteps';
 import MobileBanner from './MobileBanner';
@@ -78,7 +78,7 @@ class Profile extends Component {
       case 1:
         return <ProfileProgress {...this.props} />;
       case 2:
-        return <Newton {...this.props} />;
+        return <Newton />;
       default: return null;
     }
   }

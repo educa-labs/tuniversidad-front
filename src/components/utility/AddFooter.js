@@ -3,7 +3,7 @@ import FlatButton from 'material-ui/FlatButton';
 
 function AddFooter(Target) {
   return ({ handleNext, handleBack, disabled, ...props }) => (
-    <div className="general-card">
+    <div>
       <Target {...props} />
       <div className="dialog-footer">
         <FlatButton
