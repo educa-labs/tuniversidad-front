@@ -42,6 +42,10 @@ class Career extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    if (this.props.params.id !== nextProps.params.id) {
+      this.props.fetch('career', nextProps.params.id, nextProps.token);
+      this.setState({ slideIndex: 0 });
+    }
     if (this.props.career !== nextProps.career) {
       if (is.not.null(nextProps.career)) {
         getCareerCover(nextProps.career.area_id)
@@ -66,14 +70,14 @@ class Career extends Component {
   }
 
   getContent(slideIndex) {
-    const { mobile, career } = this.props;
+    const { mobile, career, links } = this.props;
     const guest = getLocation(this.props.location.pathname) === GUEST;
     switch (slideIndex) {
       case 0:
-        return mobile ? <InfoMobile career={career} /> : (
+        return mobile ? <InfoMobile career={career} links={links} /> : (
           <Grid columns={2}>
             <Description text={career.description} />
-            <Info career={career} />
+            <Info career={career} links={links} />
             {this.state.campus ? <Campus campus={this.state.campus} /> : <Loading />}
           </Grid>
         );
@@ -102,9 +106,9 @@ class Career extends Component {
 
   render() {
     const { slideIndex, cover } = this.state;
-    const { career, mobile } = this.props;
+    const { career, mobile, requesting } = this.props;
     const guest = getLocation(this.props.location.pathname) === GUEST;
-    if (is.null(career)) {
+    if (is.null(career) || requesting) {
       return (
         <div className="fullscreen">
           <Loading />
@@ -114,7 +118,7 @@ class Career extends Component {
 
     return (
       <div className={`page ${guest ? 'page-guest' : ''} page-university ${mobile ? 'page-university-mobile' : ''}`}>
-        <NavigationBar location="site" guest={guest} />
+        <NavigationBar location="site" guest={guest} mobile={mobile} />
         <div style={{ backgroundImage: `url(${cover})` }} className={`university-cover ${guest ? 'university-cover-guest' : ''} ${mobile ? 'university-cover-mobile' : 'university-cover-desk'}`}>
           <div className="university-cover__title">{career.title}</div>
           <div
@@ -142,6 +146,8 @@ function mapStateToProps(state) {
   return {
     token: state.user.currentUser ? state.user.currentUser.auth_token : null,
     career: state.fetch.career,
+    requesting: state.fetch.requesting,
+    links: state.links,
   };
 }
 
@@ -152,6 +158,7 @@ Career.defaultProps = {
 Career.propTypes = {
   fetch: PropTypes.func.isRequired,
   token: PropTypes.string.isRequired,
+  requesting: PropTypes.bool.isRequired,
   mobile: PropTypes.bool,
   params: PropTypes.object,
   career: PropTypes.object,

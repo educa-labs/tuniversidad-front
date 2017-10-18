@@ -56,11 +56,11 @@ class ExpandibleCard extends Component {
     }
   }
 
-
   render() {
     const { career, goals, mobile } = this.props;
     const { expanded } = this.state;
     const isFavorite = _.findIndex(goals, goal => goal.carreer.id === career.id) > -1;
+    const special = [33, 36].includes(career.university_id);
     
     return (
       <div>
@@ -83,6 +83,14 @@ class ExpandibleCard extends Component {
           <Collapse isOpened={expanded}>
             <div className="expandible-body">
               <div className="row">
+                <div className="expandible-label">NEM</div>
+                <div className="expandible-value">{career.weighing ? career.weighing.NEM : null}%</div>
+              </div>
+              <div className="row">
+                <div className="expandible-label">Ranking</div>
+                <div className="expandible-value">{career.weighing ? career.weighing.ranking : null}%</div>
+              </div>
+              <div className="row">
                 <div className="expandible-label">Lenguaje</div>
                 <div className="expandible-value">{career.weighing ? career.weighing.language : null}%</div>
               </div>
@@ -95,15 +103,7 @@ class ExpandibleCard extends Component {
                 <div className="expandible-value">{career.weighing ? career.weighing.science || career.weighing.history : null}%</div>
               </div>
               <div className="row">
-                <div className="expandible-label">NEM</div>
-                <div className="expandible-value">{career.weighing ? career.weighing.NEM : null}%</div>
-              </div>
-              <div className="row">
-                <div className="expandible-label">Ranking</div>
-                <div className="expandible-value">{career.weighing ? career.weighing.ranking : null}%</div>
-              </div>
-              <div className="row">
-                <div className="expandible-label">Corte 2016</div>
+                <div className="expandible-label">{special ? 'Mínimo de postulación' : 'Corte 2016'}</div>
                 <div className="expandible-value">{career.last_cut}</div>
               </div>
             </div>

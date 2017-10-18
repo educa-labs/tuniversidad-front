@@ -29,6 +29,7 @@ class ExpandibleUnivCard extends Component {
   render() {
     const { expanded } = this.state;
     const { university, mobile } = this.props;
+    
     return (
       <div>
         <div className="expandible-card">

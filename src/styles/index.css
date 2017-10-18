@@ -108,7 +108,7 @@ button {
 }
 
 .page-university {
-  padding: 286px 2rem 0 2rem;
+  padding: 288px 2rem 0 2rem;
 }
 
 .page-university-mobile {
@@ -262,4 +262,8 @@ button {
 
 .is-margin-top {
   margin-top: 48px;
+}
+
+.infinite-scroll-component {
+  margin-top: 10px;
 }

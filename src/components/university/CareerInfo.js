@@ -2,8 +2,9 @@ import React from 'react';
 import is from 'is_js';
 import { numeral } from '../../helpers/numeral';
 
-function Info({ career, mobile }) {
+function Info({ career, mobile, links }) {
   const science = career.weighing ? is.existy(career.weighing.science) : null;
+  const special = [33, 36].includes(career.university_id);
   
   return (
     <div className="univ-card">
@@ -31,8 +32,22 @@ function Info({ career, mobile }) {
               <div className="value">{career.employability ? `${career.employability}%` : 'No disponible'}</div>
               <div className="label">Empleabilidad</div>
             </div>
+            {special ? (
+              <div className="general-card__item">
+                <div className="value">Sitio web</div>
+                <div className="label"><a href={links[career.id]}>{career.title}</a></div>
+              </div>
+            ) : null}
           </div>
           <div className="col">
+            <div className="general-card__item">
+              <div className="value">{career.weighing ? career.weighing.NEM : 'No disponible'}%</div>
+              <div className="label">NEM</div>
+            </div>
+            <div className="general-card__item no-margin">
+              <div className="value">{career.weighing ? career.weighing.ranking : 'No disponible'}%</div>
+              <div className="label">Ranking</div>
+            </div>
             <div className="general-card__item">
               <div className="value">{career.weighing ? career.weighing.language : 'No disponible'}%</div>
               <div className="label">Lenguaje</div>
@@ -44,14 +59,6 @@ function Info({ career, mobile }) {
             <div className="general-card__item">
               <div className="value">{career.weighing ? career.weighing.science || career.weighing.history : 'No disponible'}%</div>
               <div className="label">{science ? 'Ciencias' : 'Historia'}</div>
-            </div>
-            <div className="general-card__item">
-              <div className="value">{career.weighing ? career.weighing.NEM : 'No disponible'}%</div>
-              <div className="label">NEM</div>
-            </div>
-            <div className="general-card__item no-margin">
-              <div className="value">{career.weighing ? career.weighing.ranking : 'No disponible'}%</div>
-              <div className="label">Ranking</div>
             </div>
           </div>
         </div>

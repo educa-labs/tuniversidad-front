@@ -9,6 +9,7 @@ import essays from './essays';
 import objectives from './objectives';
 import profileNavigation from './profile';
 import news from './news';
+import links from './links';
 
 export default combineReducers({
   user,
@@ -21,4 +22,5 @@ export default combineReducers({
   objectives,
   profileNavigation,
   news,
+  links,
 });
