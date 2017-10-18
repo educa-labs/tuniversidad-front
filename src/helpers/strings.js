@@ -65,11 +65,11 @@ export const getLocation = (path) => {
 
 const all = { value: -1, label: 'Todas' };
 
-export const getOptions = (items) => {
+export const getOptions = (items, ...rest) => {
   if (is.null(items)) return [];
   const result = items.map(item => ({
     value: item.id, label: capitalize(item.title),
   }));
-  result.unshift(all);
+  if (!rest[0]) result.unshift(all);
   return result;
 };
