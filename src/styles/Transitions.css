@@ -1,21 +1,17 @@
 .exit-enter {
-  opacity: 0.01;
   height: 0px;
 }
 
 .exit-enter.exit-active {
-  opacity: 1;
   height: 52px;
   transition: 700ms;
 }
 
 .exit-leave {
-  opacity: 1;
   height: 52px;
 }
 
 .exit-leave.exit-leave-active {
-  opacity: 0.01;
   height: 0px;
   transition: 700ms;
 }

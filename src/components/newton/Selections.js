@@ -12,7 +12,7 @@ const Selections = ({ recomendations, onDecline, onAcept, loading, mobile }) => 
         transitionEnterTimeout={700}
         transitionLeaveTimeout={700}
       >
-        {recomendations.slice(0, 3).map(req => (
+        {recomendations.map(req => (
           <Recomendation
             key={req.id}
             career={req}

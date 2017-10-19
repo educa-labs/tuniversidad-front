@@ -50,6 +50,7 @@ class SideMenu extends Component {
         open={this.props.open}
         onRequestChange={this.props.onRequestChange}
         containerClassName="side-menu"
+        disableSwipeToOpen={this.props.currentTab === 2 && selected === 'profile'}
         containerStyle={{
           backgroundColor: '#424242',
           minHeight: '32rem',
@@ -117,6 +118,7 @@ SideMenu.contextTypes = {
 function mapStateToProps(state) {
   return {
     user: state.user.currentUser,
+    currentTab: state.profileNavigation.tab,
   };
 }
 

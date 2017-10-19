@@ -20,12 +20,17 @@ class Newton extends Component {
       predictionScore: 'objectives',
       predictionArea: 'manual',
       selectedArea: null,
+      aux: [],
     };
     this.handleNext = this.handleNext.bind(this);
     this.handleBack = this.handleBack.bind(this);
     this.onRecomendClick = this.onRecomendClick.bind(this);
     this.onRecomendationAcept = this.onRecomendationAcept.bind(this);
     this.onRecomendationDecline = this.onRecomendationDecline.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({ aux: this.props.careers.slice(0, 3) });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -84,7 +89,7 @@ class Newton extends Component {
       case 3:
         return (
           <Selections
-            recomendations={this.props.careers}
+            recomendations={this.state.aux}
             onAcept={this.onRecomendationAcept}
             onDecline={this.onRecomendationDecline}
             loading={this.props.requesting}
@@ -127,11 +132,23 @@ class Newton extends Component {
   }
 
   onRecomendationAcept(id) {
-    this.props.likeRecomendation(this.props.token, id, true);
+    // this.props.likeRecomendation(this.props.token, id, true);
+    setTimeout(() => {
+      console.log('adios');
+      this.setState(prevState => ({
+        aux: prevState.aux.filter(car => car.id !== id),
+      }));
+    }, 600);
   }
   
   onRecomendationDecline(id) {
-    this.props.likeRecomendation(this.props.token, id, false);
+    //this.props.likeRecomendation(this.props.token, id, false);
+    setTimeout(() => {
+      console.log('adios');
+      this.setState(prevState => ({
+        aux: prevState.aux.filter(car => car.id !== id),
+      }));
+    }, 600);
   }
 
   handleNext() {
