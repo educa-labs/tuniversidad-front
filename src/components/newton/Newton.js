@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import is from 'is_js';
 import { connect } from 'react-redux';
-import { getRecomendations, likeRecomendation } from '../../actions/recomends';
+import { getRecomendations, likeRecomendation, changeTab } from '../../actions/recomends';
 import Loading from '../Loading';
 import HelloNewton from './HelloNewton';
 import NewtonOne from './NewtonOne';
@@ -15,12 +15,10 @@ class Newton extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      current: 3,
       showModal: false,
       predictionScore: 'objectives',
       predictionArea: 'manual',
       selectedArea: null,
-      aux: [],
     };
     this.handleNext = this.handleNext.bind(this);
     this.handleBack = this.handleBack.bind(this);
@@ -29,15 +27,15 @@ class Newton extends Component {
     this.onRecomendationDecline = this.onRecomendationDecline.bind(this);
   }
 
-  componentDidMount() {
-    this.setState({ aux: this.props.careers.slice(0, 3) });
-  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.recomends !== this.props.recomends) {
       if (is.not.null(nextProps.recomends)) {
-        if (nextProps.recomends.length > 0) this.setState({ current: 3 });
-        else this.setState({ current: 4 });
+        if (nextProps.recomends.length > 0) {
+          nextProps.changeTab(3);
+        } else {
+          setTimeout(() => nextProps.changeTab(4), 300);
+        }
       }
     }
   }
@@ -89,7 +87,7 @@ class Newton extends Component {
       case 3:
         return (
           <Selections
-            recomendations={this.state.aux}
+            recomendations={this.props.recomends}
             onAcept={this.onRecomendationAcept}
             onDecline={this.onRecomendationDecline}
             loading={this.props.requesting}
@@ -132,26 +130,20 @@ class Newton extends Component {
   }
 
   onRecomendationAcept(id) {
-    // this.props.likeRecomendation(this.props.token, id, true);
     setTimeout(() => {
-      this.setState(prevState => ({
-        aux: prevState.aux.filter(car => car.id !== id),
-      }));
-    }, 600);
+      this.props.likeRecomendation(this.props.token, id, true);
+    }, 300);
   }
   
   onRecomendationDecline(id) {
-    //this.props.likeRecomendation(this.props.token, id, false);
     setTimeout(() => {
-      this.setState(prevState => ({
-        aux: prevState.aux.filter(car => car.id !== id),
-      }));
-    }, 600);
+      this.props.likeRecomendation(this.props.token, id, false);
+    }, 300);
   }
 
   handleNext() {
-    if (this.state.current < 3) {
-      this.setState({ current: this.state.current + 1 });
+    if (this.props.currentTab < 2) {
+      this.props.changeTab(this.props.currentTab + 1);
     } else {
       this.onRecomendClick();
     }
@@ -165,9 +157,9 @@ class Newton extends Component {
   render() {
     return (
       <div className={this.props.mobile ? 'newton-container-mobile' : 'newton-container'}>
-        {this.props.loading && this.state.current === 4 ? (
+        {this.props.loading && this.props.currentTab !== 3 ? (
           <Loading />
-        ) : this.getContent(this.state.current)}
+        ) : this.getContent(this.props.currentTab)}
       </div>
     );
   }
@@ -183,6 +175,8 @@ Newton.propTypes = {
 export default connect(state => ({
   recomends: state.recomends.recomends,
   loading: state.recomends.requesting,
+  currentTab: state.recomends.currentTab,
+  failure: state.recomends.error,
   token: state.user.currentUser.auth_token,
   careers: state.search.popular_careers,
   areas: state.fetch.areas,
@@ -196,4 +190,5 @@ export default connect(state => ({
 }), {
   getRecomendations,
   likeRecomendation,
+  changeTab,
 })(Newton);

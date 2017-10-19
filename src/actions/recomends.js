@@ -5,9 +5,20 @@ import {
   RECOMENDATIONS_SUCCESS,
   LIKE_RECOMENDATION,
   UNLIKE_RECOMENDATION,
+  CHANGE_TAB,
+  HISTORY_SUCCESS,
 } from './types';
 
 import url from '../constants/url';
+
+export const getHistory = (token) => {
+  console.log('Bamos a pedir el historial', token);
+  return {
+    type: HISTORY_SUCCESS,
+    payload: [],
+  };
+};
+
 
 export function getRecomendations(token, predictionScore, predictionArea, selectedArea) {
   const request = Request.post(`${url}/recommendation`)
@@ -26,14 +37,15 @@ export function getRecomendations(token, predictionScore, predictionArea, select
     });
     try {
       const response = await request;
+      console.log(response);
       dispatch({
         type: RECOMENDATIONS_SUCCESS,
         payload: response.body,
       });
     } catch (err) {
+      console.log(err);
       dispatch({
         type: RECOMENDATIONS_FAILURE,
-        error: true,
         payload: err,
       });
     }
@@ -72,9 +84,12 @@ export function likeRecomendation(token, id, liked) {
       dispatch({
         type: RECOMENDATIONS_FAILURE,
         payload: err,
-        error: true,
       });
     }
   };
 }
 
+export const changeTab = tab => ({
+  type: CHANGE_TAB,
+  payload: tab,
+});

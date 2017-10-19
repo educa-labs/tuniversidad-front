@@ -1,42 +1,74 @@
+import { combineReducers } from 'redux';
 import {
   RECOMENDATIONS_FAILURE,
   RECOMENDATIONS_REQUEST,
   RECOMENDATIONS_SUCCESS,
   LIKE_RECOMENDATION,
   UNLIKE_RECOMENDATION,
+  CHANGE_TAB,
+  HISTORY_SUCCESS,
 } from '../actions/types';
 
-const initialState = {
-  recomends: null,
-  history: null,
-  requesting: false,
-  error: null,
+
+const history = (state = null, action) => {
+  switch (action.type) {
+    case HISTORY_SUCCESS:
+      return action.payload;
+    default:
+      return state;
+  }
 };
 
-function recomends(state = initialState, action) {
+const error = (state = false, action) => {
   switch (action.type) {
-    case RECOMENDATIONS_REQUEST:
-      return Object.assign({}, state, {
-        requesting: true,
-      });
     case RECOMENDATIONS_FAILURE:
-      return Object.assign({}, state, {
-        requesting: false,
-      });
+      return true;
     case RECOMENDATIONS_SUCCESS:
-      return Object.assign({}, state, {
-        recomends: action.payload,
-        requesting: false,
-      });
+      return false;
+    default:
+      return state;
+  }
+};
+
+const requesting = (state = false, action) => {
+  switch (action.type) {
+    case RECOMENDATIONS_SUCCESS:
+    case RECOMENDATIONS_REQUEST:
+      return true;
+    case LIKE_RECOMENDATION:
+    case UNLIKE_RECOMENDATION:
+    case RECOMENDATIONS_FAILURE:
+    default:
+      return false;
+  }
+};
+
+const recomends = (state = null, action) => {
+  switch (action.type) {
+    case RECOMENDATIONS_SUCCESS:
+      return action.payload;
     case UNLIKE_RECOMENDATION:
     case LIKE_RECOMENDATION:
-      return Object.assign({}, state, {
-        recomends: state.recomends.filter(req => req.id !== action.payload),
-        requesting: false,
-      });
-    default: return state;
+      return state.filter(req => req.id !== action.payload);
+    default:
+      return state;
   }
-}
+};
 
-export default recomends;
+const currentTab = (state = 0, action) => {
+  switch (action.type) {
+    case CHANGE_TAB:
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+export default combineReducers({
+  error,
+  requesting,
+  recomends,
+  currentTab,
+  history,
+});
 

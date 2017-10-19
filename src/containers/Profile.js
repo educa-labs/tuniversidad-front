@@ -7,6 +7,7 @@ import { updateUserInfo } from '../actions/user';
 import { removeGoal, getGoals } from '../actions/goals';
 import { getEssays, addEssay, removeEssay } from '../actions/essays';
 import { getUserObjectives, updateUserObjectives } from '../actions/objectives';
+import { getHistory } from '../actions/recomends';
 import { saveUser } from '../helpers/storage';
 import ProfileGeneral from '../components/ProfileGeneral';
 import ProfileProgress from '../components/ProfileProgress';
@@ -38,6 +39,7 @@ class Profile extends Component {
 
   componentDidMount() {
     if (is.not.null(this.props.token)) {
+      if (is.null(this.props.history)) this.props.getHistory(this.props.token);
       if (is.null(this.props.objectives.objectives) || this.props.objectives.shouldFetch) this.props.getUserObjectives(this.props.token);
       for (let i = 1; i < 5; i += 1) {
         if (is.null(this.props.essays[i])) this.props.getEssays(this.props.token, i);
@@ -121,6 +123,7 @@ function mapStateToProps(state) {
   return {
     token: state.user.currentUser ? state.user.currentUser.auth_token : null,
     user: state.user.currentUser,
+    history: state.recomends.history,
     objectives: state.objectives,
     essays: {
       1: state.essays[1],
@@ -148,4 +151,5 @@ export default connect(mapStateToProps, {
   getGoals,
   selectEssay,
   selectTab,
+  getHistory,
 })(Profile);
