@@ -103,7 +103,13 @@ class Profile extends Component {
         >
           <Tab label="General" value={0} style={tabStyle} />
           <Tab label="Progreso" value={1} style={tabStyle} />
-          <Tab label="Newton" value={2} style={tabStyle} />
+          <Tab
+            label={
+              <p>Newton <span style={{ color: '#0091EA' }}>{mobile ? '' : '¡Nuevo!'}</span></p>
+            }
+            value={2}
+            style={tabStyle}
+          />
         </Tabs>
         {this.getContent(this.props.navigation.tab)}
       </div>
