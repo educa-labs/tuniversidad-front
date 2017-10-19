@@ -18,12 +18,12 @@ class Recomentadion extends Component {
   }
 
   handleAccept() {
-    setTimeout(() => this.setState({ index: 0 }), 300);
+    setTimeout(() => this.setState({ index: 0 }), 200);
     setTimeout(this.props.onAccept);
   }
 
   handleDecline() {
-    setTimeout(() => this.setState({ index: 2 }), 300);
+    setTimeout(() => this.setState({ index: 2 }), 200);
     setTimeout(this.props.onDecline);
   }
 

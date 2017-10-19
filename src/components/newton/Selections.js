@@ -9,8 +9,8 @@ const Selections = ({ recomendations, onDecline, onAcept, loading, mobile }) => 
       <div className="search-feedback">Te recomiendo</div>
       <ReactCSSTransitionGroup
         transitionName="exit"
-        transitionEnterTimeout={700}
-        transitionLeaveTimeout={700}
+        transitionEnterTimeout={400}
+        transitionLeaveTimeout={400}
       >
         {recomendations.map(req => (
           <Recomendation

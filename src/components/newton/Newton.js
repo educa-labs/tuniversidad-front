@@ -134,7 +134,6 @@ class Newton extends Component {
   onRecomendationAcept(id) {
     // this.props.likeRecomendation(this.props.token, id, true);
     setTimeout(() => {
-      console.log('adios');
       this.setState(prevState => ({
         aux: prevState.aux.filter(car => car.id !== id),
       }));
@@ -144,7 +143,6 @@ class Newton extends Component {
   onRecomendationDecline(id) {
     //this.props.likeRecomendation(this.props.token, id, false);
     setTimeout(() => {
-      console.log('adios');
       this.setState(prevState => ({
         aux: prevState.aux.filter(car => car.id !== id),
       }));

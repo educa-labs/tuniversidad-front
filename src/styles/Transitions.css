@@ -4,7 +4,7 @@
 
 .exit-enter.exit-active {
   height: 52px;
-  transition: 700ms;
+  transition: 400ms;
 }
 
 .exit-leave {
@@ -13,5 +13,5 @@
 
 .exit-leave.exit-leave-active {
   height: 0px;
-  transition: 700ms;
+  transition: 400ms;
 }

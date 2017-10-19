@@ -70,8 +70,8 @@ class ExpandibleCard extends Component {
         <div className="expandible-card">
           <div className="general-card__header cursor" onClick={() => this.setState({ expanded: !expanded })}>
             <div className="col">
-              <div className={`general-card__title title_no-margin ${mobile ? 'title-truncate' : ''}`}>{career.title}</div>
-              <button className={`general-card__subtitle color-blue ${mobile ? 'title-truncate' : ''}`}>
+              <div className={`general-card__title title_no-margin ${mobile && !expanded ? 'title-truncate' : ''}`}>{career.title}</div>
+              <button className={`general-card__subtitle color-blue ${mobile && !expanded ? 'title-truncate' : ''}`}>
                 <span onTouchTap={this.linkTo} className="hover-blue">{career.university_name} en {career.campu_name}</span>
               </button>
             </div>
