@@ -5,10 +5,10 @@ import AddFooter from '../utility/AddFooter';
 import SelectInput from '../inputs/SelectInput';
 import { getOptions } from '../../helpers/strings';
 
-const NewtonTwo = ({ handleChange, predictionArea, selectedArea, onSelectArea, areas }) => (
-  <section className="newton-section">
+const NewtonTwo = ({ handleChange, predictionArea, selectedArea, onSelectArea, areas, mobile, disableGoalOption }) => (
+  <section className={mobile ? 'newton-section-mobile' : 'newton-section'}>
     <div className="col">
-      <div className="title">¿Cómo determinamos tu área?</div>
+      <div className="newton-header">¿Cómo determinamos tu área?</div>
       <div className="body">
         <RadioButtonGroup
           name="prediction"
@@ -18,6 +18,7 @@ const NewtonTwo = ({ handleChange, predictionArea, selectedArea, onSelectArea, a
           <RadioButton
             value="goals"
             label="Determinar en base a mis metas"
+            disabled={disableGoalOption}
           />
           <RadioButton
             value="manual"

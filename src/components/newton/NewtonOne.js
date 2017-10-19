@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import AddFooter from '../utility/AddFooter';
 
-const NewtonOne = ({ handleChange, predictionScore }) => (
-  <section className="newton-section">
+const NewtonOne = ({ handleChange, predictionScore, mobile, disableEssayOption }) => (
+  <section className={mobile ? 'newton-section-mobile' : 'newton-section'}>
     <div className="col">
-      <div className="title">¿De qué forma predecimos tus puntajes?</div>
+      <div className="newton-header">¿De qué forma predecimos tus puntajes?</div>
       <div className="body">
         <RadioButtonGroup
           name="prediction"
@@ -16,10 +16,11 @@ const NewtonOne = ({ handleChange, predictionScore }) => (
           <RadioButton
             value="essays"
             label="Usar mis ensayos"
+            disabled={disableEssayOption}
           />
           <RadioButton
-            value="goals"
-            label="Usar mis puntajes meta"
+            value="objectives"
+            label="Usar mis puntajes objetivos"
           />
         </RadioButtonGroup>
       </div>

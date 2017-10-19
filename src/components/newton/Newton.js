@@ -15,7 +15,7 @@ class Newton extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      current: 4,
+      current: 3,
       showModal: false,
       predictionScore: 'objectives',
       predictionArea: 'manual',
@@ -52,6 +52,7 @@ class Newton extends Component {
             showModal={this.state.showModal}
             toggleModal={() => this.setState({ showModal: !this.state.showModal })}
             handleNext={this.handleNext}
+            mobile={this.props.mobile}
           />
         );
       case 1:
@@ -61,6 +62,8 @@ class Newton extends Component {
             handleBack={this.handleBack}
             handleChange={val => this.setState({ predictionScore: val })}
             predictionScore={this.state.predictionScore}
+            mobile={this.props.mobile}
+            disableEssayOption={this.disableEssayOption()}
           />
         );
       case 2:
@@ -73,15 +76,19 @@ class Newton extends Component {
             areas={this.props.areas}
             onSelectArea={selectedArea => this.setState({ selectedArea })}
             selectedArea={this.state.selectedArea}
+            mobile={this.props.mobile}
+            disableGoalOption={this.disableGoalOption()}
+            disabled={this.state.predictionArea === 'manual' && this.state.selectedArea === null}
           />
         );
       case 3:
         return (
           <Selections
-            recomendations={this.props.recomends}
+            recomendations={this.props.careers}
             onAcept={this.onRecomendationAcept}
             onDecline={this.onRecomendationDecline}
             loading={this.props.requesting}
+            mobile={this.props.mobile}
           />
         );
       case 4:
@@ -98,6 +105,7 @@ class Newton extends Component {
             onRecomend={this.onRecomendClick}
             disableEssayOption={this.disableEssayOption()}
             disableGoalOption={this.disableGoalOption()}
+            mobile={this.props.mobile}
           />
         );
       default: return null;
@@ -127,7 +135,11 @@ class Newton extends Component {
   }
 
   handleNext() {
-    this.setState({ current: this.state.current + 1 });
+    if (this.state.current < 3) {
+      this.setState({ current: this.state.current + 1 });
+    } else {
+      this.onRecomendClick();
+    }
   }
 
   handleBack() {
@@ -137,7 +149,7 @@ class Newton extends Component {
 
   render() {
     return (
-      <div className="newton-container">
+      <div className={this.props.mobile ? 'newton-container-mobile' : 'newton-container'}>
         {this.props.loading && this.state.current === 4 ? (
           <Loading />
         ) : this.getContent(this.state.current)}

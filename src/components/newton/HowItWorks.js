@@ -2,12 +2,13 @@ import React from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 
-const Modal = ({ onClose, isOpen, onRequestClose }) => (
+const Modal = ({ onClose, isOpen, onRequestClose, mobile }) => (
   <Dialog
     open={isOpen}
     title="Cómo funciona"
     onRequestClose={onRequestClose}
     contentClassName="newton-modal"
+    contentStyle={mobile ? { width: '100%' } : {} }
     actions={[
       <FlatButton
         label="Ok"

@@ -6,15 +6,19 @@ import Check from 'material-ui/svg-icons/navigation/check';
 import ExpandibleCard from '../ExpandibleCard';
 
 
-const Recomentadion = ({ career, onAccept, onDecline, loading }) => (
+const Recomentadion = ({ career, onAccept, onDecline, loading, mobile }) => (
   <div className="recomendation">
-    <ExpandibleCard career={career} />
-    <IconButton onTouchTap={onAccept} disabled={loading}>
-      <Check color="#424242" />
-    </IconButton>
-    <IconButton onTouchTap={onDecline} disabled={loading}>
-      <Close color="#424242" />
-    </IconButton>
+    <ExpandibleCard career={career} mobile={mobile} />
+    {!mobile && (
+      <IconButton onTouchTap={onAccept} disabled={loading}>
+        <Check color="#424242" />
+      </IconButton>
+    )}
+    {!mobile && (
+      <IconButton onTouchTap={onDecline} disabled={loading}>
+        <Close color="#424242" />
+      </IconButton>
+    )}
   </div>
 );
 

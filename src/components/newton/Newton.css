@@ -3,16 +3,24 @@
   display: flex;
 }
 
-.newton-section .title {
-  margin: 10px 0;
-  font-weight: 500;
-  font-size: 16px;
+.newton-section-mobile {
+  padding: 1rem;
 }
 
-.newton-section .how-work {
+.newton-container-mobile {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+
+.how-work {
   color: #0091EA;
   margin: 10px 0;
   cursor: pointer;
+}
+
+.newton-body {
+  text-align: justify;
 }
 
 .newton-section p {
@@ -26,7 +34,7 @@
   display: flex;
 }
 
-.newton-fullscreen .title {
+.newton-header {
   display: flex;
   height: 48px;
   align-items: center;
@@ -48,4 +56,17 @@
 
 .newton-modal span {
   color: #0091EA;
+}
+
+.newton-fullscreen-mobile {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-2 {
+  order: 2;
+}
+
+.order-1 {
+  order: 1;
 }

@@ -30,23 +30,25 @@ class DashBoard extends Component {
       onRecomend,
       disableEssayOption,
       disableGoalOption,
+      mobile
     } = this.props;
     return (
-      <section className="newton-fullscreen">
+      <section className={mobile ? 'newton-fullscreen-mobile' : 'newton-fullscreen'}>
         <Modal
           isOpen={this.state.showModal}
           onRequestClose={() => this.setState({ showModal: !this.state.showModal })}
+          mobile={mobile}
         />
-        <div className="col col-3 padding-2">
+        <div className={mobile ? 'order-2' : 'col col-3 padding-2'}>
           <div className="search-feedback">Anteriormente recomendadas</div>
           {careers.map(car => (
             <ExpandibleCard key={car.id} career={car} />
           ))}
         </div>
-        <div className="col padding-2">
+        <div className={mobile ? 'order-1' : 'col padding-2'}>
           <div className="search-feedback">Parámetros</div>
-          <div className="expandible-card padding-1">
-            <div className="title">
+          <div className="expandible-card padding-1" style={{ paddingBottom: '10px' }}>
+            <div className="newton-header">
               Puntaje
               <IconButton style={{ padding: '0 10px' }} onTouchTap={() => this.setState({ showModal: true })} >
                 <Help color="#0091EA" />
@@ -67,7 +69,7 @@ class DashBoard extends Component {
                 label="Usar mis puntajes objetivos"
               />
             </RadioButtonGroup>
-            <div className="title">
+            <div className="newton-header">
               Área
             </div>
             <RadioButtonGroup
@@ -95,7 +97,7 @@ class DashBoard extends Component {
               />
             ) : null}
           </div>
-          <div className="padding-2">
+          <div className={mobile ? '' : 'padding-2'} style={mobile ? {margin: '10px 0'} : null}>
             <RaisedButton
               label="Recomiéndame"
               backgroundColor="#0091EA"
