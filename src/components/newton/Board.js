@@ -18,7 +18,7 @@ class DashBoard extends Component {
 
   render() {
     const {
-      careers,
+      history,
       handleChange,
       areas,
       selectedArea,
@@ -41,7 +41,7 @@ class DashBoard extends Component {
         />
         <div className={mobile ? 'order-2' : 'col col-3 padding-2'}>
           <div className="search-feedback">Anteriormente recomendadas</div>
-          {careers.map(car => (
+          {history.map(car => (
             <ExpandibleCard key={car.id} career={car} />
           ))}
         </div>

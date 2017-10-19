@@ -23,6 +23,7 @@ const error = (state = false, action) => {
   switch (action.type) {
     case RECOMENDATIONS_FAILURE:
       return true;
+    case CHANGE_TAB:
     case RECOMENDATIONS_SUCCESS:
       return false;
     default:

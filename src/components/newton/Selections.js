@@ -30,7 +30,8 @@ const Selections = ({ recomendations, onDecline, onAcept, loading, mobile }) => 
       <div className={mobile ? 'order-1 padding-1' : 'col padding-2'}>
         <div className="newton-header">¡Eureka!</div>
         <p style={{ textAlign: 'justify' }}>
-        Ahora debes marcar si las carreras recomendadas son de tu interés o no. De esta forma aprenderé más de ti y te podré recomendar de forma más precisa en el futuro.
+        Ahora debes marcar si las carreras recomendadas son de tu interés o no. De esta forma aprenderé más de ti y te podré recomendar de forma más precisa en el futuro. <br />
+          {mobile ? 'Desliza a la darecha una carrera para aceptar, izquierda para rechazar' : ''}
         </p>
       </div>
     </section>

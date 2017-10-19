@@ -9,6 +9,7 @@ import NewtonOne from './NewtonOne';
 import NewtonTwo from './NewtonTwo';
 import Selections from './Selections';
 import DashBoard from './Board';
+import NewtonError from './NewtonError';
 import './Newton.css';
 
 class Newton extends Component {
@@ -29,12 +30,20 @@ class Newton extends Component {
 
 
   componentWillReceiveProps(nextProps) {
+    if (nextProps.error !== this.props.error) {
+      console.log('Entramos');
+      if (nextProps.error) {
+        console.log('Entramos 2');
+        nextProps.changeTab(4);
+      }
+    }
     if (nextProps.recomends !== this.props.recomends) {
+      console.log('entramos 3');
       if (is.not.null(nextProps.recomends)) {
         if (nextProps.recomends.length > 0) {
           nextProps.changeTab(3);
         } else {
-          setTimeout(() => nextProps.changeTab(4), 300);
+          setTimeout(() => nextProps.changeTab(5), 300);
         }
       }
     }
@@ -96,8 +105,15 @@ class Newton extends Component {
         );
       case 4:
         return (
+          <NewtonError
+            mobile={this.props.mobile}
+            handleNext={this.handleNext}
+          />
+        );
+      case 5:
+        return (
           <DashBoard
-            careers={this.props.careers}
+            history={this.props.history}
             areas={this.props.areas}
             onSelectArea={selectedArea => this.setState({ selectedArea })}
             selectedArea={this.state.selectedArea}
@@ -142,10 +158,10 @@ class Newton extends Component {
   }
 
   handleNext() {
-    if (this.props.currentTab < 2) {
-      this.props.changeTab(this.props.currentTab + 1);
-    } else {
+    if (this.props.currentTab === 2) {
       this.onRecomendClick();
+    } else if (this.props.currentTab < 5) {
+      this.props.changeTab(this.props.currentTab + 1);
     }
   }
 
@@ -174,9 +190,10 @@ Newton.propTypes = {
 
 export default connect(state => ({
   recomends: state.recomends.recomends,
+  history: state.recomends.history,
   loading: state.recomends.requesting,
   currentTab: state.recomends.currentTab,
-  failure: state.recomends.error,
+  error: state.recomends.error,
   token: state.user.currentUser.auth_token,
   careers: state.search.popular_careers,
   areas: state.fetch.areas,
