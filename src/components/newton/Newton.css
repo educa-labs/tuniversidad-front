@@ -1,0 +1,96 @@
+.newton-section {
+  width: 25rem;
+  display: flex;
+}
+
+.newton-section-mobile {
+  padding: 1rem;
+  height: 100%;
+  width: 100%;
+}
+
+.newton-container-mobile {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.how-work {
+  color: #0091EA;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.newton-body {
+  text-align: justify;
+  margin: 1rem 0;
+}
+
+.newton-section p {
+  text-align: justify;
+}
+
+
+.newton-fullscreen {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+}
+
+.newton-header {
+  display: flex;
+  height: 48px;
+  align-items: center;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.recomendation {
+  display: flex;
+  flex: 1;
+}
+
+.selections {
+  padding: 1rem;
+}
+
+.newton-modal {
+  text-align: justify;
+}
+
+.newton-modal span {
+  color: #0091EA;
+}
+
+.newton-fullscreen-mobile {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.order-2 {
+  order: 2;
+}
+
+.order-1 {
+  order: 1;
+}
+
+.accept-view {
+  background-color: #4CAF50;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  justify-content: flex-end;
+}
+
+.decline-view {
+  background-color: #F44336;
+  height: 100%;
+  display:  flex;
+  align-items: center;
+  padding: 0 15px;
+}

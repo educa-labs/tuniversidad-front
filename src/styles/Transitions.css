@@ -1,0 +1,17 @@
+.exit-enter {
+  height: 0px;
+}
+
+.exit-enter.exit-active {
+  height: 52px;
+  transition: 400ms;
+}
+
+.exit-leave {
+  height: 52px;
+}
+
+.exit-leave.exit-leave-active {
+  height: 0px;
+  transition: 400ms;
+}

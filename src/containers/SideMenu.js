@@ -50,6 +50,7 @@ class SideMenu extends Component {
         open={this.props.open}
         onRequestChange={this.props.onRequestChange}
         containerClassName="side-menu"
+        disableSwipeToOpen={this.props.currentTab === 2 && selected === 'profile'}
         containerStyle={{
           backgroundColor: '#424242',
           minHeight: '32rem',
@@ -75,14 +76,14 @@ class SideMenu extends Component {
           <div className="side-menu__item-label">Buscador</div>
         </button>
         <button
-          className={`side-menu__item ${selected === 'recommend' ? 'side-menu__item_selected' : ''}`}
+          className={`side-menu__item ${this.props.currentTab === 2 && selected === 'profile' ? 'side-menu__item_selected' : ''}`}
           onClick={() => {
             this.props.selectTab(2);
             this.handleSelectItem('profile');
           }}
         >
           <div className="icon"><LightbulbIcon color="#FFFFFF" /></div>
-          <div className="side-menu__item-label">Newton (Pronto)</div>
+          <div className="side-menu__item-label">Newton {/*<span style={{ color: '#0091EA' }}>¡Nuevo!</span>*/}</div>
         </button>
         <button
           className={`side-menu__item ${selected === 'news' ? 'side-menu__item_selected' : ''}`}
@@ -117,6 +118,7 @@ SideMenu.contextTypes = {
 function mapStateToProps(state) {
   return {
     user: state.user.currentUser,
+    currentTab: state.profileNavigation.tab,
   };
 }
 

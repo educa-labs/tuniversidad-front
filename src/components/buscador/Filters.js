@@ -9,11 +9,10 @@ import NavigationBar from '../../components/NavigationBar';
 import Loading from '../Loading';
 import { fetch } from '../../actions/fetch';
 import { makeSubmit } from '../../actions/search';
-import { capitalize } from '../../helpers/strings';
+import { capitalize, getOptions } from '../../helpers/strings';
 import { changeFilterValue } from '../../actions/filter';
 import { CAREER } from '../../constants/strings';
 
-const all = { value: -1, label: 'Todas' };
 const allM = { value: -1, label: 'Todos' };
 
 const yesNo = [
@@ -21,15 +20,6 @@ const yesNo = [
   { value: 2, label: 'Sí' },
   { value: -1, label: 'Todas' },
 ];
-
-const getOptions = (items) => {
-  if (is.null(items)) return [];
-  const result = items.map(item => ({
-    value: item.id, label: capitalize(item.title),
-  }));
-  result.unshift(all);
-  return result;
-};
 
 const getSchedulesOptions = (items) => {
   const result = items.map(item => ({

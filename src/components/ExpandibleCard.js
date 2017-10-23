@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
-import _ from 'lodash';
+import is from 'is_js';
+import { findIndex } from 'lodash';
 import IconButton from 'material-ui/IconButton';
 import Divider from 'material-ui/Divider';
 import FlatButton from 'material-ui/FlatButton';
@@ -31,8 +32,11 @@ class ExpandibleCard extends Component {
   }
   getType() {
     const { career } = this.props;
-    if (career.weighing.science !== 0 && career.weighing.history) return 'Historia o Ciencias';
-    return career.weighing.science !== 0 ? 'Ciencias' : 'Historia';
+    if (career.weighing) {
+      if (career.weighing.science !== 0 && career.weighing.history) return 'Historia o Ciencias';
+      return career.weighing.science !== 0 ? 'Ciencias' : 'Historia';
+    }
+    return '';
   }
 
   handleInfoClick() {
@@ -47,7 +51,7 @@ class ExpandibleCard extends Component {
     if (guest) {
       goalClick();
     } else {
-      const isFavorite = _.findIndex(goals, goal => goal.carreer.id === career.id) > -1;
+      const isFavorite = findIndex(goals, goal => goal.carreer.id === career.id) > -1;
       if (isFavorite) {
         this.props.removeGoal(career.id, token);
       } else {
@@ -59,16 +63,17 @@ class ExpandibleCard extends Component {
   render() {
     const { career, goals, mobile } = this.props;
     const { expanded } = this.state;
-    const isFavorite = _.findIndex(goals, goal => goal.carreer.id === career.id) > -1;
+    const isFavorite = findIndex(goals, goal => goal.carreer.id === career.id) > -1;
     const special = [33, 36].includes(career.university_id);
+    const noWeight = career.weighing ? is.null(career.weighing.NEM) : true;
     
     return (
-      <div>
+      <div style={{ flex: 1 }}>
         <div className="expandible-card">
           <div className="general-card__header cursor" onClick={() => this.setState({ expanded: !expanded })}>
             <div className="col">
-              <div className={`general-card__title title_no-margin ${mobile ? 'title-truncate' : ''}`}>{career.title}</div>
-              <button className={`general-card__subtitle color-blue ${mobile ? 'title-truncate' : ''}`}>
+              <div className={`general-card__title title_no-margin ${mobile && !expanded ? 'title-truncate' : ''}`}>{career.title}</div>
+              <button className={`general-card__subtitle color-blue ${mobile && !expanded ? 'title-truncate' : ''}`}>
                 <span onTouchTap={this.linkTo} className="hover-blue">{career.university_name} en {career.campu_name}</span>
               </button>
             </div>
@@ -81,32 +86,34 @@ class ExpandibleCard extends Component {
             </IconButton>
           </div>
           <Collapse isOpened={expanded}>
-            <div className="expandible-body">
-              <div className="row">
-                <div className="expandible-label">NEM</div>
-                <div className="expandible-value">{career.weighing ? career.weighing.NEM : null}%</div>
+            {noWeight ? null : (
+              <div className="expandible-body">
+                <div className="row">
+                  <div className="expandible-label">NEM</div>
+                  <div className="expandible-value">{career.weighing ? career.weighing.NEM : null}%</div>
+                </div>
+                <div className="row">
+                  <div className="expandible-label">Ranking</div>
+                  <div className="expandible-value">{career.weighing ? career.weighing.ranking : null}%</div>
+                </div>
+                <div className="row">
+                  <div className="expandible-label">Lenguaje</div>
+                  <div className="expandible-value">{career.weighing ? career.weighing.language : null}%</div>
+                </div>
+                <div className="row">
+                  <div className="expandible-label">Matemáticas</div>
+                  <div className="expandible-value">{career.weighing ? career.weighing.math : null}%</div>
+                </div>
+                <div className="row">
+                  <div className="expandible-label">{this.getType()}</div>
+                  <div className="expandible-value">{career.weighing ? career.weighing.science || career.weighing.history : null}%</div>
+                </div>
+                <div className="row">
+                  <div className="expandible-label">{special ? 'Mínimo de postulación' : 'Corte 2016'}</div>
+                  <div className="expandible-value">{career.last_cut}</div>
+                </div>
               </div>
-              <div className="row">
-                <div className="expandible-label">Ranking</div>
-                <div className="expandible-value">{career.weighing ? career.weighing.ranking : null}%</div>
-              </div>
-              <div className="row">
-                <div className="expandible-label">Lenguaje</div>
-                <div className="expandible-value">{career.weighing ? career.weighing.language : null}%</div>
-              </div>
-              <div className="row">
-                <div className="expandible-label">Matemáticas</div>
-                <div className="expandible-value">{career.weighing ? career.weighing.math : null}%</div>
-              </div>
-              <div className="row">
-                <div className="expandible-label">{this.getType()}</div>
-                <div className="expandible-value">{career.weighing ? career.weighing.science || career.weighing.history : null}%</div>
-              </div>
-              <div className="row">
-                <div className="expandible-label">{special ? 'Mínimo de postulación' : 'Corte 2016'}</div>
-                <div className="expandible-value">{career.last_cut}</div>
-              </div>
-            </div>
+            )}
             <div className="row no-margin">
               <div className="start">
                 <FlatButton
