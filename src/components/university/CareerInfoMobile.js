@@ -1,4 +1,5 @@
 import React from 'react';
+import is from 'is_js';
 import { numeral } from '../../helpers/numeral';
 
 function CareerInfoMobile({ career, links }) {
@@ -7,35 +8,40 @@ function CareerInfoMobile({ career, links }) {
     return career.weighing.science !== 0 ? 'Ciencias' : 'Historia';
   }
   const special = [33, 36].includes(career.university_id);
+  const noWeight = career.weighing ? is.null(career.weighing.NEM) : true;
   return (
     <div>
-      <div className="career-section-header">Ponderación</div>
-      <div className="career-section-body">
-        <div className="row">
-          <div className="expandible-label">Lenguaje</div>
-          <div className="expandible-value">{career.weighing ? career.weighing.language : null}%</div>
+      {noWeight ? null : (
+        <div className="career-section-header">Ponderación</div>
+      )}
+      {noWeight ? null : (
+        <div className="career-section-body">
+          <div className="row">
+            <div className="expandible-label">NEM</div>
+            <div className="expandible-value">{career.weighing ? career.weighing.NEM : null}%</div>
+          </div>
+          <div className="row">
+            <div className="expandible-label">Ranking</div>
+            <div className="expandible-value">{career.weighing ? career.weighing.ranking : null}%</div>
+          </div>
+          <div className="row">
+            <div className="expandible-label">Lenguaje</div>
+            <div className="expandible-value">{career.weighing ? career.weighing.language : null}%</div>
+          </div>
+          <div className="row">
+            <div className="expandible-label">Matemáticas</div>
+            <div className="expandible-value">{career.weighing ? career.weighing.math : null}%</div>
+          </div>
+          <div className="row">
+            <div className="expandible-label">{getType()}</div>
+            <div className="expandible-value">{career.weighing ? career.weighing.science || career.weighing.history : null}%</div>
+          </div>
+          <div className="row">
+            <div className="expandible-label">Corte 2016</div>
+            <div className="expandible-value">{career.last_cut}</div>
+          </div>
         </div>
-        <div className="row">
-          <div className="expandible-label">Matemáticas</div>
-          <div className="expandible-value">{career.weighing ? career.weighing.math : null}%</div>
-        </div>
-        <div className="row">
-          <div className="expandible-label">{getType()}</div>
-          <div className="expandible-value">{career.weighing ? career.weighing.science || career.weighing.history : null}%</div>
-        </div>
-        <div className="row">
-          <div className="expandible-label">NEM</div>
-          <div className="expandible-value">{career.weighing ? career.weighing.NEM : null}%</div>
-        </div>
-        <div className="row">
-          <div className="expandible-label">Ranking</div>
-          <div className="expandible-value">{career.weighing ? career.weighing.ranking : null}%</div>
-        </div>
-        <div className="row">
-          <div className="expandible-label">Corte 2016</div>
-          <div className="expandible-value">{career.last_cut}</div>
-        </div>
-      </div>
+      )}
       <div className="career-section-header">Información</div>
       <div className="career-section-body">
         <div className="row">
