@@ -105,7 +105,7 @@ class Profile extends Component {
           <Tab label="Progreso" value={1} style={tabStyle} />
           <Tab
             label={
-              <p>Newton <span style={{ color: '#0091EA' }}>{mobile ? '' : '¡Nuevo!'}</span></p>
+              <p>Newton {/*<span style={{ color: '#0091EA' }}>{mobile ? '' : '¡Nuevo!'} </span>*/}</p>
             }
             value={2}
             style={tabStyle}

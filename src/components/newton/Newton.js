@@ -10,6 +10,7 @@ import NewtonTwo from './NewtonTwo';
 import Selections from './Selections';
 import DashBoard from './Board';
 import NewtonError from './NewtonError';
+import NotImplemented from './NotImplemented';
 import './Newton.css';
 
 class Newton extends Component {
@@ -173,9 +174,15 @@ class Newton extends Component {
   render() {
     return (
       <div className={this.props.mobile ? 'newton-container-mobile' : 'newton-container'}>
-        {this.props.loading && this.props.currentTab !== 3 ? (
+        {/*this.props.loading && this.props.currentTab !== 3 ? (
           <Loading />
-        ) : this.getContent(this.props.currentTab)}
+        ) : this.getContent(this.props.currentTab) */}
+        <NotImplemented
+          showModal={this.state.showModal}
+          toggleModal={() => this.setState({ showModal: !this.state.showModal })}
+          handleNext={this.handleNext}
+          mobile={this.props.mobile}
+        />
       </div>
     );
   }

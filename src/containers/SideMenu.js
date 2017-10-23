@@ -83,7 +83,7 @@ class SideMenu extends Component {
           }}
         >
           <div className="icon"><LightbulbIcon color="#FFFFFF" /></div>
-          <div className="side-menu__item-label">Newton <span style={{ color: '#0091EA' }}>¡Nuevo!</span></div>
+          <div className="side-menu__item-label">Newton {/*<span style={{ color: '#0091EA' }}>¡Nuevo!</span>*/}</div>
         </button>
         <button
           className={`side-menu__item ${selected === 'news' ? 'side-menu__item_selected' : ''}`}
