@@ -31,15 +31,17 @@ class Newton extends Component {
 
 
   componentWillReceiveProps(nextProps) {
+    if (nextProps.history !== this.props.history) {
+      if (is.not.empty(nextProps.history) && is.null(this.props.history)) {
+        nextProps.changeTab(5);
+      }
+    }
     if (nextProps.error !== this.props.error) {
-      console.log('Entramos');
       if (nextProps.error) {
-        console.log('Entramos 2');
         nextProps.changeTab(4);
       }
     }
     if (nextProps.recomends !== this.props.recomends) {
-      console.log('entramos 3');
       if (is.not.null(nextProps.recomends)) {
         if (nextProps.recomends.length > 0) {
           nextProps.changeTab(3);
@@ -174,15 +176,9 @@ class Newton extends Component {
   render() {
     return (
       <div className={this.props.mobile ? 'newton-container-mobile' : 'newton-container'}>
-        {/*this.props.loading && this.props.currentTab !== 3 ? (
+        {this.props.loading && this.props.currentTab !== 3 ? (
           <Loading />
-        ) : this.getContent(this.props.currentTab) */}
-        <NotImplemented
-          showModal={this.state.showModal}
-          toggleModal={() => this.setState({ showModal: !this.state.showModal })}
-          handleNext={this.handleNext}
-          mobile={this.props.mobile}
-        />
+        ) : this.getContent(this.props.currentTab)}
       </div>
     );
   }

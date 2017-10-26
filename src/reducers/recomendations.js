@@ -65,11 +65,35 @@ const currentTab = (state = 0, action) => {
   }
 };
 
+const essays = (state = null, action) => {
+  switch (action.type) {
+    case RECOMENDATIONS_SUCCESS:
+      return action.essays;
+    case RECOMENDATIONS_FAILURE:
+      return null;
+    default:
+      return state;
+  }
+};
+
+const area = (state = null, action) => {
+  switch (action.type) {
+    case RECOMENDATIONS_SUCCESS:
+      return action.area;
+    case RECOMENDATIONS_FAILURE:
+      return null;
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   error,
   requesting,
   recomends,
   currentTab,
   history,
+  area,
+  essays,
 });
 
