@@ -41,9 +41,11 @@ class DashBoard extends Component {
         />
         <div className={mobile ? 'order-2' : 'col col-3 padding-2'}>
           <div className="search-feedback">Anteriormente recomendadas</div>
-          {history.map(car => (
-            <ExpandibleCard key={car.id} career={car} />
-          ))}
+          <div>
+            {history.map(hist => (
+              <ExpandibleCard key={hist.id} career={hist.carreer} />
+            ))}
+          </div>
         </div>
         <div className={mobile ? 'order-1' : 'col padding-2'}>
           <div className="search-feedback">Parámetros</div>
