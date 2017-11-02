@@ -243,6 +243,7 @@ class Buscador extends Component {
               guest={isGuest}
               mobile
             />
+            <NewtonLeft />
           </div>
         </div>
       );
