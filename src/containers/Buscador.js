@@ -11,6 +11,7 @@ import SearchResult from '../components/buscador/Results';
 import Selector from '../components/buscador/Selector';
 import FilterTags from '../components/buscador/FilterTags';
 import Filters from '../components/buscador/Filters';
+import NewtonLeft from '../components/buscador/NewtonLeft';
 import ShareFB from '../components/utility/ShareFB';
 import ShareTwitter from '../components/utility/ShareTwitter';
 import MobileBanner from './MobileBanner';
@@ -260,7 +261,11 @@ class Buscador extends Component {
           guest={isGuest}
         />
         <div className={`search-content-page ${isGuest ? 'search-content-page-guest' : ''}`}>
-          {isGuest ? <div className="search-input-empty" /> : null}
+          {isGuest ? (
+            <div className="search-input-empty">
+              <NewtonLeft />
+            </div>
+          ) : null}
           <div className={`search-results ${isGuest ? 'search-results-guest' : ''}`}>
             <div style={{ display: 'flex' }}>
               <div className="col">
