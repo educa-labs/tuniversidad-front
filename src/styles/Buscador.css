@@ -150,3 +150,26 @@
 .before-search {
   flex: 1;
 }
+
+.newton-left {
+  padding: 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.newton-left .title {
+  font-weight: 600;
+  font-size: 18px;
+  margin: 7px 0;
+}
+
+.newton-left .body {
+  text-align: justify;
+  margin: 7px 0;
+}
+
+.newton-left .newton-body {
+  display: flex;
+  justify-content: center;
+}
