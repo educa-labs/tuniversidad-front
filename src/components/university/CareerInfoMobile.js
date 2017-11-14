@@ -37,7 +37,7 @@ function CareerInfoMobile({ career, links }) {
             <div className="expandible-value">{career.weighing ? career.weighing.science || career.weighing.history : null}%</div>
           </div>
           <div className="row">
-            <div className="expandible-label">Corte 2016</div>
+            <div className="expandible-label">Puntaje de corte</div>
             <div className="expandible-value">{career.last_cut}</div>
           </div>
         </div>
