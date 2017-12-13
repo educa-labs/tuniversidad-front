@@ -151,6 +151,15 @@
   flex: 1;
 }
 
+.pondera {
+  height: 15rem;
+  width: 13rem;
+  background-image: url(/images/pondera.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .newton-left {
   padding: 2rem;
   flex: 1;
@@ -168,6 +177,11 @@
   text-align: justify;
   margin: 7px 0;
 }
+
+.newton-left a.footer {
+  color: #FFA000!important;
+}
+
 
 .newton-left .newton-body {
   display: flex;

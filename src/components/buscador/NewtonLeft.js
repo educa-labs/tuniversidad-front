@@ -7,14 +7,14 @@ const NewtonLeft = () => (
       ¿No sabes que estudiar?
     </div>
     <div className="newton-body">
-      <div className="newton-thinking" />
+      <div className="pondera" />
     </div>
     <div className="body">
-      Soy Newton y creo que puedo ayudarte. soy una computadora que trabaja con <b>Inteligencia artificial</b> para guiar vocacionalmente a miles de estudiantes.
+      Te invitamos a ponderar en nuestro sitio www.pondera.cl el día 26 de Diciembre a las 9:00 horas. Al hacerlo estarás participando por un nuevo <strong>IPhone X</strong> o uno de los dos <strong>Galaxy S8</strong>
     </div>
-    <Link to="/signup" className="footer">
-      ¡Regístrate y pruebame!
-    </Link>
+    <a href="https://www.pondera.cl" className="footer">
+      ¡Ingresa aquí y regístrate!
+    </a>
   </div>
 );
 
