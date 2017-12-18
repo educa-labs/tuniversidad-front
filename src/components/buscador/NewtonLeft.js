@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 const NewtonLeft = () => (
   <div className="newton-left">
     <div className="title">
-      ¿No sabes que estudiar?
+      ¡Podera aquí y gana!
     </div>
     <div className="newton-body">
       <div className="pondera" />
